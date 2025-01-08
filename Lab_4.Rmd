@@ -1,0 +1,21 @@
+---
+title: "Lab 4: Hypothesis Testing"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+<br>
+**Jenny Wagner, PhD, MPH**
+<br>
+Department of Public Health
+<br>
+California State University, Sacramento
+<br>
+<br>
+
+
+# Introduction

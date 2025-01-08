@@ -1,0 +1,36 @@
+name: "my-website"
+output_dir: "docs"
+navbar:
+  title: "PUBH 207B: Spring 2025"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Course Schedule"
+      href: course_schedule.html
+    - text: "Getting Started"
+      href: install.html
+    - text: "Assignment Guidelines"
+      href: about.html
+    - text: "Lab Guides"
+      menu:
+      - text: "Lab 1"
+        href: Lab_1.html
+#      - text: "Lab 2"
+#        href: Lab_2.html
+#      - text: "Lab 3"
+#        href: Lab_3.html
+#      - text: "Lab 4"
+#        href: Lab_4.html
+#      - text: "Lab 5"
+#      - text: "Lab 6"
+#      - text: "Lab 7"
+#      - text: "Lab 8"
+#      - text: "Lab 9"
+
+output:
+  html_document:
+    theme: cerulean
+    highlight: tango
+    toc: TRUE
+    toc_float: TRUE
+    

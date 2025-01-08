@@ -1,0 +1,15 @@
+---
+title: "Course Schedule"
+output: 
+  html_document:
+    toc: FALSE
+---
+<br>
+**Jenny Wagner, PhD, MPH**
+<br>
+Department of Public Health
+<br>
+California State University, Sacramento
+<br>
+<br>
+

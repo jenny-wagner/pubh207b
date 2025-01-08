@@ -1,0 +1,84 @@
+---
+title: "PUBH 207B: Health Research Methods & Analysis"
+output: 
+  html_document:
+    toc: FALSE
+---
+<br>
+**Jenny Wagner, PhD, MPH**
+<br>
+Department of Public Health
+<br>
+California State University, Sacramento
+<br>
+<br>
+
+
+## Welcome to the PUBH 207B course website!
+
+<br>
+This website complements the class Canvas site. 
+On Canvas, you will find:
+
+* The course syllabus
+* Lecture slides
+* Assignment instructions
+* Assignment submission portals
+* Assignment feedback
+* Grades 
+
+On this website, you will find:
+
+* The course schedule (also included in the syllabus)
+* Instructions for installing R/RStudio
+* General assignment guidelines
+* Lab guides
+
+As this course is taught in a hybrid modality, you can expect to spend a substantial amount of time outside of class reading and studying the material, as well as engaging in learning activities using the course software, R/RStudio. The lab guides on this website will serve as important resources as you work on assignments for this course. Please be sure to read over the Assignment Guidelines linked at the top of this page. I recommend reviewing these guidelines each time before you begin an assignment.
+
+<br>
+
+### Course description
+
+This course introduces students to the fundamentals of research methodology in applied epidemiology, biostatistics and evaluation research. Students learn quantitative, qualitative, mixed method and participatory approaches to research, as well as ethical behavior in conducting research. Through the mix of texts, articles from the public health literature and course work, students will build skills for conducting research and analysis across a variety of public health applications.
+
+<br>
+
+### What is biostatistics?
+
+PUBH 207B is focused heavily on biostatistics. Biostatistics is the application of statistical methods to the study of living organisms, health, and disease. It provides the tools to collect, analyze, and interpret data to ensure public health decisions are evidence-based. Biostatistics is a cornerstone of public health research and practice - it is essential for understanding patterns of disease, identifying risk factors for disease, evaluating interventions, and shaping policies to improve health outcomes.
+
+<br>
+
+### Course software
+
+Today, statistical analysis rarely happens “on paper.” Instead, public health professionals rely on software tools to manage, analyze, and visualize data effectively. A variety of statistical software tools are used to analyze public health data, including R, SAS, SPSS, Stata, and others. Each has its strengths and is widely used in specific contexts, depending on organizational preferences and the nature of the work. In this course, we’ll use R and RStudio, open-source tools that are among the most widely used in public health research and practice. R is a versatile programming language specifically designed for statistical computing and graphics, while RStudio provides a user-friendly interface to make working with R easier and more productive. While you are not expected to become an expert in R, learning one software tool — like R — can make it much easier to adapt to other tools if required by a future job or organization.
+
+<br>
+
+#### Why R and RStudio? They’re:
+
+* Capable of performing everything from simple summaries to advanced statistical modeling.
+* Used by researchers, government agencies, and organizations around the world.
+* Free and accessible to everyone, making them ideal for building skills that you can carry forward in your career.
+* Backed by a large and active global community that continuously improves the tools and shares resources.
+
+<br>
+
+#### Learning to work with R/RStudio is a journey, not a destination 
+
+In this course, you are not expected to become an expert in R — but you will take important steps toward building proficiency. Using R is a continuous learning process, and even experienced users are always discovering new ways to approach challenges.
+
+That said, developing a solid foundation in both the course material and the software will require time and dedication. R can have a steep learning curve, especially at the beginning, and it’s normal to feel overwhelmed at times. By engaging with the course content, practicing regularly, and applying what you learn to public health problems, you will gain confidence and skill over time.
+
+To help you succeed, I encourage you to:
+
+* Work together. Collaboration is encouraged! Discussing problems with your peers is a great way to learn.
+* Utilize the provided textbooks, course website, and R-specific guides to enhance your understanding.
+* Search online. The R community is large and active, and many of your coding questions will have already been answered in forums and tutorials.
+* Seek support. I am here to answer questions and provide guidance as you navigate the course. If you are struggling, please come see me in office hours.
+
+<br>
+
+If you have any questions, please don't hesitate to reach out to me at jenny.wagner@csus.edu.
+

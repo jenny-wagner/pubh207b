@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Assignment Guidelines</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #204a87; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">PUBH 207B: Spring 2025</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="course_schedule.html">Course Schedule</a>
+</li>
+<li>
+  <a href="install.html">Getting Started</a>
+</li>
+<li>
+  <a href="about.html">Assignment Guidelines</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Lab Guides
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Lab_1.html">Lab 1</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Assignment Guidelines</h1>
+
+</div>
+
+
+<p><br> <strong>Jenny Wagner, PhD, MPH</strong> <br> Department of
+Public Health <br> California State University, Sacramento <br> <br></p>
+<div id="general-overview" class="section level1">
+<h1>General overview</h1>
+<p>There are a few types of assignments in this course: Labs,
+Application Challenges, and the Final Project. For each of these
+assignments, you will use R/RStudio to carry out analytic tasks. A few
+things to know for now:</p>
+<ul>
+<li><strong>Labs</strong> will be graded on completion. You will be
+expected to read through the assigned Lab Guide according to the course
+schedule and complete a series of tasks using R/RStudio as you go. The
+Labs are intended to help you learn to use software to carry out the
+types of analyses we are learning in class.</li>
+<li><strong>Application Challenges</strong> are your opportunity to
+independently apply what you have learned in lecture and lab to a public
+health scenario. Instructions for each Application Challenge will be
+released on Canvas. For these assignments, you will be expected to
+select appropriate analytic approaches for the given scenario, execute
+data analysis tasks, and provide written interpretations of your
+results. Application Challenges are individual assignments. Although
+collaboration is encouraged, your code, comments, and interpretations
+should be your own. Additional details about expectations and grading
+are provided later on this page.</li>
+<li>For the <strong>Final Project</strong> you will be working in pairs.
+Together, you and your partner will design, execute, and present an
+analysis using a specified dataset. For this project, you will need to
+carry out your analyses using R/RStudio. You will also be expected to
+share your results in a brief written report and in-class presentation.
+I will provide much more detail about the Final Project on Canvas and in
+class.</li>
+</ul>
+<p><br></p>
+</div>
+<div id="r-file-types" class="section level1">
+<h1>R file types</h1>
+<p>As you begin working in RStudio, you’ll encounter different file
+types for writing and running R code. Two of the most common are:</p>
+<ol style="list-style-type: decimal">
+<li><strong>R Scripts</strong> (with a file extension
+<code>.R</code>):</li>
+</ol>
+<ul>
+<li>These are plain text files where you write and save your R
+code.</li>
+<li>R scripts are great for running and saving code for standalone
+analyses, but they lack built-in tools for formatting or creating
+reports. <br></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>R Markdown</strong> (with a file extension
+<code>.Rmd</code>):</li>
+</ol>
+<ul>
+<li>R Markdown files allow you to combine code, results, and written
+explanations in a single, dynamic document.</li>
+<li>You can generate polished reports, complete with formatted text,
+tables, and visualizations, making it ideal for sharing your work in a
+professional and reproducible way. <br></li>
+</ul>
+<p>In this course, we will use R Markdown files for <strong>all
+assignments.</strong> This ensures that you not only practice coding but
+also develop skills in documenting and communicating your analyses
+clearly.</p>
+<p><br></p>
+</div>
+<div id="rstudio-interface" class="section level1">
+<h1>RStudio interface</h1>
+<p>As discussed on the Home page, R is a programming language designed
+for statistical computing and graphics, while RStudio provides a
+user-friendly interface for working with R. You need to have both
+programs installed; however, we will only use the RStudio application to
+complete assignments in this course. You will not actually need to open
+the R application at any time.</p>
+<p>When you open RStudio, you’ll see the interface is divided into four
+main windows (see image below):</p>
+<ol style="list-style-type: decimal">
+<li><strong>Editor</strong> (Top-Left):</li>
+</ol>
+<ul>
+<li>This is where you write and save your scripts or R Markdown files.
+Think of the Editor window as your workspace for writing and organizing
+your code. When you save a <code>.R</code> or <code>.Rmd</code> file, it
+is the content in your Editor window that is being saved for later
+use.</li>
+<li>Scripts written here can be run line-by-line or in sections, sending
+code to the Console for execution. <br></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Console</strong> (Bottom-Left):</li>
+</ol>
+<ul>
+<li>The Console is where your code gets executed. When you run commands
+from the Editor, this is where you’ll see results or errors.</li>
+<li>You can write code directly into the Console. This can be useful for
+quick testing, but for more organized work, you’ll typically write code
+in the Editor. This is because any code you write directly into the
+Console is <strong>not saved for later use</strong>, unlike the code you
+write in the Editor window. <br></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Environment</strong> (Top-Right):</li>
+</ol>
+<ul>
+<li>This window displays any “R objects” you’ve created. R objects can
+include any datasets you’ve imported, “data frames” you’ve created
+during your analysis, or other items. For example, when you load a
+dataset into RStudio, you should see this dataset listed as an object in
+your Environment.</li>
+<li>The Environment is your go-to place for checking what’s currently
+loaded and managing your working environment. <br></li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>Plots/Files/Help</strong> (Bottom-Right):</li>
+</ol>
+<ul>
+<li>This multi-functional window displays visualizations (Plots tab) and
+gives access to your file directory, packages, and documentation.</li>
+<li>The Help tab is especially useful for looking up R functions and
+understanding how they work.</li>
+</ul>
+<p><br></p>
+<div class="figure">
+<img src="about_fig1.png" alt="The RStudio Interface" width="100%" />
+<p class="caption">
+The RStudio Interface
+</p>
+</div>
+<p><br></p>
+</div>
+<div id="a-brief-intro-to-r-markdown" class="section level1">
+<h1>A brief intro to R Markdown…</h1>
+<p>As we will be using R Markdown documents (with a <code>.Rmd</code>
+extension) for all assignments, it is important for you to have a basic
+understanding of these files before we begin working with RStudio. This
+section provides a brief introduction to R Markdown, including how to
+create and save an Rmd document within RStudio, the major components of
+an Rmd document (YAML header, R code chunks, and text), and how to
+“knit” an Rmd document (in other words, how to go from an Rmd document
+to a nicely formatted report).</p>
+<p><br></p>
+<div id="creating-and-saving-a-new-r-markdown-document"
+class="section level2">
+<h2>Creating and saving a new R Markdown document</h2>
+<p>Once again, we will use R Markdown files for all assignments. To
+create a new <code>.Rmd</code> file in RStudio, select File -&gt; New
+File -&gt; R Markdown. A window should pop up. Type in “Lab 1” (or
+whatever assignment you are working on) next to Title and your name next
+to Author. Leave everything else alone and click OK. A new window in the
+top left of your RStudio console should pop up containing your new R
+Markdown file (see example below).</p>
+<p><br></p>
+<p><img src="about_fig2.png" width="100%" /></p>
+<p><br></p>
+<p>You will notice that your new R Markdown file already has some
+“stuff” in it. R Markdown essentially provides some basic instructions
+for using an R Markdown file, but we don’t necessarily need to include
+that in our assignments. <strong>Before you get started on the
+assignment, you can go ahead and delete everything below the “r setup”
+chunk.</strong> (“Chunks” are the sections you’ll see shaded in light
+gray; more info below). In other words, leave the chunk that starts with
+“{r setup, include = FALSE}” and delete everything below it. Then, you
+will actually have a clean <code>.Rmd</code> file to work from.</p>
+<p>If you are using your personal computer for this course, it’s best to
+set up a <strong>clean and efficient file management structure.</strong>
+File management is key to preventing R programming frustration. Here are
+some tips:</p>
+<ul>
+<li>First, set up a clear and understandable hierarchical file system
+for this class. For example, create a class folder (PUBH 207B). Within
+this class folder, create the folder <em>Assignments</em> (or separate
+folders for Labs and Application Challenges, whatever will be clearest
+to you). Within the Assignments folder, create separate folders for each
+Assignment (e.g. Lab 1, Lab 2, …). I do <strong>not</strong> recommend
+working from your Desktop. Or from the Downloads folder. Or from some
+randomly named folder that you will have a hard time finding a month,
+week or day from now. You might end up having a system that looks
+something like this (on a Mac):</li>
+</ul>
+<p><br></p>
+<p><img src="about_fig3.png" width="100%" /></p>
+<p><br></p>
+<ul>
+<li>Second, keep all your files that are related to an assignment or
+project (e.g., R Markdown file, datasets, etc.) in one folder. That is,
+don’t have an Application Challenge #3 folder that contains data files
+specific to Application Challenge #4. Keep everything in one folder,
+including the R Markdown and datasets for that assignment or project.
+<strong>This will be necessary to properly compile your final report for
+each assignment.</strong></li>
+</ul>
+<p>Using the basic organizational guidelines above, save your R Markdown
+file into an appropriate folder by clicking on File and then Save from
+the RStudio menu.</p>
+<p>To open a <code>.Rmd</code> file in RStudio, select File -&gt; Open
+File and navigate to the folder where you saved the assignment template
+and select the file. You should see the R Markdown file pop up on the
+top left portion of your RStudio interface (Editor window).</p>
+<p><br></p>
+</div>
+<div id="major-components-of-an-rmd-document" class="section level2">
+<h2>Major components of an Rmd document</h2>
+<p>R Markdown documents contain 3 major components:</p>
+<ol style="list-style-type: decimal">
+<li>A <strong>YAML header</strong> surrounded by - - -</li>
+<li><strong>R code chunks</strong> surrounded by ```</li>
+<li><strong>Text</strong> mixed with simple text formatting using the <a
+href="https://www.markdownguide.org/cheat-sheet/">Markdown
+syntax</a></li>
+</ol>
+<p><br></p>
+<div id="yaml-header" class="section level3">
+<h3>YAML header</h3>
+<p>The YAML header controls how R Markdown renders your
+<code>.Rmd</code> file. The YAML header is surrounded by - - - marks and
+is <em>always located at the top of your Rmd file.</em></p>
+<p>In the assignment’s YAML, add your name, assignment number, and the
+date. These are the only necessary items, but you can change other
+options, most of which are detailed <a
+href="https://bookdown.org/yihui/rmarkdown/html-document.html">here</a>.
+Your YAML will generally look like the following:</p>
+<pre><code>---
+title: &quot;Assignment X&quot;
+subtitle: PUBH 207B
+author: Your full name here
+date: Assignment due date
+output: html_document
+---</code></pre>
+<p><br></p>
+</div>
+<div id="r-code-chunks" class="section level3">
+<h3>R code chunks</h3>
+<p>When answering an assignment question, you’ll have the following
+sequence of components in your R Markdown document: Question, R code
+answering the question, comments describing what the code is doing, and
+your text to explain the results. For example, let’s say you have the
+following question in one of your assignments:</p>
+<pre><code>Question 1
+1+1
+1. What is the result of the operation above?  </code></pre>
+<p>Assignments will ask you to write R code to accomplish data analysis
+tasks. You will present and execute your R code inside R code chunks
+(yes, they are really called “chunks”). R code chunks start with
+<code>```{r}</code> and end with <code>```</code>, and you insert your R
+code in between. Using the example question above, to carry out the
+operation <code>1+1</code> as R code, it will look like the following in
+your R Markdown document:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="st">```</span><span class="at">{r}</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="at">1 + 1</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
+<p>All code inside a chunk will be executed when <em>knitting</em> the R
+Markdown file (more on knitting soon). This means that your R code must
+reside inside an R code chunk in order for it to be processed as R code.
+R will interpret anything outside of R code chunks as plain text.</p>
+<p>I will ask you to annotate your R code so that I (and you) know what
+is being done in that line of code. You designate annotations or
+comments in R code using the # symbol. In programming, comments are bits
+of text that are not interpreted as computer instructions — they aren’t
+code, they’re just notes about the code. Since computer code can be
+opaque and difficult to understand, we use comments to help write down
+the meaning and purpose of our code. While a computer is able to
+understand the code, comments are there to help people understand it.
+This is particularly important when someone else will be looking at your
+work — whether that person is a collaborator, or is simply a future
+version of you (e.g., when you need to come back and fix something and
+so need to remember what you were thinking when you first wrote the
+code).</p>
+<p>Comments should be clear, concise, and helpful—they should provide
+information that is not otherwise present or “obvious” in the code
+itself. So, to annotate the above line of code <code>1+1</code>, you
+could add in your R code chunk:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="st">```</span><span class="at">{r}</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="at"># this adds one plus one</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="at">1 + 1</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
+<p>You put your comments after the <code>#</code>. When the # symbol is
+in front of text <em>within</em> a code chunk, R knows that what follows
+is not code but rather is plain text being used to explain the code.</p>
+<p>The first line of an R code chunk has {r}. Next to the r, we can give
+the chunk a name, such as:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="st">```</span><span class="at">{r q1chunk1}</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="at"># this adds one plus one</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="at">1 + 1</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
+<p>Here, I named the chunk “q1chunk1” which indicates this is question
+1, chunk 1. You can name the chunk whatever you like. The chunk name is
+not required; however, it is good practice to give each chunk a unique
+name (we’ll see its value later when we talk about knitting).</p>
+<p>In the R Markdown document you created and saved, you will notice the
+following R code chunk has automatically been included after the YAML
+header:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="st">```</span><span class="at">{r}</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="at">knitr::opts_chunk$set(echo = TRUE)</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
+<p>The above code establishes <em>global options</em> for every R code
+chunk in your R Markdown file. These options alter the way R results are
+spit out in your final formatted document. I suggest adding the
+following global options in every R Markdown assignment file:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="st">```</span><span class="at">{r}</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="at">knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
+<p>The above code hides non-error messages for every single R code chunk
+in your file. These non-error messages are unnecessary for the purposes
+of this class. Other chunk options can be found <a
+href="https://r4ds.had.co.nz/r-markdown.html#chunk-options">here</a>.</p>
+<p>You can also set options for individual chunks. These are local
+options - local to that chunk - and won’t be applied to other chunks in
+your file. For example, you can add the options
+<code>warning=TRUE</code> and <code>message=TRUE</code> to an individual
+R code chunk as follows if you want to show the messages for the R code
+in that particular chunk. Notice that each argument is separated by a
+comma:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="st">```</span><span class="at">{r q1chunk1, warning = TRUE, message = TRUE}</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="at"># this code adds one plus one</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="at">1 + 1</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
+<p><br></p>
+</div>
+<div id="text" class="section level3">
+<h3>Text</h3>
+<p>In addition to R code, assignments will ask you to write text to
+explain your results. Going back to our example question from above:</p>
+<pre><code>Question 1
+1+1
+1. What is the result of the operation above?  </code></pre>
+<p>You would type in your R Markdown document something like:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>Question <span class="dv">1</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="st">```</span><span class="at">{r}</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="at"># this code adds one plus one</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="at">1 + 1</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="st">```</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>My analysis yields the number <span class="fl">2.</span></span></code></pre></div>
+<p>The question and text explaining the result reside <em>outside</em>
+of the R code chunk. There is nothing special about the text in terms of
+its format or placement.</p>
+<p><br></p>
+</div>
+</div>
+<div id="separating-code-one-chunk-at-a-time" class="section level2">
+<h2>Separating code one chunk at a time</h2>
+<p>Please do not put all of your code for an entire assignment or even a
+single question in one single chunk. For example, let’s say you see the
+following question in an assignment:</p>
+<pre><code>Question 1
+(a) 1+1
+(b) 2+2
+Run each line of code above. What are the results? </code></pre>
+<p>Instead of including both lines of code in one chunk like as
+follows…</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>Question <span class="dv">1</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="st">```</span><span class="at">{r}</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="at"># this code adds one plus one</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="at">1 + 1</span></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="at"># this code adds two plus two</span></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="at">2 + 2</span></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="st">```</span></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a>One plus one equals <span class="fl">2.</span> Two plus two equals <span class="fl">4.</span></span></code></pre></div>
+<p>…break it up and add text after each to explain the result:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>Question 1a</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="st">```</span><span class="at">{r}</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="at"># this code adds one plus one</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="at">1 + 1</span></span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="st">```</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>One plus one equals <span class="fl">2.</span> </span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>Question 1b</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="st">```</span><span class="at">{r}</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="at"># this code adds two plus two</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="at">2 + 2</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="st">```</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>Two plus two equals <span class="fl">4.</span></span></code></pre></div>
+<p><br></p>
+<p>You may have multiple code chunks for a single item. It just depends
+on how complex the question is - there may be multiple steps involved.
+Use your best judgement to determine the most appropriate way to break
+up your code, keeping in mind that there are always many different ways
+to accomplish the same task in R.</p>
+<p><br></p>
+<div id="always-test-each-chunk" class="section level3">
+<h3>Always test each chunk</h3>
+<p>After you write code in a chunk, you’ll need to test the code to make
+sure it is running properly. In other words, rather than writing all the
+code and then running it at the end of the assignment, run the chunks
+one at a time. To elaborate, let’s say the first question in an
+assignment asks you to add one plus one. In your R Markdown document,
+type in the following to answer this question:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>Question 1a</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="st">```</span><span class="at">{r}</span></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="at"># this code adds one plus one</span></span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="at">1 + 1</span></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a><span class="st">```</span></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>One plus one equals <span class="fl">2.</span> </span></code></pre></div>
+<p>Run that code chunk to make sure it works (you should get 2!). Then
+proceed to the next question. Let me emphasize: <strong>Do not write all
+of your code answering every question in the assignment and run it at
+the very end.</strong> Routinely TEST, Test, and test your code to make
+sure it runs properly.</p>
+<p>There are a number of ways to run code in R Markdown. First, you can
+click your mouse in the R code chunk you want to run and click on
+<img src="run.png" width="10%" /> located at the top of the R Markdown
+window and select Run Current Chunk.</p>
+<p>Second, you can place your mouse cursor in the R code chunk and click
+on <img src="play.png" width="5%" /> located on the right corner of the
+chunk. See Figure below.</p>
+<p><br></p>
+<p><img src="test1.png" width="100%" /></p>
+<p><br></p>
+<p>In each R code chunk, pressing the button
+<img src="run_prev.png" width="5%" /> will run all <em>previous</em> R
+chunks. See Figure below.</p>
+<p><br></p>
+<p><img src="test2.png" width="100%" /></p>
+<p><br></p>
+</div>
+</div>
+<div id="knitting-an-r-markdown-document" class="section level2">
+<h2>Knitting an R Markdown document</h2>
+<p><em>Knitting</em> puts an assignment’s main components - code,
+output, and text - in a nicely formatted document. You can create three
+types of knitted documents: html, Microsoft Word, or PDF. For all
+assignments in this course I would like you to knit to an
+<code>html</code> file because it is the easiest of the three
+options.</p>
+<p>To Knit your document click <img src="knit.png" width="10%" /> ,
+which will be located at the top of the upper left R Markdown
+window.</p>
+<p><br></p>
+<p><img src="about_fig4.png" width="100%" /></p>
+<p><br></p>
+<p>When you start knitting, you will notice that a new window on the
+bottom left will appear in place of the Console. The window will show
+the progress in your knitting. When you knit, R is going through each R
+code chunk one at a time. The percentages you will see are based on the
+proportion of your R Markdown file that R has successfully knitted. See
+Figure below.</p>
+<p><br></p>
+<p><img src="about_fig5.png" width="100%" /></p>
+<p><br></p>
+<p>If there is a problem knitting, R will stop at the chunk that
+contains the problem. You can determine the offending place in your R
+Markdown file two ways. First, in the R Markdown tab in the bottom left
+window, if you click on “Output” located at the top right corner of this
+window, you will see the R Markdown progress window, the error in red,
+and where R Markdown stopped. Carefully read the description of the
+error, which will contain the R code chunk name and sometimes the lines
+containing the problem in your R Markdown file. While not required, this
+is where naming your code chunks can come in handy. You can go to your
+offending chunk and see what may be the problem. For example, the figure
+below shows knitting was stopped because the object ‘xyz’ was not
+created in the R Markdown file. You can go to the chunk named q2chunk2
+to remedy the issue.</p>
+<p><br></p>
+<p><img src="about_fig6.png" width="100%" /></p>
+<p><br></p>
+<p>The other way to find where R Markdown is having trouble is by
+clicking on “Issues” also located at the top right corner of the R
+Markdown window. The error will give you something similar to what you
+found in the Output window, but instead of a chunk, it will tell you the
+specific line in your R Markdown file that this error is located. Go to
+that line in your R Markdown file and see what is the issue. For
+example, the error here is located in line 34.</p>
+<p><br></p>
+<p><img src="about_fig7.png" width="100%" /></p>
+<p><br></p>
+<p>If everything goes smoothly and you encounter no errors, a preview of
+your knitted document will pop up in a new window and the
+<code>.html</code> file will be saved in the folder where your R
+Markdown file resides. <strong>I recommend <em>not</em> waiting until
+the very end of an assignment to knit.</strong> When you finish one
+question, knit your document to see if everything is working properly.
+If it is working for that question, move on to the next question. You
+can knit over and over again, and each time the knitted file in your
+folder will be replaced by the newest version. So, don’t be afraid to
+knit just because you aren’t finished with an assignment yet.</p>
+<p>There are two things you’ll have to deal with: (1) making sure the R
+code is working correctly to get the results you need in order to answer
+the question; and (2) making sure the code is working correctly to knit
+a final document. These two issues may be related (for example, if your
+R code is producing an error, R Markdown will not knit), but sometimes
+they are not. So, check both your R code and your knitting results
+often. <strong>And absolutely do not wait until the last minute to knit.
+Knit as often as possible.</strong></p>
+<p>When you’re satisfied with the end product, submit your
+<code>.Rmd</code> document and final knitted <code>.html</code> document
+to the corresponding assignment page on Canvas.</p>
+<p><br></p>
+</div>
+</div>
+<div id="assignment-workflow" class="section level1">
+<h1>Assignment workflow</h1>
+<p>The proper workflow for each assignment will be as follows:</p>
+<ol style="list-style-type: decimal">
+<li>Go through the week’s materials and make sure you understand the
+content. You should not begin working on an assignment until you have a
+solid grasp of the content. <strong>Note: Skipping this step is the
+biggest mistake I have seen students make in this course. You simply
+must have a solid understanding of the content to know what I am asking
+you to do on an assignment.</strong></li>
+<li>Create a folder on your hard drive that is specific to the
+assignment (e.g. Assignment 1, Assignment 2, etc.).</li>
+<li>Create an R Markdown assignment file. Save it in the appropriate
+assignment folder on your hard drive. Delete the unnecessary text and
+code chunks that are automatically included in every new Rmd file
+(everything below the ‘r setup’ chunk).</li>
+<li>Download any data needed for the assignment from Canvas and save it
+into the same folder where you saved your <code>.Rmd</code> file.</li>
+<li>In the R Markdown document, answer the first assignment
+question.</li>
+</ol>
+<ul>
+<li>Most of the questions will ask you to run code. Show that code in R
+code chunks. Any code you used to get a result should be in your
+assignment.
+<ul>
+<li>Break up your code into different chunks where it makes sense. For
+some questions, you might include all code for a question in one single
+chunk. For other questions, you might break up the code into several
+chunks.</li>
+<li>Annotate your code using comments inside of your R code chunks so
+that I (and future you) understand what the code is supposed to be
+doing.</li>
+<li>Make sure your code works. Run your code one chunk at a time to make
+sure it is working. Note that there are often many ways to get to the
+same result in R. I will not grade based on the efficiency of your code
+but rather on your final answers.</li>
+</ul></li>
+<li>Unless otherwise stated, I expect you to include a written
+interpretation for all items. Write your explanations outside of the R
+code chunks. Please be sure to provide a thoughtful response. This is a
+not a programming or Data Science course - no matter how much time you
+spent to produce super elegant code to answer a question, your results
+won’t be worth much to anyone if you can’t properly interpret them.</li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li>After you’ve completed the first question, knit to a
+<code>.html</code> file. Make sure it knits properly. If it does not,
+examine the error, and fix the problem.</li>
+<li>If you’re satisfied with your code and its results for the first
+question, and the document knitted properly, move on to the next
+question.</li>
+<li>Once you’ve completed all questions and successfully knitted, submit
+the <code>.Rmd</code> and the knitted <code>.html</code> files on Canvas
+by the specified deadline.</li>
+</ol>
+<p><br></p>
+</div>
+<div id="assignment-submission" class="section level1">
+<h1>Assignment submission</h1>
+<p>For each assignment in this course, you will upload onto Canvas two
+documents:</p>
+<ol style="list-style-type: decimal">
+<li>An R Markdown document, which has a <code>.Rmd</code> extension</li>
+<li>A knitted <code>.html</code> file</li>
+</ol>
+<p>Together these documents will provide an easy-to-read document to
+grade; more importantly, you will get to practice (1) writing scripts,
+(2) keeping track of the analyses you run, and (3) organizing your
+output in a reader-friendly manner. When you submit these documents on
+Canvas, please do not combine them into a zipped compressed folder.
+<strong>They should be two separate files.</strong></p>
+<p><br></p>
+</div>
+<div id="grading" class="section level1">
+<h1>Grading</h1>
+<p>Your grade in this course will be determined by:</p>
+<ul>
+<li><p><strong>Participation:</strong> For full particicpation credit,
+you are expected to attend and actively participate during all in-person
+class meetings.</p></li>
+<li><p><strong>Labs:</strong> Graded on completion. Once you have gone
+through the Lab Guide and completed all tasks, you will submit your R
+Markdown file (with a <code>.Rmd</code> extension) and knitted
+<code>.html</code> file on Canvas.</p></li>
+<li><p><strong>Application Challenges:</strong> Like Labs, you must
+submit your R Markdown file (with a <code>.Rmd</code> extension) and
+knitted <code>.html</code> file on Canvas. I will not grade your
+assignment without both of these files. For full credit on each item,
+you must:</p>
+<ul>
+<li>Show the correct statistical results for a given question.</li>
+<li>Show the code producing the results.</li>
+<li>Provide comments explaining what your code is doing.</li>
+<li>Provide a correct interpretation of your results. <br><br></li>
+</ul></li>
+<li><p><strong>Final Project:</strong> You will be working in pairs for
+the Final Project. Assignment details and rubric will be provided on
+Canvas and discussed in class.</p></li>
+</ul>
+<p><br></p>
+<p><strong>Note:</strong> While I encourage collaboration, note that
+Application Challenges are individual assignments. Although there may be
+similarities across students due to the nature of the assignments, I
+expect your code and written interpretations to be your own.</p>
+<p><br></p>
+</div>
+<div id="getting-help" class="section level1">
+<h1>Getting Help</h1>
+<p>Working with R/RStudio can have a steep learning curve initially.
+Know that you are not alone on this journey - your fellow students are
+likely in the same boat, and I am here to support you to the best of my
+ability at every step of the way.</p>
+<p>A few tips:</p>
+<ul>
+<li>Whenever you are editing R Markdown documents in RStudio, you can
+display an R Markdown cheat sheet by going to Help -&gt; Cheatsheets
+-&gt; R Markdown Cheat Sheet.</li>
+<li>A basic introduction to R Markdown can also be found in Chapter 27
+in <a href="https://r4ds.had.co.nz/r-markdown.html">R for Data
+Science</a>.</li>
+<li>RStudio has a <a
+href="https://rmarkdown.rstudio.com/authoring_quick_tour.html">quick
+introduction</a> to R Markdown.</li>
+<li>Google your question - most likely you are not the first person to
+run into the issue.</li>
+<li>If you are struggling, please meet with me during office hours. If
+my regular office hours do not work with your schedule, reach out and we
+can find an alternative time to meet.</li>
+</ul>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
