@@ -20,102 +20,199 @@ California State University, Sacramento
 
 # Introduction
 
+Probability distributions are a fundamental concept in statistics and public health research. They describe how the values of a random variable are distributed, giving us a mathematical framework to quantify uncertainty and make predictions about data. In simpler terms, a probability distribution shows the likelihood of different outcomes for a given variable. In the real world, they are used to describe patterns in health-related data, such as the distribution of disease incidence, patient wait times, or the effectiveness of interventions.
 
+There are two main types of probability distributions:
 
+1. **Discrete Probability Distributions:** These are used for variables that can take on a *finite or countable* number of distinct values. Each value has a specific probability associated with it. For example, the number of new cases of a disease reported in a week is a discrete variable, as it represents a count (e.g., 0, 1, 2, …). We will focus on two commonly used discrete probability distributions:
 
+* **Binomial Distribution:** Models the probability of a specific number of successes in a fixed number of independent trials, where each trial has the same probability of success. For example, we might use the binomial distribution to estimate the probability of a certain number of patients recovering after a new treatment or to predict the proportion of smokers in a sample of adults.
+* **Poisson Distribution:** Models the probability of a given number of events occurring in a fixed interval of time or space, assuming the events happen independently and at a constant average rate. For example, we might use the Poisson distribution to model the number of emergency room visits in a day or estimate the number of disease outbreaks in a year in a specific region.
 
-```{r}
+2. **Continuous Probability Distributions:** These are used for variables that can take on an *infinite number of values* within a given range. Probabilities are represented as areas under a curve, as the probability of any single exact value is effectively zero. For example, body mass index (BMI) is a continuous variable, as it can take on any value within a range (e.g., 18.5, 24.7). The most commonly used continuous probability distribution is the normal distribution, which is widely used to model data in public health.
+
+* **Normal Distribution:** A continuous probability distribution characterized by a symmetric, bell-shaped curve. It is defined by its mean, which determines the center of the distribution, and standard deviation, which determines its spread. The normal distribution is often used to analyze continuous health metrics (e.g., BMI, cholesterol levels, blood pressure, etc.) and serves as the foundation for many statistical methods, including hypothesis testing and confidence interval estimation, due to its mathematical properties and role in the Central Limit Theorem.
+
+A solid understanding of probability distributions will be important a we move toward statistical methods like estimation and hypothesis testing in the coming weeks. 
+
+<br>
+
+# Objectives
+
+After completing Lab 3, you will be able to:
+
+1. Construct and interpret a discrete probability distribution.
+2. Calculate probabilities using discrete and continuous probability distributions for public health scenarios.
+3. Calculate measures of center and spread for discrete probability distributions. 
+4. Visualize discrete and continuous probability distributions.
+
+<br>
+
+# Part 1: Discrete Probability Distributions Based on Real Data
+
+For the first part of this Lab, we will use the following scenario: Suppose patients who were involved in a problem gambling treatment program were surveyed about co-occurring drug and alcohol addictions. Let the discrete random variable 'X' represent the number of co-occurring addictive substances used by the subjects. The dataset labeled "substances.csv" contains two variables: (1) a study ID number corresponding to each individual patient; and (2) the number of substances used by the corresponding patient.
+
+When you are ready to start Lab 3:
+
+1. First create a new R Markdown file using the instructions on the Assignment Guidelines page. Save this `.Rmd` file in a folder dedicated to Lab 3 materials. 
+2. Next, download and save the dataset called "substances.csv" in the same folder as your Lab 3 R Markdown file.
+3. Finally, proceed to read through and carry out each of the tasks detailed below. As usual, you will begin by loading R packages, setting your working directory, and importing the dataset.
+
+<br>
+
+## 1. Install and load R packages
+
+```{r, results = FALSE, message = FALSE, warning = FALSE}
 # load packages
 library(tidyverse)
 library(ggplot2)
 library(stats)
 ```
 
+<br>
+
+## 2. Set your working directory
+
+Set your working directory using the `setwd()` function - but remember to paste your own file path between the parentheses (see Assignment Guidelines for detailed instructions). 
+
 ```{r}
 # set working directory
 setwd("/Volumes/GoogleDrive/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Website/PUBH-207B-S25")
 ```
 
+<br>
 
-# 1. Constructing and describing a discrete probability distribution
+## 3. Import the dataset into RStudio
 
-Question text: Suppose patients who were involved in a problem gambling treatment program were surveyed about co-occurring drug and alcohol addictions. Let the discrete random variable X represent the number of co-occurring addivtive substances used by the subjects. The dataset labeled "substances.csv" contains two variables: (1) a study ID number corresponding to each individual patient; and (2) the number of substances used by the corresponding patient.
-
-## (a) Construct a table showing the frequency and relative frequency for this discrete distribution.
+Use the `read.csv()` function to import the "substances.csv" data file. Remember that this file must be saved in the working directory you specified in the above step.
 
 ```{r}
-# bring in dataset
+# import dataset
 data <- read.csv("substances.csv") %>% select(-X)
 ```
+
+<br>
+
+# 4. Construct a discrete probability distribution
+
+To construct a discrete probability distribution for the number of co-occurring substance addictions, we first need to create a table showing the frequency and relative frequency for this discrete distribution as follows:
 
 ```{r}
 # construct frequency table and save it as a new dataframe
 subs <- as.data.frame(table(data$substances))
 ```
 
+A brief breakdown of this code:
+
+* `table(data$substances)`: Creates a frequency table of the substances variable in the data dataset. The table counts the occurrences of each unique value in the `substances` variable, producing a summary of how often each substance appears.
+* `as.data.frame()`: Converts the frequency table into a data frame format. This allows the frequency information to be stored as a two-column data frame: one column for the unique values in substances and another column for their respective counts.
+* `subs <- ...`: Assigns the resulting data frame to the object `subs`. The `subs` object will now contain a data frame where:
+  * The first column (generically called `Var1`) holds the unique values of the substances variable.
+  * The second column (`Freq`) holds the corresponding frequencies (counts) of those values.
+
+Let's click on the `subs` object in our Environment to see what it looks like. We can also use the `print()` command as follows:
+
 ```{r}
-# create a new variable for the relative frequency (i.e., the proportion of subjects with each number of substances used)
+# print frequency table
+print(subs)
+```
+
+As expected, we see two variables, `Var1` (the number of co-occurring substances) and `Freq` (the number of people in our dataset with each correponding number of co-occurring substances).
+
+When constructing a discrete probability distribution, the goal is to represent the likelihood of each category or value in the dataset. To do this, we need to calculate **relative frequencies**, which represent the proportion of occurrences for each category relative to the total number of observations. For our scenario here, this means calculating the relative frequency of each number of co-occurring substances by dividing the frequency in each category by the total number of observations. We can create a new variable for the relative frequencies in our `subs` object as follows:
+
+```{r}
+# create a new variable for the relative frequency 
+    # relative frequency = the proportion of subjects with each number of substances used
 subs <- subs %>% mutate(rel_freq = Freq/(sum(Freq)))
-print(subs) # print will make the table appear in your knitted file; otherwise it won't show up there
+print(subs)
 ```
 
+This line of code creates a new variable called `rel_freq` using the frequencies generated previously. A more detailed explanation:
 
-## (b) Create a graph of the probability distribution for these data.
+* `subs`: This is the data frame being modified. It contains a frequency table where one column (Freq) holds the counts for each category.
+* `%>%`: This is the pipe operator (we've seen this several times now!). It allows for chaining commands together in a readable way, passing the result of one operation as input to the next.
+* `mutate()`: A function used to create new variables or modify existing ones in a data frame. In this case, it adds a new column called `rel_freq` to the `subs` data frame.
+* `rel_freq = Freq / (sum(Freq))`:
+  * `Freq`: Refers to the column in subs that holds the raw frequencies (counts) of each category.
+  * `sum(Freq)`: Calculates the total frequency (i.e., the sum of all counts in the Freq column).
+  * `Freq / (sum(Freq))`: Divides each frequency value by the total frequency to compute the relative frequency for each category. This gives the proportion of the total observations that fall into each category, a necessary step in constructing a probability distribution.
+* `subs <-`: Reassigns the modified data frame back to the subs object, updating it with the new rel_freq column.
+
+Let's again use the `print()` command to view the updated data frame as follows:
 
 ```{r}
-# create bar chart of relative frequencies (for each number of substances used)
-ggplot(subs, aes(x=Var1, y=rel_freq)) + 
-  geom_bar(stat = "identity")
+# print frequency table
+print(subs)
 ```
 
+As expected, we see a new variable, `rel_freq`, which tells us the relative frequency (or proportion) of the sample with each corresponding number of co-occurring substance addictions.
 
-For the next set of probability questions, it will be helpful to convert our discrete random variable X (currently labeled 'Var1') to a numeric variable.
+<br>
+
+Next, let's visualize this probability distribution using the `barplot` function:
 
 ```{r}
-# Note: sometimes weird things happen when we convert a factor variable to a numeric variable right away. In this case, we need to first convert the factor variable to a character variable, then convert it to numeric...
-subs$Var1 <- as.character(subs$Var1) 
+# generate a simple bar chart for sex
+barplot(subs$rel_freq, 
+        xlab = "Number of co-occurring substance addictions", 
+        ylab = "Relative frequency", 
+        col = "gray",
+        names.arg = subs$Var1)
+```
+
+<br>
+
+# 5. Calculate probabilities from a discrete probability distribution
+
+Before we begin to use our discrete probability distribution to obtain probabilities, it will be helpful to convert the discrete random variable X (currently labeled 'Var1' and defined as a factor variable) to a numeric variable. We need to use a two-step process to convert a factor variable to a numeric variable. We first need to convert the factor variable to a character variable using the `as.character()` function, then to a numeric variable using the `as.numeric()` function. Very strange, I know. If we do not first convert to a character variable, R will drop the category corresponding to zero co-occurring substances, and we don't want that to happen.
+
+```{r}
+# convert factor to numeric variable
+subs$Var1 <- as.character(subs$Var1) # first convert to character 
 subs$Var1 <- as.numeric(subs$Var1)
 ```
 
-
-## (c) What is the probability that an individual selected at random used five addictive substances?
+Now that we have formatted our variables appropriately, we can calculate probabilities for specified numbers of co-occurring substance addictions. For example, suppose we want to know the probability that an individual selected at random uses five addictive substances. For a specific number of co-occurring substances (in this case, 5), we can actually find this answer by looking directly at our discrete probability distribution. When we look at the row where `Var1` is equal to 5, we see that `rel_freq` is equal to 0.025740026. This means that the probability a randomly selected person from the sample has 5 co-occurring substance addictions is 0.025740026, or about 2.6%. To obtain this answer using code (we'll see the utility of this approach shortly), the following will work:
 
 ```{r}
-# We can actually find this answer just by looking at our discrete probability distribution; however, if you want to use a code, the following will work:
-sum(subs[which(subs$Var1 == 5), 3])
+# obtain the probability of 5 co-occurring substance addictions
+subs %>% filter(Var1 == 5) %>% dplyr::summarise(sum(rel_freq))
 ```
-The probability that an individual selected at random used five addictive substances is 0.02574, as shown in the relative frequency table above where X = 5.
 
+This line of code is essentially taking the sum of relative frequencies where `Var1` is equal to 5. Let's look at a few more examples, but this time for range of values...
 
-## (d) What is the probability that an individual selected at random used fewer than three addictive substances?
+**What is the probability that an individual selected at random used *fewer than three* addictive substances?**
 
 ```{r}
-# sums the values in column 3 (rel_freq) on condition that Var1 is equal to 2, 1, or 0.
-sum(subs[which(subs$Var1 < 3), 3])
-
-# an alternative method using 'filter'
+# obtain the probability of fewer than 3 co-occurring substance addictions
 subs %>% filter(Var1 < 3) %>% dplyr::summarise(sum(rel_freq))
-
-# and another method, using R as a simple calculator
-0.185328185 + 0.440154440 + 0.182754183 # sum of relative frequencies for X < 3
 ```
 
+Here, we are taking the sum of relative frequencies where `Var1` is less than 3. We find the probability that a randomly selected person from the sample uses fewer than 3 addictive substances is 0.8082368, or about 80.8%.
 
-## (e) What is the probability that an individual selected at random used more than six addictive substances?
+**What is the probability that an individual selected at random used *more than six* addictive substances?**
 
 ```{r}
 subs %>% filter(Var1 > 6) %>% dplyr::summarise(sum(rel_freq))
 ```
 
+Here, we are taking the sum of relative frequencies where `Var1` is greater than 6. We find the probability that a randomly selected person from the sample uses greater than 6 addictive substances is 0.01544402, or about 1.5%.
 
-## (f) What is the probability that an individual selected at random used between 2 and 5 addictive substances?
+**What is the probability that an individual selected at random used *between 2 and 5* addictive substances?**
 
 ```{r}
 subs %>% filter(Var1 >= 2 & Var1 <= 5) %>% dplyr::summarise(sum(rel_freq))
 ```
 
+This one is a little trickier. Here, we are taking the sum of relative frequencies where `Var1` is both greater than or equal to 2 *and* less than or equal to 5 (in other words, where `Var1` is between 2 and 5). We find the probability that a randomly selected person from the sample uses between 2 and 5 addictive substances is 0.3513514, or about 35.1%.
 
-## (g) Find the mean, variance, and standard deviation of this frequency distribution.
+
+## 6. Calculate measures of center and spread for a discrete probability distribution
+
+Measures of center and spread are useful for summarizing and interpreting a discrete probability distribution. The mean, or expected value, provides the central tendency, indicating the average outcome we would expect if the process were repeated many times. The variance measures how spread out the values are around the mean, which provides insight to the variability or uncertainty in the distribution. The standard deviation, as the square root of the variance, provides a more interpretable measure of spread in the same units as the variable. Together, these measures allow us to describe the distribution’s behavior, compare different groups, and draw meaningful conclusions in a public health context.
+
+We can use the following to obtain the mean, variance, and standard deviation of this discrete probability distribution:
 
 ```{r}
 mean(rep(subs$Var1, subs$Freq)) # mean
@@ -123,16 +220,27 @@ var(rep(subs$Var1, subs$Freq)) # variance
 sd(rep(subs$Var1, subs$Freq)) # standard deviation
 ```
 
+We find the mean number of co-occurring substance addictions is approximately 1.57; this represents the average number of addictions we expect across a population. We find the variance and standard deviation are 2.095543 and 1.447599, respectively. These measures of spread give us a sense of how spread out the values are around the mean and are particularly useful when comparing the spread across different populations.
 
+<br>
 
-# 2. Binomial distribution
+## Part 2: Theoretical Probability Distributions
 
-Question text: Based on data collected by the Centers for Disease Control and Prevention (CDC), an estimate of the percentage of adults who have at some point in their life been told they have hypertension is 48.1% percent. Assume that 'N' is sufficiently large relative to 'n' that the binomial distribution may be used to find the desired probabilities.
+So far in this lab, we’ve explored a discrete probability distribution based on real data, calculating key measures like relative frequencies, the mean, variance, and standard deviation. This concrete example helps us understand how probability distributions summarize and describe patterns in data.
 
+Next, we’ll shift our focus to theoretical probability distributions — specifically, the binomial, Poisson, and normal distributions. These distributions are widely used in public health to model and predict outcomes in scenarios where we don’t have all the data but need to make informed estimates. By working with these distributions, we can calculate probabilities for specific events, explore relationships between variables, and gain deeper insight into uncertainty and variability in public health contexts. Let’s see how these tools allow us to answer practical probability questions and ultimately support evidence-based decision-making.
 
-## (a) Suppose we select a simple random sample of 20 U.S. adults and assume that the probability that each has been diagnosed with hypertension is .48.
+<br>
 
-### i. What is the probability that exactly eight have been diagnosed with hypertension?
+LEAVING OFF HERE
+
+### a. Binomial distribution
+
+Scenario: Based on data collected by the Centers for Disease Control and Prevention (CDC), an estimate of the percentage of adults who have at some point in their life been told they have hypertension is 48.1% percent. Assume that 'N' is sufficiently large relative to 'n' that the binomial distribution may be used to find the desired probabilities.
+
+Suppose we select a simple random sample of 20 U.S. adults and assume that the probability that each has been diagnosed with hypertension is .48.
+
+#### i. What is the probability that exactly eight have been diagnosed with hypertension?
 
 ```{r}
 # the function 'dbinom' is used to find the probability for a specific number of successes
