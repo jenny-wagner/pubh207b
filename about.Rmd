@@ -452,7 +452,7 @@ Your grade in this course will be determined by:
   * Provide comments explaining what your code is doing.
   * Provide a correct interpretation of your results. <br><br>
   
-* **Final Project:** You will be working in pairs for the Final Project. Assignment details and rubric will be provided on Canvas and discussed in class.
+* **Final Project:** You will be working in small groups for the Final Project. Assignment details and rubric will be provided on Canvas and discussed in class.
 
 <br>
 
