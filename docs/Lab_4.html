@@ -448,8 +448,9 @@ div.tocify {
 </div>
 
 
-<p><br> <strong>Jenny Wagner, PhD, MPH</strong> <br> Department of
-Public Health <br> California State University, Sacramento <br> <br></p>
+<p><br></p>
+<p><strong>Jenny Wagner, PhD, MPH</strong> <br> Department of Public
+Health <br> California State University, Sacramento <br> <br></p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>Statistical inference is the process of using data from a sample to
@@ -527,17 +528,16 @@ your working directory, and importing the dataset.</li>
 will need to be installed before you proceed. Copy and paste the
 following into your Console (bottom-left window) to install the
 packages:</p>
-<pre><code>install.packages(&quot;ggplot2&quot;)
-install.packages(&quot;BSDA&quot;)
-install.packages(&quot;car&quot;)</code></pre>
+<p>install.packages(“ggplot2”) install.packages(“BSDA”)
+install.packages(“car”)</p>
 <p>After these packages have been installed, they will need to be loaded
 with the <code>library()</code> function each time you start a new R
 session:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">library</span>(BSDA)</span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">library</span>(car)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">library</span>(BSDA)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">library</span>(car)</span></code></pre></div>
 <p><br></p>
 </div>
 <div id="set-your-working-directory" class="section level2">
@@ -545,8 +545,8 @@ session:</p>
 <p>Set your working directory using the <code>setwd()</code> function -
 but remember to paste your own file path between the parentheses (see
 Assignment Guidelines for detailed instructions).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># set working directory</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;/Volumes/GoogleDrive/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Website/PUBH-207B-S25&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># set working directory</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;/Volumes/GoogleDrive/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Website/PUBH-207B-S25&quot;</span>)</span></code></pre></div>
 <p><br></p>
 </div>
 <div id="import-the-dataset-into-rstudio" class="section level2">
@@ -555,8 +555,8 @@ Assignment Guidelines for detailed instructions).</p>
 dataset you created in Lab 2. For this to work, the
 “frmgham2_p1_impute.csv” file will need to be saved in the working
 directory you specified in the above step.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># import dataset</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;frmgham2_p1_impute.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># import dataset</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;frmgham2_p1_impute.csv&quot;</span>)</span></code></pre></div>
 <p><br></p>
 </div>
 <div id="identify-and-modify-variable-types" class="section level2">
@@ -569,18 +569,18 @@ characteristics (e.g., BMI) should be treated as numerical, while
 variables that represent categories should be treated as such (i.e., as
 categorical or factor variables). So, let’s start by checking variables
 types in our dataset:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># check variable types</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">class</span>(data<span class="sc">$</span>SEX) <span class="co"># sex</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># check variable types</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">class</span>(data<span class="sc">$</span>SEX) <span class="co"># sex</span></span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">class</span>(data<span class="sc">$</span>AGE) <span class="co"># age</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">class</span>(data<span class="sc">$</span>AGE) <span class="co"># age</span></span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">class</span>(data<span class="sc">$</span>BMI) <span class="co"># body mass index</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">class</span>(data<span class="sc">$</span>BMI) <span class="co"># body mass index</span></span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">class</span>(data<span class="sc">$</span>TOTCHOL) <span class="co"># total cholesterol level</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">class</span>(data<span class="sc">$</span>TOTCHOL) <span class="co"># total cholesterol level</span></span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">class</span>(data<span class="sc">$</span>EDUC) <span class="co"># attained education</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">class</span>(data<span class="sc">$</span>EDUC) <span class="co"># attained education</span></span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">class</span>(data<span class="sc">$</span>OBESE) <span class="co"># obesity status</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">class</span>(data<span class="sc">$</span>OBESE) <span class="co"># obesity status</span></span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
 <p>Just as we did in Lab 2, we’ll need to modify the variable types for
 sex, attained education, and obesity status. While these variables take
@@ -588,18 +588,18 @@ on numerical values in our dataset, these values do not represent actual
 quantities - rather, they represent categories with no inherent
 quantity. Remember that we also need to specify whether a categorical or
 factor variable is ordered or unordered.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># convert sex to unordered factor variable</span></span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>data<span class="sc">$</span>SEX <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>SEX, </span>
-<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>                       <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>), </span>
-<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>                       <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co"># convert attained education to ordered factor variable</span></span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>data<span class="sc">$</span>EDUC <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>EDUC, </span>
-<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>                        <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;4&quot;</span>), </span>
-<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>                        <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co"># convert obesity status to unordered factor variable</span></span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>data<span class="sc">$</span>OBESE <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>OBESE, </span>
-<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>                         <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;1&quot;</span>), </span>
-<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>                         <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># convert sex to unordered factor variable</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>data<span class="sc">$</span>SEX <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>SEX, </span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>                       <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>), </span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>                       <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># convert attained education to ordered factor variable</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>data<span class="sc">$</span>EDUC <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>EDUC, </span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>                        <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;4&quot;</span>), </span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>                        <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co"># convert obesity status to unordered factor variable</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>data<span class="sc">$</span>OBESE <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>OBESE, </span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>                         <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;1&quot;</span>), </span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>                         <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <p><br></p>
 </div>
 <div id="estimate-a-population-mean" class="section level2">
@@ -611,8 +611,8 @@ In this case, the population parameter of interest is the population
 mean of BMI. Before we jump into estimation techniques, let’s quickly
 summarize our dataset using the <code>summary()</code> function and also
 visualize the distribution of BMI with a histogram.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co"># summarize dataset</span></span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="fu">summary</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co"># summarize dataset</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">summary</span>(data)</span></code></pre></div>
 <pre><code>##        X            RANDID        SEX           AGE             BMI       
 ##  Min.   :   1   Min.   :   2448   1:1944   Min.   :32.00   Min.   :15.54  
 ##  1st Qu.:1109   1st Qu.:2440336   2:2490   1st Qu.:42.00   1st Qu.:23.09  
@@ -627,8 +627,8 @@ visualize the distribution of BMI with a histogram.</p>
 ##  Mean   :236.9   4: 502           
 ##  3rd Qu.:263.0                    
 ##  Max.   :696.0</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="co"># Let&#39;s start by visualizing the distribution of BMI in the sample</span></span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>BMI, <span class="at">breaks =</span> <span class="dv">30</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># Let&#39;s start by visualizing the distribution of BMI in the sample</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>BMI, <span class="at">breaks =</span> <span class="dv">30</span>)</span></code></pre></div>
 <p><img src="Lab_4_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>From the summary of our dataset, we can see the mean BMI in the
 sample is 25.85. This aligns with our view of the histogram for BMI,
@@ -701,8 +701,8 @@ t-distribution. Most often in practice, the t-distribution will be used
 standard normal distribution with a large sample). Let’s take a look at
 how we can carry out this task in R using the <code>t.test()</code>
 function:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="co"># one sample t-test for population mean</span></span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="fu">t.test</span>(data<span class="sc">$</span>BMI, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="co"># one sample t-test for population mean</span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">t.test</span>(data<span class="sc">$</span>BMI, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -755,12 +755,12 @@ class="section level2">
 other words, we want to estimate the difference in population mean BMI
 between males and females. First, let’s visualize the distribution of
 BMI by sex in our sample:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="co"># create side-by-side histograms to show the distribution of BMI by sex</span></span>
-<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
-<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> BMI, <span class="at">fill =</span> SEX)) <span class="sc">+</span></span>
-<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">&quot;#e9ecef&quot;</span>, <span class="at">alpha=</span><span class="fl">0.5</span>, <span class="at">position =</span> <span class="st">&#39;identity&#39;</span>) <span class="sc">+</span></span>
-<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a>    <span class="fu">scale_fill_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Males&#39;</span>, <span class="st">&#39;Females&#39;</span>)) <span class="sc">+</span></span>
-<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="co"># create side-by-side histograms to show the distribution of BMI by sex</span></span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> BMI, <span class="at">fill =</span> SEX)) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">&quot;#e9ecef&quot;</span>, <span class="at">alpha=</span><span class="fl">0.5</span>, <span class="at">position =</span> <span class="st">&#39;identity&#39;</span>) <span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>    <span class="fu">scale_fill_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Males&#39;</span>, <span class="st">&#39;Females&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="Lab_4_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>A quick breakdown of this code chunk:</p>
@@ -848,15 +848,15 @@ determine whether the population variances are equal or not.</p>
 <p>In order to carry out the F-test (using the <code>var.test()</code>
 function), we need to first save BMI values for males and females in
 separate vectors (basically, a list of values) as follows:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="co"># create separate objects containing BMI values for males and females</span></span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>bmi_male <span class="ot">&lt;-</span> data<span class="sc">$</span>BMI[data<span class="sc">$</span>SEX <span class="sc">==</span> <span class="st">&quot;1&quot;</span>]</span>
-<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a>bmi_female <span class="ot">&lt;-</span> data<span class="sc">$</span>BMI[data<span class="sc">$</span>SEX <span class="sc">==</span> <span class="st">&quot;2&quot;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="co"># create separate objects containing BMI values for males and females</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>bmi_male <span class="ot">&lt;-</span> data<span class="sc">$</span>BMI[data<span class="sc">$</span>SEX <span class="sc">==</span> <span class="st">&quot;1&quot;</span>]</span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>bmi_female <span class="ot">&lt;-</span> data<span class="sc">$</span>BMI[data<span class="sc">$</span>SEX <span class="sc">==</span> <span class="st">&quot;2&quot;</span>]</span></code></pre></div>
 <p>After running the above code chunk, you should see two new objects in
 your Environment, <code>bmi_male</code> and <code>bmi_female</code>,
 under “Values”. We can now use these objects in the
 <code>var.test()</code> function as follows:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="co"># Apply F-test for equality of variances to vectors containing male and female BMI values</span></span>
-<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="fu">var.test</span>(bmi_male, bmi_female)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="co"># Apply F-test for equality of variances to vectors containing male and female BMI values</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="fu">var.test</span>(bmi_male, bmi_female)</span></code></pre></div>
 <pre><code>## 
 ##  F test to compare two variances
 ## 
@@ -881,8 +881,8 @@ for BMI values among males and females.</p>
 data are slightly skewed, Levene’s Test is the more appropriate option
 in this case. For this test we will use the <code>leveneTest()</code>
 function from the <code>car</code> package as follows:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="co"># Levene&#39;s Test</span></span>
-<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="fu">leveneTest</span>(BMI <span class="sc">~</span> SEX, <span class="at">data =</span> data)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="co"># Levene&#39;s Test</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a><span class="fu">leveneTest</span>(BMI <span class="sc">~</span> SEX, <span class="at">data =</span> data)</span></code></pre></div>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
 ##         Df F value    Pr(&gt;F)    
 ## group    1  72.717 &lt; 2.2e-16 ***
@@ -916,8 +916,8 @@ the following formula:</p>
 <p><img src="t-prime-diff.png" width="35%" style="display: block; margin: auto;" /></p>
 <p>To do this in R, we will carry out a two-sample t-test with unequal
 variances using the <code>t.test()</code> function as follows:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="co"># calculate 95% confidence interval for difference in mean BMI by sex</span></span>
-<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a><span class="fu">t.test</span>(BMI <span class="sc">~</span> SEX, <span class="at">data =</span> data, <span class="at">var.equal =</span> <span class="cn">FALSE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co"># calculate 95% confidence interval for difference in mean BMI by sex</span></span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="fu">t.test</span>(BMI <span class="sc">~</span> SEX, <span class="at">data =</span> data, <span class="at">var.equal =</span> <span class="cn">FALSE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -971,16 +971,16 @@ the a z-test, which would use the following formula:</p>
 which contained BMI values for males and females separately. We would
 additionally need to create objects for the values of the sample
 standard deviations using the <code>sd()</code> function as follows:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="co"># obtain sample standard deviations for BMI among males and females</span></span>
-<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>sd_m <span class="ot">&lt;-</span> <span class="fu">sd</span>(bmi_male, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>sd_f <span class="ot">&lt;-</span> <span class="fu">sd</span>(bmi_female, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="co"># obtain sample standard deviations for BMI among males and females</span></span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a>sd_m <span class="ot">&lt;-</span> <span class="fu">sd</span>(bmi_male, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a>sd_f <span class="ot">&lt;-</span> <span class="fu">sd</span>(bmi_female, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Now that we have separate R objects containing the list of BMI values
 for males and females, and objects for the standard deviation of each
 group, we can apply the <code>z.test()</code> function from the
 <code>BSDA</code> package as follows:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="co"># Run z.test to obtain 95% confidence interval for difference in means</span></span>
-<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a>    <span class="co"># Note: &#39;mu&#39; is the hypothesized difference between population means</span></span>
-<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a><span class="fu">z.test</span>(bmi_male, bmi_female, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">sigma.x =</span> sd_m, <span class="at">sigma.y =</span> sd_f, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="co"># Run z.test to obtain 95% confidence interval for difference in means</span></span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>    <span class="co"># Note: &#39;mu&#39; is the hypothesized difference between population means</span></span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a><span class="fu">z.test</span>(bmi_male, bmi_female, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">sigma.x =</span> sd_m, <span class="at">sigma.y =</span> sd_f, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Two-sample z-Test
 ## 
@@ -1038,8 +1038,8 @@ proportion is as follows:</p>
 <p><img src="prop.png" width="35%" style="display: block; margin: auto;" /></p>
 <p>To do this in R, we first need to know how many people in the sample
 are obese as well as the total sample size:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="co"># generate a table to count number of obese individuals in the sample</span></span>
-<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>OBESE)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="co"># generate a table to count number of obese individuals in the sample</span></span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>OBESE)</span></code></pre></div>
 <pre><code>## 
 ##    0    1 
 ## 3860  574</code></pre>
@@ -1047,8 +1047,8 @@ are obese as well as the total sample size:</p>
 (BMI&gt;30) in the sample, out of a total sample of 4434.</p>
 <p>We can calculate the 95% confidence interval for the population
 proportion using the <code>binom.test()</code> function as follows:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="co"># Calculate 95% confidence interval for proportion obese in Framingham</span></span>
-<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">574</span>, <span class="dv">4434</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="co"># Calculate 95% confidence interval for proportion obese in Framingham</span></span>
+<span id="cb38-2"><a href="#cb38-2" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">574</span>, <span class="dv">4434</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Exact binomial test
 ## 
@@ -1089,27 +1089,27 @@ class="section level2">
 obesity prevalence by sex. Recall from Lab 2 that we visualized the
 relative frequencies of obesity among males and females using a
 side-by-side bar chart as follows:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="co"># Create the contingency table</span></span>
-<span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a>contingency_table <span class="ot">&lt;-</span> <span class="fu">table</span>(data<span class="sc">$</span>SEX, data<span class="sc">$</span>OBESE)</span>
-<span id="cb41-3"><a href="#cb41-3" tabindex="-1"></a></span>
-<span id="cb41-4"><a href="#cb41-4" tabindex="-1"></a><span class="co"># Calculate relative frequencies using the `prop.table()` command</span></span>
-<span id="cb41-5"><a href="#cb41-5" tabindex="-1"></a>relative_frequencies <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(contingency_table, <span class="at">margin =</span> <span class="dv">1</span>)</span>
-<span id="cb41-6"><a href="#cb41-6" tabindex="-1"></a></span>
-<span id="cb41-7"><a href="#cb41-7" tabindex="-1"></a><span class="co"># Print relative frequencies</span></span>
-<span id="cb41-8"><a href="#cb41-8" tabindex="-1"></a><span class="fu">print</span>(relative_frequencies)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="co"># Create the contingency table</span></span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a>contingency_table <span class="ot">&lt;-</span> <span class="fu">table</span>(data<span class="sc">$</span>SEX, data<span class="sc">$</span>OBESE)</span>
+<span id="cb40-3"><a href="#cb40-3" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" tabindex="-1"></a><span class="co"># Calculate relative frequencies using the `prop.table()` command</span></span>
+<span id="cb40-5"><a href="#cb40-5" tabindex="-1"></a>relative_frequencies <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(contingency_table, <span class="at">margin =</span> <span class="dv">1</span>)</span>
+<span id="cb40-6"><a href="#cb40-6" tabindex="-1"></a></span>
+<span id="cb40-7"><a href="#cb40-7" tabindex="-1"></a><span class="co"># Print relative frequencies</span></span>
+<span id="cb40-8"><a href="#cb40-8" tabindex="-1"></a><span class="fu">print</span>(relative_frequencies)</span></code></pre></div>
 <pre><code>##    
 ##             0         1
 ##   1 0.8806584 0.1193416
 ##   2 0.8626506 0.1373494</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="co"># Bar chart for relative frequencies</span></span>
-<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a><span class="fu">barplot</span>(relative_frequencies, </span>
-<span id="cb43-3"><a href="#cb43-3" tabindex="-1"></a>        <span class="at">beside =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb43-4"><a href="#cb43-4" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Relative Frequencies of Sex by Obesity Status&quot;</span>, </span>
-<span id="cb43-5"><a href="#cb43-5" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Obesity Status&quot;</span>, </span>
-<span id="cb43-6"><a href="#cb43-6" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Proportion&quot;</span>, </span>
-<span id="cb43-7"><a href="#cb43-7" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>), </span>
-<span id="cb43-8"><a href="#cb43-8" tabindex="-1"></a>        <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>), </span>
-<span id="cb43-9"><a href="#cb43-9" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Not Obese&quot;</span>, <span class="st">&quot;Obese&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="co"># Bar chart for relative frequencies</span></span>
+<span id="cb42-2"><a href="#cb42-2" tabindex="-1"></a><span class="fu">barplot</span>(relative_frequencies, </span>
+<span id="cb42-3"><a href="#cb42-3" tabindex="-1"></a>        <span class="at">beside =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb42-4"><a href="#cb42-4" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Relative Frequencies of Sex by Obesity Status&quot;</span>, </span>
+<span id="cb42-5"><a href="#cb42-5" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Obesity Status&quot;</span>, </span>
+<span id="cb42-6"><a href="#cb42-6" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Proportion&quot;</span>, </span>
+<span id="cb42-7"><a href="#cb42-7" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>), </span>
+<span id="cb42-8"><a href="#cb42-8" tabindex="-1"></a>        <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>), </span>
+<span id="cb42-9"><a href="#cb42-9" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Not Obese&quot;</span>, <span class="st">&quot;Obese&quot;</span>))</span></code></pre></div>
 <p><img src="Lab_4_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <p>From the bar chart, it appears obesity prevalence is slightly higher
 among females than males. But is the difference statistically
@@ -1122,13 +1122,13 @@ population proportion is as follows:</p>
 individuals by sex in the sample. We also need the total number of males
 and females in the sample. We can obtain these values using the ‘table’
 command as follows:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="co"># generate counts of obesity by sex and totals by sex</span></span>
-<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>SEX, data<span class="sc">$</span>OBESE) <span class="co"># counts of obesity by sex</span></span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="co"># generate counts of obesity by sex and totals by sex</span></span>
+<span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>SEX, data<span class="sc">$</span>OBESE) <span class="co"># counts of obesity by sex</span></span></code></pre></div>
 <pre><code>##    
 ##        0    1
 ##   1 1712  232
 ##   2 2148  342</code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>SEX) <span class="co"># total by sex</span></span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>SEX) <span class="co"># total by sex</span></span></code></pre></div>
 <pre><code>## 
 ##    1    2 
 ## 1944 2490</code></pre>
@@ -1140,8 +1140,8 @@ sample who are obese. From the second table, we see there are a total of
 1944 males in the sample and 2490 females. Next, we will use these
 values to estimate the difference in population proportions using the
 <code>prop.test()</code> function as follows:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="co"># obtain 95% confidence interval for difference in obesity prevalence by sex</span></span>
-<span id="cb48-2"><a href="#cb48-2" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="fu">c</span>(<span class="dv">232</span>, <span class="dv">342</span>), <span class="fu">c</span>(<span class="dv">1944</span>, <span class="dv">2490</span>), <span class="at">conf.level =</span> <span class="fl">0.95</span>, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a><span class="co"># obtain 95% confidence interval for difference in obesity prevalence by sex</span></span>
+<span id="cb47-2"><a href="#cb47-2" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="fu">c</span>(<span class="dv">232</span>, <span class="dv">342</span>), <span class="fu">c</span>(<span class="dv">1944</span>, <span class="dv">2490</span>), <span class="at">conf.level =</span> <span class="fl">0.95</span>, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  2-sample test for equality of proportions without continuity correction
 ## 

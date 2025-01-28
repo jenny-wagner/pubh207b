@@ -7,8 +7,8 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
 <br>
+
 **Jenny Wagner, PhD, MPH**
 <br>
 Department of Public Health
@@ -152,7 +152,7 @@ You will use data documentation at various stages of a project:
 * *During analysis* - Refer back to the documentation when you encounter unfamiliar variables or need clarification.
 * *After analysis* - Use the documentation to accurately describe your methods and findings.
 
-For several assignments in this course, we will be using the "frmgham2.csv" dataset you've loaded into your current R session. This dataset is from the **Framingham Heart Study**, which is a prospective cohort study carried out over several decades to study causes and risk factors for cardiovascular disease. **Before moving forward, read over the first 7 pages of the data documentation**, linked here and available on Canvas.
+For several assignments in this course, we will be using the "frmgham2.csv" dataset you've loaded into your current R session. This dataset is from the **Framingham Heart Study**, which is a prospective cohort study carried out over several decades to study causes and risk factors for cardiovascular disease. **Before moving forward, read over the first 7 pages of the data documentation**, linked on the Lab 1 assignment page in Canvas.
 
 Beginning on page 2 of the data documentation, you will see a table that defines each of the variables included in the dataset, including the variable name, a brief description, the units of the variable, and the range of values (or, instead, the count of observations, labeled with "n"). Take a moment to examine the dataset in RStudio in the context of this codebook. You should see that each column in the dataset has a corresponding row in the codebook that defines that variable.
 

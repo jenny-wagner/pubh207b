@@ -7,8 +7,8 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
 <br>
+
 **Jenny Wagner, PhD, MPH**
 <br>
 Department of Public Health

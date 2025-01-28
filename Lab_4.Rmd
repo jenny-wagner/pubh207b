@@ -7,8 +7,8 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
 <br>
+
 **Jenny Wagner, PhD, MPH**
 <br>
 Department of Public Health
@@ -58,11 +58,9 @@ When you are ready to start Lab 4:
 
 In Lab 4, we will use functions from a few new packages, so these will need to be installed before you proceed. Copy and paste the following into your Console (bottom-left window) to install the packages: 
 
-```
 install.packages("ggplot2")
 install.packages("BSDA")
 install.packages("car")
-```
 
 After these packages have been installed, they will need to be loaded with the `library()` function each time you start a new R session:
 
