@@ -429,6 +429,9 @@ div.tocify {
     <li>
       <a href="Lab_1.html">Lab 1</a>
     </li>
+    <li>
+      <a href="Lab_2.html">Lab 2</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -457,11 +460,12 @@ Health <br> California State University, Sacramento <br> <br></p>
 summarizing a dataset to identify patterns, relationships, and potential
 issues before performing more complex analyses. It involves techniques
 like calculating summary statistics, visualizing data distributions, and
-identifying outliers or missing values. EDA is important because it:</p>
+identifying outliers and missing values. EDA is important because
+it:</p>
 <ul>
 <li>Helps us better understand the structure and key characteristics of
 a dataset.</li>
-<li>Detects potential errors, inconsistencies, or missing values that
+<li>Detects potential errors, inconsistencies, and missing values that
 may need to be addressed.</li>
 <li>Guides analysis and suggests appropriate statistical methods and
 models for further analysis.</li>
@@ -489,13 +493,13 @@ analysis.</li>
 <p>Suppose you are a public health researcher interested in studying the
 relationship between lifestyle factors and cardiovascular health. Using
 data from the Framingham Heart Study, you aim to explore key risk
-factors - such as sex, age, BMI, and smoking behavior - at baseline to
-identify patterns and relationships that could inform prevention
-strategies. Before beginning any in-depth analyses, you plan to conduct
-an exploratory data analysis (EDA) to summarize the data, visualize
-distributions and relationships, and identify potential issues. The EDA
-process will help you become familiar with the data and guide future
-analyses.</p>
+factors - such as sex, age, body mass index (BMI), and smoking behavior
+- in the baseline sample to identify patterns and relationships that
+could inform prevention strategies. Before beginning any in-depth
+analyses, you plan to conduct an exploratory data analysis (EDA) to
+summarize the data, visualize distributions and relationships, and
+identify potential issues. The EDA process will help you become familiar
+with the data and guide future analyses.</p>
 <p>When you are ready to start Lab 2:</p>
 <ol style="list-style-type: decimal">
 <li>First create a new R Markdown file using the instructions on the
@@ -508,15 +512,16 @@ Markdown file.</li>
 detailed below.</li>
 </ol>
 <blockquote>
-<p>Notice that the first few tasks mirror Lab 1. In general, you will
-always start a new assignment in this way - by loading packages, setting
-your working directory, and importing the dataset(s) you need.</p>
+<p>As you begin Lab 2, notice that the first few tasks closely mirror
+those of Lab 1. Remember that, in general, you will always start a new
+assignment in this way - by loading packages, setting your working
+directory, and importing the dataset(s) you need.</p>
 </blockquote>
 <p><br></p>
 <div id="install-and-load-r-packages" class="section level2">
 <h2>1. Install and load R packages</h2>
 <p>In Lab 2, we will mostly be using functions contained within packages
-you have already installed (e.g, <code>tidyverse</code>). We will use
+you have already installed (e.g., <code>tidyverse</code>). We will use
 one new package called <code>naniar</code> which contains many functions
 for investigating missing data. Start by entering the following into
 your Console (bottom-left window) to install this package:
@@ -532,18 +537,25 @@ session using the <code>library()</code> function as follows:</p>
 <div id="set-your-working-directory" class="section level2">
 <h2>2. Set your working directory</h2>
 <p>Set your working directory using the <code>setwd()</code> function -
-but remember to paste your own file path between the parentheses (see
-Assignment Guidelines for detailed instructions).</p>
+but remember to paste your own file path between the parentheses (return
+to Lab 1 and/or the RStudio Video Tutorial on Canvas if you need
+detailed instructions).</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># set working directory</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;/Volumes/GoogleDrive/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Website/PUBH-207B-S25&quot;</span>)</span></code></pre></div>
 <p><br></p>
 </div>
 <div id="import-the-dataset-into-rstudio" class="section level2">
 <h2>3. Import the dataset into RStudio</h2>
-<p>Use the <code>read.csv()</code> function to bring in the modified
-dataset you created in Lab 1. For this to work, the “frmgham2_p1.csv”
-file will need to be saved in the working directory you specified in the
-above step.</p>
+<p>Use the <code>read.csv()</code> function to import the
+<strong>modified dataset</strong> you created in Lab 1, called
+“frmgham2_p1.csv”.</p>
+<p>Recall that you exported the “frmgham2_p1.csv” dataset from RStudio
+in the final task of Lab 1. If you carried out this task correctly, the
+dataset will be located in your Lab 1 working directory (i.e., the
+folder containing your Lab 1 materials). To utilize this dataset for Lab
+2, you will need to move or copy the file over to the folder you set as
+your working directory in the above step. Consider this an exercise in
+locating and organizing files on your computer the dataset.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># import dataset</span></span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;frmgham2_p1.csv&quot;</span>)</span></code></pre></div>
 <p><br></p>
@@ -552,8 +564,9 @@ above step.</p>
 <h2>4. Select variables of interest</h2>
 <p><img src="select.png" width="100%" /></p>
 <p>For Lab 2, we will focus on a handful of variables of interest. Be
-sure to refer back to the data documentation for more information about
-these variables:</p>
+sure to refer back to the data documentation (linked on the Lab 2
+assignment page on Canvas) for more information about these
+variables:</p>
 <ul>
 <li><code>RANDID</code>: participant identification number</li>
 <li><code>SEX</code>: sex</li>
@@ -594,7 +607,7 @@ it.</li>
 your Environment (top-right window) called <code>data_sub</code> (when
 running your own analyses, you can use whatever names make sense to you)
 with 4434 observations and 7 variables. Click on the
-<code>data_sub</code> object to open it in a new tab. You should see a
+<code>data_sub</code> object to view it in a new tab. You should see a
 spreadsheet open containing only the 7 variables we selected.</p>
 <p><br></p>
 </div>
@@ -602,7 +615,9 @@ spreadsheet open containing only the 7 variables we selected.</p>
 <h2>5. Identify and modify variable types</h2>
 <p>Like we did in Lab 1, we should identify variable types using the
 <code>class()</code> function and modify them as needed. Let’s check the
-variable type for each variable in <code>data_sub</code>:</p>
+variable type for each variable in <code>data_sub</code>. Below, you
+will see the code used to check the variable type and output for each
+variable:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># check variable types</span></span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">class</span>(data_sub<span class="sc">$</span>SEX) <span class="co"># sex</span></span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
@@ -624,8 +639,8 @@ example, we know the values for sex (<code>SEX</code>), attained
 education (<code>EDUC</code>), and obesity status (<code>OBESE</code>)
 represent categories rather than numerical quantities. As such, we
 should modify these variables accordingly using the
-<code>factor()</code> command (see Lab 1 for a detailed
-explanation):</p>
+<code>factor()</code> command (see Lab 1 for a detailed explanation of
+the code):</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># convert sex to unordered factor variable</span></span>
 <span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>data_sub<span class="sc">$</span>SEX <span class="ot">&lt;-</span> <span class="fu">factor</span>(data_sub<span class="sc">$</span>SEX, </span>
 <span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>                       <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>), </span>
@@ -639,13 +654,14 @@ explanation):</p>
 <span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>                         <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;1&quot;</span>), </span>
 <span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>                         <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <blockquote>
-<p>Wait, didn’t we already convert sex and attained education to factor
-variables in Lab 1? Why are they integer variables once again? Note that
-when you import a CSV file, R will automatically interpret variables
-with numerical values as either “integer” or “numeric” - <em>R does not
-know that the values represent categories until we specify this.</em>
-So, any time you bring in a new CSV file, you will need to go through
-the process of identifying and modifying variable types as needed.</p>
+<p>You might be thinking, “wait, didn’t we already convert sex and
+attained education to factor variables in Lab 1? Why are they integer
+variables once again?” Note that when you import a CSV file, R will
+automatically interpret variables with numerical values as either
+“integer” or “numeric” - <em>R does not know that the values represent
+categories until we specify this.</em> So, any time you bring in a new
+CSV file, you will need to go through the process of identifying and
+modifying variable types as needed.</p>
 </blockquote>
 <p><br></p>
 </div>
@@ -658,14 +674,14 @@ explore both in this Lab, beginning here with numerical summaries. This
 means generating summary statistics for numerical variables and
 frequency distributions for categorical variables.</p>
 <p>Our <code>data_sub</code> object contains three numerical variables
-(excluding participant ID number, which we aren’t really interested in)
-- age (<code>AGE</code>), body mass index (<code>BMI</code>), and total
-cholesterol level (<code>TOTCHOL</code>) - and three categorical
-variables - sex (<code>SEX</code>), attained education
-(<code>EDUC</code>), and obesity status (<code>OBESE</code>).</p>
+(excluding participant ID number) - age (<code>AGE</code>), body mass
+index (<code>BMI</code>), and total cholesterol level
+(<code>TOTCHOL</code>) - and three categorical variables - sex
+(<code>SEX</code>), attained education (<code>EDUC</code>), and obesity
+status (<code>OBESE</code>).</p>
 <p>To understand the distributions of these variables, the
 <code>summary()</code> function is a great place to start:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co"># generate summary statistics and frequency distributions for all variables</span></span>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co"># generate summary statistics or frequency distribution for all variables</span></span>
 <span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="fu">summary</span>(data_sub)</span></code></pre></div>
 <pre><code>##      RANDID        SEX           AGE             BMI           TOTCHOL   
 ##  Min.   :   2448   1:1944   Min.   :32.00   Min.   :15.54   Min.   :107  
@@ -691,7 +707,7 @@ provides frequency counts for each category. The output also provides
 the number of missing values for each variable (more on missing data
 later). After running the above code chunk, you will see:</p>
 <ul>
-<li><strong>For Numerical Variables:</strong>
+<li><strong>For numerical variables:</strong>
 <ul>
 <li>Minimum (Min): The smallest value in the variable.</li>
 <li>1st Quartile (1st Qu.): The value below which 25% of the data
@@ -703,18 +719,19 @@ fall.</li>
 <li>Maximum (Max): The largest value in the variable.</li>
 <li>NA’s: The number of missing values.</li>
 </ul></li>
-<li><strong>For Categorical Variables:</strong>
+<li><strong>For categorical rariables:</strong>
 <ul>
 <li>The output will list each category and its corresponding frequency
 (the number of occurrences of that category in the dataset).</li>
 <li>NA’s: The number of missing values.</li>
 </ul></li>
 </ul>
-<p>For example, we can see that the baseline sample contains 1944 males
-(<code>SEX</code>=1) and 2490 females (<code>SEX</code>=2). We can also
-see that the minimum and maximum ages in the sample are 32 and 70,
-respectively, with a mean of 49.93 years and median of 49 years. There
-are no missing values for sex or age.</p>
+<p>For example, we can see that the baseline sample contains 1944 males,
+where <code>SEX</code>=1, and 2490 females, where <code>SEX</code>=2
+(How do we know which category corresponds to each value? See the data
+documentation). We can also see that the minimum and maximum ages in the
+sample are 32 and 70, respectively, with a mean of 49.93 years and
+median of 49 years. There are no missing values for sex or age.</p>
 <p>Examine the output and answer the following:</p>
 <ul>
 <li>What is the mean BMI in the baseline sample?</li>
@@ -728,9 +745,10 @@ starting point, since it provides a summary for each variable in the
 dataset. However, the <code>summary()</code> function does not
 necessarily provide all of the information you might need. There are
 several functions you might use to generate summary statistics and
-frequency distributions. Suppose you want the mean and standard
-deviation for BMI. You can obtain these values using the
-<code>mean()</code> and <code>sd()</code> functions as follows:</p>
+frequency distributions.</p>
+<p>For example, suppose you just want the mean and standard deviation
+for BMI. You can obtain these values using the <code>mean()</code> and
+<code>sd()</code> functions as follows:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="co"># obtain mean and standard deviation for BMI in the baseline sample</span></span>
 <span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">mean</span>(data_sub<span class="sc">$</span>BMI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 25.84616</code></pre>
@@ -775,16 +793,16 @@ class="section level2">
 plots</h2>
 <p>Exploring the distribution of variables using descriptive plots
 complements summary statistics and frequencies by providing a visual
-representation of the data. While descriptive statistics (like means and
-medians) and frequencies offer numerical summaries, plots can help us
-understand the overall shape of a distribution and reveal patterns,
-trends, and anomalies that numbers alone may not capture. For example,
-histograms or boxplots of numerical variables can highlight skewness,
-outliers, or multimodal distributions, while bar charts of categorical
-variables can make the relative prevalence of categories easier to
-interpret. Visualizing data can also help identify issues like data
-entry errors or unusual variability in addition to making it easier to
-communicate findings to others.</p>
+representation of the data. While descriptive statistics and frequencies
+offer numerical summaries, plots can help us understand the overall
+shape of a distribution and reveal patterns, trends, and anomalies that
+numbers alone may not capture. For example, histograms or boxplots of
+numerical variables can highlight skewness, outliers, or multimodal
+distributions, while bar charts of categorical variables can make the
+relative prevalence of categories easier to interpret. Visualizing data
+can also help identify issues like data entry errors or unusual
+variability in addition to making it easier to communicate findings to
+others.</p>
 <p><br></p>
 <div id="histograms" class="section level3">
 <h3>Histograms</h3>
@@ -829,10 +847,10 @@ the optimal number of bins for a particular variable.</li>
 </ul></li>
 <li><code>main = "Histogram of Baseline Age"</code>: Sets the title of
 the histogram to “Histogram of Baseline Age.”</li>
-<li><code>xlab = "Age"</code>: Labels the x-axis as “Age,” indicating
+<li><code>xlab = "Age"</code>: Labels the x-axis as “Age,” so we know
 what the bins represent.</li>
 <li><code>ylab = "Frequency"</code>: Labels the y-axis as “Frequency,”
-indicating the number of observations in each bin.</li>
+which shows the number of observations in each bin.</li>
 </ul>
 <p>After running the code chunk above, you should see a histogram of age
 appear in the plots window (bottom-right). The distribution of age
@@ -852,13 +870,20 @@ appears to be generally mound-shaped with little skewness.</p>
 <span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Total Cholesterol Level&quot;</span>, </span>
 <span id="cb30-6"><a href="#cb30-6" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>)</span></code></pre></div>
 <p><img src="Lab_2_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<blockquote>
+<p>Notice that the only changes we needed to make to the code to create
+these additional historgrams were to the specific variable of interest
+(specified in the first line of code in each chunk) and the labels (so
+that our x-axis and chart titles accurately reflect the variable
+at-hand).</p>
+</blockquote>
 <p>From the histograms, we see that both BMI and total cholesterol level
 are slightly right-skewed, meaning the peak of the data is on the left,
 and the values taper off toward the right. In both cases, most of the
 data falls within a bell-shaped curve, but there are some extreme values
-to the right. In a right-skewed distribution, the mean is greater than
-the median. This happens because the long tail on the right pulls the
-mean higher while the median is relatively unaffected.</p>
+to the right. Note that in a right-skewed distribution, the mean is
+greater than the median. This happens because the long tail on the right
+pulls the mean higher while the median is relatively unaffected.</p>
 <p><br></p>
 </div>
 <div id="boxplots" class="section level3">
@@ -880,10 +905,12 @@ beginning with age, using the <code>boxplot()</code> function:</p>
 <li><code>boxplot(data_sub$AGE...)</code>: Creates a boxplot of the
 <code>AGE</code> variable from the <code>data_sub</code> dataset. The
 boxplot summarizes the distribution of ages, showing the median,
-interquartile range (IQR), and any potential outliers.</li>
+interquartile range (IQR), and min/max values. Boxplots will also
+typically reveal any potential outliers, which will be represented by
+open circles, but we don’t see any in this case.</li>
 <li><code>main = "Boxplot of Baseline Age"</code>: Sets the title of the
-plot to “Boxplot of Baseline Age,” providing context for what the plot
-represents.</li>
+plot to “Boxplot of Baseline Age” so that we have context for what the
+plot represents.</li>
 <li><code>ylab = "Age"</code>: Labels the y-axis as “Age,” indicating
 that the values displayed on the axis correspond to participant
 ages.</li>
@@ -903,12 +930,20 @@ outliers.</p>
 <span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Boxplot of Baseline Total Cholesterol Level&quot;</span>, </span>
 <span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Total Cholesterol Level&quot;</span>)</span></code></pre></div>
 <p><img src="Lab_2_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<blockquote>
+<p>Again, notice the changes in the code. To create a new boxplot for a
+different variable, we only need to change the specific variable
+indicated on the first line of each code chunk, as well as the
+correponding title and axis labels.</p>
+</blockquote>
 <p>As expected given our examination of their histograms, both BMI and
 total cholesterol level are right-skewed. We can see this reflected in
 their respective boxplots because there are many extreme values above
 the median. Every observation shown by an open circle on the boxplot
-figures represents an outlier. There are a couple of steps to
-determining which points are outliers:</p>
+figures represents an outlier. If you’re doing this by hand, there are a
+couple of steps involved in identifying which points are outliers (while
+we won’t do anything “by hand” in this course, it is important to
+understand the process):</p>
 <ol style="list-style-type: decimal">
 <li>Calculate the <strong>Interquartile Range (IQR)</strong>. The IQR is
 the range between the first quartile (Q1) and third quartile (Q3) (i.e.,
@@ -953,7 +988,7 @@ the <code>barplot()</code> function:</p>
 <ul>
 <li><code>table(data_sub$SEX)</code>: Creates a frequency table for the
 SEX variable, counting how many observations fall into each category
-(e.g., male and female).</li>
+(e.g., male, female).</li>
 <li><code>barplot()</code>: Generates a bar chart based on the frequency
 table.</li>
 </ul></li>
@@ -972,8 +1007,7 @@ x-axis labels (e.g., coded values 1 and 2) with descriptive labels
 </ul>
 <p>After running the code chunk above, you should see a bar chart of sex
 appear in the plots window (bottom-right). Based on this chart, we can
-see that females make up a slightly larger portion of the sample than
-males.</p>
+see that females make up a larger portion of the sample than males.</p>
 <p>Two additional examples, for attained education and obesity
 status:</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="co"># generate a simple bar chart for attained education</span></span>
@@ -1088,7 +1122,7 @@ variable used to group the data.</li>
 <li><code>main = "Boxplot of BMI by Education Level"</code>: Sets the
 title of the boxplot.</li>
 <li><code>xlab = "Education Level"</code> and <code>ylab = "BMI"</code>:
-Labels the x-axis and y-axis for clarity.</li>
+Labels the x-axis and y-axis.</li>
 <li><code>col = "lightblue"</code>: Colors the boxplots light blue.</li>
 <li><code>names = c(...)</code>: Replaces the default category labels
 (1, 2, 3, and 4) with descriptive labels for each education level.</li>
@@ -1160,8 +1194,8 @@ interpretation. For example, if there are more females than males in the
 sample, it might appear that females are more frequently obese simply
 because there are more females overall, not because they are at greater
 risk. To account for these differences, it’s important to examine
-relative frequencies or proportions, which standardize the data by
-dividing the count in each category by the total for that group. This
+<em>relative frequencies</em> or proportions, which standardize the data
+by dividing the count in each category by the total for that group. This
 approach allows for fair comparisons across groups of different sizes
 and provides a more accurate picture of the relationships in the
 data.</p>
@@ -1208,7 +1242,7 @@ group).</li>
 <li><code>relative_frequencies &lt;-</code>: Saves the resulting
 relative frequencies as an object called “relative_frequencies”,
 allowing us to input this object directly into the subsequent
-function</li>
+function.</li>
 </ul></li>
 <li><code>print(relative_frequencies)</code>: Displays the relative
 frequencies in the Console (bottom-left window). This step might be
@@ -1226,8 +1260,8 @@ in the sample are slightly more likely to be obese than males. In the
 coming weeks in this course, we will learn how to test whether group
 differences like this are <em>statistically significant</em>, meaning
 there is enough evidence in the data to conclude that a real difference
-exists - or in other words, that the difference is unlikely to have
-happened by chance.</p>
+exists (in the population) - or in other words, that the difference is
+unlikely to have happened by chance.</p>
 <blockquote>
 <p>A key point… Understanding how variables relate to each other is a
 big part of public health work. It helps us figure out how health
@@ -1237,10 +1271,8 @@ smoking affects lung health, how BMI relates to blood pressure, or how
 education level ties to access to care can reveal important patterns.
 Right now, we’re just getting started with exploring these relationships
 through EDA. Later in the course, we’ll learn more advanced methods to
-answer key questions, like identifying risk factors for disease,
-uncovering health disparities, and understanding the links between
-exposures and outcomes. These tools are essential for improving public
-health and advancing health equity.</p>
+answer questions, like identifying risk factors for disease or
+uncovering health disparities.</p>
 </blockquote>
 <p><br></p>
 </div>
@@ -1255,13 +1287,12 @@ also reduce the power of statistical tests and limit the amount of
 usable data, which might make it more difficult to draw meaningful
 conclusions. By addressing missing data properly — whether by removing
 incomplete cases or using techniques like imputation — we can maintain
-the integrity of the analysis and produce results that are both robust
-and representative.</p>
+the integrity of the analysis.</p>
 <p><br></p>
 <div id="identify-missing-data" class="section level3">
 <h3>Identify missing data</h3>
-<p>Recall from Task #6 above, we used the <code>summary()</code> command
-to generate a numerical summary for each variable in our dataset. In
+<p>Recall from above that we used the <code>summary()</code> command to
+generate a numerical summary for each variable in our dataset. In
 addition to summary statistics, this function provided the number of
 missing data points for each variable. Let’s take another look:</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="co"># generate summary statistics and frequency distributions for all variables</span></span>
@@ -1319,10 +1350,10 @@ substantial:</p>
 missing for BMI, about 1.17% are missing for TOTCHOL level, 2.55% for
 attained education, and 0.43% for obesity status.</p>
 <p>Finally, visualizing missingness can be a helpful way to identify
-patterns in how data is missing. It allows us to see whether missing
-values are concentrated in specific variables, occur together across
-multiple variables, or appear randomly. Understanding these patterns is
-important because they can help us decide how to handle missing data
+patterns in missing data. It allows us to see whether missing values are
+concentrated in specific variables, occur together across multiple
+variables, or appear randomly. Understanding these patterns is important
+because they can help us decide how to handle missing data
 appropriately.</p>
 <p>An “upset chart” is one tool for visualizing missingness. It shows
 patterns of missing data across multiple variables. Each column in the
@@ -1349,7 +1380,7 @@ small bars spread across different patterns.</p>
 <p><img src="Lab_2_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 <p>From the chart, we see that most of the missingness is isolated to
 individual variables. For example, there are 111 observations for which
-<code>EDUCL</code> is the <em>only</em> missing variable, and 50
+<code>EDUC</code> is the <em>only</em> missing variable, and 50
 observations for which <code>TOTCHOL</code> is the <em>only</em> missing
 variable. Observations rarely have co-occurring missing values.</p>
 <p>In real life, our investigation of missing data would go a bit
@@ -1369,7 +1400,7 @@ couple of approaches for addressing it. There are several options for
 dealing with missing data, but we will focus on the two simplest
 methods:</p>
 <ol style="list-style-type: decimal">
-<li>Complete case analysis (i.e., remove rows with missing data)</li>
+<li>Complete case analysis</li>
 <li>Simple imputation</li>
 </ol>
 <p><br></p>

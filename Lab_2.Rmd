@@ -20,10 +20,10 @@ California State University, Sacramento
 
 # Introduction
 
-Exploratory Data Analysis (EDA) is the process of examining and summarizing a dataset to identify patterns, relationships, and potential issues before performing more complex analyses. It involves techniques like calculating summary statistics, visualizing data distributions, and identifying outliers or missing values. EDA is important because it:
+Exploratory Data Analysis (EDA) is the process of examining and summarizing a dataset to identify patterns, relationships, and potential issues before performing more complex analyses. It involves techniques like calculating summary statistics, visualizing data distributions, and identifying outliers and missing values. EDA is important because it:
 
 * Helps us better understand the structure and key characteristics of a dataset.
-* Detects potential errors, inconsistencies, or missing values that may need to be addressed.
+* Detects potential errors, inconsistencies, and missing values that may need to be addressed.
 * Guides analysis and suggests appropriate statistical methods and models for further analysis.
 * Creates visual and numerical summaries that make data more understandable to others.
 
@@ -43,7 +43,7 @@ After completing Lab 2, you will be able to:
 
 # Tasks
 
-Suppose you are a public health researcher interested in studying the relationship between lifestyle factors and cardiovascular health. Using data from the Framingham Heart Study, you aim to explore key risk factors - such as sex, age, BMI, and smoking behavior - at baseline to identify patterns and relationships that could inform prevention strategies. Before beginning any in-depth analyses, you plan to conduct an exploratory data analysis (EDA) to summarize the data, visualize distributions and relationships, and identify potential issues. The EDA process will help you become familiar with the data and guide future analyses. 
+Suppose you are a public health researcher interested in studying the relationship between lifestyle factors and cardiovascular health. Using data from the Framingham Heart Study, you aim to explore key risk factors - such as sex, age, body mass index (BMI), and smoking behavior - in the baseline sample to identify patterns and relationships that could inform prevention strategies. Before beginning any in-depth analyses, you plan to conduct an exploratory data analysis (EDA) to summarize the data, visualize distributions and relationships, and identify potential issues. The EDA process will help you become familiar with the data and guide future analyses. 
 
 When you are ready to start Lab 2:
 
@@ -51,13 +51,13 @@ When you are ready to start Lab 2:
 2. Next, save the **modified dataset** you created in Lab 1 - called "frmgham2_p1.csv" - in the same folder as your Lab 2 R Markdown file.
 3. Finally, proceed to read through and carry out each of the tasks detailed below. 
 
-> Notice that the first few tasks mirror Lab 1. In general, you will always start a new assignment in this way - by loading packages, setting your working directory, and importing the dataset(s) you need. 
+> As you begin Lab 2, notice that the first few tasks closely mirror those of Lab 1. Remember that, in general, you will always start a new assignment in this way - by loading packages, setting your working directory, and importing the dataset(s) you need. 
 
 <br>
 
 ## 1. Install and load R packages
 
-In Lab 2, we will mostly be using functions contained within packages you have already installed (e.g, `tidyverse`). We will use one new package called `naniar` which contains many functions for investigating missing data. Start by entering the following into your Console (bottom-left window) to install this package: `install.packages("naniar")`
+In Lab 2, we will mostly be using functions contained within packages you have already installed (e.g., `tidyverse`). We will use one new package called `naniar` which contains many functions for investigating missing data. Start by entering the following into your Console (bottom-left window) to install this package: `install.packages("naniar")`
 
 Remember that packages only need to be *installed* once; however, they must be *loaded* every time you start a new R session using the `library()` function as follows:
 
@@ -71,7 +71,7 @@ library(naniar)
 
 ## 2. Set your working directory
 
-Set your working directory using the `setwd()` function - but remember to paste your own file path between the parentheses (see Assignment Guidelines for detailed instructions). 
+Set your working directory using the `setwd()` function - but remember to paste your own file path between the parentheses (return to Lab 1 and/or the RStudio Video Tutorial on Canvas if you need detailed instructions). 
 
 ```{r}
 # set working directory
@@ -82,7 +82,9 @@ setwd("/Volumes/GoogleDrive/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Webs
 
 ## 3. Import the dataset into RStudio
 
-Use the `read.csv()` function to bring in the modified dataset you created in Lab 1. For this to work, the "frmgham2_p1.csv" file will need to be saved in the working directory you specified in the above step.
+Use the `read.csv()` function to import the **modified dataset** you created in Lab 1, called "frmgham2_p1.csv". 
+
+Recall that you exported the "frmgham2_p1.csv" dataset from RStudio in the final task of Lab 1. If you carried out this task correctly, the dataset will be located in your Lab 1 working directory (i.e., the folder containing your Lab 1 materials). To utilize this dataset for Lab 2, you will need to move or copy the file over to the folder you set as your working directory in the above step. Consider this an exercise in locating and organizing files on your computer the dataset.
 
 ```{r}
 # import dataset
@@ -97,7 +99,7 @@ data <- read.csv("frmgham2_p1.csv")
 knitr::include_graphics("select.png")
 ```
 
-For Lab 2, we will focus on a handful of variables of interest. Be sure to refer back to the data documentation for more information about these variables:
+For Lab 2, we will focus on a handful of variables of interest. Be sure to refer back to the data documentation (linked on the Lab 2 assignment page on Canvas) for more information about these variables:
 
 * `RANDID`: participant identification number
 * `SEX`: sex
@@ -120,13 +122,13 @@ This code creates a smaller, more focused dataset (called `data_sub`) containing
 * `data %>%`: Passes the object called `data` (our original dataset) into the `select()` function using the pipe operator (`%>%`). Remember, this is like telling R, 'use this dataset *and then* select only these variables.'
 * `data_sub <-`: Creates a new object called `data_sub` to store the result of the operation. By saving the subsetted data with a new name, the original dataset (called `data`) remains unchanged and available to us if we need it.
 
-After running the code chunk above, you should see a new object in your Environment (top-right window) called `data_sub` (when running your own analyses, you can use whatever names make sense to you) with 4434 observations and 7 variables. Click on the `data_sub` object to open it in a new tab. You should see a spreadsheet open containing only the 7 variables we selected.
+After running the code chunk above, you should see a new object in your Environment (top-right window) called `data_sub` (when running your own analyses, you can use whatever names make sense to you) with 4434 observations and 7 variables. Click on the `data_sub` object to view it in a new tab. You should see a spreadsheet open containing only the 7 variables we selected.
 
 <br>
 
 ## 5. Identify and modify variable types
 
-Like we did in Lab 1, we should identify variable types using the `class()` function and modify them as needed. Let's check the variable type for each variable in `data_sub`:
+Like we did in Lab 1, we should identify variable types using the `class()` function and modify them as needed. Let's check the variable type for each variable in `data_sub`. Below, you will see the code used to check the variable type and output for each variable:
 
 ```{r}
 # check variable types
@@ -138,7 +140,7 @@ class(data_sub$EDUC) # attained education
 class(data_sub$OBESE) # obesity status
 ```
 
-We see that all variables are coded as "integer" variables aside from `BMI`, which is coded as "numeric". As discussed in Lab 1, we should modify variable types when needed to ensure variables are treated appropriately - as numerical or categorical - in our analyses. For example, we know the values for sex (`SEX`), attained education (`EDUC`), and obesity status (`OBESE`) represent categories rather than numerical quantities. As such, we should modify these variables accordingly using the `factor()` command (see Lab 1 for a detailed explanation):
+We see that all variables are coded as "integer" variables aside from `BMI`, which is coded as "numeric". As discussed in Lab 1, we should modify variable types when needed to ensure variables are treated appropriately - as numerical or categorical - in our analyses. For example, we know the values for sex (`SEX`), attained education (`EDUC`), and obesity status (`OBESE`) represent categories rather than numerical quantities. As such, we should modify these variables accordingly using the `factor()` command (see Lab 1 for a detailed explanation of the code):
 
 ```{r}
 # convert sex to unordered factor variable
@@ -161,7 +163,7 @@ data_sub$OBESE <- factor(data_sub$OBESE,
                          ordered=FALSE)
 ```
 
-> Wait, didn't we already convert sex and attained education to factor variables in Lab 1? Why are they integer variables once again? Note that when you import a CSV file, R will automatically interpret variables with numerical values as either "integer" or "numeric" - *R does not know that the values represent categories until we specify this.* So, any time you bring in a new CSV file, you will need to go through the process of identifying and modifying variable types as needed.
+> You might be thinking, "wait, didn't we already convert sex and attained education to factor variables in Lab 1? Why are they integer variables once again?" Note that when you import a CSV file, R will automatically interpret variables with numerical values as either "integer" or "numeric" - *R does not know that the values represent categories until we specify this.* So, any time you bring in a new CSV file, you will need to go through the process of identifying and modifying variable types as needed.
 
 <br>
 
@@ -169,18 +171,18 @@ data_sub$OBESE <- factor(data_sub$OBESE,
 
 Exploratory data analysis (EDA) typically involves a combination of: (1) numerical summaries, and (2) descriptive plots or visuals. We will explore both in this Lab, beginning here with numerical summaries. This means generating summary statistics for numerical variables and frequency distributions for categorical variables.
 
-Our `data_sub` object contains three numerical variables (excluding participant ID number, which we aren't really interested in) - age (`AGE`), body mass index (`BMI`), and total cholesterol level (`TOTCHOL`) - and three categorical variables - sex (`SEX`), attained education (`EDUC`), and obesity status (`OBESE`). 
+Our `data_sub` object contains three numerical variables (excluding participant ID number) - age (`AGE`), body mass index (`BMI`), and total cholesterol level (`TOTCHOL`) - and three categorical variables - sex (`SEX`), attained education (`EDUC`), and obesity status (`OBESE`). 
 
 To understand the distributions of these variables, the `summary()` function is a great place to start:
 
 ```{r}
-# generate summary statistics and frequency distributions for all variables
+# generate summary statistics or frequency distribution for all variables
 summary(data_sub)
 ```
 
 The `summary()` function in R provides a quick overview of the dataset by summarizing each variable in the specified dataset (in this case, `data_sub`). For numerical variables, it calculates key descriptive statistics, and for categorical variables, it provides frequency counts for each category. The output also provides the number of missing values for each variable (more on missing data later). After running the above code chunk, you will see:
 
-* **For Numerical Variables:**
+* **For numerical variables:**
   * Minimum (Min): The smallest value in the variable.
   * 1st Quartile (1st Qu.): The value below which 25% of the data fall.
   * Median: The middle value when data are sorted.
@@ -189,11 +191,11 @@ The `summary()` function in R provides a quick overview of the dataset by summar
   * Maximum (Max): The largest value in the variable.
   * NA's: The number of missing values.
 
-* **For Categorical Variables:**
+* **For categorical rariables:**
   * The output will list each category and its corresponding frequency (the number of occurrences of that category in the dataset).
   * NA's: The number of missing values.
   
-For example, we can see that the baseline sample contains 1944 males (`SEX`=1) and 2490 females (`SEX`=2). We can also see that the minimum and maximum ages in the sample are 32 and 70, respectively, with a mean of 49.93 years and median of 49 years. There are no missing values for sex or age. 
+For example, we can see that the baseline sample contains 1944 males, where `SEX`=1, and 2490 females, where `SEX`=2 (How do we know which category corresponds to each value? See the data documentation). We can also see that the minimum and maximum ages in the sample are 32 and 70, respectively, with a mean of 49.93 years and median of 49 years. There are no missing values for sex or age. 
 
 Examine the output and answer the following:
 
@@ -201,7 +203,9 @@ Examine the output and answer the following:
 * How many missing values are there for BMI in the baseline sample?
 * How many participants are defined as obese (BMI>30) at baseline?
 
-As stated previously, the `summary()` function is a great starting point, since it provides a summary for each variable in the dataset. However, the `summary()` function does not necessarily provide all of the information you might need. There are several functions you might use to generate summary statistics and frequency distributions. Suppose you want the mean and standard deviation for BMI. You can obtain these values using the `mean()` and `sd()` functions as follows:
+As stated previously, the `summary()` function is a great starting point, since it provides a summary for each variable in the dataset. However, the `summary()` function does not necessarily provide all of the information you might need. There are several functions you might use to generate summary statistics and frequency distributions. 
+
+For example, suppose you just want the mean and standard deviation for BMI. You can obtain these values using the `mean()` and `sd()` functions as follows:
 
 ```{r}
 # obtain mean and standard deviation for BMI in the baseline sample
@@ -226,7 +230,7 @@ When you run the above code chunk, you will see the frequencies for each categor
 
 ## 7. Explore the distribution of variables using descriptive plots
 
-Exploring the distribution of variables using descriptive plots complements summary statistics and frequencies by providing a visual representation of the data. While descriptive statistics (like means and medians) and frequencies offer numerical summaries, plots can help us understand the overall shape of a distribution and reveal patterns, trends, and anomalies that numbers alone may not capture. For example, histograms or boxplots of numerical variables can highlight skewness, outliers, or multimodal distributions, while bar charts of categorical variables can make the relative prevalence of categories easier to interpret. Visualizing data can also help identify issues like data entry errors or unusual variability in addition to making it easier to communicate findings to others.
+Exploring the distribution of variables using descriptive plots complements summary statistics and frequencies by providing a visual representation of the data. While descriptive statistics and frequencies offer numerical summaries, plots can help us understand the overall shape of a distribution and reveal patterns, trends, and anomalies that numbers alone may not capture. For example, histograms or boxplots of numerical variables can highlight skewness, outliers, or multimodal distributions, while bar charts of categorical variables can make the relative prevalence of categories easier to interpret. Visualizing data can also help identify issues like data entry errors or unusual variability in addition to making it easier to communicate findings to others.
 
 <br>
 
@@ -251,8 +255,8 @@ Let's break down each part of the code above:
 * `breaks = 15`: Specifies the number of bins (or intervals) for grouping the ages. Setting `breaks = 15` creates 15 bins. 
   * *Note:* There is no single "correct" number of bins; it is often a good idea to experiment with different numbers of bins to see which is most suitable to your data. When deciding on the number of bins, you might consider the size of your dataset and range of possible values. For example, a large dataset may benefit from more bins to capture finer details in the distribution, particularly with a wide range of values. A smaller dataset, on the other hand, may require fewer bins to avoid over-fragmentation. In general, too few bins may oversimplify the distribution and hide important patterns, while too many bins can make it difficult to discern the overall shape of the distribution. The key point - use your best judgement when deciding on the optimal number of bins for a particular variable. 
 * `main = "Histogram of Baseline Age"`: Sets the title of the histogram to "Histogram of Baseline Age."
-* `xlab = "Age"`: Labels the x-axis as "Age," indicating what the bins represent.
-* `ylab = "Frequency"`: Labels the y-axis as "Frequency," indicating the number of observations in each bin.
+* `xlab = "Age"`: Labels the x-axis as "Age," so we know what the bins represent.
+* `ylab = "Frequency"`: Labels the y-axis as "Frequency," which shows the number of observations in each bin.
 
 After running the code chunk above, you should see a histogram of age appear in the plots window (bottom-right). The distribution of age appears to be generally mound-shaped with little skewness. 
 
@@ -276,7 +280,9 @@ hist(data_sub$TOTCHOL,
      ylab = "Frequency")
 ```
 
-From the histograms, we see that both BMI and total cholesterol level are slightly right-skewed, meaning the peak of the data is on the left, and the values taper off toward the right. In both cases, most of the data falls within a bell-shaped curve, but there are some extreme values to the right. In a right-skewed distribution, the mean is greater than the median. This happens because the long tail on the right pulls the mean higher while the median is relatively unaffected. 
+> Notice that the only changes we needed to make to the code to create these additional historgrams were to the specific variable of interest (specified in the first line of code in each chunk) and the labels (so that our x-axis and chart titles accurately reflect the variable at-hand).  
+
+From the histograms, we see that both BMI and total cholesterol level are slightly right-skewed, meaning the peak of the data is on the left, and the values taper off toward the right. In both cases, most of the data falls within a bell-shaped curve, but there are some extreme values to the right. Note that in a right-skewed distribution, the mean is greater than the median. This happens because the long tail on the right pulls the mean higher while the median is relatively unaffected. 
 
 <br>
 
@@ -295,8 +301,8 @@ boxplot(data_sub$AGE,
 
 Let's break down each part of the code above:
 
-* `boxplot(data_sub$AGE...)`: Creates a boxplot of the `AGE` variable from the `data_sub` dataset. The boxplot summarizes the distribution of ages, showing the median, interquartile range (IQR), and any potential outliers.
-* `main = "Boxplot of Baseline Age"`: Sets the title of the plot to "Boxplot of Baseline Age," providing context for what the plot represents.
+* `boxplot(data_sub$AGE...)`: Creates a boxplot of the `AGE` variable from the `data_sub` dataset. The boxplot summarizes the distribution of ages, showing the median, interquartile range (IQR), and min/max values. Boxplots will also typically reveal any potential outliers, which will be represented by open circles, but we don't see any in this case.
+* `main = "Boxplot of Baseline Age"`: Sets the title of the plot to "Boxplot of Baseline Age" so that we have context for what the plot represents.
 * `ylab = "Age"`: Labels the y-axis as "Age," indicating that the values displayed on the axis correspond to participant ages.
 
 After running the code chunk above, you should see a boxplot of age appear in the plots window (bottom-right). The distribution of age appears to be generally symmetrical (with mean equal to median) with no outliers.
@@ -317,7 +323,9 @@ boxplot(data_sub$TOTCHOL,
         ylab = "Total Cholesterol Level")
 ```
 
-As expected given our examination of their histograms, both BMI and total cholesterol level are right-skewed. We can see this reflected in their respective boxplots because there are many extreme values above the median. Every observation shown by an open circle on the boxplot figures represents an outlier. There are a couple of steps to determining which points are outliers:
+> Again, notice the changes in the code. To create a new boxplot for a different variable, we only need to change the specific variable indicated on the first line of each code chunk, as well as the correponding title and axis labels.
+
+As expected given our examination of their histograms, both BMI and total cholesterol level are right-skewed. We can see this reflected in their respective boxplots because there are many extreme values above the median. Every observation shown by an open circle on the boxplot figures represents an outlier. If you're doing this by hand, there are a couple of steps involved in identifying which points are outliers (while we won't do anything "by hand" in this course, it is important to understand the process):
 
 1. Calculate the **Interquartile Range (IQR)**. The IQR is the range between the first quartile (Q1) and third quartile (Q3) (i.e., IQR = Q3 - Q1). It represents the middle 50% of the data. 
 2. Determine **outlier thresholds**. The outlier thresholds are represented by the "whiskers" on a boxplot. The lower limit extends to the value Q1-1.5xIQR, and the upper limit extends to Q3+1.5xIQR. Points beyond these thresholds are considered outliers.
@@ -345,7 +353,7 @@ barplot(table(data_sub$SEX),
 Let's break down each part of this code chunk:
 
 * `barplot(table(data_sub$SEX...))`:
-  * `table(data_sub$SEX)`: Creates a frequency table for the SEX variable, counting how many observations fall into each category (e.g., male and female).
+  * `table(data_sub$SEX)`: Creates a frequency table for the SEX variable, counting how many observations fall into each category (e.g., male, female).
   * `barplot()`: Generates a bar chart based on the frequency table.
 * `main = "Bar Chart of Sex Distribution"`: Sets the title of the chart to "Bar Chart of Sex Distribution."
 * `xlab = "Sex"`: Labels the x-axis as "Sex," indicating what the categories on the x-axis represent.
@@ -353,7 +361,7 @@ Let's break down each part of this code chunk:
 * `col = "lightblue"`: Sets the color of the bars to light blue, making the chart visually appealing.
 * `names.arg = c("Male", "Female")`: Replaces the default x-axis labels (e.g., coded values 1 and 2) with descriptive labels ("Male" and "Female"), making the chart easier to interpret.
 
-After running the code chunk above, you should see a bar chart of sex appear in the plots window (bottom-right). Based on this chart, we can see that females make up a slightly larger portion of the sample than males.
+After running the code chunk above, you should see a bar chart of sex appear in the plots window (bottom-right). Based on this chart, we can see that females make up a larger portion of the sample than males.
 
 Two additional examples, for attained education and obesity status:
 
@@ -429,7 +437,7 @@ This code generates a boxplot where each box represents the distribution of BMI 
 
 * `boxplot(data_sub$BMI ~ data_sub$EDUC`...): Specifies the formula for the boxplot, where `BMI` is the numerical variable to be plotted, and `EDUC` is the categorical variable used to group the data.
 * `main = "Boxplot of BMI by Education Level"`: Sets the title of the boxplot.
-* `xlab = "Education Level"` and `ylab = "BMI"`: Labels the x-axis and y-axis for clarity.
+* `xlab = "Education Level"` and `ylab = "BMI"`: Labels the x-axis and y-axis.
 * `col = "lightblue"`: Colors the boxplots light blue.
 * `names = c(...)`: Replaces the default category labels (1, 2, 3, and 4) with descriptive labels for each education level.
 
@@ -470,7 +478,7 @@ Let's break down this code:
 * `legend = c("Male", "Female")`: Adds a legend to identify which bars correspond to males and females.
 * `names.arg = c("Not Obese", "Obese")`: Replaces the default x-axis labels (e.g., 0 and 1) with more descriptive category names.
 
-When comparing frequencies or counts across groups, be aware that the sizes of the groups may differ significantly, and this can distort your interpretation. For example, if there are more females than males in the sample, it might appear that females are more frequently obese simply because there are more females overall, not because they are at greater risk. To account for these differences, it’s important to examine relative frequencies or proportions, which standardize the data by dividing the count in each category by the total for that group. This approach allows for fair comparisons across groups of different sizes and provides a more accurate picture of the relationships in the data.
+When comparing frequencies or counts across groups, be aware that the sizes of the groups may differ significantly, and this can distort your interpretation. For example, if there are more females than males in the sample, it might appear that females are more frequently obese simply because there are more females overall, not because they are at greater risk. To account for these differences, it’s important to examine *relative frequencies* or proportions, which standardize the data by dividing the count in each category by the total for that group. This approach allows for fair comparisons across groups of different sizes and provides a more accurate picture of the relationships in the data.
 
 We can plot **relative frequencies** in a few steps as follows:
 
@@ -502,25 +510,25 @@ A brief breakdown of this code...
   * `contingency_table <-`: Saves the resulting contingency table as an object called "contingency_table", allowing us to input this object directly into the subsequent function.
 * `relative_frequencies <- prop.table(contingency_table, margin = 1)`:
   * `prop.table(contingency_table, margin = 1)`:Calculates relative frequencies for each group. The margin = 1 argument ensures that the proportions are calculated row-wise (i.e., within each sex group).
-  * `relative_frequencies <-`: Saves the resulting relative frequencies as an object called "relative_frequencies", allowing us to input this object directly into the subsequent function
+  * `relative_frequencies <-`: Saves the resulting relative frequencies as an object called "relative_frequencies", allowing us to input this object directly into the subsequent function.
 * `print(relative_frequencies)`: Displays the relative frequencies in the Console (bottom-left window). This step might be helpful because it provides the exact proportion of participants in each obesity category for males and females, but it is not actually necessary to create the bar chart.
 * `barplot(relative_frequencies, ...`: Creates a bar chart to visualize the relative frequencies, similar to the one for counts but scaled to show proportions (values between 0 and 1). See previous bar chart above (of counts) for an explanation of each argument nested in the `barplot()` function here.
 
-From the bar chart of relative frequencies, we can see that females in the sample are slightly more likely to be obese than males. In the coming weeks in this course, we will learn how to test whether group differences like this are *statistically significant*, meaning there is enough evidence in the data to conclude that a real difference exists - or in other words, that the difference is unlikely to have happened by chance.
+From the bar chart of relative frequencies, we can see that females in the sample are slightly more likely to be obese than males. In the coming weeks in this course, we will learn how to test whether group differences like this are *statistically significant*, meaning there is enough evidence in the data to conclude that a real difference exists (in the population) - or in other words, that the difference is unlikely to have happened by chance.
 
-> A key point... Understanding how variables relate to each other is a big part of public health work. It helps us figure out how health outcomes, behaviors, and risk factors connect, which can point us toward effective interventions and policies. For example, looking at how smoking affects lung health, how BMI relates to blood pressure, or how education level ties to access to care can reveal important patterns. Right now, we’re just getting started with exploring these relationships through EDA. Later in the course, we’ll learn more advanced methods to answer key questions, like identifying risk factors for disease, uncovering health disparities, and understanding the links between exposures and outcomes. These tools are essential for improving public health and advancing health equity.
+> A key point... Understanding how variables relate to each other is a big part of public health work. It helps us figure out how health outcomes, behaviors, and risk factors connect, which can point us toward effective interventions and policies. For example, looking at how smoking affects lung health, how BMI relates to blood pressure, or how education level ties to access to care can reveal important patterns. Right now, we’re just getting started with exploring these relationships through EDA. Later in the course, we’ll learn more advanced methods to answer questions, like identifying risk factors for disease or uncovering health disparities. 
 
 <br>
 
 ## 9. Identify and address missing data
 
-Identifying and addressing missing data is important to ensure the accuracy and reliability of any analysis. Missing data can introduce bias, especially if certain groups or patterns are more affected, and lead to results that don’t reflect the true population. Missing data may also reduce the power of statistical tests and limit the amount of usable data, which might make it more difficult to draw meaningful conclusions. By addressing missing data properly — whether by removing incomplete cases or using techniques like imputation — we can maintain the integrity of the analysis and produce results that are both robust and representative.
+Identifying and addressing missing data is important to ensure the accuracy and reliability of any analysis. Missing data can introduce bias, especially if certain groups or patterns are more affected, and lead to results that don’t reflect the true population. Missing data may also reduce the power of statistical tests and limit the amount of usable data, which might make it more difficult to draw meaningful conclusions. By addressing missing data properly — whether by removing incomplete cases or using techniques like imputation — we can maintain the integrity of the analysis.
 
 <br>
 
 ### Identify missing data
 
-Recall from Task #6 above, we used the `summary()` command to generate a numerical summary for each variable in our dataset. In addition to summary statistics, this function provided the number of missing data points for each variable. Let's take another look:
+Recall from above that we used the `summary()` command to generate a numerical summary for each variable in our dataset. In addition to summary statistics, this function provided the number of missing data points for each variable. Let's take another look:
 
 ```{r}
 # generate summary statistics and frequency distributions for all variables
@@ -552,7 +560,7 @@ colMeans(is.na(data_sub)) * 100
 
 From the output we can see that approximately 0.43% of values are missing for BMI, about 1.17% are missing for TOTCHOL level, 2.55% for attained education, and 0.43% for obesity status.
 
-Finally, visualizing missingness can be a helpful way to identify patterns in how data is missing. It allows us to see whether missing values are concentrated in specific variables, occur together across multiple variables, or appear randomly. Understanding these patterns is important because they can help us decide how to handle missing data appropriately.
+Finally, visualizing missingness can be a helpful way to identify patterns in missing data. It allows us to see whether missing values are concentrated in specific variables, occur together across multiple variables, or appear randomly. Understanding these patterns is important because they can help us decide how to handle missing data appropriately.
 
 An "upset chart" is one tool for visualizing missingness. It shows patterns of missing data across multiple variables. Each column in the chart represents a specific pattern of missingness (e.g., which variables are missing together), while the height of the bar above each column indicates how many observations fall into that pattern. Rows of dots below the bars show which variables are missing in each pattern. For example:
 
@@ -568,7 +576,7 @@ We can use the `gg_miss_upset()` function from the `naniar` package to create an
 gg_miss_upset(data_sub)
 ```
 
-From the chart, we see that most of the missingness is isolated to individual variables. For example, there are 111 observations for which `EDUCL` is the *only* missing variable, and 50 observations for which `TOTCHOL` is the *only* missing variable. Observations rarely have co-occurring missing values. 
+From the chart, we see that most of the missingness is isolated to individual variables. For example, there are 111 observations for which `EDUC` is the *only* missing variable, and 50 observations for which `TOTCHOL` is the *only* missing variable. Observations rarely have co-occurring missing values. 
 
 In real life, our investigation of missing data would go a bit further - we would want to know, for example, whether there are patterns of missingness related to the actual values of other variables (e.g., do misisng values of `TOTCHOL` tend to cluster within participants with high BMI?). While we won’t dive into this level of detail in this course, it’s important to understand that examining missing data can be a complex and time-consuming process, especially when working with large datasets.
 
@@ -578,7 +586,7 @@ In real life, our investigation of missing data would go a bit further - we woul
 
 Now that we know how to quantify missing data, let's walk through a couple of approaches for addressing it. There are several options for dealing with missing data, but we will focus on the two simplest methods:
 
-1. Complete case analysis (i.e., remove rows with missing data)
+1. Complete case analysis
 2. Simple imputation
 
 <br>
