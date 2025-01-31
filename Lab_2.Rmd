@@ -535,7 +535,7 @@ Recall from above that we used the `summary()` command to generate a numerical s
 summary(data_sub)
 ```
 
-For some variables, we see that the list of summary statistics includes the number of `NA` values. NA means "not available" and indicates a missing data point. For example, of our 4434 total observations, there are 19 missing values for BMI (and for obesity status, given this variable was derived from BMI), 397 missing values for total cholesterol level, and 113 missing values for attained education.  
+For some variables, we see that the list of summary statistics includes the number of `NA` values. NA means "not available" and indicates a missing data point. For example, of our 4434 total observations, there are 19 missing values for BMI (and for obesity status, given this variable was derived from BMI), 52 missing values for total cholesterol level, and 113 missing values for attained education.  
 
 There are a few other ways you can determine the number of missing values. For example, suppose you want to obtain the number of missing values for a single variable, say, attained education (`EDUC`). We can add up the number of 'NA' values by using the `is.na()` function nested within the `sum()` function as follows:
 
