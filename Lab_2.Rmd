@@ -4,7 +4,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, fig.width=10, fig.height=8)
+knitr::opts_chunk$set(echo = TRUE, fig.width=8, fig.height=5, fig.align = 'center')
 ```
 
 <br>
@@ -624,11 +624,11 @@ data_impute$BMI[is.na(data_impute$BMI)] <- mean(data_impute$BMI, na.rm = TRUE)
 
 Let's break this down...
 
-* `data_impute$BMI`: Refers to the BMI column in the data_impute dataset. The $ operator is used to access this specific column.
-* `is.na(data_impute$BMI)`: Identifies which values in the BMI column are missing (NA). Returns a logical vector where TRUE indicates missing values and FALSE indicates non-missing values.
-* `data_impute$BMI[is.na(data_impute$BMI)]`: Selects only the elements in the BMI column that are missing (NA), based on the logical vector created by is.na().
-* `mean(data_impute$BMI, na.rm = TRUE)`: Calculates the mean (average) of the BMI column, excluding missing values. The na.rm = TRUE argument tells R to ignore NAs when calculating the mean.
-* `<-`: Assigns the computed mean value to the missing (NA) positions in the BMI column.
+* `data_impute$BMI`: Refers to the `BMI` column in the `data_impute` object. The `$` operator is used to access this specific column.
+* `is.na(data_impute$BMI)`: Identifies which values in the `BMI` column are missing (NA). Returns a logical vector where TRUE indicates missing values and FALSE indicates non-missing values.
+* `data_impute$BMI[is.na(data_impute$BMI)]`: Selects only the elements in the `BMI` column that are missing (NA), based on the logical vector created by `is.na()`.
+* `mean(data_impute$BMI, na.rm = TRUE)`: Calculates the mean (average) of the `BMI` column, excluding missing values. The `na.rm = TRUE` argument tells R to ignore NA's when calculating the mean.
+* `<-`: Assigns the computed mean value to the missing (NA) positions in the `BMI` column.
 
 ```{r}
  # summarize data to view changes
@@ -663,17 +663,17 @@ data_impute$EDUC[is.na(data_impute$EDUC)] <- mode_value
 
 Mode imputation is carried out in two steps, each with its own line of code as shown above. A brief breakdown...
 
-* First line: Calculates the mode (most frequently occurring category) for the `EDUC` variable and assigns it to the object `mode_value. More specifically...
-  * `table(data_impute$EDUC)`: Creates a frequency table for the EDUC column, showing the counts of each unique value (category).
+* First line: Calculates the mode (most frequently occurring category) for the `EDUC` variable and assigns it to the object `mode_value`. More specifically...
+  * `table(data_impute$EDUC)`: Creates a frequency table for the `EDUC` column, showing the counts of each unique value (category).
   * `sort(..., decreasing = TRUE)`: Sorts the frequency table in descending order, so the most frequently occurring category is at the top.
   * `names(...)`: Extracts the names (categories) of the sorted table, ignoring the counts.
   * `[1]`: Selects the first name in the sorted table, which corresponds to the most frequent category (the mode).
   * `mode_value <-`: Assigns the mode (e.g., "0-11 years") to the object `mode_value` (see Environment).
 * Second line: Replaces all missing values (`NA`) in the `EDUC` column with the mode calculated in the first line. More specifically...
-  * `is.na(data_impute$EDUC)`: Identifies which values in the EDUC column are missing (NA), returning a logical vector (TRUE for missing, FALSE for non-missing).
-  * `data_impute$EDUC[is.na(data_impute$EDUC)]`: Selects only the rows in the EDUC column where the value is missing.
-  * `mode_value`: The previously calculated mode of the EDUC column, which will replace the missing values.
-  * `<-`: Assigns the mode value to the missing entries in the EDUC column.
+  * `is.na(data_impute$EDUC)`: Identifies which values in the `EDUC` column are missing (NA), returning a logical vector (TRUE for missing, FALSE for non-missing).
+  * `data_impute$EDUC[is.na(data_impute$EDUC)]`: Selects only the rows in the `EDUC` column where the value is missing.
+  * `mode_value`: The previously calculated mode of the `EDUC` column, which will replace the missing values.
+  * `<-`: Assigns the mode value to the missing entries in the `EDUC` column.
 
 ```{r}
  # summarize data to view changes

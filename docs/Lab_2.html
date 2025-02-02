@@ -562,7 +562,7 @@ locating and organizing files on your computer.</p>
 </div>
 <div id="select-variables-of-interest" class="section level2">
 <h2>4. Select variables of interest</h2>
-<p><img src="select.png" width="100%" /></p>
+<p><img src="select.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>For Lab 2, we will focus on a handful of variables of interest. Be
 sure to refer back to the data documentation (linked on the Lab 2
 assignment page on Canvas) for more information about these
@@ -822,7 +822,7 @@ beginning with age, using the <code>hist()</code> function:</p>
 <span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Histogram of Baseline Age&quot;</span>, </span>
 <span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Age&quot;</span>, </span>
 <span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>)</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-13-1.png" width="960" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-13-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Let’s break down each part of the code above:</p>
 <ul>
 <li><code>hist(data_sub$AGE...)</code>: Creates a histogram of the
@@ -862,14 +862,14 @@ appears to be generally mound-shaped with little skewness.</p>
 <span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Histogram of Baseline BMI&quot;</span>, </span>
 <span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;BMI&quot;</span>, </span>
 <span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>)</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-14-1.png" width="960" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-14-1.png" width="768" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="co"># histogram for total cholesterol level</span></span>
 <span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="fu">hist</span>(data_sub<span class="sc">$</span>TOTCHOL, </span>
 <span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">30</span>, </span>
 <span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Histogram of Baseline Total Cholesterol Level&quot;</span>, </span>
 <span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Total Cholesterol Level&quot;</span>, </span>
 <span id="cb30-6"><a href="#cb30-6" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>)</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-15-1.png" width="960" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-15-1.png" width="768" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>Notice that the only changes we needed to make to the code to create
 these additional historgrams were to the specific variable of interest
@@ -899,7 +899,7 @@ beginning with age, using the <code>boxplot()</code> function:</p>
 <span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="fu">boxplot</span>(data_sub<span class="sc">$</span>AGE, </span>
 <span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Boxplot of Baseline Age&quot;</span>, </span>
 <span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Age&quot;</span>)</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-16-1.png" width="960" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-16-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Let’s break down each part of the code above:</p>
 <ul>
 <li><code>boxplot(data_sub$AGE...)</code>: Creates a boxplot of the
@@ -924,12 +924,12 @@ outliers.</p>
 <span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a><span class="fu">boxplot</span>(data_sub<span class="sc">$</span>BMI, </span>
 <span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Boxplot of Baseline BMI&quot;</span>, </span>
 <span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;BMI&quot;</span>)</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-17-1.png" width="960" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-17-1.png" width="768" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="co"># boxplot for total cholesterol level</span></span>
 <span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a><span class="fu">boxplot</span>(data_sub<span class="sc">$</span>TOTCHOL, </span>
 <span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Boxplot of Baseline Total Cholesterol Level&quot;</span>, </span>
 <span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Total Cholesterol Level&quot;</span>)</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-18-1.png" width="960" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-18-1.png" width="768" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>Again, notice the changes in the code. To create a new boxplot for a
 different variable, we only need to change the specific variable
@@ -980,7 +980,7 @@ the <code>barplot()</code> function:</p>
 <span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>, </span>
 <span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>,</span>
 <span id="cb34-7"><a href="#cb34-7" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-19-1.png" width="960" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-19-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Let’s break down each part of this code chunk:</p>
 <ul>
 <li><code>barplot(table(data_sub$SEX...))</code>:
@@ -1016,7 +1016,7 @@ status:</p>
 <span id="cb35-5"><a href="#cb35-5" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>, </span>
 <span id="cb35-6"><a href="#cb35-6" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;pink&quot;</span>,</span>
 <span id="cb35-7"><a href="#cb35-7" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;0-11 years&quot;</span>, <span class="st">&quot;High School&quot;</span>, <span class="st">&quot;Some College&quot;</span>, <span class="st">&quot;College degree or more&quot;</span>))</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-20-1.png" width="960" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-20-1.png" width="768" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p><em>Note:</em> If some of the labels on the x-axis don’t show up on
 your bar chart, you may just need to expand the plots window. Click and
@@ -1034,7 +1034,7 @@ larger, separate window.</p>
 <span id="cb36-5"><a href="#cb36-5" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>, </span>
 <span id="cb36-6"><a href="#cb36-6" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;purple&quot;</span>,</span>
 <span id="cb36-7"><a href="#cb36-7" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Not obese&quot;</span>, <span class="st">&quot;Obese (BMI&gt;30)&quot;</span>))</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-21-1.png" width="960" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-21-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>From the barcharts above, we can get a good sense of the
 distributions of attained education and obesity within the baseline
 sample. For example, the bar chart shows a decreasing trend in the
@@ -1076,7 +1076,7 @@ relationship.</p>
 <span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Scatterplot of BMI vs. total cholesterol Level&quot;</span>, </span>
 <span id="cb37-4"><a href="#cb37-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;BMI&quot;</span>, </span>
 <span id="cb37-5"><a href="#cb37-5" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Total Cholesterol Level&quot;</span>)</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-22-1.png" width="960" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-22-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Let’s break down this code:</p>
 <ul>
 <li><code>plot(data_sub$BMI, data_sub$TOTCHOL...)</code>: Creates a
@@ -1108,7 +1108,7 @@ related to the categorical variable.</p>
 <span id="cb38-5"><a href="#cb38-5" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;BMI&quot;</span>, </span>
 <span id="cb38-6"><a href="#cb38-6" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, </span>
 <span id="cb38-7"><a href="#cb38-7" tabindex="-1"></a>        <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;0-11 years&quot;</span>, <span class="st">&quot;High School&quot;</span>, <span class="st">&quot;Some College&quot;</span>, <span class="st">&quot;College degree or more&quot;</span>))</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-23-1.png" width="960" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-23-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>This code generates a boxplot where each box represents the
 distribution of BMI for a specific education level. The plot visually
 compares medians, variability, and potential outliers of BMI across
@@ -1166,7 +1166,7 @@ within the <code>barplot()</code> function as follows:</p>
 <span id="cb41-7"><a href="#cb41-7" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>), </span>
 <span id="cb41-8"><a href="#cb41-8" tabindex="-1"></a>        <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>), </span>
 <span id="cb41-9"><a href="#cb41-9" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Not Obese&quot;</span>, <span class="st">&quot;Obese&quot;</span>))</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-25-1.png" width="960" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-25-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Let’s break down this code:</p>
 <ul>
 <li><code>table(data_sub$SEX, data_sub$OBESE...)</code>: Creates a
@@ -1221,7 +1221,7 @@ follows:</p>
 <span id="cb44-7"><a href="#cb44-7" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>), </span>
 <span id="cb44-8"><a href="#cb44-8" tabindex="-1"></a>        <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>), </span>
 <span id="cb44-9"><a href="#cb44-9" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Not Obese&quot;</span>, <span class="st">&quot;Obese&quot;</span>))</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-27-1.png" width="960" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-27-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>A brief breakdown of this code…</p>
 <ul>
 <li><code>contingency_table &lt;- table(data_sub$SEX, data_sub$OBESE)</code>
@@ -1376,7 +1376,7 @@ small bars spread across different patterns.</p>
 <code>naniar</code> package to create an upset chart as follows:</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a><span class="co"># creates an &quot;upset&quot; chart to visualizing missingness across variables</span></span>
 <span id="cb53-2"><a href="#cb53-2" tabindex="-1"></a><span class="fu">gg_miss_upset</span>(data_sub)</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-32-1.png" width="960" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-32-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>From the chart, we see that most of the missingness is isolated to
 individual variables. For example, there are 111 observations for which
 <code>EDUC</code> is the <em>only</em> missing variable, and 50
@@ -1458,20 +1458,22 @@ with its mean:</li>
 <span id="cb56-2"><a href="#cb56-2" tabindex="-1"></a>data_impute<span class="sc">$</span>BMI[<span class="fu">is.na</span>(data_impute<span class="sc">$</span>BMI)] <span class="ot">&lt;-</span> <span class="fu">mean</span>(data_impute<span class="sc">$</span>BMI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Let’s break this down…</p>
 <ul>
-<li><code>data_impute$BMI</code>: Refers to the BMI column in the
-data_impute dataset. The $ operator is used to access this specific
-column.</li>
+<li><code>data_impute$BMI</code>: Refers to the <code>BMI</code> column
+in the <code>data_impute</code> object. The <code>$</code> operator is
+used to access this specific column.</li>
 <li><code>is.na(data_impute$BMI)</code>: Identifies which values in the
-BMI column are missing (NA). Returns a logical vector where TRUE
-indicates missing values and FALSE indicates non-missing values.</li>
+<code>BMI</code> column are missing (NA). Returns a logical vector where
+TRUE indicates missing values and FALSE indicates non-missing
+values.</li>
 <li><code>data_impute$BMI[is.na(data_impute$BMI)]</code>: Selects only
-the elements in the BMI column that are missing (NA), based on the
-logical vector created by is.na().</li>
+the elements in the <code>BMI</code> column that are missing (NA), based
+on the logical vector created by <code>is.na()</code>.</li>
 <li><code>mean(data_impute$BMI, na.rm = TRUE)</code>: Calculates the
-mean (average) of the BMI column, excluding missing values. The na.rm =
-TRUE argument tells R to ignore NAs when calculating the mean.</li>
+mean (average) of the <code>BMI</code> column, excluding missing values.
+The <code>na.rm = TRUE</code> argument tells R to ignore NA’s when
+calculating the mean.</li>
 <li><code>&lt;-</code>: Assigns the computed mean value to the missing
-(NA) positions in the BMI column.</li>
+(NA) positions in the <code>BMI</code> column.</li>
 </ul>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" tabindex="-1"></a> <span class="co"># summarize data to view changes</span></span>
 <span id="cb57-2"><a href="#cb57-2" tabindex="-1"></a><span class="fu">summary</span>(data_impute)</span></code></pre></div>
@@ -1547,10 +1549,10 @@ of code as shown above. A brief breakdown…</p>
 <ul>
 <li>First line: Calculates the mode (most frequently occurring category)
 for the <code>EDUC</code> variable and assigns it to the object
-`mode_value. More specifically…
+<code>mode_value</code>. More specifically…
 <ul>
 <li><code>table(data_impute$EDUC)</code>: Creates a frequency table for
-the EDUC column, showing the counts of each unique value
+the <code>EDUC</code> column, showing the counts of each unique value
 (category).</li>
 <li><code>sort(..., decreasing = TRUE)</code>: Sorts the frequency table
 in descending order, so the most frequently occurring category is at the
@@ -1567,14 +1569,15 @@ to the object <code>mode_value</code> (see Environment).</li>
 More specifically…
 <ul>
 <li><code>is.na(data_impute$EDUC)</code>: Identifies which values in the
-EDUC column are missing (NA), returning a logical vector (TRUE for
-missing, FALSE for non-missing).</li>
+<code>EDUC</code> column are missing (NA), returning a logical vector
+(TRUE for missing, FALSE for non-missing).</li>
 <li><code>data_impute$EDUC[is.na(data_impute$EDUC)]</code>: Selects only
-the rows in the EDUC column where the value is missing.</li>
-<li><code>mode_value</code>: The previously calculated mode of the EDUC
-column, which will replace the missing values.</li>
+the rows in the <code>EDUC</code> column where the value is
+missing.</li>
+<li><code>mode_value</code>: The previously calculated mode of the
+<code>EDUC</code> column, which will replace the missing values.</li>
 <li><code>&lt;-</code>: Assigns the mode value to the missing entries in
-the EDUC column.</li>
+the <code>EDUC</code> column.</li>
 </ul></li>
 </ul>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" tabindex="-1"></a> <span class="co"># summarize data to view changes</span></span>
