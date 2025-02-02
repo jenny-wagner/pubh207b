@@ -4,7 +4,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, fig.width=10, fig.height=8)
 ```
 
 <br>
@@ -84,7 +84,7 @@ setwd("/Volumes/GoogleDrive/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Webs
 
 Use the `read.csv()` function to import the **modified dataset** you created in Lab 1, called "frmgham2_p1.csv". 
 
-Recall that you exported the "frmgham2_p1.csv" dataset from RStudio in the final task of Lab 1. If you carried out this task correctly, the dataset will be located in your Lab 1 working directory (i.e., the folder containing your Lab 1 materials). To utilize this dataset for Lab 2, you will need to move or copy the file over to the folder you set as your working directory in the above step. Consider this an exercise in locating and organizing files on your computer the dataset.
+Recall that you exported the "frmgham2_p1.csv" dataset from RStudio in the final task of Lab 1. If you carried out this task correctly, the dataset will be located in your Lab 1 working directory (i.e., the folder containing your Lab 1 materials). To utilize this dataset for Lab 2, you will need to move or copy the file over to the folder you set as your working directory in the above step. Consider this an exercise in locating and organizing files on your computer.
 
 ```{r}
 # import dataset
@@ -334,16 +334,16 @@ Identifying outliers is important because they can indicate possible data errors
 
 <br>
 
-### Bar charts
+### Barcharts
 
-Bar charts are an effective way to visualize the frequency distribution of *categorical* variables. They display the number (or proportion) of observations in each category as rectangular bars, allowing us to easily compare the prevalence of different groups. On a bar chart, each unique category is represented on the x-axis, and the height of each bar corresponds to the frequency (or relative frequency) of observations in that category. Bar charts can help us quickly identify the most and least frequent categories, easily visualize differences in the size of categories, and communicate results to a wide audience. 
+Barcharts are an effective way to visualize the frequency distribution of *categorical* variables. They display the number (or proportion) of observations in each category as rectangular bars, allowing us to easily compare the prevalence of different groups. On a bar chart, each unique category is represented on the x-axis, and the height of each bar corresponds to the frequency (or relative frequency) of observations in that category. Barcharts can help us quickly identify the most and least frequent categories, easily visualize differences in the size of categories, and communicate results to a wide audience. 
 
 Let's generate a bar chart for each categorical variable of interest, beginning with sex, by nesting the `table()` function within the `barplot()` function:
 
 ```{r}
 # generate a simple bar chart for sex
 barplot(table(data_sub$SEX), 
-        main = "Bar Chart of Sex Distribution", 
+        main = "Barchart of Sex Distribution", 
         xlab = "Sex", 
         ylab = "Frequency", 
         col = "lightblue",
@@ -355,7 +355,7 @@ Let's break down each part of this code chunk:
 * `barplot(table(data_sub$SEX...))`:
   * `table(data_sub$SEX)`: Creates a frequency table for the SEX variable, counting how many observations fall into each category (e.g., male, female).
   * `barplot()`: Generates a bar chart based on the frequency table.
-* `main = "Bar Chart of Sex Distribution"`: Sets the title of the chart to "Bar Chart of Sex Distribution."
+* `main = "Barchart of Sex Distribution"`: Sets the title of the chart to "Barchart of Sex Distribution."
 * `xlab = "Sex"`: Labels the x-axis as "Sex," indicating what the categories on the x-axis represent.
 * `ylab = "Frequency"`: Labels the y-axis as "Frequency," indicating that the height of each bar represents the count of observations in each category.
 * `col = "lightblue"`: Sets the color of the bars to light blue, making the chart visually appealing.
@@ -368,7 +368,7 @@ Two additional examples, for attained education and obesity status:
 ```{r}
 # generate a simple bar chart for attained education
 barplot(table(data_sub$EDUC), 
-        main = "Bar Chart of Attained Education", 
+        main = "Barchart of Attained Education", 
         xlab = "Attained Education Level", 
         ylab = "Frequency", 
         col = "pink",
@@ -380,14 +380,14 @@ barplot(table(data_sub$EDUC),
 ```{r}
 # generate a simple bar chart for obesity status
 barplot(table(data_sub$OBESE), 
-        main = "Bar Chart of Obesity Status", 
+        main = "Barchart of Obesity Status", 
         xlab = "Obesity Status", 
         ylab = "Frequency", 
         col = "purple",
         names.arg = c("Not obese", "Obese (BMI>30)"))
 ```
 
-From the bar charts above, we can get a good sense of the distributions of attained education and obesity within the baseline sample. For example, the bar chart shows a decreasing trend in the number of individuals as the level of attained education increases. This suggests that higher education levels are less common in the sample, with fewer participants achieving college degrees compared to lower levels of education. We also see that a relatively small proportion of individuals in the baseline sample are considered obese (BMI>30) compared to those who are not obese.
+From the barcharts above, we can get a good sense of the distributions of attained education and obesity within the baseline sample. For example, the bar chart shows a decreasing trend in the number of individuals as the level of attained education increases. This suggests that higher education levels are less common in the sample, with fewer participants achieving college degrees compared to lower levels of education. We also see that a relatively small proportion of individuals in the baseline sample are considered obese (BMI>30) compared to those who are not obese.
 
 <br>
 
@@ -447,7 +447,7 @@ This code generates a boxplot where each box represents the distribution of BMI 
 
 ### Two categorical variables
 
-To explore the relationship between two categorical variables, we can create a *contingency table* to show the frequencies of combinations of the categories. We can then use a *bar chart* to visualize the frequencies or proportions within each category. For example, you might be interested in the relationship between sex and obesity status. Contingency tables and bar charts can help us determine whether certain categories are more or less likely to occur together. Here's an example:
+To explore the relationship between two categorical variables, we can create a *contingency table* to show the frequencies of combinations of the categories. We can then use a *barchart* to visualize the frequencies or proportions within each category. For example, you might be interested in the relationship between sex and obesity status. Contingency tables and bar charts can help us determine whether certain categories are more or less likely to occur together. Here's an example:
 
 ```{r}
 # Create a contingency table for sex by obesity status
@@ -457,10 +457,10 @@ table(data_sub$SEX, data_sub$OBESE)
 Recall that we used the `table()` command up above to tabulate the frequencies in each category for a *single* categorical variable. Here, we see that we can also use the `table()` function to generate a contingency table, which displays the frequency (or count) of observations for each combination of categories from the two variables. In this case, the table shows the number of males and females who are obese or not obese. We can then plot these values on a bar chart by nesting the `table()` function within the `barplot()` function as follows:
 
 ```{r}
-# Bar chart for sex by obesity status
+# Barchart for sex by obesity status
 barplot(table(data_sub$SEX, data_sub$OBESE), 
         beside = TRUE, 
-        main = "Bar Chart of Sex by Obesity Status", 
+        main = "Barchart of Sex by Obesity Status", 
         xlab = "Obesity Status", 
         ylab = "Frequency", 
         col = c("lightblue", "lightgreen"), 
@@ -471,7 +471,7 @@ barplot(table(data_sub$SEX, data_sub$OBESE),
 Let's break down this code:
 
 * `table(data_sub$SEX, data_sub$OBESE...)`: Creates a contingency table with sex (`SEX`) as rows and obesity status (`OBESE`) as columns.
-* `barplot()`: Generates a bar chart from the contingency table.
+* `barplot()`: Generates a barchart from the contingency table.
 * `beside = TRUE`: Creates separate bars for each category (instead of stacking them), which might make it a bit easier to compare groups.
 * `main`, `xlab`, `ylab`: Add a title and axis labels to describe the chart.
 * `col = c("lightblue", "lightgreen")`: Assigns colors to the bars for the two groups (e.g., "Male" and "Female").
@@ -491,8 +491,10 @@ relative_frequencies <- prop.table(contingency_table, margin = 1)
 
 # Print relative frequencies
 print(relative_frequencies)
+```
 
-# Bar chart for relative frequencies
+```{r}
+# Barchart for relative frequencies
 barplot(relative_frequencies, 
         beside = TRUE, 
         main = "Relative Frequencies of Sex by Obesity Status", 
@@ -512,9 +514,9 @@ A brief breakdown of this code...
   * `prop.table(contingency_table, margin = 1)`:Calculates relative frequencies for each group. The margin = 1 argument ensures that the proportions are calculated row-wise (i.e., within each sex group).
   * `relative_frequencies <-`: Saves the resulting relative frequencies as an object called "relative_frequencies", allowing us to input this object directly into the subsequent function.
 * `print(relative_frequencies)`: Displays the relative frequencies in the Console (bottom-left window). This step might be helpful because it provides the exact proportion of participants in each obesity category for males and females, but it is not actually necessary to create the bar chart.
-* `barplot(relative_frequencies, ...`: Creates a bar chart to visualize the relative frequencies, similar to the one for counts but scaled to show proportions (values between 0 and 1). See previous bar chart above (of counts) for an explanation of each argument nested in the `barplot()` function here.
+* `barplot(relative_frequencies, ...`: Creates a barchart to visualize the relative frequencies, similar to the one for counts but scaled to show proportions (values between 0 and 1). See previous bar chart above (of counts) for an explanation of each argument nested in the `barplot()` function here.
 
-From the bar chart of relative frequencies, we can see that females in the sample are slightly more likely to be obese than males. In the coming weeks in this course, we will learn how to test whether group differences like this are *statistically significant*, meaning there is enough evidence in the data to conclude that a real difference exists (in the population) - or in other words, that the difference is unlikely to have happened by chance.
+From the barchart of relative frequencies, we can see that females in the sample are slightly more likely to be obese than males. In the coming weeks in this course, we will learn how to test whether group differences like this are *statistically significant*, meaning there is enough evidence in the data to conclude that a real difference exists (in the population) - or in other words, that the difference is unlikely to have happened by chance.
 
 > A key point... Understanding how variables relate to each other is a big part of public health work. It helps us figure out how health outcomes, behaviors, and risk factors connect, which can point us toward effective interventions and policies. For example, looking at how smoking affects lung health, how BMI relates to blood pressure, or how education level ties to access to care can reveal important patterns. Right now, we’re just getting started with exploring these relationships through EDA. Later in the course, we’ll learn more advanced methods to answer questions, like identifying risk factors for disease or uncovering health disparities. 
 

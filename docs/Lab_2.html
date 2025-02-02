@@ -555,7 +555,7 @@ dataset will be located in your Lab 1 working directory (i.e., the
 folder containing your Lab 1 materials). To utilize this dataset for Lab
 2, you will need to move or copy the file over to the folder you set as
 your working directory in the above step. Consider this an exercise in
-locating and organizing files on your computer the dataset.</p>
+locating and organizing files on your computer.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># import dataset</span></span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;frmgham2_p1.csv&quot;</span>)</span></code></pre></div>
 <p><br></p>
@@ -822,7 +822,7 @@ beginning with age, using the <code>hist()</code> function:</p>
 <span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Histogram of Baseline Age&quot;</span>, </span>
 <span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Age&quot;</span>, </span>
 <span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>)</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-13-1.png" width="960" /></p>
 <p>Let’s break down each part of the code above:</p>
 <ul>
 <li><code>hist(data_sub$AGE...)</code>: Creates a histogram of the
@@ -862,14 +862,14 @@ appears to be generally mound-shaped with little skewness.</p>
 <span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Histogram of Baseline BMI&quot;</span>, </span>
 <span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;BMI&quot;</span>, </span>
 <span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>)</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-14-1.png" width="960" /></p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="co"># histogram for total cholesterol level</span></span>
 <span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="fu">hist</span>(data_sub<span class="sc">$</span>TOTCHOL, </span>
 <span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">30</span>, </span>
 <span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Histogram of Baseline Total Cholesterol Level&quot;</span>, </span>
 <span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Total Cholesterol Level&quot;</span>, </span>
 <span id="cb30-6"><a href="#cb30-6" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>)</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-15-1.png" width="960" /></p>
 <blockquote>
 <p>Notice that the only changes we needed to make to the code to create
 these additional historgrams were to the specific variable of interest
@@ -899,7 +899,7 @@ beginning with age, using the <code>boxplot()</code> function:</p>
 <span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="fu">boxplot</span>(data_sub<span class="sc">$</span>AGE, </span>
 <span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Boxplot of Baseline Age&quot;</span>, </span>
 <span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Age&quot;</span>)</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-16-1.png" width="960" /></p>
 <p>Let’s break down each part of the code above:</p>
 <ul>
 <li><code>boxplot(data_sub$AGE...)</code>: Creates a boxplot of the
@@ -924,12 +924,12 @@ outliers.</p>
 <span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a><span class="fu">boxplot</span>(data_sub<span class="sc">$</span>BMI, </span>
 <span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Boxplot of Baseline BMI&quot;</span>, </span>
 <span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;BMI&quot;</span>)</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-17-1.png" width="960" /></p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="co"># boxplot for total cholesterol level</span></span>
 <span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a><span class="fu">boxplot</span>(data_sub<span class="sc">$</span>TOTCHOL, </span>
 <span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Boxplot of Baseline Total Cholesterol Level&quot;</span>, </span>
 <span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Total Cholesterol Level&quot;</span>)</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-18-1.png" width="960" /></p>
 <blockquote>
 <p>Again, notice the changes in the code. To create a new boxplot for a
 different variable, we only need to change the specific variable
@@ -959,29 +959,28 @@ statistical analyses if left unaddressed. Boxplots provide a quick
 visual summary to detect these outliers.</p>
 <p><br></p>
 </div>
-<div id="bar-charts" class="section level3">
-<h3>Bar charts</h3>
-<p>Bar charts are an effective way to visualize the frequency
+<div id="barcharts" class="section level3">
+<h3>Barcharts</h3>
+<p>Barcharts are an effective way to visualize the frequency
 distribution of <em>categorical</em> variables. They display the number
 (or proportion) of observations in each category as rectangular bars,
 allowing us to easily compare the prevalence of different groups. On a
 bar chart, each unique category is represented on the x-axis, and the
 height of each bar corresponds to the frequency (or relative frequency)
-of observations in that category. Bar charts can help us quickly
-identify the most and least frequent categories, easily visualize
-differences in the size of categories, and communicate results to a wide
-audience.</p>
+of observations in that category. Barcharts can help us quickly identify
+the most and least frequent categories, easily visualize differences in
+the size of categories, and communicate results to a wide audience.</p>
 <p>Let’s generate a bar chart for each categorical variable of interest,
 beginning with sex, by nesting the <code>table()</code> function within
 the <code>barplot()</code> function:</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="co"># generate a simple bar chart for sex</span></span>
 <span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(data_sub<span class="sc">$</span>SEX), </span>
-<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Bar Chart of Sex Distribution&quot;</span>, </span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Barchart of Sex Distribution&quot;</span>, </span>
 <span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Sex&quot;</span>, </span>
 <span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>, </span>
 <span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>,</span>
 <span id="cb34-7"><a href="#cb34-7" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-19-1.png" width="960" /></p>
 <p>Let’s break down each part of this code chunk:</p>
 <ul>
 <li><code>barplot(table(data_sub$SEX...))</code>:
@@ -992,8 +991,8 @@ SEX variable, counting how many observations fall into each category
 <li><code>barplot()</code>: Generates a bar chart based on the frequency
 table.</li>
 </ul></li>
-<li><code>main = "Bar Chart of Sex Distribution"</code>: Sets the title
-of the chart to “Bar Chart of Sex Distribution.”</li>
+<li><code>main = "Barchart of Sex Distribution"</code>: Sets the title
+of the chart to “Barchart of Sex Distribution.”</li>
 <li><code>xlab = "Sex"</code>: Labels the x-axis as “Sex,” indicating
 what the categories on the x-axis represent.</li>
 <li><code>ylab = "Frequency"</code>: Labels the y-axis as “Frequency,”
@@ -1012,12 +1011,12 @@ see that females make up a larger portion of the sample than males.</p>
 status:</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="co"># generate a simple bar chart for attained education</span></span>
 <span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(data_sub<span class="sc">$</span>EDUC), </span>
-<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Bar Chart of Attained Education&quot;</span>, </span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Barchart of Attained Education&quot;</span>, </span>
 <span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Attained Education Level&quot;</span>, </span>
 <span id="cb35-5"><a href="#cb35-5" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>, </span>
 <span id="cb35-6"><a href="#cb35-6" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;pink&quot;</span>,</span>
 <span id="cb35-7"><a href="#cb35-7" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;0-11 years&quot;</span>, <span class="st">&quot;High School&quot;</span>, <span class="st">&quot;Some College&quot;</span>, <span class="st">&quot;College degree or more&quot;</span>))</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-20-1.png" width="960" /></p>
 <blockquote>
 <p><em>Note:</em> If some of the labels on the x-axis don’t show up on
 your bar chart, you may just need to expand the plots window. Click and
@@ -1030,13 +1029,13 @@ larger, separate window.</p>
 </blockquote>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="co"># generate a simple bar chart for obesity status</span></span>
 <span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(data_sub<span class="sc">$</span>OBESE), </span>
-<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Bar Chart of Obesity Status&quot;</span>, </span>
+<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Barchart of Obesity Status&quot;</span>, </span>
 <span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Obesity Status&quot;</span>, </span>
 <span id="cb36-5"><a href="#cb36-5" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>, </span>
 <span id="cb36-6"><a href="#cb36-6" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;purple&quot;</span>,</span>
 <span id="cb36-7"><a href="#cb36-7" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Not obese&quot;</span>, <span class="st">&quot;Obese (BMI&gt;30)&quot;</span>))</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
-<p>From the bar charts above, we can get a good sense of the
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-21-1.png" width="960" /></p>
+<p>From the barcharts above, we can get a good sense of the
 distributions of attained education and obesity within the baseline
 sample. For example, the bar chart shows a decreasing trend in the
 number of individuals as the level of attained education increases. This
@@ -1077,7 +1076,7 @@ relationship.</p>
 <span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Scatterplot of BMI vs. total cholesterol Level&quot;</span>, </span>
 <span id="cb37-4"><a href="#cb37-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;BMI&quot;</span>, </span>
 <span id="cb37-5"><a href="#cb37-5" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Total Cholesterol Level&quot;</span>)</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-22-1.png" width="960" /></p>
 <p>Let’s break down this code:</p>
 <ul>
 <li><code>plot(data_sub$BMI, data_sub$TOTCHOL...)</code>: Creates a
@@ -1109,7 +1108,7 @@ related to the categorical variable.</p>
 <span id="cb38-5"><a href="#cb38-5" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;BMI&quot;</span>, </span>
 <span id="cb38-6"><a href="#cb38-6" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, </span>
 <span id="cb38-7"><a href="#cb38-7" tabindex="-1"></a>        <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;0-11 years&quot;</span>, <span class="st">&quot;High School&quot;</span>, <span class="st">&quot;Some College&quot;</span>, <span class="st">&quot;College degree or more&quot;</span>))</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-23-1.png" width="960" /></p>
 <p>This code generates a boxplot where each box represents the
 distribution of BMI for a specific education level. The plot visually
 compares medians, variability, and potential outliers of BMI across
@@ -1137,7 +1136,7 @@ pane to open the plot in a larger, separate window.</p>
 <h3>Two categorical variables</h3>
 <p>To explore the relationship between two categorical variables, we can
 create a <em>contingency table</em> to show the frequencies of
-combinations of the categories. We can then use a <em>bar chart</em> to
+combinations of the categories. We can then use a <em>barchart</em> to
 visualize the frequencies or proportions within each category. For
 example, you might be interested in the relationship between sex and
 obesity status. Contingency tables and bar charts can help us determine
@@ -1158,22 +1157,22 @@ of categories from the two variables. In this case, the table shows the
 number of males and females who are obese or not obese. We can then plot
 these values on a bar chart by nesting the <code>table()</code> function
 within the <code>barplot()</code> function as follows:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="co"># Bar chart for sex by obesity status</span></span>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="co"># Barchart for sex by obesity status</span></span>
 <span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(data_sub<span class="sc">$</span>SEX, data_sub<span class="sc">$</span>OBESE), </span>
 <span id="cb41-3"><a href="#cb41-3" tabindex="-1"></a>        <span class="at">beside =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb41-4"><a href="#cb41-4" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Bar Chart of Sex by Obesity Status&quot;</span>, </span>
+<span id="cb41-4"><a href="#cb41-4" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Barchart of Sex by Obesity Status&quot;</span>, </span>
 <span id="cb41-5"><a href="#cb41-5" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Obesity Status&quot;</span>, </span>
 <span id="cb41-6"><a href="#cb41-6" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>, </span>
 <span id="cb41-7"><a href="#cb41-7" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>), </span>
 <span id="cb41-8"><a href="#cb41-8" tabindex="-1"></a>        <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>), </span>
 <span id="cb41-9"><a href="#cb41-9" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Not Obese&quot;</span>, <span class="st">&quot;Obese&quot;</span>))</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-25-1.png" width="960" /></p>
 <p>Let’s break down this code:</p>
 <ul>
 <li><code>table(data_sub$SEX, data_sub$OBESE...)</code>: Creates a
 contingency table with sex (<code>SEX</code>) as rows and obesity status
 (<code>OBESE</code>) as columns.</li>
-<li><code>barplot()</code>: Generates a bar chart from the contingency
+<li><code>barplot()</code>: Generates a barchart from the contingency
 table.</li>
 <li><code>beside = TRUE</code>: Creates separate bars for each category
 (instead of stacking them), which might make it a bit easier to compare
@@ -1213,7 +1212,7 @@ follows:</p>
 ##             0         1
 ##   1 0.8803507 0.1196493
 ##   2 0.8618740 0.1381260</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="co"># Bar chart for relative frequencies</span></span>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="co"># Barchart for relative frequencies</span></span>
 <span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a><span class="fu">barplot</span>(relative_frequencies, </span>
 <span id="cb44-3"><a href="#cb44-3" tabindex="-1"></a>        <span class="at">beside =</span> <span class="cn">TRUE</span>, </span>
 <span id="cb44-4"><a href="#cb44-4" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Relative Frequencies of Sex by Obesity Status&quot;</span>, </span>
@@ -1222,7 +1221,7 @@ follows:</p>
 <span id="cb44-7"><a href="#cb44-7" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>), </span>
 <span id="cb44-8"><a href="#cb44-8" tabindex="-1"></a>        <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>), </span>
 <span id="cb44-9"><a href="#cb44-9" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Not Obese&quot;</span>, <span class="st">&quot;Obese&quot;</span>))</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-27-1.png" width="960" /></p>
 <p>A brief breakdown of this code…</p>
 <ul>
 <li><code>contingency_table &lt;- table(data_sub$SEX, data_sub$OBESE)</code>
@@ -1249,14 +1248,14 @@ frequencies in the Console (bottom-left window). This step might be
 helpful because it provides the exact proportion of participants in each
 obesity category for males and females, but it is not actually necessary
 to create the bar chart.</li>
-<li><code>barplot(relative_frequencies, ...</code>: Creates a bar chart
+<li><code>barplot(relative_frequencies, ...</code>: Creates a barchart
 to visualize the relative frequencies, similar to the one for counts but
 scaled to show proportions (values between 0 and 1). See previous bar
 chart above (of counts) for an explanation of each argument nested in
 the <code>barplot()</code> function here.</li>
 </ul>
-<p>From the bar chart of relative frequencies, we can see that females
-in the sample are slightly more likely to be obese than males. In the
+<p>From the barchart of relative frequencies, we can see that females in
+the sample are slightly more likely to be obese than males. In the
 coming weeks in this course, we will learn how to test whether group
 differences like this are <em>statistically significant</em>, meaning
 there is enough evidence in the data to conclude that a real difference
@@ -1377,7 +1376,7 @@ small bars spread across different patterns.</p>
 <code>naniar</code> package to create an upset chart as follows:</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a><span class="co"># creates an &quot;upset&quot; chart to visualizing missingness across variables</span></span>
 <span id="cb53-2"><a href="#cb53-2" tabindex="-1"></a><span class="fu">gg_miss_upset</span>(data_sub)</span></code></pre></div>
-<p><img src="Lab_2_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="Lab_2_files/figure-html/unnamed-chunk-32-1.png" width="960" /></p>
 <p>From the chart, we see that most of the missingness is isolated to
 individual variables. For example, there are 111 observations for which
 <code>EDUC</code> is the <em>only</em> missing variable, and 50
