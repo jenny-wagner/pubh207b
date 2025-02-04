@@ -22,7 +22,7 @@ California State University, Sacramento
 
 Probability distributions are a fundamental concept in statistics and public health research. They describe how the values of a random variable are distributed, information which gives us a mathematical framework to quantify uncertainty and make predictions about data. In simpler terms, a probability distribution shows the likelihood of different outcomes for a given variable. In the real world, they are used to describe patterns in health-related data - for example, the distribution of disease incidence, patient wait times, or the effectiveness of interventions.
 
-There are two main types of probability distributions, discrete and continuous probability distributions...
+There are two main types of probability distributions, discrete and continuous probability distributions, discussed below.
 
 <br>
 
@@ -31,15 +31,15 @@ There are two main types of probability distributions, discrete and continuous p
 Discrete probability distributions are used for variables that can take on a *finite or countable* number of distinct values (i.e., for discrete random variables). Each value has a specific probability associated with it. For example, the number of new cases of a disease reported in a week is a discrete variable, as it represents a count (e.g., 0, 1, 2, …). We will focus on two commonly used discrete probability distributions:
 
 * **Binomial Distribution:** Models the probability of a specific number of "successes" in a fixed number of independent trials, where each trial has the same probability of success. For example, we might use the binomial distribution to estimate the probability of a certain number of patients recovering after a new treatment or to predict the proportion of smokers in a sample of adults.
-* **Poisson Distribution:** Models the probability of a given number of events occurring in a fixed interval of time or space, assuming the events happen independently and at a constant average rate. For example, we might use the Poisson distribution to model the number of emergency room visits in a day or estimate the number of disease outbreaks in a year in a specific region.
+* **Poisson Distribution:** Models the probability of a given number of events occurring in a fixed interval of time and space, assuming the events happen independently and at a constant average rate. For example, we might use the Poisson distribution to model the number of emergency room visits in a day or estimate the number of disease outbreaks in a year in a specific region.
 
 <br>
 
 ## Continuous Probability Distributions 
 
-Continuous probability distributions  are used for variables that can take on an *infinite number of values* within a given range (i.e., for continuous random variables). Probabilities are represented as areas under a curve, as the probability of any single exact value is effectively zero (because, again, these variables can take on an infinite number of values). For example, body mass index (BMI) is a continuous variable, as it can take on any value within a realistic range (e.g., 18.5, 24.7). The most commonly used continuous probability distribution is the normal distribution, which is widely used to model data in public health.
+Continuous probability distributions  are used for variables that can take on an *infinite number of values* within a given range (i.e., for continuous random variables). Probabilities are represented as areas under a curve, as the probability of any single exact value is effectively zero (because, again, these variables can take on an infinite number of values). For example, body mass index (BMI) is a continuous variable, as it can take on any value within a realistic range (e.g., 18.5, 24.7). The most commonly used continuous probability distribution is the Normal distribution, which is widely used to model data in public health and is considered the most important probability distribution in statistics.
 
-* **Normal Distribution:** A continuous probability distribution characterized by a symmetric, bell-shaped curve. It is defined by its mean, which determines the center of the distribution, and standard deviation, which determines its spread. The normal distribution is often used to analyze continuous health metrics (e.g., BMI, cholesterol levels, blood pressure, etc.) and serves as the foundation for many statistical methods, including hypothesis testing and confidence interval estimation, due to its mathematical properties and role in the Central Limit Theorem.
+* **Normal Distribution:** A continuous probability distribution characterized by a symmetric, bell-shaped curve. It is defined by its mean, which determines the center of the distribution, and standard deviation, which determines its spread. The normal distribution is often used to analyze continuous health metrics (e.g., BMI, cholesterol levels, blood pressure, etc.) and serves as the foundation for many statistical methods, including confidence interval estimation and hypothesis testing.
 
 A solid understanding of probability distributions will be important a we move toward statistical methods like estimation and hypothesis testing in the coming weeks. 
 
@@ -58,7 +58,7 @@ After completing Lab 3, you will be able to:
 
 # Tasks
 
-Lab 3 is divided into two parts, each focused on a different type of probability distribution. For Part 1, which focuses on discrete probability distributions based on *real data*, you will use the dataset called "substances.csv" which you can download from Canvas. For Part 2, which focus on theoretical probability distributions - specifically, the Binomial, Poisson, and Normal distributions - you will not need any data files. Rather, we will apply R functions which already contain information about these theoretical distributions to given public health scenarios.
+Lab 3 is divided into two parts. **Part 1** focuses on discrete probability distributions based on *real data*, like the example discussed in this week's lecture video. For Part 1 you will use the dataset called "substances.csv" which you can download from Canvas. **Part 2** focuses on theoretical probability distributions - specifically, the Binomial, Poisson, and Normal distributions. For Part 2 you will not need any data files. Rather, we will apply R functions that already contain information about these theoretical distributions to given public health scenarios.
 
 When you are ready to start Lab 3:
 
@@ -70,16 +70,25 @@ When you are ready to start Lab 3:
 
 ## Part 1: Discrete Probability Distributions Based on Real Data
 
-For the first part of this Lab, we will use the following scenario: Suppose patients who were involved in a problem gambling treatment program were surveyed about co-occurring drug and alcohol addictions. Let the discrete random variable 'X' represent the number of co-occurring addictive substances used by the subjects. The dataset labeled "substances.csv" contains two variables: (1) a study ID number corresponding to each individual patient; and (2) the number of substances used by the corresponding patient.
+Part 1 is based on the following scenario: Suppose patients who were involved in a problem gambling treatment program were surveyed about co-occurring drug and alcohol addictions. Let the discrete random variable 'X' represent the number of co-occurring addictive substances used by the subjects. The dataset labeled "substances.csv" contains two variables: 
+
+1. A study ID number corresponding to each individual patient.
+2. The number of substances used by the corresponding patient.
 
 <br>
 
 ### 1. Install and load R packages
 
+In this Lab we will continue to work with functions contained within the 'tidyverse' package. We will also use functions from the 'stats' package, which may be new for you. If you have not previously installed this package, copy and paste the following into your Console (bottom-left window), then click Enter or Return to execute the code:
+
+```
+install.packages("stats")
+```
+Once you have installed the new package, load the required packages using the `library()` function as follows:
+
 ```{r, results = FALSE, message = FALSE, warning = FALSE}
 # load packages
 library(tidyverse)
-library(ggplot2)
 library(stats)
 ```
 
@@ -87,9 +96,13 @@ library(stats)
 
 ### 2. Set your working directory
 
-Set your working directory using the `setwd()` function - but remember to paste your own file path between the parentheses (see Assignment Guidelines for detailed instructions). 
+Set your working directory using the `setwd()` function (see Assignment Guidelines for detailed instructions). 
 
-```{r}
+```
+setwd("YOUR FILE PATH HERE")
+```
+
+```{r, echo=FALSE}
 # set working directory
 setwd("/Volumes/GoogleDrive/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Website/PUBH-207B-S25")
 ```
@@ -107,11 +120,13 @@ data <- read.csv("substances.csv") %>% select(-X)
 
 *Note:* Sometimes when importing a CSV file into RStudio, a column called 'X' is added to the dataset to identify the observation number. My personal preference is to drop this column, which is what the `%>% select(-X)` part of the code above is doing. If you ever notice that an 'X' column is added to your dataset, you can use the same code to remove it. But again, this is a personal preference. We could choose leave the 'X' column in the dataset if we wanted to; it's not hurting anything.
 
+After running the above code chunk, you should see an object called `data` in your Environment window with 777 observations and 2 variables (defined above).
+
 <br>
 
 ### 4. Construct a discrete probability distribution
 
-To construct a discrete probability distribution for the number of co-occurring substance addictions, we first need to create a table showing the frequency and relative frequency for this discrete distribution as follows:
+To construct a discrete probability distribution for the number of co-occurring substance addictions, we first need to create a table showing the *frequency* and *relative frequency* for this discrete distribution as follows:
 
 ```{r}
 # construct frequency table and save it as a new dataframe
@@ -121,12 +136,12 @@ subs <- as.data.frame(table(data$substances))
 A brief breakdown of this code:
 
 * `table(data$substances)`: Creates a frequency table of the substances variable in the data dataset. The table counts the occurrences of each unique value in the `substances` variable, producing a summary of how often each substance appears.
-* `as.data.frame()`: Converts the frequency table into a data frame format. This allows the frequency information to be stored as a two-column data frame: one column for the unique values in substances and another column for their respective counts.
-* `subs <- ...`: Assigns the resulting data frame to the object `subs`. The `subs` object will now contain a data frame where:
+* `as.data.frame()`: Stores the frequency table as an object in our Environment with two columns: one column for the unique values in substances and another column for their respective counts.
+* `subs <- ...`: Names the resulting object `subs`. The `subs` object will now contain two columns where:
   * The first column (generically called `Var1`) holds the unique values of the substances variable.
   * The second column (`Freq`) holds the corresponding frequencies (counts) of those values.
 
-Let's click on the `subs` object in our Environment to see what it looks like. We can also use the `print()` command as follows:
+Let's click on the `subs` object in our Environment to see what it looks like. We can also use the `print()` command as follows to show the table in the Console (bottom-left) window:
 
 ```{r}
 # print frequency table
@@ -146,15 +161,15 @@ subs <- subs %>% mutate(rel_freq = Freq/(sum(Freq)))
 This line of code creates a new variable called `rel_freq` using the frequencies generated previously. A more detailed explanation:
 
 * `subs`: This is the data frame being modified. It contains a frequency table where one column (Freq) holds the counts for each category.
-* `%>%`: This is the pipe operator (we've seen this several times now!). It allows for chaining commands together in a readable way, passing the result of one operation as input to the next.
+* `subs %>%`: Passes the `subs` object, which contains the frequency table, through the mutate function. Remember, the pipe operator (we've seen this several times now!) is like saying "and then". We are telling R, "use the data in the object `subs` *and then* create a new variable with the `mutate()` function."
 * `mutate()`: A function used to create new variables or modify existing ones in a data frame. In this case, it adds a new column called `rel_freq` to the `subs` data frame.
 * `rel_freq = Freq / (sum(Freq))`:
   * `Freq`: Refers to the column in subs that holds the raw frequencies (counts) of each category.
   * `sum(Freq)`: Calculates the total frequency (i.e., the sum of all counts in the Freq column).
-  * `Freq / (sum(Freq))`: Divides each frequency value by the total frequency to compute the relative frequency for each category. This gives the proportion of the total observations that fall into each category, a necessary step in constructing a probability distribution.
+  * `Freq / (sum(Freq))`: Divides each frequency value by the total frequency to compute the relative frequency for each category. This gives the proportion of the total observations that fall into each category.
 * `subs <-`: Reassigns the modified data frame back to the subs object, updating it with the new rel_freq column.
 
-Let's again use the `print()` command to view the updated data frame as follows:
+Let's again use the `print()` command to view the updated table as follows:
 
 ```{r}
 # print frequency table
@@ -176,11 +191,15 @@ barplot(subs$rel_freq,
         names.arg = subs$Var1)
 ```
 
+Visualizing the probability distribution in this way allows us to quickly see the most and least likely outcomes. 
+
 <br>
 
 ### 5. Calculate probabilities from a discrete probability distribution
 
-Before we begin to use our discrete probability distribution to obtain probabilities, it will be helpful to convert the discrete random variable X (currently labeled 'Var1' and defined as a factor variable) to a numeric variable. We need to use a two-step process to convert a factor variable to a numeric variable. We first need to convert the factor variable to a character variable using the `as.character()` function, then to a numeric variable using the `as.numeric()` function. Very strange, I know. If we do not first convert to a character variable, R will drop the category corresponding to zero co-occurring substances, and we don't want that to happen.
+When we created the `subs` object, the discrete random variable 'X' (currently labeled `Var1`) defaulted to a factor variable. In previous Labs we have converted numeric variables to factors. Here, however, it will be helpful to convert `Var1` from a factor variable to a numeric variable, since we know the values represent quantities - the number of co-occurring substance addictions - not categories. Converting `Var1` to a numeric variable will ensure it is treated appropriately in our analyses. 
+
+We need to use a two-step process to convert a factor variable to a numeric variable. We first need to convert the factor variable to a "character" variable - basically, text - using the `as.character()` function, then to a numeric variable using the `as.numeric()` function. Very strange, I know. If we do not first convert to a character variable, R will drop the category corresponding to zero co-occurring substances, and we don't want that to happen.
 
 ```{r}
 # convert factor to numeric variable
@@ -188,44 +207,54 @@ subs$Var1 <- as.character(subs$Var1) # first convert to character
 subs$Var1 <- as.numeric(subs$Var1)
 ```
 
-Now that we have formatted our variables appropriately, we can calculate probabilities for specified numbers of co-occurring substance addictions. For example, suppose we want to know the probability that an individual selected at random uses five addictive substances. For a specific number of co-occurring substances (in this case, 5), we can actually find this answer by looking directly at our discrete probability distribution. When we look at the row where `Var1` is equal to 5, we see that `rel_freq` is equal to 0.025740026. This means that the probability a randomly selected person from the sample has 5 co-occurring substance addictions is 0.025740026, or about 2.6%. To obtain this answer using code (we'll see the utility of this approach shortly), the following will work:
+Now that we have formatted our variables appropriately, we can calculate probabilities for specified numbers of co-occurring substance addictions. For example, suppose we want to know the probability that an individual selected at random uses exactly five addictive substances. For a specific number of co-occurring substances (in this case, 5), we can find this answer by looking directly at our discrete probability distribution. When we look at the row where `Var1` is equal to 5, we see that `rel_freq` is equal to 0.025740026. This means that the probability a randomly selected person from the sample has 5 co-occurring substance addictions is 0.025740026, or about 2.6%. 
 
-```{r}
-# obtain the probability of 5 co-occurring substance addictions
-subs %>% filter(Var1 == 5) %>% dplyr::summarise(sum(rel_freq))
-```
+When we want to know the probability associated with one particular value of our discrete random variable, it is easy enough to use this approach of looking at the table of relative frequencies. However, if we want to know the probability associate with a range of values, the most efficient method is to use code. Let's walk through a few examples...
 
-This line of code is essentially taking the sum of relative frequencies where `Var1` is equal to 5. Let's look at a few more examples, but this time for range of values...
+<br>
 
-**What is the probability that an individual selected at random used *fewer than three* addictive substances?**
+#### a. What is the probability that an individual selected at random used *fewer than three* addictive substances?
 
 ```{r}
 # obtain the probability of fewer than 3 co-occurring substance addictions
-subs %>% filter(Var1 < 3) %>% dplyr::summarise(sum(rel_freq))
+subs %>% filter(Var1 < 3) %>% summarise(sum(rel_freq))
 ```
 
-Here, we are taking the sum of relative frequencies where `Var1` is less than 3. We find the probability that a randomly selected person from the sample uses fewer than 3 addictive substances is 0.8082368, or about 80.8%.
+Here, we are taking the *sum of relative frequencies* where `Var1` is less than 3. A brief breakdown of this line of code:
 
-**What is the probability that an individual selected at random used *more than six* addictive substances?**
+* `subs %>%`: The pipe operator `%>%` passes the `subs` object, which contains the probability distributions, to the next function in sequence.
+* `filter(Var1 < 3)`: Filters the dataset, keeping only the rows where the `Var1` column has values less than 3 (i.e., rows where `Var1` is equal to 0, 1, or 2 will be retained).
+* `summarise(sum(rel_freq))`: The summarise() function creates a summary statistic for the filtered data. By nesting `sum(rel_freq)` within the `summarise()` function, we obtain the sum of the `rel_freq` column (relative frequencies) for the filtered subset.
+
+From the output in our Console window, we find the probability that a randomly selected person from the sample uses fewer than 3 addictive substances is 0.8082368, or about 80.8%.
+
+<br>
+
+#### b. What is the probability that an individual selected at random used *more than six* addictive substances?
 
 ```{r}
-subs %>% filter(Var1 > 6) %>% dplyr::summarise(sum(rel_freq))
+subs %>% filter(Var1 > 6) %>% summarise(sum(rel_freq))
 ```
 
 Here, we are taking the sum of relative frequencies where `Var1` is greater than 6. We find the probability that a randomly selected person from the sample uses greater than 6 addictive substances is 0.01544402, or about 1.5%.
 
-**What is the probability that an individual selected at random used *between 2 and 5* addictive substances?**
+**Note:** In part (a) we filtered for values of `Var1` less than 3, while here we are filtering for values of `Var1` greater than 6. Otherwise the code is exactly the same.
+
+<br>
+
+#### c. What is the probability that an individual selected at random used *between 2 and 5* addictive substances?
 
 ```{r}
-subs %>% filter(Var1 >= 2 & Var1 <= 5) %>% dplyr::summarise(sum(rel_freq))
+subs %>% filter(Var1 >= 2 & Var1 <= 5) %>% summarise(sum(rel_freq))
 ```
 
-This one is a little trickier. Here, we are taking the sum of relative frequencies where `Var1` is both greater than or equal to 2 *and* less than or equal to 5 (in other words, where `Var1` is between 2 and 5). We find the probability that a randomly selected person from the sample uses between 2 and 5 addictive substances is 0.3513514, or about 35.1%.
+This one is a little trickier. Here, we are taking the sum of relative frequencies where `Var1` is both greater than or equal to 2 *and* less than or equal to 5 (in other words, where `Var1` is between 2 and 5, inclusive). We find the probability that a randomly selected person from the sample uses between 2 and 5 addictive substances is 0.3513514, or about 35.1%.
 
+<br>
 
 ### 6. Calculate measures of center and spread for a discrete probability distribution
 
-Measures of center and spread are useful for summarizing and interpreting a discrete probability distribution. The mean, or expected value, provides the central tendency, indicating the average outcome we would expect if the process were repeated many times. The variance measures how spread out the values are around the mean, which provides insight to the variability or uncertainty in the distribution. The standard deviation, as the square root of the variance, provides a more interpretable measure of spread in the same units as the variable. Together, these measures allow us to describe the distribution’s behavior, compare different groups, and draw meaningful conclusions in a public health context.
+Measures of center and spread are useful for summarizing and interpreting a discrete probability distribution. The mean, or expected value, provides the average outcome we would expect if the process were repeated many times. The variance measures how spread out the values are around the mean, which provides insight to the variability or uncertainty in the distribution. The standard deviation, as the square root of the variance, provides a more interpretable measure of spread in the same units as the original variable (in this case, the number of co-occurring substance addictions). 
 
 We can use the following to obtain the mean, variance, and standard deviation of this discrete probability distribution:
 
@@ -235,7 +264,7 @@ var(rep(subs$Var1, subs$Freq)) # variance
 sd(rep(subs$Var1, subs$Freq)) # standard deviation
 ```
 
-We find the mean number of co-occurring substance addictions is approximately 1.57; this represents the average number of addictions we expect across a population. We find the variance and standard deviation are 2.095543 and 1.447599, respectively. These measures of spread give us a sense of how spread out the values are around the mean and are particularly useful when comparing the spread across different populations.
+We find the mean number of co-occurring substance addictions is approximately 1.57; this represents the average number of co-occurring addictions we expect across the population at-hand. We find the variance and standard deviation are 2.095543 and 1.447599, respectively. These measures of spread give us a sense of how spread out the values are around the mean and are particularly useful when comparing the spread across different populations.
 
 <br>
 
@@ -243,30 +272,32 @@ We find the mean number of co-occurring substance addictions is approximately 1.
 
 So far in Lab 3, we’ve explored a discrete probability distribution based on real data by calculating key measures like relative frequencies, the mean, variance, and standard deviation. We can use this concrete example to help us understand how probability distributions are used to summarize and describe patterns in data.
 
-Next, we’ll shift our focus to theoretical probability distributions — specifically, the Binomial, Poisson, and Normal distributions. These distributions are widely used in public health to model and predict outcomes in scenarios where we don’t have all the data but need to make informed estimates. By working with these distributions, we can calculate probabilities for specific events, explore relationships between variables, and gain deeper insight into uncertainty and variability in public health contexts. Let’s see how these tools allow us to answer practical probability questions and ultimately support evidence-based decision-making. We will use a different public health scenario for each probability distribution.
+Next, we’ll shift our focus to theoretical probability distributions — specifically, the Binomial, Poisson, and Normal distributions. These distributions are widely used in public health to model and predict outcomes in scenarios where we don’t have all the data but need to make informed decisions. By working with these distributions, we can calculate probabilities for specific events, explore relationships between variables, and gain deeper insight into uncertainty and variability in public health contexts. Let’s see how these tools allow us to answer practical probability questions and ultimately support evidence-based decision-making. We will use a different public health scenario for each probability distribution.
 
 <br>
 
 ### 1. Binomial distribution
 
-As discussed in the Introduction section above, the Binomial distribution is used to model the number of successes in a fixed number of independent trials, where each trial has the same probability of "success". To calculate probabilities using the Binomial distribution, you need three key values:
+As discussed in the Introduction section above, the Binomial distribution is used to model the number of successes in a fixed number of independent trials, where each trial has the same probability of "success". Remember from lecture that the terms "success" and "failure" are arbitrary - a "success" does not necessarily mean a positive outcome. For example, in public health, we are often studying disease outcomes, and "success" might correspond to the occurrence of disease or death. 
 
-* n: The number of trials.
+To calculate probabilities using the Binomial distribution, you need three key values:
+
+* n: The number of trials (or sample size).
 * p: The probability of success in a single trial.
 * x: The number of successes of interest.
 
 **Let's apply the Binomial distribution to the following scenario...**
 
-Suppose, based on data collected by the Centers for Disease Control and Prevention (CDC), an estimate of the percentage of adults who have at some point in their life been told they have hypertension is 48.1% percent. The binomial distribution can be used if the sample size (n) is less than 10% of the population size (N), i.e., n/N ≤ 0.10. Assume for our scenario that 'N' is sufficiently large relative to 'n' that the binomial distribution may be used to find the desired probabilities.
+Suppose, based on data collected by the Centers for Disease Control and Prevention (CDC), an estimate of the percentage of adults who have at some point in their life been told they have hypertension is 48.1% percent. The Binomial distribution can be used if the sample size (n) is less than 10% of the population size (N), i.e., n/N ≤ 0.10. Assume for our scenario that 'N' is sufficiently large relative to 'n' that the binomial distribution may be used to find the desired probabilities.
 
 Suppose we select a simple random sample of 20 U.S. adults and assume that the probability that each has been diagnosed with hypertension is 0.48. We will use this information to answer each of the probability questions below. For these items, we will use two R functions, `dbinom()` and `pbinom()`:
 
 * `dbinom()`: This function is used to find the probability for a *specific* number of successes in a given number of trials. The syntax is `dbinom(x, n, p)` where `x` = number of successes, `n` = number of trials, and `p` = probability of success.
-* `pbinom()`: This function is used to find the *cumulative probability up to a specific number of successes*. In other words, `pbinom()` gives us P(X <= x). The syntax is `pbinom(x, n, p)` where, again, `x` = number of successes, `n` = number of trials, and `p` = probability of success.
+* `pbinom()`: This function is used to find the *cumulative probability* up to a specific number of successes. In other words, `pbinom()` gives us P(X <= x). The syntax is `pbinom(x, n, p)` where, again, `x` = number of successes, `n` = number of trials, and `p` = probability of success.
 
 <br>
 
-#### a. What is the probability that exactly 8 out of 20 have been diagnosed with hypertension?
+#### a. What is the probability that exactly 8 out of 20 adults in our sample have been diagnosed with hypertension?
 
 In this case, the sample size (n) is 20, the number of successes of interest (x) is 8, and the probability of "success" (i.e., that a person has been diagnosed with hypertension) is 0.48. We can apply the `dbinom()` function as follows:
 
@@ -275,13 +306,13 @@ In this case, the sample size (n) is 20, the number of successes of interest (x)
 dbinom(8, 20, 0.48)
 ```
 
-We find the probability that exactly 8 out of 20 adults will have been diagnosed with hypertension is 0.1387513, or about 13.9%.
+From the output in the Console window, we find the probability that exactly 8 out of 20 adults will have been diagnosed with hypertension is 0.1387513, or about 13.9%.
 
 <br>
 
 #### b. What is the probability that fewer than 8 out of 20 have been diagnosed with hypertension?
 
-In this case, the sample size (n) is, again, 20, the number of successes of interest (x) is all values less than 8 (i.e., 0-7), and the probability of "success" (i.e., that a person has been diagnosed with hypertension) is, again, 0.48. We can apply the `dbinom()` function as follows:
+In this case, the sample size (n) is, again, 20, the number of successes of interest (x) is all values *less than 8* (i.e., 0 to 7), and the probability of "success" (i.e., that a person has been diagnosed with hypertension) is, again, 0.48. We can apply the `pbinom()` function as follows:
 
 ```{r}
 # find probability that fewer than 8 out of 20 adults will have been diagnosed with hypertension
@@ -294,7 +325,7 @@ Remember, the `pbinom()` function gives us the *cumulative* probability up to th
 
 #### c. What is the probability that 8 or more out of 20 have been diagnosed with hypertension?
 
-Since the `pbinom()` function will give us the probability that 7 or fewer have been diagnosed with hypertension, as we carried out in part (b) above, we must subtract this probability from 1 to get the probability that 8 *or more* of the 20 will have been diagnosed with hypertension.
+Since the `pbinom()` function will give us the probability that 7 or fewer have been diagnosed with hypertension, as we carried out in part (b) above, we can subtract this probability from 1 to get the probability that *8 or more* of the 20 will have been diagnosed with hypertension.
 
 ```{r}
 # find probability that 8 or more out of 20 adults will have been diagnosed with hypertension
@@ -351,14 +382,14 @@ The resulting plot shows the Binomial probability distribution for n=20 trials a
 * The x-axis represents the number of successes (X), ranging from 0 to 20. Each tick corresponds to a possible outcome (e.g., 0, 1, 2, ... 20 successes). 
 * The y-axis represents the probability of observing each specific number of successes. 
 * Each vertical line corresponds to the probability of a particular number of successes (P(X=x)). The height of the line shows how likely that number of successes is. 
-* The distribution is bell-shaped, with the highest probability (peak) near the expected number of successes, which we found previously was 9.6. Since we can't actually have 9.6 successes, we see the highest probabilities (i.e., the most likely outcomes) correspond to values 9 and 10. 
+* The distribution is bell-shaped, with the highest probability (peak) near the expected number of successes, which we found previously was 9.6. Since we can't actually have 9.6 successes (since 'X' is discrete), we see the highest probabilities (i.e., the most likely outcomes) correspond to values 9 and 10. 
 * Finally, the probabilities taper off as you move toward 0 or 20 successes, where extreme outcomes are less likely.
 
 <br>
 
 ### 2. Poisson distribution
 
-As discussed previously, the Poisson distribution models the number of events occurring in a fixed interval of time or space, assuming the events occur independently and at a constant average rate. To use the Poisson distribution, you need:
+As discussed previously, the Poisson distribution models the number of events occurring in a fixed interval of time and space, assuming the events occur independently and at a constant average rate. To use the Poisson distribution, you need:
 
 * λ (lambda): The average number of events in the interval.
 * x: The number of events of interest.
@@ -367,8 +398,8 @@ As discussed previously, the Poisson distribution models the number of events oc
 
 In a certain population, an average of 13 new cases of esophageal cancer are diagnosed each year. Suppose the annual incidence of esophageal cancer follows a Poisson distribution. We will use this information to answer each of the probability questions below. For these items, we will use two R functions, `dpois()` and `ppois()`:
 
-* `dpois()`: This function is used to find the probability that *exactly* 'x' number of events occur within the time period. The syntax for `dpois()` is `dpois(x, λ)`, where 'x' is the number of events of interest, and 'λ' is the mean.
-* `ppois()`: This function gives the *cumulative probability* that 'x' or fewer events occur within the time period. The syntax for `ppois()` is `ppois(x, λ)`, where 'x' is the number of events of interest, and lambda is the mean.
+* `dpois()`: This function is used to find the probability that *exactly* 'x' number of events occur within the time period. The syntax is `dpois(x, λ)`, where 'x' is the number of events of interest, and 'λ' is the mean.
+* `ppois()`: This function gives the *cumulative probability* that 'x' or fewer events occur within the time period. The syntax is `ppois(x, λ)`, where, again, 'x' is the number of events of interest, and lambda is the mean.
 
 <br>
 
@@ -379,7 +410,7 @@ In a certain population, an average of 13 new cases of esophageal cancer are dia
 dpois(10, 13)
 ```
 
-We find that, when the mean incidence is 13 cases annually, the probability that exactly 10 cases of esophageal cancer are diagnosed in a given year is 0.08587015, or about 8.6%.
+From the output in the Console, we find that, when the mean incidence is 13 cases annually, the probability that exactly 10 cases of esophageal cancer are diagnosed in a given year is 0.08587015, or about 8.6%.
 
 <br>
 
@@ -428,10 +459,9 @@ plot(events, dpois(events, lambda = 13), type = 'h')
 The resulting plot shows the Poisson probability distribution for the number of events (X) ranging from 0 to 30, with an average rate (λ) of 13. Here’s how to interpret the plot:
 
 * The x-axis represents the possible number of events (X), ranging from 0 to 30. Each tick corresponds to a specific count of events (e.g., 0, 1, 2, ..., 30). Note that 30 here is arbitrary - this number of events simply allowed for the bulk of the distribution to be visible on the plot (since the probabilities are very tiny after about 25 events).
-* The y-axis represents the probability of observing a specific number of events.
-* Each vertical line corresponds to the probability of observing exactly that many events (P(X=x)). The height of the line shows the likelihood of that particular outcome.
+* The y-axis represents the probability of observing a specific number of events. Each vertical line corresponds to the probability of observing exactly that many events (P(X=x)). The height of the line shows the likelihood of that particular outcome.
 * The plot will peak near λ=13, which is the average number of events, reflecting that this outcome is most likely.
-* The probabilities taper off to the left (fewer events) and the right (more events) of the mean. The distribution is right-skewed, which is characteristic of the Poisson distribution, particularly when λ is not very large.
+* The probabilities taper off to the left (fewer events) and the right (more events) of the mean. The distribution is right-skewed, which is characteristic of the Poisson distribution (because, technically, there is some probability associated with any number of events), particularly when λ is not very large.
 
 <br>
 
@@ -445,13 +475,13 @@ Finally, the Normal distribution is a continuous probability distribution often 
 
 For example, the Normal distribution can be used to estimate the likelihood of an individual’s BMI falling within a specific range in a population. By specifying the population mean BMI (μ), the standard deviation (σ), and the range of interest (x), you can determine the probability of the outcome.
 
-Remember, unlike the Binomial and Poisson distributions, which are discrete, the Normal distribution is continuous. This means that probabilities are not associated with specific values of X but rather with ranges of values. Since the Normal distribution has an infinite number of possible values within any interval, the probability of any single exact value of X is essentially zero. Instead, we calculate probabilities for a range of values by finding the area under the standard normal curve between two points. 
+Remember, unlike the Binomial and Poisson distributions, which are discrete, the Normal distribution is continuous. This means that probabilities are not associated with *specific* values of X but rather with *ranges* of values. Since the Normal distribution has an infinite number of possible values within any interval, the probability of any single exact value of X is essentially zero. Instead, we calculate probabilities for a range of values by finding the area under the standard normal curve between two points. 
 
 **Let's apply the Normal distribution to the following scenario...**
 
 One of the variables collected in Birth Registry data is pounds gained during pregnancy. According to data from the entire registry for 2021, the number of pounds gained during pregnancy was approximately normally distributed with a mean of 30.23 pounds and a standard deviation of 13.84 pounds. We will use this information to answer each of the probability questions below. For these items, we will need only one R function, `pnorm()`:
 
-* `pnorm()`: This function gives the *cumulative probability* that a random variable X takes a value less than or equal to 'x'. The syntax for `pnorm()` is `pnorm(x, mean, sd)`.
+* `pnorm()`: This function gives the *cumulative probability* that a random variable 'X' takes a value less than or equal to 'x'. The syntax is `pnorm(x, mean, sd)`.
 
 <br>
 
@@ -462,7 +492,7 @@ One of the variables collected in Birth Registry data is pounds gained during pr
 pnorm(15, 30.23, 13.84)
 ```
 
-We find the probability that a randomly selected mother in 2021 gained less than 15 pounds during pregnancy is 0.1355716, or about 13.6%.
+From the output in the Console, we find the probability that a randomly selected mother in 2021 gained less than 15 pounds during pregnancy is 0.1355716, or about 13.6%.
 
 <br>
 
@@ -499,9 +529,19 @@ curve(dnorm(x, 30.23, 13.84), from=0, to=60)
 The plot shows the Normal distribution with a mean (μ) of 30.23 and a standard deviation (σ) of 13.84. Here’s how to interpret the plot:
 
 * The x-axis represents the range of possible values for the variable of interest, spanning from 0 to 60 (an arbitrary range, but one that allows us to view essentially the whole distribution).
-* The y-axis represents the probability density for the corresponding x-values. The height of the curve at a given x-value indicates how densely the data are distributed around that value but does not represent the actual probability of a single point (since this is a continuous distribution).
+* The y-axis represents the probability density for the corresponding x-values. The height of the curve at a given x-value indicates how densely the data are distributed around that value but does *not* represent the actual probability of a single point (since this is a continuous distribution).
 * The curve is bell-shaped and symmetric, with the peak occurring at μ=30.23, which is the most likely value. 
-* Most of the probability is concentrated within 1-2 standard deviations of the mean (approximately 30.23 ± 13.84). The tails taper off gradually, indicating that values far from the mean (e.g., below 10 or above 50) are less likely but still possible.
+* Most of the probability is concentrated within 1-2 standard deviations of the mean (approximately 30.23 ± 13.84). The tails taper off gradually, meaning that values far from the mean (e.g., below 10 or above 50) are less likely but still possible.
 
 
+# Summary
+
+In Lab 3, we explored theoretical probability distributions, including the Binomial, Poisson, and Normal distributions. Probability distributions are essential in public health for modeling uncertainty, estimating disease risk, and predicting health outcomes in populations. They help us understand the likelihood of events such as the spread of infectious diseases, the probability of treatment success, or the expected number of emergency room visits. While these concepts may feel abstract, they provide the foundation for everything we do in statistical inference — like helping us estimate population parameters, assess variability, and determine the likelihood of different outcomes. While we won’t focus heavily on probability theory in this course, this foundational knowledge will be important as we move into statistical inference, including confidence interval estimation, hypothesis testing, and regression analysis. 
+
+When you are ready, please submit the following to the Lab 3 assignment page on Canvas:
+
+1. An R Markdown document, which has a `.Rmd` extension
+2. A knitted `.html` file
+
+Please reach out to me at jenny.wagner@csus.edu if you have any questions. See you in class!
 
