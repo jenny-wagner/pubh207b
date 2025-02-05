@@ -191,7 +191,7 @@ The `summary()` function in R provides a quick overview of the dataset by summar
   * Maximum (Max): The largest value in the variable.
   * NA's: The number of missing values.
 
-* **For categorical rariables:**
+* **For categorical variables:**
   * The output will list each category and its corresponding frequency (the number of occurrences of that category in the dataset).
   * NA's: The number of missing values.
   
