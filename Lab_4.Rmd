@@ -69,7 +69,8 @@ After these packages have been installed, they will need to be loaded with the `
 library(tidyverse)
 library(ggplot2)
 library(BSDA)
-library(car)
+library(car) # only needed for Levene's test
+library(stats)
 ```
 
 <br>
@@ -327,9 +328,22 @@ A quick breakdown of the code:
   * `SEX` is the grouping variable (independent variable), dividing the data into groups (e.g., males and females).
 * `data = data`: Specifies the data object we are using (called `data`), which contains the variables `BMI` and `SEX`.
 
-Like the output from the *F-test*, we are most concerned with the p-value. A small p-value (less than 0.05), as we see in this case, indicates the difference in variances is statistically significant. 
+<br>
 
-We now have two statistical tests - the *F-test* and *Levene's test* - that indicate the variances in BMI for males and females are **not** equal. Given this information, we will proceed with estimating the difference in population means using **Welch's t-test**, which uses the following formula:
+##### Fligner-Killeen’s test (an alternative to Levene's test)
+
+If you have trouble installing the `car` package, the following test - called the Fligner-Killeen’s test - can be used as an alternative to Levene's test. This test is from the `stats` package which you should already have installed. 
+
+```{r}
+# Fligner-Killeen’s test
+fligner.test(BMI ~ SEX, data = data)
+```
+
+<br>
+
+Whether you used Levene's test or Fligner-Killeen’s test, like the output from the *F-test*, we are most concerned with the p-value. A small p-value (less than 0.05), as we see in this case, indicates the difference in variances is statistically significant. 
+
+We now have two statistical tests - the *F-test* and *Levene's test* (or *Fligner-Killeen’s test*) - that indicate the variances in BMI for males and females are **not** equal. Given this information, we will proceed with estimating the difference in population means using **Welch's t-test**, which uses the following formula:
 
 ```{r fig.align="center", echo=FALSE, out.width = '35%'}
 knitr::include_graphics("t-prime-diff.png")
