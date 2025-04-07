@@ -29,7 +29,8 @@ navbar:
         href: Lab_7.html
       - text: "Lab 8"
         href: Lab_8.html
-#      - text: "Lab 9"
+      - text: "Lab 9"
+        href: Lab_9.html
 
 output:
   html_document:

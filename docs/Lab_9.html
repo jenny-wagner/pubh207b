@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Lab 9: Analysis of Frequencies + Non-parametric Tests</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #204a87; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">PUBH 207B: Spring 2025</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="course_schedule.html">Course Schedule</a>
+</li>
+<li>
+  <a href="install.html">Getting Started</a>
+</li>
+<li>
+  <a href="about.html">Assignment Guidelines</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Lab Guides
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Lab_1.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="Lab_2.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="Lab_3.html">Lab 3</a>
+    </li>
+    <li>
+      <a href="Lab_4.html">Lab 4</a>
+    </li>
+    <li>
+      <a href="Lab_5.html">Lab 5</a>
+    </li>
+    <li>
+      <a href="Lab_6.html">Lab 6</a>
+    </li>
+    <li>
+      <a href="Lab_7.html">Lab 7</a>
+    </li>
+    <li>
+      <a href="Lab_8.html">Lab 8</a>
+    </li>
+    <li>
+      <a href="Lab_9.html">Lab 9</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Lab 9: Analysis of Frequencies +
+Non-parametric Tests</h1>
+
+</div>
+
+
+<p><br></p>
+<p><strong>Jenny Wagner, PhD, MPH</strong> <br> Department of Public
+Health <br> California State University, Sacramento <br> <br></p>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>In Lab 9, you will learn how to apply statistical tests that are
+useful when common assumptions of parametric tests (such as normally
+distributed data or large sample sizes) do not hold. The Lab is divided
+into two parts, each using a different dataset to highlight distinct
+types of analyses.</p>
+<p>Part 1 of this Lab focuses on methods for analyzing relationships
+between categorical variables. Specifically, you’ll use the
+<strong>Chi-square test of independence</strong> and <strong>Fisher’s
+exact test</strong> to determine whether there is a significant
+association between two categorical variables in a contingency table.
+These tests are commonly used in public health and epidemiology to
+assess relationships such as exposure and disease status, stratified by
+demographic or behavioral characteristics. While the Chi-square test is
+appropriate for larger sample sizes and expected cell counts, Fisher’s
+exact test is better suited for smaller samples.</p>
+<p>Part 2 of this Lab introduces non-parametric methods for comparing
+groups when your data do not meet the assumptions of normality or
+homogeneity of variance. You’ll apply the <strong>Mann-Whitney U
+test</strong> (also known as the Wilcoxon rank-sum test) to compare two
+independent groups, and the <strong>Kruskal-Wallis test</strong> to
+compare more than two groups. When the Kruskal-Wallis test indicates a
+statistically significant difference, you’ll follow up with
+<strong>Dunn’s test</strong> for post-hoc pairwise comparisons. These
+methods rely on ranked data rather than raw values, which makes them
+useful for ordinal data or skewed continuous variables.</p>
+<p><br></p>
+</div>
+<div id="objectives" class="section level1">
+<h1>Objectives</h1>
+<p>After completing Lab 9, you will be able to:</p>
+<ol style="list-style-type: decimal">
+<li>Use the Chi-square test of independence and Fisher’s exact test to
+assess associations between categorical variables.</li>
+<li>Apply the Mann-Whitney U test, Kruskal-Wallis test, and Dunn test to
+compare distributions of continuous or ordinal variables across
+independent groups.</li>
+<li>Interpret the results of non-parametric and categorical
+analyses.</li>
+</ol>
+<p><br></p>
+</div>
+<div id="tasks" class="section level1">
+<h1>Tasks</h1>
+<p>Lab 9 is divided into two distinct parts. You will use a different
+dataset for each part. For Part 1, you will use the file called
+“asthma_risk_factors.csv” and for Part 2, you will use
+“smoking_cessation.csv” - these are simulated datasets created for
+teaching purposes. The specific variables contained within each dataset
+will be detailed below.</p>
+<p>When you are ready to start Lab 9:</p>
+<ol style="list-style-type: decimal">
+<li>First create a new R Markdown file using the instructions on the
+Assignment Guidelines page. Save this <code>.Rmd</code> file in a folder
+dedicated to Lab 9 materials.</li>
+<li>Next, download the files called “asthma_risk_factors.csv” and
+“smoking_cessation.csv” from Canvas and save them in the same folder as
+your Lab 9 R Markdown file.</li>
+<li>Finally, proceed to read through and carry out each of the tasks
+detailed below. As usual, you will begin by loading R packages, setting
+your working directory, and importing the dataset.</li>
+</ol>
+<p><br></p>
+<div id="install-and-load-r-packages" class="section level2">
+<h2>Install and load R packages</h2>
+<p>We will use the following packages in this Lab:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">library</span>(stats)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span></code></pre></div>
+<p><br></p>
+</div>
+<div id="set-your-working-directory" class="section level2">
+<h2>Set your working directory</h2>
+<p>Set your working directory using the <code>setwd()</code> function
+(see Assignment Guidelines for detailed instructions).</p>
+<pre><code>setwd(&quot;YOUR FILE PATH HERE&quot;)</code></pre>
+<p><br></p>
+</div>
+</div>
+<div id="part-1-analysis-of-frequencies" class="section level1">
+<h1>PART 1: Analysis of frequencies</h1>
+<p>Suppose you are a public health researcher exploring the impact of
+various environmental, housing, and behavioral factors on the occurrence
+of asthma. You are particularly interested in determining if indoor air
+quality, presence of pets, and smoking behavior are associated with
+asthma diagnosis.</p>
+<p>For Part 1 of this Lab, we will be using the
+“asthma_risk_factors.csv” dataset, which contains the following
+variables:</p>
+<ul>
+<li><strong>Asthma</strong>: Yes, No (whether individuals have
+asthma)</li>
+<li><strong>Indoor_Air_Quality</strong>: Excellent, Good, Moderate, Poor
+(assessment of the indoor air quality where the individual resides)</li>
+<li><strong>Pets</strong>: Yes, No (whether the individual has pets at
+home)</li>
+<li><strong>Smoking_Behavior</strong>: Smoker, Non-Smoker (personal
+smoking status)</li>
+</ul>
+<p><br></p>
+<div id="import-the-dataset" class="section level2">
+<h2>Import the dataset</h2>
+<p>To get started with Part 1, import the dataset using the
+following:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># import the dataset</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;asthma_risk_factors.csv&quot;</span>)</span></code></pre></div>
+<p><br></p>
+</div>
+<div id="data-preparation" class="section level2">
+<h2>Data preparation</h2>
+<p>As usual, we should start by checking the structure of the dataset,
+including variables types:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># identify variable type for all variables in the dataset</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">str</span>(data)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    100 obs. of  4 variables:
+##  $ Asthma            : chr  &quot;No&quot; &quot;No&quot; &quot;No&quot; &quot;No&quot; ...
+##  $ Indoor_Air_Quality: chr  &quot;Excellent&quot; &quot;Poor&quot; &quot;Moderate&quot; &quot;Poor&quot; ...
+##  $ Pets              : chr  &quot;No&quot; &quot;No&quot; &quot;Yes&quot; &quot;No&quot; ...
+##  $ Smoking_Behavior  : chr  &quot;Non-Smoker&quot; &quot;Smoker&quot; &quot;Smoker&quot; &quot;Non-Smoker&quot; ...</code></pre>
+<p>We can see from the output that there are 100 observations and 4
+variables. All four variables (<code>Asthma</code>,
+<code>Indoor_Air_Quality</code>, <code>Pets</code>, and
+<code>Smoking_Behavior</code>) are stored as <em>character</em>
+variables, shown by “chr.” Character variables are simply text values —
+like “Yes”, “No”, or “Smoker”. We haven’t encountered character
+variables yet in this course because all of the variables we’ve used so
+far — whether categorical or numerical — have been stored as numbers.
+Now that we’re working with variables represented by words instead of
+numbers, it’s important to tell R when those words represent distinct
+categories. To do this, we convert character variables to factor
+variables. This helps R recognize that, for example, “Smoker” and
+“Non-Smoker” are not just different words, but different groups. As with
+previous datasets, it’s good practice to convert known categorical
+variables to factors before doing analysis or creating
+visualizations.</p>
+<p>We can convert each to a factor variable as follows:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># convert variables to factors</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>data<span class="sc">$</span>Asthma <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data<span class="sc">$</span>Asthma)</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>data<span class="sc">$</span>Indoor_Air_Quality <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data<span class="sc">$</span>Indoor_Air_Quality)</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>data<span class="sc">$</span>Pets <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data<span class="sc">$</span>Pets)</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>data<span class="sc">$</span>Smoking_Behavior <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data<span class="sc">$</span>Smoking_Behavior)</span></code></pre></div>
+<p><br></p>
+</div>
+<div id="exploratory-data-analysis" class="section level2">
+<h2>Exploratory data analysis</h2>
+<p>Suppose your goal is to determine whether there are significant
+associations between each potential risk factor of interest — smoking
+behavior, presence of pets, and indoor air quality — and the occurrence
+of asthma. Before we get into more detailed analyses, let’s begin with
+some exploratory data analysis to become more familiar with the
+dataset.</p>
+<p>Since we’re interested in the association between each potential risk
+factor and asthma status, a good place to start is with contingency
+tables. These tables show the distribution of one variable across the
+levels of another and can help us identify potential patterns or
+relationships in the data.</p>
+<p>We can generate contingency tables using the <code>table()</code>
+function. When you use the <code>table()</code> function in R to create
+a contingency table, be sure to pay attention to the order of the
+variables you include. R does not label which variable is which in the
+output, so you need to remember that:</p>
+<ul>
+<li>The first variable you list will appear as the rows (along the left
+side).</li>
+<li>The second variable you list will appear as the columns (across the
+top).</li>
+</ul>
+<p>This can get especially confusing when both variables have the same
+category labels — like “Yes” and “No” — because it’s not immediately
+obvious which variable those labels belong to. To avoid misinterpreting
+the table, always double-check the order in which you supplied the
+variables.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># generate contingency table for smoking behavior and asthma</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>Smoking_Behavior, data<span class="sc">$</span>Asthma)</span></code></pre></div>
+<pre><code>##             
+##              No Yes
+##   Non-Smoker 50   8
+##   Smoker     21  21</code></pre>
+<p>From the output, we can see that, among non-smokers, most
+participants do not have asthma (50 vs. 8). Among smokers, the numbers
+are evenly split between those with and without asthma (21 each). This
+suggests that asthma appears to be more common among smokers than
+non-smokers.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># generate contingency table for presence of pets and asthma</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>Pets, data<span class="sc">$</span>Asthma)</span></code></pre></div>
+<pre><code>##      
+##       No Yes
+##   No  40  13
+##   Yes 31  16</code></pre>
+<p>Among those without pets, more participants do not have asthma (40
+vs. 13). Among those with pets, the difference is smaller (31 without
+asthma vs. 16 with asthma). Asthma may be slightly more common among
+those with pets, but the association appears weaker than with
+smoking.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># generate contingency table for indoor air quality and asthma</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>Indoor_Air_Quality, data<span class="sc">$</span>Asthma)</span></code></pre></div>
+<pre><code>##            
+##             No Yes
+##   Excellent 18   4
+##   Good      14   3
+##   Moderate  19   3
+##   Poor      20  19</code></pre>
+<p>For those reporting excellent, good, or moderate indoor air quality,
+asthma is relatively uncommon. For those reporting poor air quality,
+asthma is almost as common as not having asthma (19 with asthma vs. 20
+without). This suggests a potential stronger association between poor
+indoor air quality and asthma.</p>
+<p>As part of our exploratory analysis, we may also want to generate
+descriptive plots to visualize potential associations in the data. This
+can sometimes make it easier to quickly ascertain potentially
+associations between variables. As we have seen in prior Labs, barcharts
+are most appropriate for visualizing one or more categorical variables.
+We can generate barcharts for each pair of variables as follows:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># visualize the data: asthma by smoking status</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Smoking_Behavior, <span class="at">fill =</span> Asthma)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Smoking Status&quot;</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Asthma&quot;</span>)</span></code></pre></div>
+<p><img src="Lab_9_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># visualize the data: asthma by presence of pets</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Pets, <span class="at">fill =</span> Asthma)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Presence of Pets&quot;</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Asthma&quot;</span>)</span></code></pre></div>
+<p><img src="Lab_9_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># visualize the data: asthma by indoor air quality</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Indoor_Air_Quality, <span class="at">fill =</span> Asthma)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Indoor Air Quality&quot;</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Asthma&quot;</span>)</span></code></pre></div>
+<p><img src="Lab_9_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><br></p>
+</div>
+<div id="formal-analysis-of-categorical-variables"
+class="section level2">
+<h2>Formal analysis of categorical variables</h2>
+<p>Now that we’ve explored potential relationships in our dataset using
+contingency tables and barcharts, we can move on to formal statistical
+tests to assess whether the associations we observed are statistically
+significant - or if they are likely due to chance.</p>
+<p>Two commonly used tests for this purpose are the <strong>Chi-square
+test of independence</strong> and <strong>Fisher’s exact test</strong>.
+Both tests evaluate whether there is a statistically significant
+association between two categorical variables by comparing <em>observed
+frequencies</em> in each cell of a contingency table to the <em>expected
+frequencies</em> — the counts we would expect to see if the two
+variables were not associated with one another (i.e., if they were
+independent). For both tests, the null hypothesis is that there is
+<em>no association</em> between the two variables (i.e., they are
+independent of one another). The Chi-square test statistic is given by
+the following equation:</p>
+<p><img src="chi-square.png" width="25%" style="display: block; margin: auto;" /></p>
+<p>Where:</p>
+<ul>
+<li>𝑂 = Observed frequency in each cell</li>
+<li>𝐸 = Expected frequency in each cell</li>
+<li>The sum is taken over all cells in the contingency table</li>
+</ul>
+<p>A larger Chi-square test statistic (and therefore, a smaller p-value)
+suggests a bigger difference between observed and expected counts, which
+provides more evidence against the assumption of independence. As with
+other hypothesis tests we have used in this course, we can draw a
+conclusion about the test based on the p-value, where a p-value less
+than 0.05 is considered statistically significant.</p>
+<p>In short, the Chi-square test and Fisher’s exact test tell us whether
+the differences we see in the contingency table are likely due to chance
+or reflect a real association in the population. When to use each test
+depends on the sample size and expected cell counts:</p>
+<ul>
+<li>The Chi-square test of independence is appropriate when <em>all
+expected cell counts are sufficiently large</em> — typically at least 5.
+It is well-suited for larger samples and is often used when analyzing
+2x2 or larger tables.</li>
+<li>The Fisher’s exact test is more accurate when sample sizes are small
+or <em>expected cell counts are low</em> (below 5). While it can be used
+with larger tables, it becomes computationally intensive and is
+generally reserved for smaller datasets.</li>
+</ul>
+<p>In this section, we’ll use both tests — depending on the
+characteristics of the data — to formally test for associations between
+asthma status and each of the potential risk factors we explored
+earlier.</p>
+<p><br></p>
+<div id="check-expected-cell-counts" class="section level3">
+<h3>Check expected cell counts</h3>
+<p>Before choosing between the Chi-square test of independence and
+Fisher’s exact test, we need to check the expected cell counts. The
+expected cell count is the number of observations we would
+<em>expect</em> to see in each cell of the contingency table if the two
+variables were completely independent — that is, if there were no
+relationship between them. For each cell in a contingency table, the
+expected count is calculated by:</p>
+<p><img src="expected.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>The Chi-square test uses these expected counts to compare against the
+observed counts. If the differences between observed and expected counts
+are large, the test may indicate a significant association. But for the
+Chi-square test to be valid, expected counts in each cell should
+generally be 5 or more. If not, it’s better to use Fisher’s exact
+test.</p>
+<p>We can check the expected cell counts using the following:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># check expected cell counts</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="fu">chisq.test</span>(data<span class="sc">$</span>Smoking_Behavior, data<span class="sc">$</span>Asthma)<span class="sc">$</span>expected</span></code></pre></div>
+<pre><code>##                      data$Asthma
+## data$Smoking_Behavior    No   Yes
+##            Non-Smoker 41.18 16.82
+##            Smoker     29.82 12.18</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">chisq.test</span>(data<span class="sc">$</span>Pets, data<span class="sc">$</span>Asthma)<span class="sc">$</span>expected</span></code></pre></div>
+<pre><code>##          data$Asthma
+## data$Pets    No   Yes
+##       No  37.63 15.37
+##       Yes 33.37 13.63</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="fu">chisq.test</span>(data<span class="sc">$</span>Indoor_Air_Quality, data<span class="sc">$</span>Asthma)<span class="sc">$</span>expected</span></code></pre></div>
+<pre><code>## Warning in chisq.test(data$Indoor_Air_Quality, data$Asthma): Chi-squared
+## approximation may be incorrect</code></pre>
+<pre><code>##                        data$Asthma
+## data$Indoor_Air_Quality    No   Yes
+##               Excellent 15.62  6.38
+##               Good      12.07  4.93
+##               Moderate  15.62  6.38
+##               Poor      27.69 11.31</code></pre>
+<p>From the output, we can observe the following:</p>
+<ul>
+<li>For smoking behavior and asthma, all expected cell counts are above
+5, so it is appropriate to use the Chi-square test of independence
+here.</li>
+<li>For presence of pets and asthma, all expected cell counts are above
+5, so it is appropriate to use the Chi-square test of independence
+here.</li>
+<li>For indoor air quality and asthma, most expected counts are above 5,
+but one cell (Asthma = Yes, Air Quality = Good) has an expected count of
+4.93, which is below the threshold. Here, we even see a warning from R
+indicating that the Chi-square approximation may be incorrect. In this
+case, it is safer to use Fisher’s exact test rather than the Chi-square
+test of independence.</li>
+</ul>
+<p><br></p>
+</div>
+<div id="chi-square-test-of-independence" class="section level3">
+<h3>Chi-square test of independence</h3>
+<p>We can run the Chi-square test of independence for smoking behavior
+and asthma using the <code>chisq.test()</code> function as follows:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="co"># Chi-square test of independence for smoking behavior and asthma</span></span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="fu">chisq.test</span>(data<span class="sc">$</span>Smoking_Behavior, data<span class="sc">$</span>Asthma)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+## 
+## data:  data$Smoking_Behavior and data$Asthma
+## X-squared = 13.801, df = 1, p-value = 0.0002032</code></pre>
+<p>From the output, we can see the Chi-square test statistic is 13.801,
+and the p-value is 0.0002, which is well below 0.05. This means there is
+strong evidence of a statistically significant association between
+smoking behavior and asthma. In other words, the observed differences in
+asthma rates between smokers and non-smokers are unlikely to be due to
+chance. This supports what we saw in the contingency table - that asthma
+was more common among smokers than non-smokers.</p>
+<p>Next, we’ll again use the <code>chisq.test()</code> function to test
+the association between presence of pets and asthma, as follows:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="co"># Chi-square test of independence for pets and asthma</span></span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="fu">chisq.test</span>(data<span class="sc">$</span>Pets, data<span class="sc">$</span>Asthma)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+## 
+## data:  data$Pets and data$Asthma
+## X-squared = 0.68179, df = 1, p-value = 0.409</code></pre>
+<p>Our output here suggests that there is no statistically significant
+association between pet ownership and asthma status in this sample, as
+the p-value is greater than 0.05. In other words, based on this data,
+there is not enough evidence to conclude that the presence of pets is
+related to whether or not someone has asthma.</p>
+<p><br></p>
+</div>
+<div id="fishers-exact-test" class="section level3">
+<h3>Fisher’s exact test</h3>
+<p>Finally, let’s use Fisher’s exact test to examine the association
+between indoor air quality and asthma using the
+<code>fisher.test()</code> function as follows:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="co"># Fisher exact test for indoor air quality and asthma</span></span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="fu">fisher.test</span>(data<span class="sc">$</span>Indoor_Air_Quality, data<span class="sc">$</span>Asthma)</span></code></pre></div>
+<pre><code>## 
+##  Fisher&#39;s Exact Test for Count Data
+## 
+## data:  data$Indoor_Air_Quality and data$Asthma
+## p-value = 0.009525
+## alternative hypothesis: two.sided</code></pre>
+<p>Given the p-value is below the 0.05 threshold, our results suggest
+the association between indoor air quality and asthma is statistically
+significant. In other words, the distribution of asthma cases differs
+depending on the reported level of indoor air quality — this supports
+what we saw earlier in the contingency table, where asthma was more
+common among those who reported poor indoor air quality.</p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="part-2-non-parametric-hypothesis-tests" class="section level1">
+<h1>PART 2: Non-parametric hypothesis tests</h1>
+<p>In Part 2 of this Lab, we’ll explore how to compare differences in
+outcomes across groups when your data may not meet the assumptions
+required for traditional parametric tests like the two-sample t-test or
+ANOVA. Part 2 is based on a new scenario (unrelated to Part 1 above) and
+uses a new dataset.</p>
+<p>Suppose a local public health department has implemented a smoking
+cessation program in three different community settings: a workplace, a
+community center, and a high school. The program includes workshops,
+free counseling, and resources for quitting smoking. The effectiveness
+of the program is measured by the reduction in the number of cigarettes
+smoked per day, collected through self-reported surveys before and after
+the program. Your goal is to evaluate the effectiveness of the smoking
+cessation program across the three settings and determine if the
+reductions in smoking habits differ significantly among them.</p>
+<p>For Part 2, we will be using the “smoking_cessation.csv” dataset,
+which contains the following two variables:</p>
+<ul>
+<li><strong>Reduction_in_Cigarettes</strong>: The reduction in the
+number of cigarettes smoked per day.</li>
+<li><strong>Group</strong>: Indicates the community from which the
+participant was drawn (workplace, community center, high school).</li>
+</ul>
+<p><br></p>
+<div id="import-the-dataset-1" class="section level2">
+<h2>Import the dataset</h2>
+<p>To get started with Part 2, import the dataset using the
+following:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="co"># import the dataset</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;smoking_cessation.csv&quot;</span>)</span></code></pre></div>
+<p><br></p>
+</div>
+<div id="data-preparation-1" class="section level2">
+<h2>Data preparation</h2>
+<p>As usual, we should start by checking the structure of the dataset,
+including variables types:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="co"># identify variable type for all variables in the dataset</span></span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="fu">str</span>(data1)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    30 obs. of  2 variables:
+##  $ Reduction_in_Cigarettes: num  4.79 2.99 2.76 2.76 9.3 ...
+##  $ Group                  : chr  &quot;Workplace&quot; &quot;Workplace&quot; &quot;Workplace&quot; &quot;Workplace&quot; ...</code></pre>
+<p>From the output, we can see there are a total of 30 observations and
+2 variables in the dataset. We also see that
+<code>Reduction_in_Cigarettes</code> is a numeric variable, and
+<code>Group</code> is a character variable. As we did in Part 1 above,
+we should start by converting <code>Group</code> to a factor variable so
+that R knows the different words represent different categories:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="co"># convert variables to factors</span></span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a>data1<span class="sc">$</span>Group <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(data1<span class="sc">$</span>Group)</span></code></pre></div>
+<p><br></p>
+</div>
+<div id="exploratory-data-analysis-1" class="section level2">
+<h2>Exploratory data analysis</h2>
+<p>Suppose your goal is to determine whether reduction in cigarette use
+differs across the settings in which the smoking cessation program was
+implemented. Before we get into more detailed analyses, let’s begin with
+some exploratory data analysis to become more familiar with the
+dataset.</p>
+<p>Since we’re interested in differences across groups, a good place to
+start is with grouped boxplots to visualize the distribution of
+cigarette reduction across program settings.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="co"># Boxplot for reduction in cigarettes by group</span></span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a><span class="fu">ggboxplot</span>(data1, <span class="at">x =</span> <span class="st">&quot;Group&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Reduction_in_Cigarettes&quot;</span>)</span></code></pre></div>
+<p><img src="Lab_9_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>From the output, we can see there appears to be a difference in the
+distribution of cigarette reduction across groups, where participants in
+the workplace-based program appear to have a greater reduction in
+cigarettes compared to the other groups.</p>
+<p>As usual, we will expand on this exploratory analysis with formal
+statistical tests to assess whether the association we observe here
+between reduction in cigarettes and program setting is statistically
+significant — or if it is likely due to chance.</p>
+<p><br></p>
+</div>
+<div id="non-parametric-hypothesis-tests" class="section level2">
+<h2>Non-parametric hypothesis tests</h2>
+<p>Earlier in the course, we learned how to use <em>parametric
+tests</em> — like the two-sample t-test and ANOVA — to compare means
+across groups. Recall that these tests assume the outcome variable is
+normally distributed within each population — or alternatively, that the
+sample sizes are large enough to apply the Central Limit Theorem. When
+assumptions are violated (or sample sizes are too small to assume
+normality of the sampling distribution), the results of parametric tests
+may not be valid. This is where non-parametric tests come in.</p>
+<p>Let’s take a look at the flowchart we used several weeks back to
+identify the appropriate reference distribution when making comparisons
+across two independent groups:</p>
+<p><img src="flowchart_diff_means.png" width="100%" /></p>
+<p>Once again, from the flowchart, we can see that the statistical tests
+we learned earlier in the course rely on the assumption that the
+populations are normally distributed — or, if the populations are not
+normally distributed, that the sample sizes are sufficiently large (30
+or more in each group) to apply the Central Limit Theorem.</p>
+<p>In our current scenario, suppose reduction in cigarette use in the
+population has an unknown distribution — in other words, we just don’t
+know if this variable follows a normal distribution in the population.
+Given we have small samples (30 total observations, or 10 per group), we
+will need to use a non-parametric test to compare distributions of
+cigarette use reduction across program setting.</p>
+<p>Non-parametric tests:</p>
+<ul>
+<li>Don’t assume normality.</li>
+<li>Can be used with ordinal or non-normally distributed continuous
+data.</li>
+<li>Compare ranks rather than raw values, which makes them more flexible
+alternatives to parametric tests.</li>
+</ul>
+<p>In Part 2 of this Lab, we’ll use:</p>
+<ul>
+<li>The Mann-Whitney U test (also called the Wilcoxon rank-sum test) as
+a non-parametric alternative to the two-sample t-test.</li>
+<li>The Kruskal-Wallis test as a non-parametric alternative to one-way
+ANOVA (and the Dunn test as a non-parametric post-hoc test for pairwise
+comparisons).</li>
+</ul>
+<p>These tests help us assess whether there are statistically
+significant differences in outcomes between two or more groups, even
+when our data don’t meet parametric assumptions. As these tests are
+based on ranks rather than raw values, the results suggest a difference
+in medians or overall distribution rather than a difference in
+means.</p>
+<p><br></p>
+<div id="mann-whitney-u-test" class="section level3">
+<h3>Mann-Whitney U test</h3>
+<p>The <strong>Mann-Whitney U test</strong> (also called the Wilcoxon
+rank-sum test) is a non-parametric alternative to the two-sample t-test.
+You should use it when you want to compare two independent groups, but
+your data do not meet the assumptions required for a t-test — such as
+normality or equal variances. This test doesn’t compare means directly.
+Instead, it compares the overall distributions (or more specifically,
+the ranks) of the outcome variable in each group. It’s especially useful
+when:</p>
+<ul>
+<li>Your outcome is ordinal or skewed,</li>
+<li>You have small sample sizes,</li>
+<li>Or you just want a more robust test that doesn’t rely on strong
+assumptions.</li>
+</ul>
+<p>In short: Use the Mann-Whitney U test when comparing two groups and
+you’re not confident your data are normally distributed.</p>
+<p>In our current scenario, we have three total groups (program
+settings) — community center, high school, and workplace. For example
+purposes, let’s select just two of these groups to compare using the
+Mann-Whitney U test. To do this, we’ll start by filtering the dataset so
+that it contains only two groups — say, the high school and workplace
+settings:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="co"># filter data to include only workplace and high school</span></span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>data1_sub <span class="ot">&lt;-</span> data1 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span>Group <span class="sc">==</span> <span class="st">&quot;Community Center&quot;</span>)</span></code></pre></div>
+<p>We’ve used the <code>filter()</code> command several times in prior
+Labs. Here we’re seeing it used in a slightly different way, where
+placing an exclaimation point (<code>!</code>) in front of
+<code>Group</code> tells R to keep all observations <em>except</em> when
+the group is “Community Center.” This is just a more efficient way to
+filter a dataset when we want to exclude a single group.</p>
+<p>Now that we have filtered the dataset to retain only the high school
+and workplace settings, let’s use the Mann-Whitney U test to compare
+reduction in cigarette use across these two groups. We can do this using
+the <code>wilcox.test()</code> function as follows:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="co"># Mann-Whitney U test</span></span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a><span class="fu">wilcox.test</span>(Reduction_in_Cigarettes <span class="sc">~</span> Group, <span class="at">data =</span> data1_sub)</span></code></pre></div>
+<pre><code>## 
+##  Wilcoxon rank sum exact test
+## 
+## data:  Reduction_in_Cigarettes by Group
+## W = 20, p-value = 0.02323
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
+<p>From the output, we can see the p-value is less than 0.05, indicating
+a statistically significant difference between the two groups. This
+means there is evidence that the distribution of reductions in
+cigarettes smoked per day differs between the high school and workplace
+program settings.</p>
+<p><br></p>
+</div>
+<div id="kruskal-wallis-test" class="section level3">
+<h3>Kruskal-Wallis test</h3>
+<p>The Kruskal-Wallis test is a non-parametric alternative to one-way
+ANOVA. You should use it when you want to compare three or more
+independent groups, but your data do not meet the assumptions required
+for ANOVA — such as normality. Like the Mann-Whitney U test, the
+Kruskal-Wallis test doesn’t compare means directly. Instead, it compares
+the ranks of the outcome variable across the groups to assess whether
+they come from the same distribution.</p>
+<p>It’s especially useful when:</p>
+<ul>
+<li>Your outcome variable is ordinal or skewed,</li>
+<li>Your sample sizes are unequal or small,</li>
+<li>Or you’re not confident your data meet the assumptions of
+ANOVA.</li>
+</ul>
+<p>In short: Use the Kruskal-Wallis test when comparing three or more
+groups and your data are not normally distributed or violate other ANOVA
+assumptions.</p>
+<p>So, suppose we now want to compare reduction in cigarette use across
+all three program settings (since, again, we eliminated the Community
+Center group just for example purposes in the previous section). We can
+do this using the <code>kruskal.test()</code> function as follows:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="co"># Kruskal-Wallis test</span></span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a><span class="fu">kruskal.test</span>(Reduction_in_Cigarettes <span class="sc">~</span> Group, <span class="at">data =</span> data1)</span></code></pre></div>
+<pre><code>## 
+##  Kruskal-Wallis rank sum test
+## 
+## data:  Reduction_in_Cigarettes by Group
+## Kruskal-Wallis chi-squared = 6.4413, df = 2, p-value = 0.03993</code></pre>
+<p>From the output, we can see the p-value is less than 0.05, indicating
+a statistically significant difference across the three groups. This
+means there is evidence that the distribution of reductions in
+cigarettes smoked per day differs across <em>at least one</em> of the
+community settings (workplace, community center, or high school). Just
+like when comparing means of three or more groups using ANOVA, our
+results here don’t tell us which group (or groups) is/are different from
+the others. For this, we’ll need to use a post-hoc test for pairwise
+comparisons.</p>
+<p><br></p>
+<div id="dunn-test-for-pairwise-comparisons" class="section level4">
+<h4>Dunn test for pairwise comparisons</h4>
+<p>When the Kruskal-Wallis test indicates a statistically significant
+difference across three or more groups, it tells us that at least one
+group differs — but not which groups are different from each other. To
+explore these differences further, we’ll use a post-hoc test. The Dunn
+test is a non-parametric method that allows us to make pairwise
+comparisons between groups, similar to how you might use a Tukey test
+after ANOVA.</p>
+<p>Since multiple comparisons increase the risk of false positives (Type
+I error), the Dunn test is typically used with a p-value adjustment
+method (like Bonferroni or Holm) to control for this. The Holm method is
+generally more preferred in practice, so we’ll use this method in our
+next example.</p>
+<p>We can perform the Dunn test using the <code>dunn_test()</code>
+function as follows:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="co"># Dunn test</span></span>
+<span id="cb39-2"><a href="#cb39-2" tabindex="-1"></a><span class="fu">dunn_test</span>(data1, Reduction_in_Cigarettes <span class="sc">~</span> Group, <span class="at">p.adjust.method =</span> <span class="st">&quot;holm&quot;</span>, <span class="at">detailed =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 9
+##   .y.             group1 group2    n1    n2 statistic      p  p.adj p.adj.signif
+## * &lt;chr&gt;           &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;       
+## 1 Reduction_in_C… Commu… High …    10    10    -0.610 0.542  0.542  ns          
+## 2 Reduction_in_C… Commu… Workp…    10    10     1.83  0.0674 0.135  ns          
+## 3 Reduction_in_C… High … Workp…    10    10     2.44  0.0148 0.0443 *</code></pre>
+<p>From the output, we can see there is only one significant p-value,
+indicating a statistically significant difference in the distributions
+of cigarette use reduction between the high school and workplace
+settings. The other two comparisons were not statistically significant
+(indicated by “ns”), suggesting that the reductions in those group pairs
+were either relatively similar — or that any differences observed were
+not large enough to rule out the possibility that they occurred by
+chance.</p>
+<p><br></p>
+</div>
+</div>
+</div>
+</div>
+<div id="summary" class="section level1">
+<h1>Summary</h1>
+<p>In this Lab, we explored how to formally assess differences between
+groups using statistical tests that are appropriate for categorical data
+and for non-normally distributed continuous or ordinal data. This Lab
+was divided into two parts:</p>
+<ul>
+<li>In Part 1, we used the Chi-square test of independence and Fisher’s
+exact test to examine associations between categorical variables — such
+as asthma status and smoking behavior, pet ownership, or indoor air
+quality.
+<ul>
+<li>The Chi-square test is appropriate when all expected cell counts are
+5 or greater.</li>
+<li>Fisher’s exact test is a better choice when sample sizes are small
+or expected cell counts are low (below 5).</li>
+<li>These tests help us determine whether observed associations in the
+data are statistically significant, building on our earlier use of
+frequency tables and bar charts for exploratory analysis.</li>
+</ul></li>
+<li>In Part 2, we turned to non-parametric hypothesis tests to compare
+smoking reduction across groups in a public health program evaluation
+scenario.
+<ul>
+<li>The Mann-Whitney U test (or Wilcoxon rank-sum test) was used to
+compare two groups when the outcome variable was not normally
+distributed (and sample sizes were too small to apply Central Limit
+Theorem).</li>
+<li>The Kruskal-Wallis test extended this to comparisons across three or
+more groups — serving as a non-parametric alternative to one-way
+ANOVA.</li>
+<li>When the Kruskal-Wallis test showed a significant difference, we
+used Dunn’s test for pairwise comparisons.</li>
+</ul></li>
+</ul>
+<p>These methods complement the t-tests and ANOVA we learned earlier in
+the course. While t-tests and ANOVA assume normality and equal
+variances, the methods in this Lab are useful when those assumptions
+don’t hold — or when working with categorical or ordinal data.</p>
+<p>When you are ready, please submit the following to the Lab 9
+assignment page on Canvas:</p>
+<ol style="list-style-type: decimal">
+<li>An R Markdown document, which has a <code>.Rmd</code> extension</li>
+<li>A knitted <code>.html</code> file</li>
+</ol>
+<p>Please reach out to me at <a href="mailto:jenny.wagner@csus.edu"
+class="email">jenny.wagner@csus.edu</a> if you have any questions. See
+you in class!</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
