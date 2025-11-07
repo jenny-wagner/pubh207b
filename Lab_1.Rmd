@@ -100,9 +100,13 @@ You can set the working directory in a couple of ways:
 
 2. *Using Code (Recommended):* Use the setwd() function to specify the path to your directory. For example:
 
-```{r}
+```
+setwd("YOUR FILE PATH HERE")
+```
+
+```{r, echo=FALSE}
 # set working directory
-setwd("/Volumes/GoogleDrive/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Website/PUBH-207B-S25")
+setwd("~/Google Drive/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Website/PUBH-207B-S25")
 ```
 
 You, of course, will need to insert your own file path between the quotation marks. Not sure how to copy your file path? Try Googling "how to copy file path on mac" (or on whatever operating system you are using).

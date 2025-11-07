@@ -74,7 +74,7 @@ setwd("YOUR FILE PATH HERE")
 
 ```{r, echo=FALSE}
 # set working directory
-setwd("/Volumes/GoogleDrive/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Website/PUBH-207B-S25")
+setwd("~/Google Drive/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Website/PUBH-207B-S25")
 ```
 
 <br>
@@ -105,7 +105,7 @@ data <- read.csv("asthma_risk_factors.csv")
 
 ## Data preparation
 
-As usual, we should start by checking the structure of the dataset, including variables types:
+As usual, we should start by checking the structure of the dataset, including variable types:
 
 ```{r}
 # identify variable type for all variables in the dataset
@@ -160,7 +160,7 @@ table(data$Indoor_Air_Quality, data$Asthma)
 
 For those reporting excellent, good, or moderate indoor air quality, asthma is relatively uncommon. For those reporting poor air quality, asthma is almost as common as not having asthma (19 with asthma vs. 20 without). This suggests a potential stronger association between poor indoor air quality and asthma.
 
-As part of our exploratory analysis, we may also want to generate descriptive plots to visualize potential associations in the data. This can sometimes make it easier to quickly ascertain potentially associations between variables. As we have seen in prior Labs, barcharts are most appropriate for visualizing one or more categorical variables. We can generate barcharts for each pair of variables as follows:
+As part of our exploratory analysis, we may also want to generate descriptive plots to visualize potential associations in the data. This can sometimes make it easier to quickly ascertain potential associations between variables. As we have seen in prior Labs, bar charts are most appropriate for visualizing one or more categorical variables. We can generate bar charts for each pair of variables as follows:
 
 ```{r}
 # visualize the data: asthma by smoking status
@@ -193,7 +193,7 @@ data %>% ggplot(aes(x = Indoor_Air_Quality, fill = Asthma)) +
 
 ## Formal analysis of categorical variables
 
-Now that we've explored potential relationships in our dataset using contingency tables and barcharts, we can move on to formal statistical tests to assess whether the associations we observed are statistically significant - or if they are likely due to chance.
+Now that we've explored potential relationships in our dataset using contingency tables and bar charts, we can move on to formal statistical tests to assess whether the associations we observed are statistically significant - or if they are likely due to chance.
 
 Two commonly used tests for this purpose are the **Chi-square test of independence** and **Fisher’s exact test**. Both tests evaluate whether there is a statistically significant association between two categorical variables by comparing *observed frequencies* in each cell of a contingency table to the *expected frequencies* — the counts we would expect to see if the two variables were not associated with one another (i.e., if they were independent). For both tests, the null hypothesis is that there is *no association* between the two variables (i.e., they are independent of one another). The Chi-square test statistic is given by the following equation:
 

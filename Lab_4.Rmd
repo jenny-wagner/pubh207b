@@ -85,7 +85,7 @@ setwd("YOUR FILE PATH HERE")
 
 ```{r, echo=FALSE}
 # set working directory
-setwd("/Volumes/GoogleDrive/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Website/PUBH-207B-S25")
+setwd("~/Google Drive/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Website/PUBH-207B-S25")
 ```
 
 <br>
@@ -307,7 +307,7 @@ var.test(bmi_male, bmi_female)
 
 When running the F-test, we really only need to pay attention to one component of the output - the p-value. When the p-value is small (let's consider "small" to be less than 0.05), we can conclude that the population variances are **not equal**, as is the case here for BMI values among males and females.
 
-> Note: When a value is very small, R will often put the value in scientific notation. For example, we see the p-value in the above output is shown as 2.2e-16. This is scentific notation for 0.00000000000000022 (so, almost zero). R uses this notation automatically for very small numbers. Keep this in mind as your interpret p-values (which you'll be doing a lot!) moving forward.
+> Note: When a value is very small, R will often put the value in scientific notation. For example, we see the p-value in the above output is shown as 2.2e-16. This is scientific notation for 0.00000000000000022 (so, almost zero). R uses this notation automatically for very small numbers. Keep this in mind as your interpret p-values (which you'll be doing a lot!) moving forward.
 
 <br>
 
@@ -452,7 +452,7 @@ relative_frequencies <- prop.table(contingency_table, margin = 1)
 # Print relative frequencies
 print(relative_frequencies)
 
-# Barchart for relative frequencies
+# Bar chart for relative frequencies
 barplot(relative_frequencies, 
         beside = TRUE, 
         main = "Relative Frequencies of Sex by Obesity Status", 
@@ -463,7 +463,7 @@ barplot(relative_frequencies,
         names.arg = c("Not Obese", "Obese"))
 ```
 
-From the barchart, it appears obesity prevalence is slightly higher among females than males. But is the difference statistically significant? In other words, based on our sample data, do we have enough evidence to conclude that obesity is more prevalent among females in the population than among males? The formula to estimate the difference in population proportions is as follows: 
+From the bar chart, it appears obesity prevalence is slightly higher among females than males. But is the difference statistically significant? In other words, based on our sample data, do we have enough evidence to conclude that obesity is more prevalent among females in the population than among males? The formula to estimate the difference in population proportions is as follows: 
 
 ```{r fig.align="center", echo=FALSE, out.width = '50%'}
 knitr::include_graphics("prop-diff.png")

@@ -1,0 +1,64 @@
+---
+title: "Assignment Workflow"
+---
+
+<br>
+**Jenny Wagner, PhD, MPH**
+<br>
+Department of Public Health
+<br>
+California State University, Sacramento
+<br>
+<br>
+
+# Assignment workflow
+
+The proper workflow for each assignment will be as follows:
+
+1. Go through the week’s materials and make sure you understand the content. You should not begin working on an assignment until you have a solid grasp of the content. **Note: Skipping this step is the biggest mistake I have seen students make in this course. You simply must have a solid understanding of the content to know what I am asking you to do on an assignment.**
+2. Create a folder on your hard drive that is specific to the assignment (e.g. Assignment 1, Assignment 2, etc.).
+3. Create an R Markdown assignment file. Save it in the appropriate assignment folder on your hard drive. Delete the unnecessary text and code chunks that are automatically included in every new Rmd file (everything below the 'r setup' chunk).
+4. Download any data needed for the assignment from Canvas and save it into the same folder where you saved your `.Rmd` file.
+5. In the R Markdown document, answer the first assignment question.
+* Most of the questions will ask you to run code. Show that code in R code chunks. Any code you used to get a result should be in your assignment.
+    * Break up your code into different chunks where it makes sense. For some questions, you might include all code for a question in one single chunk. For other questions, you might break up the code into several chunks.
+    * Annotate your code using comments inside of your R code chunks so that I (and future you) understand what the code is supposed to be doing.
+    * Make sure your code works. Run your code one chunk at a time to make sure it is working. Note that there are often many ways to get to the same result in R. I will not grade based on the efficiency of your code but rather on your final answers. 
+* Unless otherwise stated, I expect you to include a written interpretation for all items. Write your explanations outside of the R code chunks. Please be sure to provide a thoughtful response. This is a not a programming or Data Science course - no matter how much time you spent to produce super elegant code to answer a question, your results won’t be worth much to anyone if you can’t properly interpret them.
+6. After you’ve completed the first question, knit to a `.html` file. Make sure it knits properly. If it does not, examine the error, and fix the problem.
+7. If you’re satisfied with your code and its results for the first question, and the document knitted properly, move on to the next question.
+8. Once you’ve completed all questions and successfully knitted, submit the `.Rmd` and the knitted `.html` files on Canvas by the specified deadline. 
+
+<br>
+
+# Assignment submission
+
+For each assignment in this course, you will upload onto Canvas two documents:
+
+1. An R Markdown document, which has a `.Rmd` extension
+2. A knitted `.html` file
+
+Together these documents will provide an easy-to-read document to grade; more importantly, you will get to practice (1) writing scripts, (2) keeping track of the analyses you run, and (3) organizing your output in a reader-friendly manner. When you submit these documents on Canvas, please do not combine them into a zipped compressed folder. **They should be two separate files.**
+
+<br>
+
+# Grading
+
+Your grade in this course will be determined by:
+
+* **Participation:** For full particicpation credit, you are expected to attend and actively participate during all in-person class meetings.
+* **Labs:** Graded on completion. Once you have gone through the Lab Guide and completed all tasks, you will submit your R Markdown file (with a `.Rmd` extension) and knitted `.html` file on Canvas.
+* **Application Challenges:** Like Labs, you must submit your R Markdown file (with a `.Rmd` extension) and knitted `.html` file on Canvas. I will not grade your assignment without both of these files. For full credit on each item, you must:
+
+  * Show the correct statistical results for a given question.
+  * Show the code producing the results.
+  * Provide comments explaining what your code is doing.
+  * Provide a correct interpretation of your results. <br><br>
+  
+* **Final Project:** You will be working in small groups for the Final Project. Assignment details and rubric will be provided on Canvas and discussed in class.
+
+<br>
+
+**Note:** While I encourage collaboration, note that Application Challenges are individual assignments. Although there may be similarities across students due to the nature of the assignments, I expect your code and written interpretations to be your own.  
+
+<br>

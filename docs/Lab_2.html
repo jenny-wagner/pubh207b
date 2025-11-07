@@ -411,13 +411,16 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="course_schedule.html">Course Schedule</a>
-</li>
-<li>
   <a href="install.html">Getting Started</a>
 </li>
 <li>
   <a href="about.html">Assignment Guidelines</a>
+</li>
+<li>
+  <a href="workflow.html">Assignment Workflow</a>
+</li>
+<li>
+  <a href="course_schedule.html">Course Schedule</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -454,6 +457,9 @@ div.tocify {
       <a href="Lab_9.html">Lab 9</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="help.html">Getting Help</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -561,8 +567,7 @@ session using the <code>library()</code> function as follows:</p>
 but remember to paste your own file path between the parentheses (return
 to Lab 1 and/or the RStudio Video Tutorial on Canvas if you need
 detailed instructions).</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># set working directory</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;/Volumes/GoogleDrive/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Website/PUBH-207B-S25&quot;</span>)</span></code></pre></div>
+<pre><code>setwd(&quot;YOUR FILE PATH HERE&quot;)</code></pre>
 <p><br></p>
 </div>
 <div id="import-the-dataset-into-rstudio" class="section level2">
@@ -980,23 +985,24 @@ statistical analyses if left unaddressed. Boxplots provide a quick
 visual summary to detect these outliers.</p>
 <p><br></p>
 </div>
-<div id="barcharts" class="section level3">
-<h3>Barcharts</h3>
-<p>Barcharts are an effective way to visualize the frequency
+<div id="bar-charts" class="section level3">
+<h3>Bar charts</h3>
+<p>Bar charts are an effective way to visualize the frequency
 distribution of <em>categorical</em> variables. They display the number
 (or proportion) of observations in each category as rectangular bars,
 allowing us to easily compare the prevalence of different groups. On a
 bar chart, each unique category is represented on the x-axis, and the
 height of each bar corresponds to the frequency (or relative frequency)
-of observations in that category. Barcharts can help us quickly identify
-the most and least frequent categories, easily visualize differences in
-the size of categories, and communicate results to a wide audience.</p>
+of observations in that category. Bar charts can help us quickly
+identify the most and least frequent categories, easily visualize
+differences in the size of categories, and communicate results to a wide
+audience.</p>
 <p>Let’s generate a bar chart for each categorical variable of interest,
 beginning with sex, by nesting the <code>table()</code> function within
 the <code>barplot()</code> function:</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="co"># generate a simple bar chart for sex</span></span>
 <span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(data_sub<span class="sc">$</span>SEX), </span>
-<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Barchart of Sex Distribution&quot;</span>, </span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Bar Chart of Sex Distribution&quot;</span>, </span>
 <span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Sex&quot;</span>, </span>
 <span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>, </span>
 <span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>,</span>
@@ -1012,8 +1018,8 @@ SEX variable, counting how many observations fall into each category
 <li><code>barplot()</code>: Generates a bar chart based on the frequency
 table.</li>
 </ul></li>
-<li><code>main = "Barchart of Sex Distribution"</code>: Sets the title
-of the chart to “Barchart of Sex Distribution.”</li>
+<li><code>main = "Bar Chart of Sex Distribution"</code>: Sets the title
+of the chart to “Bar Chart of Sex Distribution.”</li>
 <li><code>xlab = "Sex"</code>: Labels the x-axis as “Sex,” indicating
 what the categories on the x-axis represent.</li>
 <li><code>ylab = "Frequency"</code>: Labels the y-axis as “Frequency,”
@@ -1032,7 +1038,7 @@ see that females make up a larger portion of the sample than males.</p>
 status:</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="co"># generate a simple bar chart for attained education</span></span>
 <span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(data_sub<span class="sc">$</span>EDUC), </span>
-<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Barchart of Attained Education&quot;</span>, </span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Bar Chart of Attained Education&quot;</span>, </span>
 <span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Attained Education Level&quot;</span>, </span>
 <span id="cb35-5"><a href="#cb35-5" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>, </span>
 <span id="cb35-6"><a href="#cb35-6" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;pink&quot;</span>,</span>
@@ -1050,13 +1056,13 @@ larger, separate window.</p>
 </blockquote>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="co"># generate a simple bar chart for obesity status</span></span>
 <span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(data_sub<span class="sc">$</span>OBESE), </span>
-<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Barchart of Obesity Status&quot;</span>, </span>
+<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Bar Chart of Obesity Status&quot;</span>, </span>
 <span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Obesity Status&quot;</span>, </span>
 <span id="cb36-5"><a href="#cb36-5" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>, </span>
 <span id="cb36-6"><a href="#cb36-6" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;purple&quot;</span>,</span>
 <span id="cb36-7"><a href="#cb36-7" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Not obese&quot;</span>, <span class="st">&quot;Obese (BMI&gt;30)&quot;</span>))</span></code></pre></div>
 <p><img src="Lab_2_files/figure-html/unnamed-chunk-21-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>From the barcharts above, we can get a good sense of the
+<p>From the bar charts above, we can get a good sense of the
 distributions of attained education and obesity within the baseline
 sample. For example, the bar chart shows a decreasing trend in the
 number of individuals as the level of attained education increases. This
@@ -1157,7 +1163,7 @@ pane to open the plot in a larger, separate window.</p>
 <h3>Two categorical variables</h3>
 <p>To explore the relationship between two categorical variables, we can
 create a <em>contingency table</em> to show the frequencies of
-combinations of the categories. We can then use a <em>barchart</em> to
+combinations of the categories. We can then use a <em>bar chart</em> to
 visualize the frequencies or proportions within each category. For
 example, you might be interested in the relationship between sex and
 obesity status. Contingency tables and bar charts can help us determine
@@ -1178,10 +1184,10 @@ of categories from the two variables. In this case, the table shows the
 number of males and females who are obese or not obese. We can then plot
 these values on a bar chart by nesting the <code>table()</code> function
 within the <code>barplot()</code> function as follows:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="co"># Barchart for sex by obesity status</span></span>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" tabindex="-1"></a><span class="co"># Bar chart for sex by obesity status</span></span>
 <span id="cb41-2"><a href="#cb41-2" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(data_sub<span class="sc">$</span>SEX, data_sub<span class="sc">$</span>OBESE), </span>
 <span id="cb41-3"><a href="#cb41-3" tabindex="-1"></a>        <span class="at">beside =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb41-4"><a href="#cb41-4" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Barchart of Sex by Obesity Status&quot;</span>, </span>
+<span id="cb41-4"><a href="#cb41-4" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Bar Chart of Sex by Obesity Status&quot;</span>, </span>
 <span id="cb41-5"><a href="#cb41-5" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Obesity Status&quot;</span>, </span>
 <span id="cb41-6"><a href="#cb41-6" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>, </span>
 <span id="cb41-7"><a href="#cb41-7" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>), </span>
@@ -1193,7 +1199,7 @@ within the <code>barplot()</code> function as follows:</p>
 <li><code>table(data_sub$SEX, data_sub$OBESE...)</code>: Creates a
 contingency table with sex (<code>SEX</code>) as rows and obesity status
 (<code>OBESE</code>) as columns.</li>
-<li><code>barplot()</code>: Generates a barchart from the contingency
+<li><code>barplot()</code>: Generates a bar chart from the contingency
 table.</li>
 <li><code>beside = TRUE</code>: Creates separate bars for each category
 (instead of stacking them), which might make it a bit easier to compare
@@ -1233,7 +1239,7 @@ follows:</p>
 ##             0         1
 ##   1 0.8803507 0.1196493
 ##   2 0.8618740 0.1381260</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="co"># Barchart for relative frequencies</span></span>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="co"># Bar chart for relative frequencies</span></span>
 <span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a><span class="fu">barplot</span>(relative_frequencies, </span>
 <span id="cb44-3"><a href="#cb44-3" tabindex="-1"></a>        <span class="at">beside =</span> <span class="cn">TRUE</span>, </span>
 <span id="cb44-4"><a href="#cb44-4" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Relative Frequencies of Sex by Obesity Status&quot;</span>, </span>
@@ -1269,14 +1275,14 @@ frequencies in the Console (bottom-left window). This step might be
 helpful because it provides the exact proportion of participants in each
 obesity category for males and females, but it is not actually necessary
 to create the bar chart.</li>
-<li><code>barplot(relative_frequencies, ...</code>: Creates a barchart
+<li><code>barplot(relative_frequencies, ...</code>: Creates a bar chart
 to visualize the relative frequencies, similar to the one for counts but
 scaled to show proportions (values between 0 and 1). See previous bar
 chart above (of counts) for an explanation of each argument nested in
 the <code>barplot()</code> function here.</li>
 </ul>
-<p>From the barchart of relative frequencies, we can see that females in
-the sample are slightly more likely to be obese than males. In the
+<p>From the bar chart of relative frequencies, we can see that females
+in the sample are slightly more likely to be obese than males. In the
 coming weeks in this course, we will learn how to test whether group
 differences like this are <em>statistically significant</em>, meaning
 there is enough evidence in the data to conclude that a real difference

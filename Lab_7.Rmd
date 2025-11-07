@@ -127,7 +127,7 @@ setwd("YOUR FILE PATH HERE")
 
 ```{r, echo=FALSE}
 # set working directory
-setwd("/Volumes/GoogleDrive/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Website/PUBH-207B-S25")
+setwd("~/Google Drive/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Website/PUBH-207B-S25")
 ```
 
 <br>

@@ -411,13 +411,16 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="course_schedule.html">Course Schedule</a>
-</li>
-<li>
   <a href="install.html">Getting Started</a>
 </li>
 <li>
   <a href="about.html">Assignment Guidelines</a>
+</li>
+<li>
+  <a href="workflow.html">Assignment Workflow</a>
+</li>
+<li>
+  <a href="course_schedule.html">Course Schedule</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -454,6 +457,9 @@ div.tocify {
       <a href="Lab_9.html">Lab 9</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="help.html">Getting Help</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -639,7 +645,7 @@ and also visualize the distribution of BMI with a histogram.</p>
 ##  4: 502           
 ##                   
 ## </code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># create a historgram of BMI in the sample</span></span>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># create a histogram of BMI in the sample</span></span>
 <span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>BMI, <span class="at">breaks =</span> <span class="dv">30</span>)</span></code></pre></div>
 <p><img src="Lab_5_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>From the summary of our dataset, we can see the mean BMI in the
@@ -908,7 +914,8 @@ sample:</p>
 <span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">&quot;#e9ecef&quot;</span>, <span class="at">alpha=</span><span class="fl">0.5</span>, <span class="at">position =</span> <span class="st">&#39;identity&#39;</span>) <span class="sc">+</span></span>
 <span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>    <span class="fu">scale_fill_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Males&#39;</span>, <span class="st">&#39;Females&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.</code></pre>
 <p><img src="Lab_5_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p><em>See Lab 4 for a detailed breakdown of the code chunk used to
 generate this side-by-side histogram.</em></p>

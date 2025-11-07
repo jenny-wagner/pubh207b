@@ -103,7 +103,7 @@ setwd("YOUR FILE PATH HERE")
 
 ```{r, echo=FALSE}
 # set working directory
-setwd("/Volumes/GoogleDrive/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Website/PUBH-207B-S25")
+setwd("~/Google Drive/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Website/PUBH-207B-S25")
 ```
 
 <br>
@@ -277,7 +277,7 @@ We can apply the Shapiro-Wilk Test for our outcome of interest using the `shapir
 data %>% group_by(EDUC) %>% shapiro_test(BMI)
 ```
 
-From the output, we can see our data violate the normality assumption based on the Shaprio-Wilk Test (as the p-value for each group is very small). 
+From the output, we can see our data violate the normality assumption based on the Shapiro-Wilk Test (as the p-value for each group is very small). 
 
 Importantly, the Shapiro-Wilk test is very sensitive to sample size, where, for large samples (> 100 per group), the test often detects small, meaningless deviations from normality, even when these deviations are not strong enough to affect ANOVA results. Thus, for large samples (like ours), we often rely more on visual methods to assess normality rather than strictly interpreting the p-value from the Shapiro-Wilk test.
 

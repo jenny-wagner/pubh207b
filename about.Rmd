@@ -40,11 +40,35 @@ In this course, we will use R Markdown files for **all assignments.** This ensur
 
 <br>
 
+# File Management Structure
+
+If you are using your personal computer for this course, it’s best to set up a **clean and efficient file management structure.** File management is key to preventing R programming frustration. Here are some tips:
+
+* First, set up a clear and understandable hierarchical file system for this class. For example, create a class folder (PUBH 207B). Within this class folder, create the folder *Assignments* (or separate folders for Labs and Application Challenges, whatever will be clearest to you). Within the Assignments folder, create separate folders for each Assignment (e.g. Lab 1, Lab 2, …). I do **not** recommend working from your Desktop. Or from the Downloads folder. Or from some randomly named folder that you will have a hard time finding a month, week or day from now. You might end up having a system that looks something like this (on a Mac):
+
+<br>
+
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("about_fig3.png")
+```
+
+* Second, keep all your files that are related to an assignment or project (e.g., R Markdown file, datasets, etc.) in one folder. That is, don’t have an Application Challenge #3 folder that contains data files specific to Application Challenge #4. Keep everything in one folder, including the R Markdown and datasets for that assignment or project. **This will be necessary to properly compile your final report for each assignment.**
+
+<br>
+
 # RStudio interface
 
 As discussed on the Home page, R is a programming language designed for statistical computing and graphics, while RStudio provides a user-friendly interface for working with R. You need to have both programs installed; however, we will only use the RStudio application to complete assignments in this course. You will not actually need to open the R application at any time.
 
 When you open RStudio, you’ll see the interface is divided into four main windows (see image below):
+
+<br>
+
+```{r, echo=FALSE, fig.cap="The RStudio Interface", out.width = '100%'}
+knitr::include_graphics("about_fig1.png")
+```
+
+<br>
 
 1. **Editor** (Top-Left):
 
@@ -68,12 +92,6 @@ When you open RStudio, you’ll see the interface is divided into four main wind
 
 <br>
 
-```{r, echo=FALSE, fig.cap="The RStudio Interface", out.width = '100%'}
-knitr::include_graphics("about_fig1.png")
-```
-
-<br>
-
 # A brief intro to R Markdown...
 
 As we will be using R Markdown documents (with a `.Rmd` extension) for all assignments, it is important for you to have a basic understanding of these files before we begin working with RStudio. This section provides a brief introduction to R Markdown, including how to create and save an Rmd document within RStudio, the major components of an Rmd document (YAML header, R code chunks, and text), and how to "knit" an Rmd document (in other words, how to go from an Rmd document to a nicely formatted report).
@@ -94,19 +112,6 @@ knitr::include_graphics("about_fig2.png")
 
 You will notice that your new R Markdown file already has some "stuff" in it. R Markdown essentially provides some basic instructions for using an R Markdown file, but we don't necessarily need to include that in our assignments. **Before you get started on the assignment, you can go ahead and delete everything below the "r setup" chunk.** ("Chunks" are the sections you'll see shaded in light gray; more info below). In other words, leave the chunk that starts with "{r setup, include = FALSE}" and delete everything below it. Then, you will actually have a clean `.Rmd` file to work from.
 
-If you are using your personal computer for this course, it’s best to set up a **clean and efficient file management structure.** File management is key to preventing R programming frustration. Here are some tips:
-
-* First, set up a clear and understandable hierarchical file system for this class. For example, create a class folder (PUBH 207B). Within this class folder, create the folder *Assignments* (or separate folders for Labs and Application Challenges, whatever will be clearest to you). Within the Assignments folder, create separate folders for each Assignment (e.g. Lab 1, Lab 2, …). I do **not** recommend working from your Desktop. Or from the Downloads folder. Or from some randomly named folder that you will have a hard time finding a month, week or day from now. You might end up having a system that looks something like this (on a Mac):
-
-<br>
-
-```{r, echo=FALSE, out.width = '100%'}
-knitr::include_graphics("about_fig3.png")
-```
-
-<br>
-
-* Second, keep all your files that are related to an assignment or project (e.g., R Markdown file, datasets, etc.) in one folder. That is, don’t have an Application Challenge #3 folder that contains data files specific to Application Challenge #4. Keep everything in one folder, including the R Markdown and datasets for that assignment or project. **This will be necessary to properly compile your final report for each assignment.**
 
 Using the basic organizational guidelines above, save your R Markdown file into an appropriate folder by clicking on File and then Save from the RStudio menu.
 
@@ -408,66 +413,3 @@ When you’re satisfied with the end product, submit your `.Rmd` document and fi
 
 <br>
 
-# Assignment workflow
-
-The proper workflow for each assignment will be as follows:
-
-1. Go through the week’s materials and make sure you understand the content. You should not begin working on an assignment until you have a solid grasp of the content. **Note: Skipping this step is the biggest mistake I have seen students make in this course. You simply must have a solid understanding of the content to know what I am asking you to do on an assignment.**
-2. Create a folder on your hard drive that is specific to the assignment (e.g. Assignment 1, Assignment 2, etc.).
-3. Create an R Markdown assignment file. Save it in the appropriate assignment folder on your hard drive. Delete the unnecessary text and code chunks that are automatically included in every new Rmd file (everything below the 'r setup' chunk).
-4. Download any data needed for the assignment from Canvas and save it into the same folder where you saved your `.Rmd` file.
-5. In the R Markdown document, answer the first assignment question.
-* Most of the questions will ask you to run code. Show that code in R code chunks. Any code you used to get a result should be in your assignment.
-    * Break up your code into different chunks where it makes sense. For some questions, you might include all code for a question in one single chunk. For other questions, you might break up the code into several chunks.
-    * Annotate your code using comments inside of your R code chunks so that I (and future you) understand what the code is supposed to be doing.
-    * Make sure your code works. Run your code one chunk at a time to make sure it is working. Note that there are often many ways to get to the same result in R. I will not grade based on the efficiency of your code but rather on your final answers. 
-* Unless otherwise stated, I expect you to include a written interpretation for all items. Write your explanations outside of the R code chunks. Please be sure to provide a thoughtful response. This is a not a programming or Data Science course - no matter how much time you spent to produce super elegant code to answer a question, your results won’t be worth much to anyone if you can’t properly interpret them.
-6. After you’ve completed the first question, knit to a `.html` file. Make sure it knits properly. If it does not, examine the error, and fix the problem.
-7. If you’re satisfied with your code and its results for the first question, and the document knitted properly, move on to the next question.
-8. Once you’ve completed all questions and successfully knitted, submit the `.Rmd` and the knitted `.html` files on Canvas by the specified deadline. 
-
-<br>
-
-# Assignment submission
-
-For each assignment in this course, you will upload onto Canvas two documents:
-
-1. An R Markdown document, which has a `.Rmd` extension
-2. A knitted `.html` file
-
-Together these documents will provide an easy-to-read document to grade; more importantly, you will get to practice (1) writing scripts, (2) keeping track of the analyses you run, and (3) organizing your output in a reader-friendly manner. When you submit these documents on Canvas, please do not combine them into a zipped compressed folder. **They should be two separate files.**
-
-<br>
-
-# Grading
-
-Your grade in this course will be determined by:
-
-* **Participation:** For full particicpation credit, you are expected to attend and actively participate during all in-person class meetings.
-* **Labs:** Graded on completion. Once you have gone through the Lab Guide and completed all tasks, you will submit your R Markdown file (with a `.Rmd` extension) and knitted `.html` file on Canvas.
-* **Application Challenges:** Like Labs, you must submit your R Markdown file (with a `.Rmd` extension) and knitted `.html` file on Canvas. I will not grade your assignment without both of these files. For full credit on each item, you must:
-
-  * Show the correct statistical results for a given question.
-  * Show the code producing the results.
-  * Provide comments explaining what your code is doing.
-  * Provide a correct interpretation of your results. <br><br>
-  
-* **Final Project:** You will be working in small groups for the Final Project. Assignment details and rubric will be provided on Canvas and discussed in class.
-
-<br>
-
-**Note:** While I encourage collaboration, note that Application Challenges are individual assignments. Although there may be similarities across students due to the nature of the assignments, I expect your code and written interpretations to be your own.  
-
-<br>
-
-# Getting Help
-
-Working with R/RStudio can have a steep learning curve initially. Know that you are not alone on this journey - your fellow students are likely in the same boat, and I am here to support you to the best of my ability at every step of the way. 
-
-A few tips:
-
-* Whenever you are editing R Markdown documents in RStudio, you can display an R Markdown cheat sheet by going to Help -> Cheatsheets -> R Markdown Cheat Sheet. 
-* A basic introduction to R Markdown can also be found in Chapter 27 in [R for Data Science](https://r4ds.had.co.nz/r-markdown.html). 
-* RStudio has a [quick introduction](https://rmarkdown.rstudio.com/authoring_quick_tour.html) to R Markdown. 
-* Google your question - most likely you are not the first person to run into the issue.
-* If you are struggling, please meet with me during office hours. If my regular office hours do not work with your schedule, reach out and we can find an alternative time to meet.

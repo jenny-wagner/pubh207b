@@ -411,13 +411,16 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="course_schedule.html">Course Schedule</a>
-</li>
-<li>
   <a href="install.html">Getting Started</a>
 </li>
 <li>
   <a href="about.html">Assignment Guidelines</a>
+</li>
+<li>
+  <a href="workflow.html">Assignment Workflow</a>
+</li>
+<li>
+  <a href="course_schedule.html">Course Schedule</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -454,6 +457,9 @@ div.tocify {
       <a href="Lab_9.html">Lab 9</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="help.html">Getting Help</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -591,7 +597,7 @@ following:</p>
 <div id="data-preparation" class="section level2">
 <h2>Data preparation</h2>
 <p>As usual, we should start by checking the structure of the dataset,
-including variables types:</p>
+including variable types:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># identify variable type for all variables in the dataset</span></span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">str</span>(data)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    100 obs. of  4 variables:
@@ -689,10 +695,10 @@ without). This suggests a potential stronger association between poor
 indoor air quality and asthma.</p>
 <p>As part of our exploratory analysis, we may also want to generate
 descriptive plots to visualize potential associations in the data. This
-can sometimes make it easier to quickly ascertain potentially
-associations between variables. As we have seen in prior Labs, barcharts
-are most appropriate for visualizing one or more categorical variables.
-We can generate barcharts for each pair of variables as follows:</p>
+can sometimes make it easier to quickly ascertain potential associations
+between variables. As we have seen in prior Labs, bar charts are most
+appropriate for visualizing one or more categorical variables. We can
+generate bar charts for each pair of variables as follows:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># visualize the data: asthma by smoking status</span></span>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Smoking_Behavior, <span class="at">fill =</span> Asthma)) <span class="sc">+</span></span>
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span> </span>
@@ -720,7 +726,7 @@ We can generate barcharts for each pair of variables as follows:</p>
 class="section level2">
 <h2>Formal analysis of categorical variables</h2>
 <p>Now that we’ve explored potential relationships in our dataset using
-contingency tables and barcharts, we can move on to formal statistical
+contingency tables and bar charts, we can move on to formal statistical
 tests to assess whether the associations we observed are statistically
 significant - or if they are likely due to chance.</p>
 <p>Two commonly used tests for this purpose are the <strong>Chi-square

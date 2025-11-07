@@ -411,13 +411,16 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="course_schedule.html">Course Schedule</a>
-</li>
-<li>
   <a href="install.html">Getting Started</a>
 </li>
 <li>
   <a href="about.html">Assignment Guidelines</a>
+</li>
+<li>
+  <a href="workflow.html">Assignment Workflow</a>
+</li>
+<li>
+  <a href="course_schedule.html">Course Schedule</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -454,6 +457,9 @@ div.tocify {
       <a href="Lab_9.html">Lab 9</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="help.html">Getting Help</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -1477,19 +1483,14 @@ any potential multicollinearity issues. We can do this using the
 ## 
 ## Low Correlation
 ## 
-##                 Term  VIF        VIF 95% CI Increased SE Tolerance
-##  PopulationDensity_z 1.01 [ 1.00, 3.41e+07]         1.00      0.99
-##  Tolerance 95% CI
-##      [0.00, 1.00]
+##                 Term  VIF        VIF 95% CI adj. VIF Tolerance Tolerance 95% CI
+##  PopulationDensity_z 1.01 [ 1.00, 3.41e+07]     1.00      0.99     [0.00, 1.00]
 ## 
 ## High Correlation
 ## 
-##              Term   VIF        VIF 95% CI Increased SE Tolerance
-##   VaccinationRate 16.89 [11.88,    24.20]         4.11      0.06
-##  HealthcareAccess 16.87 [11.87,    24.18]         4.11      0.06
-##  Tolerance 95% CI
-##      [0.04, 0.08]
-##      [0.04, 0.08]</code></pre>
+##              Term   VIF        VIF 95% CI adj. VIF Tolerance Tolerance 95% CI
+##   VaccinationRate 16.89 [11.88,    24.20]     4.11      0.06     [0.04, 0.08]
+##  HealthcareAccess 16.87 [11.87,    24.18]     4.11      0.06     [0.04, 0.08]</code></pre>
 <p>From our output (specifically, the two leftmost columns), we can see
 vaccination rate and healthcare access are listed under “High
 Correlation” as they have extremely high VIF values (~16.9), meaning
@@ -1544,9 +1545,9 @@ in our outcome by removing healthcare access from the model.</p>
 ## 
 ## Low Correlation
 ## 
-##                 Term  VIF  VIF 95% CI Increased SE Tolerance Tolerance 95% CI
-##      VaccinationRate 1.00 [1.00, Inf]         1.00      1.00     [0.00, 1.00]
-##  PopulationDensity_z 1.00 [1.00, Inf]         1.00      1.00     [0.00, 1.00]</code></pre>
+##                 Term  VIF  VIF 95% CI adj. VIF Tolerance Tolerance 95% CI
+##      VaccinationRate 1.00 [1.00, Inf]     1.00      1.00     [0.00, 1.00]
+##  PopulationDensity_z 1.00 [1.00, Inf]     1.00      1.00     [0.00, 1.00]</code></pre>
 <p>We see that, after removing healthcare access from the model,
 multicollinearity is no longer an issue (the VIF values are 1, meaning
 no multicollinearity). Yay!</p>

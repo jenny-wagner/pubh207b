@@ -411,13 +411,16 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="course_schedule.html">Course Schedule</a>
-</li>
-<li>
   <a href="install.html">Getting Started</a>
 </li>
 <li>
   <a href="about.html">Assignment Guidelines</a>
+</li>
+<li>
+  <a href="workflow.html">Assignment Workflow</a>
+</li>
+<li>
+  <a href="course_schedule.html">Course Schedule</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -454,6 +457,9 @@ div.tocify {
       <a href="Lab_9.html">Lab 9</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="help.html">Getting Help</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -607,7 +613,7 @@ follows:</p>
 <p>Next, let’s retain only the variables we plan to use in our
 regression analysis - including our outcome and predictors of interest -
 so that our dataset is smaller and more manageable. As discussed above,
-we will investigate sex, age, BMI, sytolic blood pressure, total
+we will investigate sex, age, BMI, systolic blood pressure, total
 cholesterol level, smoking status, and diabetes status as possible
 predictors of heart attack risk. We can retain these variables using the
 <code>select()</code> function as follows:</p>
@@ -935,14 +941,14 @@ Inflation Factor (VIF) for each variable, as follows:</p>
 ## 
 ## Low Correlation
 ## 
-##      Term  VIF   VIF 95% CI Increased SE Tolerance Tolerance 95% CI
-##       SEX 1.12 [1.09, 1.17]         1.06      0.89     [0.86, 0.92]
-##       AGE 1.21 [1.17, 1.26]         1.10      0.83     [0.79, 0.85]
-##       BMI 1.13 [1.09, 1.17]         1.06      0.89     [0.85, 0.91]
-##     SYSBP 1.28 [1.23, 1.33]         1.13      0.78     [0.75, 0.81]
-##   TOTCHOL 1.06 [1.03, 1.10]         1.03      0.95     [0.91, 0.97]
-##  CURSMOKE 1.14 [1.11, 1.19]         1.07      0.88     [0.84, 0.90]
-##  DIABETES 1.02 [1.01, 1.09]         1.01      0.98     [0.92, 0.99]</code></pre>
+##      Term  VIF   VIF 95% CI adj. VIF Tolerance Tolerance 95% CI
+##       SEX 1.12 [1.09, 1.17]     1.06      0.89     [0.86, 0.92]
+##       AGE 1.21 [1.17, 1.26]     1.10      0.83     [0.79, 0.85]
+##       BMI 1.13 [1.09, 1.17]     1.06      0.89     [0.85, 0.91]
+##     SYSBP 1.28 [1.23, 1.33]     1.13      0.78     [0.75, 0.81]
+##   TOTCHOL 1.06 [1.03, 1.10]     1.03      0.95     [0.91, 0.97]
+##  CURSMOKE 1.14 [1.11, 1.19]     1.07      0.88     [0.84, 0.90]
+##  DIABETES 1.02 [1.01, 1.09]     1.01      0.98     [0.92, 0.99]</code></pre>
 <p>From the output, we can see the VIF values (second column from the
 left) are all close to 1. This means there is no multicollinearity in
 our original model. Great!</p>

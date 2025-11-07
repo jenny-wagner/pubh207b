@@ -411,13 +411,16 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="course_schedule.html">Course Schedule</a>
-</li>
-<li>
   <a href="install.html">Getting Started</a>
 </li>
 <li>
   <a href="about.html">Assignment Guidelines</a>
+</li>
+<li>
+  <a href="workflow.html">Assignment Workflow</a>
+</li>
+<li>
+  <a href="course_schedule.html">Course Schedule</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -454,6 +457,9 @@ div.tocify {
       <a href="Lab_9.html">Lab 9</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="help.html">Getting Help</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -816,7 +822,8 @@ BMI by sex in our sample:</p>
 <span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">&quot;#e9ecef&quot;</span>, <span class="at">alpha=</span><span class="fl">0.5</span>, <span class="at">position =</span> <span class="st">&#39;identity&#39;</span>) <span class="sc">+</span></span>
 <span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a>    <span class="fu">scale_fill_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Males&#39;</span>, <span class="st">&#39;Females&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.</code></pre>
 <p><img src="Lab_4_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>A quick breakdown of this code chunk, in which we are using the
 <code>ggplot2</code> package for the first time(!):</p>
@@ -946,7 +953,7 @@ for BMI values among males and females.</p>
 <blockquote>
 <p>Note: When a value is very small, R will often put the value in
 scientific notation. For example, we see the p-value in the above output
-is shown as 2.2e-16. This is scentific notation for 0.00000000000000022
+is shown as 2.2e-16. This is scientific notation for 0.00000000000000022
 (so, almost zero). R uses this notation automatically for very small
 numbers. Keep this in mind as your interpret p-values (which you’ll be
 doing a lot!) moving forward.</p>
@@ -1200,7 +1207,7 @@ side-by-side bar chart as follows:</p>
 ##             0         1
 ##   1 0.8806584 0.1193416
 ##   2 0.8626506 0.1373494</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="co"># Barchart for relative frequencies</span></span>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="co"># Bar chart for relative frequencies</span></span>
 <span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a><span class="fu">barplot</span>(relative_frequencies, </span>
 <span id="cb45-3"><a href="#cb45-3" tabindex="-1"></a>        <span class="at">beside =</span> <span class="cn">TRUE</span>, </span>
 <span id="cb45-4"><a href="#cb45-4" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Relative Frequencies of Sex by Obesity Status&quot;</span>, </span>
@@ -1210,7 +1217,7 @@ side-by-side bar chart as follows:</p>
 <span id="cb45-8"><a href="#cb45-8" tabindex="-1"></a>        <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>), </span>
 <span id="cb45-9"><a href="#cb45-9" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Not Obese&quot;</span>, <span class="st">&quot;Obese&quot;</span>))</span></code></pre></div>
 <p><img src="Lab_4_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
-<p>From the barchart, it appears obesity prevalence is slightly higher
+<p>From the bar chart, it appears obesity prevalence is slightly higher
 among females than males. But is the difference statistically
 significant? In other words, based on our sample data, do we have enough
 evidence to conclude that obesity is more prevalent among females in the

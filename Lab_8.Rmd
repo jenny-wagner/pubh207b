@@ -84,7 +84,7 @@ setwd("YOUR FILE PATH HERE")
 
 ```{r, echo=FALSE}
 # set working directory
-setwd("/Volumes/GoogleDrive/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Website/PUBH-207B-S25")
+setwd("~/Google Drive/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Website/PUBH-207B-S25")
 ```
 
 <br>
@@ -118,7 +118,7 @@ In analyzing data from prospective cohort studies such as this, the standard app
 data_sub <- data_sub %>% filter(PREVCHD == 0)
 ```
 
-Next, let's retain only the variables we plan to use in our regression analysis - including our outcome and predictors of interest - so that our dataset is smaller and more manageable. As discussed above, we will investigate sex, age, BMI, sytolic blood pressure, total cholesterol level, smoking status, and diabetes status as possible predictors of heart attack risk. We can retain these variables using the `select()` function as follows:
+Next, let's retain only the variables we plan to use in our regression analysis - including our outcome and predictors of interest - so that our dataset is smaller and more manageable. As discussed above, we will investigate sex, age, BMI, systolic blood pressure, total cholesterol level, smoking status, and diabetes status as possible predictors of heart attack risk. We can retain these variables using the `select()` function as follows:
 
 ```{r}
 # select variables we want to use in regression analysis

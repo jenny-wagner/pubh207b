@@ -5,12 +5,14 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Course Schedule"
-      href: course_schedule.html
     - text: "Getting Started"
       href: install.html
     - text: "Assignment Guidelines"
       href: about.html
+    - text: "Assignment Workflow"
+      href: workflow.html
+    - text: "Course Schedule"
+      href: course_schedule.html
     - text: "Lab Guides"
       menu:
       - text: "Lab 1"
@@ -31,6 +33,8 @@ navbar:
         href: Lab_8.html
       - text: "Lab 9"
         href: Lab_9.html
+    - text: "Getting Help"
+      href: help.html
 
 output:
   html_document:
