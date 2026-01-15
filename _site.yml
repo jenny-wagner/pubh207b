@@ -11,28 +11,28 @@ navbar:
       href: about.html
     - text: "Assignment Workflow"
       href: workflow.html
-    - text: "Course Schedule"
-      href: course_schedule.html
+#    - text: "Course Schedule"
+#      href: course_schedule.html
     - text: "Lab Guides"
       menu:
       - text: "Lab 1"
         href: Lab_1.html
-      - text: "Lab 2"
-        href: Lab_2.html
-      - text: "Lab 3"
-        href: Lab_3.html
-      - text: "Lab 4"
-        href: Lab_4.html
-      - text: "Lab 5"
-        href: Lab_5.html
-      - text: "Lab 6"
-        href: Lab_6.html
-      - text: "Lab 7"
-        href: Lab_7.html
-      - text: "Lab 8"
-        href: Lab_8.html
-      - text: "Lab 9"
-        href: Lab_9.html
+#      - text: "Lab 2"
+#        href: Lab_2.html
+#      - text: "Lab 3"
+#        href: Lab_3.html
+#      - text: "Lab 4"
+#        href: Lab_4.html
+#      - text: "Lab 5"
+#        href: Lab_5.html
+#      - text: "Lab 6"
+#        href: Lab_6.html
+#      - text: "Lab 7"
+#        href: Lab_7.html
+#      - text: "Lab 8"
+#        href: Lab_8.html
+#      - text: "Lab 9"
+#        href: Lab_9.html
     - text: "Getting Help"
       href: help.html
 
