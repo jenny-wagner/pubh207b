@@ -2,23 +2,23 @@
 title: "Getting Help"
 ---
 
-<br>
-**Jenny Wagner, PhD, MPH**
-<br>
-Department of Public Health
-<br>
-California State University, Sacramento
-<br>
-<br>
-
-# Getting Help
 
 Working with R/RStudio can have a steep learning curve initially. Know that you are not alone on this journey - your fellow students are likely in the same boat, and I am here to support you to the best of my ability at every step of the way. 
 
 A few tips:
 
-* Whenever you are editing R Markdown documents in RStudio, you can display an R Markdown cheat sheet by going to Help -> Cheatsheets -> R Markdown Cheat Sheet. 
+* Whenever you are editing R Markdown documents in RStudio, you can display an R Markdown cheat sheet by going to Help → Cheatsheets → R Markdown Cheat Sheet. 
 * A basic introduction to R Markdown can also be found in Chapter 27 in [R for Data Science](https://r4ds.had.co.nz/r-markdown.html). 
 * RStudio has a [quick introduction](https://rmarkdown.rstudio.com/authoring_quick_tour.html) to R Markdown. 
 * Google your question - most likely you are not the first person to run into the issue.
 * If you are struggling, please meet with me during office hours. If my regular office hours do not work with your schedule, reach out and we can find an alternative time to meet.
+
+<br>
+
+---
+
+**Jenny Wagner, PhD, MPH**  
+Assistant Professor<br>
+Department of Public Health<br>
+California State University, Sacramento<br>
+jenny.wagner@csus.edu

@@ -162,7 +162,12 @@ Question 1
 ```
 
 Assignments will ask you to write R code to accomplish analytic tasks. You will present and execute your R code inside R code chunks (yes, they are really called "chunks"). 
-R code chunks start with <code>&#96;&#96;&#96;{r}</code> and end with <code>&#96;&#96;&#96;</code>, and you insert your R code in between.
+R code chunks start with <code>&#96;&#96;&#96;{r}</code> and end with <code>&#96;&#96;&#96;</code>, and you insert your R code in between. You can also easily create a new code chunk by clicking on 
+```{r, echo=FALSE, out.width = '5%'}
+knitr::include_graphics("chunk.png")
+```
+located at the top of the R Markdown window and select R (the first option in the list).
+
 Using the example question above, to carry out the operation `1+1` as R code, it will look like the following in your R Markdown document:
 
 `````{r, eval = FALSE}

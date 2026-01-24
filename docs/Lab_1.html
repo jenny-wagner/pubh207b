@@ -450,14 +450,12 @@ div.tocify {
 
 
 <p><br></p>
-<p><strong>Jenny Wagner, PhD, MPH</strong> <br> Department of Public
-Health <br> California State University, Sacramento <br> <br></p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>Lab 1 introduces you to the core functions of R/RStudio and covers
 essential data cleaning techniques. Data cleaning is a critical skill to
 have in carrying out public health research. It entails the preparation
-of raw - and often messy and unstructured - data for analysis. While the
+of raw — and often messy and unstructured — data for analysis. While the
 specific steps can vary by project, many common tasks — such as
 modifying variable types, filtering data, and creating new variables —
 are foundational to ensuring reliable and reproducible analyses.</p>
@@ -497,9 +495,10 @@ dedicated to Lab 1 materials.</li>
 <li>Next, download the dataset “frmgham2.csv” from Canvas and save it in
 the same folder as your Lab 1 R Markdown file.</li>
 <li>Finally, proceed to read through and carry out each of the tasks
-detailed below. You will need to complete each task sequentially in
-order to complete this assignment. In other words, you won’t be able to
-complete task #3 without first completing task #2, etc.</li>
+detailed below. You will need to complete each task
+<em>sequentially</em> to successfully complete this assignment. In other
+words, you won’t be able to complete task #3 without first completing
+task #2, etc.</li>
 </ol>
 <p><br></p>
 <div id="install-and-load-r-packages" class="section level2">
@@ -534,11 +533,12 @@ install.packages(&quot;tidyverse&quot;)</code></pre>
 <p>Remember that when we type code directly into the Console window,
 that code is <em>not</em> saved for future use. This is exactly what we
 want to do when installing packages for the first time. This is because,
-as mentioned above, we only need to install a package once. However, to
-use the functions from a package in a new R session, you must load the
-package using the <code>library()</code> function. Loading a package
-makes its functions available for use in your <em>current</em> R
-session.</p>
+as mentioned above, we only need to install a package once — we don’t
+want to repeat this step every time we return to our project. However,
+to use the functions from a package in a <em>new R session</em>, you
+must load the package using the <code>library()</code> function. Loading
+a package makes its functions available for use in your <em>current</em>
+R session.</p>
 <p>For example, to load the packages you installed a moment ago, create
 a chunk in your R Markdown document as follows:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># load packages</span></span>
@@ -547,7 +547,7 @@ a chunk in your R Markdown document as follows:</p>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>After running this chunk, you will see a lot of “stuff” appear in the
 Console window. For our purposes we can ignore all of this when loading
-packages - that is, unless you see an error message, which would
+packages — that is, unless you see an error message, which would
 indicate the package did not load properly.</p>
 <p>After loading an R package, you can explore its functions by
 accessing the package documentation. One way to do this is to use the
@@ -582,12 +582,12 @@ specify the path to your directory. For example:</p></li>
 quotation marks. Not sure how to copy your file path? Try Googling “how
 to copy file path on mac” (or on whatever operating system you are
 using).</p>
-<p>I recommend using code so that your working directory for a
-particular assignment or project is documented in your R Markdown file.
-This will be helpful when restarting R or reopening an assignment
-because rather than searching through your files to set the working
-directory manually, you will just need to rerun the chunk that already
-contains the necessary file path.</p>
+<p>I strongly recommend using code to set your working directory so that
+the specific folder you specified for an assignment is clearly
+documented in your R Markdown file. This will be helpful when restarting
+R or reopening an assignment because rather than searching through your
+files to set the working directory manually, you will just need to rerun
+the chunk that already contains the necessary file path.</p>
 <p><br></p>
 </div>
 <div id="import-a-dataset-into-rstudio" class="section level2">
@@ -615,16 +615,17 @@ able to access and manipulate the data contained within the
 “frmgham2.csv” data file. This is why, after running this chunk, you
 should see an R object called “data” in your Environment window
 (top-right). When performing your own analyses, you can call R objects
-whatever makes the most sense to you. A couple of quick observations
-about the “data” object now in our Environment:</p>
+whatever makes the most sense to you (though for the purposes of the
+Labs, I would stick with the names I’ve already specified). A couple of
+quick observations about the “data” object now in our Environment:</p>
 <ul>
 <li>The spreadsheet icon on the far right indicates that this object is
 a “data frame” (i.e., a spreadsheet with rows and columns). For now,
 know that there are different types of R objects we can store in the
 Environment. Data frames are the most common type (but not the only
 type) of R object we will work with.</li>
-<li>The object is shown to contain “11627 obs. of 39 variables” - this
-means that the dataset contains 11627 observations (rows) and 39
+<li>The object is shown to contain “11627 obs. of 39 variables” — this
+means that the dataset contains 11,627 observations (rows) and 39
 variables (columns).</li>
 </ul>
 <p>In the Environment window, click on the “data” object you have
@@ -632,9 +633,10 @@ created. You can also type <code>View(data)</code> into the Console for
 the same result. You should see the dataset open in a new tab within
 RStudio. It should essentially look like a spreadsheet, with variable
 names across the top and each observation in a row.</p>
-<p><em>Note:</em> For Excel files, you’ll need to install and load the
-“readxl” package and use the <code>read_excel()</code> function instead
-of <code>read.csv()</code>.</p>
+<p><em>Note:</em> If at any point you want to import an Excel file,
+you’ll need to install and load the “readxl” package and use the
+<code>read_excel()</code> function instead of
+<code>read.csv()</code>.</p>
 <p><br></p>
 </div>
 <div id="understand-and-use-data-documentation" class="section level2">
@@ -644,37 +646,38 @@ it, right? Not quite! Before you begin any kind of analysis (and really
 before you even start downloading any data), it is important to have a
 clear understanding of the dataset’s contents. This includes knowing
 what each variable represents, how the data were collected, and whether
-there are any limitations or nuances you need to account for. Without
+there are any limitations or nuances you need to be aware of. Without
 this understanding, you risk misinterpreting results or making errors in
 your analysis.</p>
 <p>Data documentation, often called a <strong>codebook</strong> or
 <strong>data dictionary</strong>, is a resource that explains:</p>
 <ul>
-<li>The variables in your dataset, including names, definitions, and
-units of measurement.</li>
 <li>The structure of the data (e.g., rows as individuals, columns as
 variables).</li>
-<li>Any codes or categories used (e.g., “1 = Male, 2 = Female”).</li>
-<li>The context in which the data was collected (e.g., survey methods,
-population characteristics).</li>
+<li>The variables in your dataset, including names, definitions, and
+units of measurement.</li>
+<li>The values each variable can take, and what they mean (e.g., “1 =
+Male, 2 = Female”, etc.).</li>
+<li>The methods by which the data were collected (e.g., participant
+survey, biomarkers, etc.).</li>
 </ul>
 <p>You will use data documentation at various stages of a project:</p>
 <ul>
-<li><em>Before analysis</em> - Familiarize yourself with the dataset by
+<li><em>Before analysis</em> — Familiarize yourself with the dataset by
 reviewing the documentation to understand its structure and
 variables.</li>
-<li><em>During analysis</em> - Refer back to the documentation when you
+<li><em>During analysis</em> — Refer back to the documentation when you
 encounter unfamiliar variables or need clarification.</li>
-<li><em>After analysis</em> - Use the documentation to accurately
-describe your methods and findings.</li>
+<li><em>After analysis</em> — Use the documentation to make sure you are
+accurately describing your methods and findings.</li>
 </ul>
 <p>For several assignments in this course, we will be using the
-“frmgham2.csv” dataset you’ve loaded into your current R session. This
-dataset is from the <strong>Framingham Heart Study</strong>, which is a
-prospective cohort study carried out over several decades to study
-causes and risk factors for cardiovascular disease. <strong>Before
-moving forward, read over the first 7 pages of the data
-documentation</strong>, linked on the Lab 1 assignment page in
+“frmgham2.csv” dataset (or a modified version of it) you’ve loaded into
+your current R session. This dataset is from the <strong>Framingham
+Heart Study</strong>, which is a prospective cohort study carried out
+over several decades to study risk factors for cardiovascular disease.
+<strong>Before moving forward, read over the first 7 pages of the data
+documentation</strong>, linked on the Lab 1 assignment page on
 Canvas.</p>
 <p>Beginning on page 2 of the data documentation, you will see a table
 that defines each of the variables included in the dataset, including
@@ -683,12 +686,6 @@ the range of values (or, instead, the count of observations, labeled
 with “n”). Take a moment to examine the dataset in RStudio in the
 context of this codebook. You should see that each column in the dataset
 has a corresponding row in the codebook that defines that variable.</p>
-<p>Using the data documentation, answer the following questions:</p>
-<ol style="list-style-type: decimal">
-<li>What does the variable called “RANDID” represent?</li>
-<li>What does the variable called “PERIOD” represent? What are the
-possible values of “PERIOD” and what do they represent?</li>
-</ol>
 <p><br></p>
 </div>
 <div id="filter-a-dataset" class="section level2">
@@ -702,19 +699,21 @@ data remain unchanged, allowing you to experiment freely while
 maintaining the integrity of your original dataset.</p>
 <p>For example, using the dataset you’ve loaded from the Framingham
 Heart Study, suppose we want to restrict the data to the
-<em>baseline</em> sample for some exploratory analysis. As you have
-likely already observed, the original dataset contains multiple
-observations (up to three) for each participant, where each of these
-observations corresponds to a different period of time (specified by the
-“PERIOD” variable). The baseline observation (where PERIOD = 1) is the
-initial data collected when a participant entered the study. We can
-restrict the data to the baseline sample using the <code>filter()</code>
-command as follows:</p>
+<em>baseline</em> sample for some exploratory analysis. As you may have
+already observed, the original dataset contains multiple observations
+(up to three) for each participant, where each of these observations
+corresponds to a different period of time (specified by the “PERIOD”
+variable). The baseline observation (where PERIOD = 1) is the initial
+data collected when a participant entered the study. We can restrict the
+data to the baseline sample using the <code>filter()</code> command as
+follows:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># filter data to include only baseline sample</span></span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>data_period1 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(PERIOD <span class="sc">==</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>First, understand that “filtering” data basically means that we are
-selecting certain rows based on condition. There are a few things
-happening in the above code chunk, so let’s break them down:</p>
+selecting certain rows <em>based on condition</em>. In this case, the
+condition is that PERIOD = 1. There are a few things happening in the
+above code chunk, so let’s break them down (moving from right to
+left):</p>
 <ul>
 <li><code>filter(PERIOD == 1)</code>: Applies the <code>filter()</code>
 function to select rows where the variable PERIOD is equal to 1. Only
@@ -725,16 +724,17 @@ multiple ways the same task can be accomplished in R, and this operator
 is essentially used to help us write our code in a logical and efficient
 way. Here, the pipe operator is used to pass the dataset we called
 “data” as <em>input</em> to the next function. In other words, the pipe
-operator (%&gt;%) is like saying “and then.” It takes whatever is on the
-left side — in this case, the dataset we called “data” — and hands it
-over to the next step. So, you start with your data, <em>and then</em>
-you tell R to filter it to only include rows where the PERIOD variable
-is equal to 1. It’s like giving R a to-do list: ‘Start with this data
-<em>and then</em> filter it for me.’ We will use the pipe operator a lot
-throughout the course.</li>
+operator (<code>%&gt;%</code>) is like saying “and then.” It takes
+whatever is on the left side — in this case, the dataset we called
+“data” — and hands it over to the next step. So, you start with your
+data, <em>and then</em> you tell R to filter it to only include rows
+where the PERIOD variable is equal to 1. It’s like giving R a to-do
+list: ‘Start with this data <em>and then</em> filter it to contain only
+the observations I want.’ We will use the pipe operator a lot throughout
+the course.</li>
 <li><code>data_period1 &lt;-</code>: Creates a new object called
 “data_period1” to store the filtered dataset. The <code>&lt;-</code>
-operator is like an arrow - it assigns the result of the operation
+operator is like an arrow — it assigns the result of the operation
 (everything on the right of the arrow) to this new object. In other
 words, we are taking our original dataset (called “data”), filtering it
 to only include observations where PERIOD is equal to 1, and then saving
@@ -745,16 +745,17 @@ This way, the original data remains intact for reference or other
 analyses, and the new name makes it clear what the filtered or modified
 dataset represents. For example, naming the filtered dataset
 “data_period1” helps us quickly identify that it contains only the rows
-where PERIOD is equal to 1, making our work more organized and easier to
-understand later.</li>
+where PERIOD is equal to 1, making our work easier to understand
+later.</li>
 </ul>
 <p>Once you run the code chunk above, you should see the new R object
 called “data_period1” in your Environment (top-right window). Notice
-that this object contains 4434 observations and 39 variables. Click on
+that this object contains 4,434 observations and 39 variables. Click on
 the “data_period1” object to view it in a new tab. You should see that
 all 39 variables in our original dataset have been retained. But, when
 you scroll over to the PERIOD variable, all of the observations show a
-value of 1.</p>
+value of 1, meaning our modified dataset contains only the baseline
+sample like we wanted. Yay!</p>
 <p>We will continue to work with this modified dataset for the remainder
 of the assignment.</p>
 <p><br></p>
@@ -764,21 +765,19 @@ of the assignment.</p>
 <p>Identifying and modifying variable types in R is crucial because the
 type of a variable (e.g., numeric, character, factor) determines how R
 processes and analyzes the data. A variable may be most appropriately
-assigned one type—such as categorical—but R may initially interpret it
-differently, such as numeric, depending on how the data is formatted or
-imported. For example, a variable representing survey responses like “1
-= Yes” and “2 = No” might be read as numeric, but treating it as a
-categorical (factor) variable is more appropriate for analysis. Ensuring
-variables have the correct type helps prevent errors, ensures accurate
-analyses, and allows you to use the right functions effectively. By
-explicitly modifying variable types when needed, you can make sure R
+assigned one type — such as categorical — but R may initially interpret
+it differently, such as numeric, depending on how the data is formatted
+or imported. For example, a variable representing survey responses like
+1 = “Yes” and 2 = “No” might initially be read as numeric, but treating
+it as a categorical (factor) variable is more appropriate for analysis.
+By explicitly modifying variable types when needed, you can make sure R
 treats your data correctly for your analysis.</p>
 <p>For example purposes, let’s identify the variable type for a few of
-the variables in our dataset - specifically, sex, age, BMI (body mass
-index), and attained education. We will do this using the “class”
-function as follows:</p>
+the variables in our dataset — specifically, sex assigned at birth, age,
+BMI (body mass index), and attained education. We will do this using the
+“class” function as follows:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># identify variable types</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">class</span>(data_period1<span class="sc">$</span>SEX) <span class="co"># sex</span></span></code></pre></div>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">class</span>(data_period1<span class="sc">$</span>SEX) <span class="co"># sex assigned at birth</span></span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">class</span>(data_period1<span class="sc">$</span>AGE) <span class="co"># age</span></span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
@@ -791,23 +790,23 @@ Console (bottom-left window). You should see that <code>SEX</code> is an
 “integer” variable, <code>AGE</code> is an “integer” variable,
 <code>BMI</code> is “numeric”, and <code>educ</code> (attained
 education) is an “integer” variable. Integer and numeric variables both
-represent numbers - the difference is that integer variables are
+represent numbers — the difference is that integer variables are
 discrete (the values must be whole numbers) whereas numeric variables
 can take on any value (including decimals). R interprets variables as
 integer or numeric by default when importing data because it relies on
 the format of the raw data and doesn’t automatically assign “context” or
 “meaning” to the values. For example, R doesn’t know that for “SEX”, 1
-means male and 2 means female. It only sees the values “1” and “2”.
-Using what we have learned in class, let’s consider the most appropriate
-variable type for each of these four variables:</p>
+means “male” and 2 means “female” (referring back to the data
+documentation). It only sees the values “1” and “2”. Using what we have
+learned in class, let’s consider the most appropriate variable type for
+each of these four variables:</p>
 <ul>
-<li><strong>SEX:</strong> Represents categorical information about
-biological sex, coded numerically (e.g., 1 = Male, 2 = Female). Although
-represented as integers, the numbers are codes for categories rather
-than quantities. This means that this variable would most appropriately
-be coded as a “factor” variable. Treating it as a factor ensures R
-correctly interprets and analyzes it as categorical data, allowing for
-grouping and comparisons.</li>
+<li><strong>SEX:</strong> Represents categorical information about sex
+assigned at birth, coded numerically (e.g., 1 = Male, 2 = Female).
+Although represented as integers, the numbers are codes for categories
+rather than quantities. This means that this variable would most
+appropriately be coded as a “factor” variable. Treating it as a factor
+ensures R correctly interprets and analyzes it as categorical data.</li>
 <li><strong>AGE:</strong> Represents a person’s age, measured in whole
 years. Age is a continuous, quantitative variable. Since age is being
 measured in whole years, this variable is correctly coded as an
@@ -816,76 +815,87 @@ appropriate.</li>
 <li><strong>BMI:</strong> Represents body mass index, a continuous
 measure derived from a person’s height and weight. BMI is inherently a
 continuous, quantitative variable that can take decimal values, so the
-default “numeric” type is appropriate for calculations and
-analyses.</li>
+default “numeric” type is appropriate for any analyses we may wish to
+conduct using this variable.</li>
 <li><strong>educ:</strong> Represents a person’s level of attained
 education, coded numerically (1=0-11 years; 2=High School Diploma, GED;
 3=Some College, Vocational School; 4=College (BS, BA) degree or more).
 Similar to sex, the numbers represent categories rather than quantities.
 As such, this variable would most appropriately be coded as a “factor”
-variable. Treating it as a factor ensures that R interprets it as
-categorical data, making analyses like frequency counts or group
-comparisons more meaningful.</li>
+variable.</li>
 </ul>
-<p>Given the above explanations, we’ve can conclude that the AGE and BMI
-variables are already appropriately coded as “integer” and “numeric”,
-respectively. SEX and educ, on the other hand, would be more
+<p>Given the above explanations, we’ve can conclude that the
+<code>AGE</code> and <code>BMI</code> variables are already
+appropriately coded as “integer” and “numeric”, respectively.
+<code>SEX</code> and <code>educ</code>, on the other hand, would be more
 appropriately coded as factor (or “categorical”) variables given the
-values represent categories. As we learned in class, these factor
-variables can be further categorized into two types - ordered and
-unordered. For example, sex represents categories with no inherent order
-or ranking. In our dataset, sex can take on two values - 1 (male) or 2
-(female). There is no logical sequence between these categories — they
-are distinct but equal. As such, “SEX” should be treated as an unordered
-factor variable in any analyses. Conversely, the values associated with
+values represent categories, not quantities. As we learned in class,
+these factor variables can be further categorized into two types —
+ordered and unordered. For example, sex assigned at birth represents
+categories with no inherent order or ranking. In our dataset, sex can
+take on two values: 1 (male) or 2 (female). There is no logical sequence
+between these categories — they are distinct but equal. As such,
+<code>SEX</code> should be treated as an <em>unordered</em> factor
+variable in any analyses. Conversely, the values associated with
 attained education represent categories with a natural hierarchy or
 ranking (e.g., high school &lt; some college &lt; college). The levels
 have a logical progression, with one level ranked above or below
-another. As such, “educ” should be treated as an ordered factor variable
-in any analyses. Ordered factors are treated as ordinal variables in
+another. As such, “educ” may be best treated as an <em>ordered</em>
+factor variable. Ordered factors are treated as ordinal variables in
 analyses, allowing you to consider their ranking in models or
 visualizations.</p>
-<p>To ensure these variables are utilized and interpreted correctly in
-our analyses, we need to convert the variables to their most appropriate
-types. We can do this using the <code>factor()</code> command as
-follows:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># convert sex to unordered factor variable</span></span>
+<blockquote>
+<p>Later in the course, you will see that some categorical variables
+have a natural order (for example, levels of educational attainment),
+but that does not necessarily mean they must always be treated as
+ordered in an analysis. The decision to treat a variable as ordered or
+unordered depends on the research question and what types of comparisons
+we want to make.</p>
+</blockquote>
+<p>For now, let’s take a look at how we can convert the variables to
+their most appropriate types, starting with <code>SEX</code>. We can do
+this using the <code>factor()</code> command as follows:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># convert sex assigned at birth to unordered factor variable</span></span>
 <span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>data_period1<span class="sc">$</span>SEX <span class="ot">&lt;-</span> <span class="fu">factor</span>(data_period1<span class="sc">$</span>SEX, </span>
 <span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>                           <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>), </span>
 <span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>                           <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code></pre></div>
-<p>This code converts the SEX column of the data_period1 dataset into a
-categorical variable (factor), specifying that it has two levels (“1”
-and “2”) and that these levels are unordered. This ensures that R treats
-the variable as distinct categories, making it suitable for categorical
-analyses. Let’s break down the code one piece at a time:</p>
+<p>This code converts the <code>SEX</code> column of the
+<code>data_period1</code> dataset into a categorical variable (factor),
+specifying that it has two levels (“1” and “2”) and that these levels
+are unordered. This ensures that R treats the variable as distinct
+categories. Let’s break down the code one piece at a time (starting on
+the right of the <code>&lt;-</code>):</p>
 <ul>
+<li><code>factor(...)</code>: The factor() function is used to convert
+the specified variable into a factor.
+<ul>
+<li><code>data_period1$SEX</code>: Refers to the <code>SEX</code> column
+in the <code>data_period1</code> dataset. This is the variable being
+transformed into a factor. The <code>$</code> operator here is used to
+access a specific column within a dataset. The part before the
+<code>$</code> identifies the dataset to use (in this case,
+<code>data_period1</code>), and the part after the <code>$</code>
+specifies the column being modified (in this case,
+<code>SEX</code>).</li>
+<li><code>levels=c("1", "2")</code>: Specifies the possible values (or
+levels) for the factor. In this case, the levels are “1” and “2”, which
+correspond to the categories “Male” and “Female”. Defining levels
+ensures R knows all valid categories for the factor.</li>
+<li><code>ordered=FALSE</code>: Indicates that the factor is
+<em>not</em> ordered — the levels do not have a natural hierarchy or
+ranking. For example, “Male” and “Female” are categories with no logical
+order, so ordered=FALSE is appropriate here.</li>
+</ul></li>
 <li><code>data_period1$SEX &lt;-</code>: This part assigns the result of
 the <code>factor()</code> function to the <code>SEX</code> column of the
 <code>data_period1</code> dataset. The <code>&lt;-</code> symbol means
-“assign this value to,” so we are updating the <code>SEX</code> column
-with a new version where it is converted into a factor. The
-<code>$</code> operator here is used to access a specific column within
-a dataset. The part before the <code>$</code> identifies the dataset to
-use (in this case, <code>data_period1</code>), and the part after the
-<code>$</code> specifies the column being modified (in this case,
-<code>SEX</code>).</li>
-<li><code>factor(data_period1$SEX, ... )</code>: The factor() function
-is used to convert the SEX variable into a factor. Factors are used for
-categorical data, allowing R to treat the variable as distinct
-categories rather than as numeric values.</li>
-<li><code>data_period1$SEX</code>: Refers to the SEX column in the
-data_period1 dataset. This is the variable being transformed into a
+“assign this value to,” so we are essentially overwriting the
+<code>SEX</code> column with a new version where it is converted into a
 factor.</li>
-<li><code>levels=c("1", "2")</code>: Specifies the possible values (or
-levels) for the factor. In this case, the levels are “1” and “2”, which
-might correspond to categories like “Male” and “Female”. Defining levels
-ensures R knows all valid categories for the factor.</li>
-<li><code>ordered=FALSE</code>: Indicates that the factor is not
-ordered—the levels do not have a natural hierarchy or ranking. For
-example, “Male” and “Female” are categories with no logical order, so
-ordered=FALSE is appropriate here.</li>
 </ul>
 <p><br></p>
+<p>Next, let’s convert attained education (<code>educ</code>) to an
+ordered factor variable:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># convert attained education to ordered factor variable</span></span>
 <span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>data_period1<span class="sc">$</span>educ <span class="ot">&lt;-</span> <span class="fu">factor</span>(data_period1<span class="sc">$</span>educ, </span>
 <span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>                            <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;4&quot;</span>), </span>
@@ -893,22 +903,16 @@ ordered=FALSE is appropriate here.</li>
 <p>This code converts the <code>educ</code> column in the
 <code>data_period1</code> dataset into an ordered factor with four
 levels (“1”, “2”, “3”, “4”). The <code>ordered=TRUE</code> argument
-tells R that the levels have a hierarchy, ensuring R interprets the
-variable as ordinal, which is appropriate for analyses involving ranked
-data, like educational attainment. Let’s break down the code one piece
-at a time:</p>
+tells R to interpret the variable as ordinal. Let’s break down the code
+one piece at a time:</p>
 <ul>
-<li><code>data_period1$educ &lt;-</code>: This assigns the result of the
-<code>factor()</code> function to the <code>educ</code> column of the
-<code>data_period1</code> dataset. The &lt;- symbol means “assign this
-value to,” so we are updating the educ column with a new version where
-it is converted into a factor.</li>
-<li><code>factor(... )</code>: As we saw above for <code>SEX</code>, the
-factor() function is used to convert the <code>educ</code> variable into
-a factor.</li>
+<li><code>factor(... )</code>: As we saw above, the
+<code>factor()</code> function is used to convert the specified variable
+(in this case, <code>educ</code>) into a factor.</li>
 <li><code>data_period1$educ</code>: Refers to the educ column within the
 data_period1 dataset. This is the variable being transformed into an
-ordered factor.</li>
+ordered factor. Refer to the previous example for an explanation of the
+<code>$</code> operator.</li>
 <li><code>levels=c("1", "2", "3", "4")</code>: Specifies the possible
 values (or levels) for the factor. In this case, the levels are “1”,
 “2”, “3”, and “4”. These correspond to the categories shown in the data
@@ -917,8 +921,13 @@ categories and their sequence.</li>
 <li><code>ordered=TRUE</code>: Indicates that the factor is ordered,
 meaning the levels have a natural hierarchy or ranking. For example, “1”
 (e.g., “0-11 years”) is considered lower than “4” (e.g., “College (BS,
-BA) degree or more”), and R will treat this as an ordinal variable,
-allowing for comparisons that account for this order.</li>
+BA) degree or more”), and R will treat this as an ordinal variable in
+subsequent analyses.</li>
+<li><code>data_period1$educ &lt;-</code>: This assigns the result of the
+<code>factor()</code> function to the <code>educ</code> column of the
+<code>data_period1</code> dataset. The <code>&lt;-</code> symbol means
+“assign this value to,” so we are updating the <code>educ</code> column
+with a new version where it is converted into an ordered factor.</li>
 </ul>
 <p>When we assign the modified variable back to the <em>same name as the
 original</em> (e.g., <code>data_period1$educ &lt;-</code>), R overwrites
@@ -929,16 +938,16 @@ data.</p>
 <p>This means the <code>SEX</code> and <code>educ</code> variables in
 the <code>data_period1</code> dataset will no longer be treated as
 integers. Instead, they will now be treated as factors, with its levels
-and order defined by the factor() function. Overwriting these variables
-ensures that R uses the updated type in future analyses, eliminating the
-need to create a separate variable or keep track of multiple versions.
-However, if you want to preserve the original version, you can assign
-the modified variable a new name instead.</p>
-<p>Now that we have modified the variable types for sex and attained
-education, let’s check them using the <code>class()</code> function once
-again:</p>
+and order defined by the <code>factor()</code> function. Overwriting
+these variables ensures that R uses the updated type in future analyses,
+eliminating the need to create a separate variable or keep track of
+multiple versions. However, if you want to preserve the original
+version, you can assign the modified variable a new name instead.</p>
+<p>Now that we have modified the variable types for sex assigned at
+birth and attained education, let’s check them using the
+<code>class()</code> function once again:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># recheck variable types for modified variables</span></span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="fu">class</span>(data_period1<span class="sc">$</span>SEX) <span class="co"># sex</span></span></code></pre></div>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="fu">class</span>(data_period1<span class="sc">$</span>SEX) <span class="co"># sex assigned at birth</span></span></code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">class</span>(data_period1<span class="sc">$</span>educ) <span class="co"># attained education</span></span></code></pre></div>
 <pre><code>## [1] &quot;ordered&quot; &quot;factor&quot;</code></pre>
@@ -953,7 +962,7 @@ more organized, and easier to understand. Here are a few reasons why you
 might want to rename a variable:</p>
 <ul>
 <li>Original variable names may be unclear or cryptic (e.g., “var1”),
-and renaming them to something descriptive (e.g., “Age”) makes the
+and renaming them to something descriptive (e.g., “age”) makes the
 dataset easier to interpret.</li>
 <li>Renaming variables can help you maintain uniform naming conventions,
 which is especially helpful when combining datasets or working
@@ -965,7 +974,7 @@ mistakes in your analysis, especially when working with many
 variables.</li>
 </ul>
 <p>In general, the variables included in the Framingham Heart Study
-dataset are already named in fairly intuitive ways. The one
+dataset are already named in fairly intuitive ways. One minor
 inconsistency is the <code>educ</code> variable is all lowercase,
 whereas all other variables are uppercase. As long as we specify the
 variable name correctly in our analyses, we wouldn’t necessarily
@@ -974,12 +983,7 @@ let’s look at how we could rename this variable using the
 <code>rename()</code> function:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># rename &quot;educ&quot; to &quot;EDUC&quot;</span></span>
 <span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>data_period1 <span class="ot">&lt;-</span> data_period1 <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">EDUC =</span> educ)</span></code></pre></div>
-<p>This code renames the <code>educ</code> variable in the
-<code>data_period1</code> dataset to <code>EDUC</code>. The updated
-dataset is then reassigned to <code>data_period1</code>, which ensures
-the change is saved. Using <code>rename()</code> is useful for making
-variable names more descriptive, consistent, or aligned with preferred
-conventions. Let’s break down this line of code:</p>
+<p>Let’s break down this line of code:</p>
 <ul>
 <li><code>rename(EDUC = educ)</code>: The <code>rename()</code> function
 is used to change the name of a variable. Note that the sequence here is
@@ -988,40 +992,40 @@ variable; <code>educ</code> is the current name of the variable that is
 being renamed.</li>
 <li><code>data_period1 %&gt;%</code>: As we saw previously, this uses
 the “pipe operator” (<code>%&gt;%</code>) to pass the
-<code>data_period1</code> dataset as input to the <code>rename()</code>
-function. Remember, this basically tells R, ‘use the data in
-<code>data_period1</code> <em>and then</em> rename educ to EDUC.’</li>
+<code>data_period1</code> dataset as <em>input</em> to the
+<code>rename()</code> function. Remember, this basically tells R, ‘use
+the data in <code>data_period1</code> <em>and then</em> rename
+<code>educ</code> to <code>EDUC</code>.’</li>
 <li><code>data_period1 &lt;-</code>: Assigns the result of the operation
 back to the <code>data_period1</code> dataset. This means the updated
-dataset with the renamed variable will overwrite the original
+dataset with the renamed variable will overwrite the previous
 version.</li>
 </ul>
+<p>To check if the variable was renamed successfully, click the
+<code>data_period1</code> object in your Environment window. You should
+see the column is now called <code>EDUC</code> rather than
+<code>educ</code>. Nice!</p>
 <p><br></p>
 </div>
 <div id="create-a-new-variable" class="section level2">
 <h2>8. Create a new variable</h2>
 <p><img src="mutate.png" width="100%" /></p>
-<p>Creating new variables is an essential and common step in data
-cleaning to prepare for analysis. Here are some situations where you
-might want to create a new variable:</p>
+<p>Creating new variables is a common step in data cleaning to prepare
+for analysis. Here are some situations where you might want to create a
+new variable:</p>
 <ul>
 <li>When you need to transform or combine existing variables to make the
 dataset ready for analysis (e.g., converting “height” and “weight” into
 “BMI”).</li>
-<li>To make analysis easier by summarizing data or recoding complex
-variables into simpler categories (e.g., grouping age into age
-ranges).</li>
+<li>To make analysis easier by recoding complex variables into simpler
+categories (e.g., grouping age into age ranges).</li>
 <li>When you need new values derived from existing ones (e.g.,
 calculating the difference between two dates to get “time
 elapsed”).</li>
 <li>Some analyses require variables to be recoded or reformatted to meet
 specific requirements (e.g., creating binary variables for logistic
-regression - more on this later in the course).</li>
+regression — more on this later in the course).</li>
 </ul>
-<p>In summary, creating new variables ensures your dataset accurately
-reflects the questions you’re trying to answer and prepares it for
-meaningful analysis. It’s a critical step in tailoring raw data to fit
-the goals of your research.</p>
 <p>Let’s consider an example using the Framingham Heart Study dataset.
 Suppose we want to create a new variable that is a binary indicator of
 “obese” status, defined as body mass index (BMI) greater than 30. We can
@@ -1036,20 +1040,21 @@ value of 1 if the BMI is greater than 30 (indicating obesity) and 0
 otherwise. The updated dataset, with the new variable, is reassigned to
 <code>data_period1</code>. Let’s break down each piece of this code:</p>
 <ul>
-<li><code>mutate(OBESE = ... )</code>: The mutate() function is used to
-create or modify variables in a dataset. <code>OBESE =</code>: Defines
-the name of the new variable being created. In this case, the new
-variable is called OBESE.</li>
-<li><code>ifelse(BMI &gt; 30, 1, 0)</code>: The ifelse() function
-evaluates a condition and assigns a value based on whether the condition
-is true or false. In this case, BMI&gt;30 is the condition being
-checked. For each row, it evaluates whether the BMI value is greater
-than 30. If BMI&gt;30 (i.e., the condition is true), the value assigned
-to the new variable is 1. If BMI &lt;= 30 (i.e., the condition is
-false), the value assigned to the new variable is 0.</li>
-<li><code>data_period1 %&gt;%</code>: Uses the pipe operator (%&gt;%) to
-pass the data_period1 dataset into the mutate() function. This allows
-you to modify the dataset by adding or changing variables.</li>
+<li><code>mutate(OBESE = ... )</code>: The <code>mutate()</code>
+function is used to create or modify variables in a dataset.
+<code>OBESE =</code>: Defines the name of the new variable being
+created. In this case, the new variable is called OBESE.</li>
+<li><code>ifelse(BMI &gt; 30, 1, 0)</code>: The <code>ifelse()</code>
+function evaluates a condition and assigns a value based on whether the
+condition is true or false. In this case, BMI&gt;30 is the condition
+being checked. For each row, it evaluates whether the BMI value is
+greater than 30. If BMI&gt;30 (i.e., the condition is true), the value
+assigned to the new variable is 1. If BMI &lt;= 30 (i.e., the condition
+is false), the value assigned to the new variable is 0.</li>
+<li><code>data_period1 %&gt;%</code>: Uses the pipe operator
+(<code>%&gt;%</code>) to pass the <code>data_period1</code> object into
+the <code>mutate()</code> function. This allows you to modify the
+dataset by adding or changing variables.</li>
 <li><code>data_period1 &lt;-</code>: Assigns the result of the operation
 back to the <code>data_period1</code> dataset. This overwrites the
 original dataset with the updated version that includes the new variable
@@ -1076,14 +1081,13 @@ the data cleaning process every time you want to analyze the data.</p>
 because:</p>
 <ul>
 <li>It keeps your cleaned data separate from the original raw data,
-preserving the original dataset for reference or auditing.</li>
-<li>You can directly load the cleaned dataset in future R sessions,
-saving time and avoiding repetitive cleaning steps.</li>
-<li>A cleaned and well-structured dataset can be easily shared with
-colleagues or collaborators.</li>
+preserving the original dataset for reference or auditing as
+needed.</li>
+<li>You can directly load the cleaned dataset in future R sessions.</li>
+<li>Your cleaned dataset can be easily shared with collaborators.</li>
 <li>Exporting the cleaned dataset documents the result of your data
 cleaning process, which is important for transparency and
-reproducibility in public health research.</li>
+reproducibility.</li>
 </ul>
 <p>To review, we have made the following modifications up to this point:
 (1) filtered the data to retain only the baseline sample (period 1); (2)
@@ -1097,15 +1101,16 @@ follows:</p>
 <span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="fu">write.csv</span>(data_period1, <span class="st">&quot;frmgham2_p1.csv&quot;</span>)</span></code></pre></div>
 <p>The <code>write.csv()</code> function in R is used to export a
 dataset into a CSV (Comma-Separated Values) file format. In this code,
-the dataset <code>data_period1</code> (which contains all of the data
+the dataset <code>data_period1</code> (which contains the data
 modifications we have made) is being saved as a file named
 <code>frmgham2_p1.csv</code>. The filename is specified in quotes and
 includes the <code>.csv</code> extension, and the file will be saved in
 your <strong>current working directory</strong> unless a specific file
 path is provided. This allows you to save your cleaned and modified
 dataset for future use so that you don’t need to repeat the data
-cleaning process. Exporting data in this way is also useful for sharing
-your dataset with collaborators or using it in other software tools.</p>
+cleaning process (or at least, not all of it). Exporting data in this
+way is also useful for sharing your dataset with collaborators or using
+it in other software tools.</p>
 <p><br></p>
 </div>
 </div>
@@ -1135,6 +1140,12 @@ assignment page on Canvas:</p>
 <p>Please reach out to me at <a href="mailto:jenny.wagner@csus.edu"
 class="email">jenny.wagner@csus.edu</a> if you have any questions. See
 you in class!</p>
+<p><br></p>
+<hr />
+<p><strong>Jenny Wagner, PhD, MPH</strong><br />
+Assistant Professor<br> Department of Public Health<br> California State
+University, Sacramento<br> <a href="mailto:jenny.wagner@csus.edu"
+class="email">jenny.wagner@csus.edu</a></p>
 </div>
 
 
