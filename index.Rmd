@@ -1,58 +1,53 @@
 ---
-title: "PUBH 207B: Health Research Methods & Analysis"
+title: "Welcome to the PUBH 207B course website!"
 output: 
   html_document:
     toc: FALSE
 ---
-<br>
-**Jenny Wagner, PhD, MPH**
-<br>
-Department of Public Health
-<br>
-California State University, Sacramento
-<br>
-<br>
 
-
-## Welcome to the PUBH 207B course website!
+```{r, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("website-image3.png")
+```
 
 <br>
-This website complements the class Canvas site. 
-On Canvas, you will find:
+
+### How to use this website
+
+This website complements the course Canvas site.  
+
+**On Canvas, you will find:**
 
 * The course syllabus
-* Lecture slides
+* Lecture videos and slides
+* Class meeting slides
 * Assignment instructions
 * Assignment submission portals
 * Assignment feedback
 * Grades 
 
-On this website, you will find:
+**On this website, you will find:**
 
-* The course schedule (also included in the syllabus)
-* Instructions for installing R/RStudio
-* General assignment guidelines
-* Lab guides
+* Instructions for installing the course software (R/RStudio)
+* General assignment guidelines & workflow
+* Lab Guides
 
-As this course is taught in a hybrid modality, you can expect to spend a substantial amount of time outside of class reading and studying the material, as well as engaging in learning activities using the course software, R/RStudio. The lab guides on this website will serve as important resources as you work on assignments for this course. Please be sure to read over the Assignment Guidelines linked at the top of this page. I recommend reviewing these guidelines each time before you begin an assignment.
+As this course is taught in a hybrid modality, you can expect to spend a substantial amount of time outside of class reading and studying the material, as well as engaging in learning activities using the course software, R/RStudio (more info below). 
 
-<br>
-
-### Course description
-
-This course introduces students to the fundamentals of research methodology in applied epidemiology, biostatistics and evaluation research. Students learn quantitative, qualitative, mixed method and participatory approaches to research, as well as ethical behavior in conducting research. Through the mix of texts, articles from the public health literature and course work, students will build skills for conducting research and analysis across a variety of public health applications.
+The Lab Guides on this website will serve as important resources as you work on assignments for this course. Please be sure to carefully read over the Assignment Guidelines linked at the top of this page. I recommend reviewing these guidelines each time before you begin an assignment.
 
 <br>
 
-### What is biostatistics?
+### What is this course about?
 
-PUBH 207B is focused heavily on biostatistics. Biostatistics is the application of statistical methods to the study of living organisms, health, and disease. It provides the tools to collect, analyze, and interpret data to ensure public health decisions are evidence-based. Biostatistics is a cornerstone of public health research and practice - it is essential for understanding patterns of disease, identifying risk factors for disease, evaluating interventions, and shaping policies to improve health outcomes.
+PUBH 207B builds on PUBH 207A by moving from public health research approaches and study design to the analysis and interpretation of public health data. The course emphasizes applying analytic methods to real datasets and linking results back to research questions and study design.
+
+PUBH 207B is focused heavily on **biostatistics**. Biostatistics is the application of statistical methods to the study of living organisms, health, and disease. It provides the tools to collect, analyze, and interpret data to ensure public health decisions are evidence-based. Biostatistics is a cornerstone of public health research and practice — it is essential for understanding patterns of disease, identifying risk factors for disease, evaluating interventions, and informing policies to improve population health outcomes.
 
 <br>
 
 ### Course software
 
-Today, statistical analysis rarely happens “on paper.” Instead, public health professionals rely on software tools to manage, analyze, and visualize data effectively. A variety of statistical software tools are used to analyze public health data, including R, SAS, SPSS, Stata, and others. Each has its strengths and is widely used in specific contexts, depending on organizational preferences and the nature of the work. In this course, we’ll use R and RStudio, open-source tools that are among the most widely used in public health research and practice. R is a versatile programming language specifically designed for statistical computing and graphics, while RStudio provides a user-friendly interface to make working with R easier and more productive. While you are not expected to become an expert in R, learning one software tool — like R — can make it much easier to adapt to other tools if required by a future job or organization.
+Today, statistical analysis rarely happens “on paper.” Instead, public health professionals rely on software tools to manage, analyze, and visualize data effectively. A variety of statistical software tools are used to analyze public health data, including R, SAS, SPSS, Stata, Excel, and others. Each has its strengths and is widely used in specific contexts, depending on organizational preferences and the nature of the work. In this course, we’ll use R and RStudio, open-source tools that are among the most widely used in public health research and practice. R is a versatile programming language specifically designed for statistical computing and graphics, while RStudio provides a user-friendly interface for working with R. While you are not expected to become an expert in R, learning one software tool — like R — can make it much easier to adapt to other tools if required by a future job or organization.
 
 <br>
 
@@ -60,7 +55,7 @@ Today, statistical analysis rarely happens “on paper.” Instead, public healt
 
 * Capable of performing everything from simple summaries to advanced statistical modeling.
 * Used by researchers, government agencies, and organizations around the world.
-* Free and accessible to everyone, making them ideal for building skills that you can carry forward in your career.
+* Free and accessible to everyone -- ideal for building skills that you can carry forward in your career.
 * Backed by a large and active global community that continuously improves the tools and shares resources.
 
 <br>
@@ -78,7 +73,12 @@ To help you succeed, I encourage you to:
 * Search online. The R community is large and active, and many of your coding questions will have already been answered in forums and tutorials.
 * Seek support. I am here to answer questions and provide guidance as you navigate the course. If you are struggling, please come see me in office hours.
 
-<br>
+If you have any questions, please don't hesitate to reach out to me.
 
-If you have any questions, please don't hesitate to reach out to me at jenny.wagner@csus.edu.
+---
 
+**Jenny Wagner, PhD, MPH**  
+Assistant Professor<br>
+Department of Public Health<br>
+California State University, Sacramento<br>
+jenny.wagner@csus.edu

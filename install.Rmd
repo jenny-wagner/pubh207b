@@ -4,20 +4,12 @@ output: html_document
 ---
 
 <br>
-**Jenny Wagner, PhD, MPH**
-<br>
-Department of Public Health
-<br>
-California State University, Sacramento
-<br>
-<br>
 
-
-**To get started, you will need to download both R and RStudio. These are separate programs. Follow the instructions below to install R and RStudio and set a few default options.**
+**To get started, you will need to download *both* R and RStudio. *These are separate programs.* Follow the instructions below to install R and RStudio and set a few default options.**
 
 <br>
 
-# Install R
+## Install R
 
 R can be downloaded from one of the “CRAN” (Comprehensive R Archive Network) sites. In the US, the main site is at http://cran.us.r-project.org/. Look in the “Download and Install R” box at the top of the page. Click on the appropriate link *based on your operating system*.
 
@@ -25,72 +17,68 @@ If you already have R on your computer, make sure you have the most updated vers
 
 <br>
 
-## Mac OS X
+#### MacOS
 
-1. On the “R for Mac OS X” page, there are multiple packages that could be downloaded. If you are running Big Sur or higher, click on the R-4.4.2.pkg; if you are running an earlier version of OS X, download the appropriate version listed under “Binary for legacy macOS/OS X systems.”
+1. On the “R for macOS” page, there are multiple software releases that could be downloaded. If you are running Big Sur or higher, click on the R-4.5.2-arm64.pkg to download the latest release; if you are running an earlier operating system, download the appropriate version listed under “Binary for legacy macOS/OS X systems.”
 
-2. After the package finishes downloading, locate the installer on your hard drive, double-click on the installer package, and follow the installation instructions. Select a destination for the installation of the R framework (the program) and the R.app GUI. Note that you will need to supply the Administrator’s password to complete the installation. Close the window when the installation is done. Once complete the installer can be moved to the trash.
+2. After the package finishes downloading, locate the installer on your hard drive, double-click on the installer package, and follow the installation instructions. If requested, select a destination for the installation of the R framework (the program) and the R.app GUI. Note that you will need to supply the Administrator’s password (i.e., your computer password) to complete the installation. Close the window when the installation is done. Once complete the installer can be moved to the trash.
 
 3. You should now see R in your list of applications.
 
 4. Next, navigate to the [XQuartz download page](https://www.xquartz.org/). Click on the most recent version of XQuartz to download the application.
 
-5. Run the XQuartz installer and follow the instructions to install the software. XQuartz is needed to create windows to display many types of R graphics (this used to be included in MacOS until version 10.8 but now must be downloaded separately). Once complete the installer can be moved to the trash.
+5. Run the XQuartz installer and follow the instructions to install the software. XQuartz is needed to create windows to display many types of R graphics (this used to be included in macOS until version 10.8 but now must be downloaded separately). Once complete the installer can be moved to the trash.
 
 <br>
 
-## Windows
+#### Windows
 
-1. On the “R for Windows” page, click on the “base” link, which should take you to the “R-4.4.2 for Windows” page
+1. On the “R for Windows” page, click on the “base” link, which should take you to the “R-4.5.2 for Windows” page.
 
-2. On this page, click “Download R 4.4.2 for Windows”, and save the exe file to your hard disk when prompted. Saving to the desktop is fine.
+2. On this page, click “Download R 4.5.2 for Windows”, and save the exe file to your hard disk when prompted. Saving to the desktop is fine.
 
 3. To begin the installation, double-click on the downloaded file. Don’t be alarmed if you get unknown publisher type warnings. Window’s User Account Control will also worry about an unidentified program wanting access to your computer. Click on “Run”.
 
 4. Select the proposed options in each part of the install dialog. When the “Select Components” screen appears, just accept the standard choices
 
-Note: Depending on the age of your computer and version of Windows, you may be running either a “32-bit” or “64-bit” version of the Windows operating system. If you have the 64-bit version (most likely), R will install the appropriate version (R x64 3.5.2) and will also (for backwards compatibility) install the 32-bit version (R i386 3.5.2). You can run either, but you will probably just want to run the 64-bit version.
+*Note:* Depending on the age of your computer and version of Windows, you may be running either a “32-bit” or “64-bit” version of the Windows operating system. If you have the 64-bit version (most likely), R will install the appropriate version and will also (for backwards compatibility) install the 32-bit version. You can run either, but you will probably just want to run the 64-bit version.
 
 <br>
 
-# Install RStudio
+## Install RStudio
 
 To download and install RStudio, follow the directions below:
 
 1. Navigate to RStudio’s [download site](https://posit.co/download/rstudio-desktop/#download).
-2. Scroll down and click on the appropriate link based on your operating system (Windows, Mac, Linux and many others). Do not download anything from the “Zip/Tarballs” section.
+2. Scroll down (below "All Installers and Tarballs") and click on the appropriate link based on your operating system (Windows, Mac, Linux and many others). Do not download anything from the “Zip/Tarballs” section.
 3. Click on the installer that you downloaded. Follow the installation wizard’s directions, making sure to keep all defaults intact. After installation, RStudio should pop up in your Applications or Programs folder/menu.
 
 <br>
 
-# Set default options
+## Set default options
 
 Once you have successfully installed both R and RStudio, **open RStudio** to set a couple of default options. 
 
-*Note that RStudio is the only application you will need to open in order to complete work for this course. It is necessary to have R installed; however, we will not actually ever open R itself. We will only open and work in the RStudio application.*
+*Note that RStudio is the only application you will need to open in order to complete work for this course. It is necessary to have R installed to use the programming language; however, we will not actually ever open R itself. We will only open and work in the RStudio application.*
 
-## RStudio environment
+#### RStudio environment
 
-While not required, I strongly suggest that you change preferences in RStudio to never save the workspace so you always open with a clean environment. See [Ch. 8.1 of R4DS](https://r4ds.had.co.nz/workflow-projects.html#what-is-real) for some more background.
+While not required, I strongly suggest that you change preferences in RStudio to *never save the workspace*. This means that whenever you open RStudio, your will always open with a *clean environment* (we'll talk more later about what that means). See [Ch. 8.1 of R4DS](https://r4ds.had.co.nz/workflow-projects.html#what-is-real) for some more background. Follow these instructions to change this default setting:
 
 1. Click on the Tools menu in RStudio, then select Global Options.
 2. If not already highlighted, click on the "General" button from the left navigation panel (it should be at the very top).
-3. Uncheck the following Restore boxes
+3. **Uncheck** the following boxes
 * Restore most recently opened project at startup
 * Restore previously open source documents at startup
 * Restore .RData into workspace at startup
 4. Set Save Workspace to .RData on exit to Never
 5. Click OK at the bottom to save the changes and close the preferences window. You may need to restart RStudio for the changes to take effect.
 
-The reason for making these changes is that it is preferable for reproducibility to start each R session with a clean environment. You can restore a previous environment either by rerunning code or by manually loading a previously saved session.
-
-The R Studio environment is modified when you execute code from files or from the console. If you always start fresh, you do not need to be concerned about things not working because of something you typed in the console, but did not save in a file.
-
 You only need to set these preferences once.
 
 <br>
 
-## R Markdown options
+#### R Markdown options
 
 Next, to avoid a crowded workspace, you will want to display the output of your code only in the Console and Plots windows rather than "inline" in the Editor window. (An explanation of these different windows is provided on the Assignment Guidelines page, so don't worry if this explanation doesn't make much sense at the moment.) 
 
@@ -101,5 +89,15 @@ Next, to avoid a crowded workspace, you will want to display the output of your 
 
 <br>
 
-*Now that you've installed R and RStudio, move on to the Assignment Guidelines page to get familiar with expectations for assignments in this course and learn some basics of working in RStudio. I encourage you to have RStudio open as you review the Assignment Guidelines so that you can follow along and try things out as you go.*
+*Now that you've installed R and RStudio, move on to the Assignment Guidelines page to get familiar with expectations for assignments in this course and learn some basics of working in RStudio. I encourage you to have RStudio open as you review the Assignment Guidelines so that you can follow along and try things out yourself as you read.*
+
+If you have any questions, please don't hesitate to reach out to me.
+
+---
+
+**Jenny Wagner, PhD, MPH**  
+Assistant Professor<br>
+Department of Public Health<br>
+California State University, Sacramento<br>
+jenny.wagner@csus.edu
 

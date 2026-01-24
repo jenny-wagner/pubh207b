@@ -54,8 +54,9 @@
   }
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -403,7 +404,7 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">PUBH 207B: Spring 2025</a>
+      <a class="navbar-brand" href="index.html">PUBH 207B: Spring 2026</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -415,9 +416,6 @@ div.tocify {
 </li>
 <li>
   <a href="about.html">Assignment Guidelines</a>
-</li>
-<li>
-  <a href="workflow.html">Assignment Workflow</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -451,38 +449,75 @@ div.tocify {
 </div>
 
 
-<p><br> <strong>Jenny Wagner, PhD, MPH</strong> <br> Department of
-Public Health <br> California State University, Sacramento <br> <br></p>
+<p><br></p>
 <div id="general-overview" class="section level1">
 <h1>General overview</h1>
-<p>There are a few types of assignments in this course: Labs,
-Application Challenges, and the Final Project. For each of these
-assignments, you will use R/RStudio to carry out analytic tasks. A few
-things to know for now:</p>
+<p>There are a few types of assignments in this course that require the
+use of R/RStudio for carrying out analytic tasks: Labs, Application
+Challenges, and the Final Project. A few things to know for now:</p>
 <ul>
-<li><strong>Labs</strong> will be graded on completion. You will be
-expected to read through the assigned Lab Guide according to the course
-schedule and complete a series of tasks using R/RStudio as you go. The
-Labs are intended to help you learn to use software to carry out the
-types of analyses we are learning in class.</li>
+<li><strong>Labs</strong> are intended to help you learn to use software
+to carry out the types of analyses we are learning about in class and
+are graded on completion. You will be expected to read through the
+assigned Lab Guide according to the course schedule and complete a
+series of tasks using R/RStudio as you go.</li>
 <li><strong>Application Challenges</strong> are your opportunity to
 independently apply what you have learned in lecture and lab to a public
 health scenario. Instructions for each Application Challenge will be
 released on Canvas. For these assignments, you will be expected to
 select appropriate analytic approaches for the given scenario, execute
-data analysis tasks, and provide written interpretations of your
-results. Application Challenges are individual assignments. Although
-collaboration is encouraged, your code, comments, and interpretations
-should be your own. Additional details about expectations and grading
-are provided later on this page.</li>
+data analysis tasks using R/RStudio, and provide written interpretations
+of your results. While I encourage collaboration, note that Application
+Challenges are individual assignments. Although there may be
+similarities across students due to the nature of the assignments, I
+expect your code and written interpretations to be your own. Students
+will have two attempts for each Application Challenge – after submitting
+an initial attempt, you will receive feedback and have the opportunity
+to revise and resubmit your work for an improved grade. Your initial
+attempt must be submitted by the deadline to be eligible for
+resubmission.</li>
 <li>For the <strong>Final Project</strong> you will be working in small
 groups. Together, you and your teammates will design, execute, and
-present an analysis using a specified dataset. For this project, you
-will need to carry out your analyses using R/RStudio. You will also be
-expected to share your results in a brief written report and in-class
-presentation. I will provide much more detail about the Final Project on
-Canvas and in class.</li>
+present an analysis using a selected dataset. For this project, you will
+need to carry out your analyses using R/RStudio. You will also be
+expected to share your results in a polished research paper and
+presentation to the class. I will provide much more detail about the
+Final Project on Canvas and in class.</li>
 </ul>
+<p><br></p>
+</div>
+<div id="r-code" class="section level1">
+<h1>R code</h1>
+<p>For all assignments listed above, you will be working with <em>R
+code</em>. Think of R code as a set of written instructions that tells
+the statistical software R exactly what to do with your data. Instead of
+clicking through menus, you will type commands that allow you to clean
+data, run analyses, and create tables and figures to share your results.
+One major benefit of working with R code is that your analytic process
+is clearly documented and can be easily reproduced (by future you, your
+colleagues, and/or readers of your work).</p>
+<p>Much of the code you will use is provided in the Lab Guides, which
+are designed to walk you through each step of the analytic process.</p>
+<ul>
+<li>Labs will primarily involve copying and pasting code directly from
+the course website into your own R Markdown file (a type of R file,
+discussed below).</li>
+<li>For Application Challenges, your task will be to review the Lab
+Guides and <em>adapt existing code</em> — for example, by changing
+variable names, adjusting parameters, or extending an analysis — rather
+than writing code entirely from scratch.</li>
+<li>For the Final Project, much of the code you will need will, again,
+be adaptable from the course website. However, your Final Project will
+likely require you to extend your R skills beyond what we have
+specifically done in class.</li>
+</ul>
+<p>I want to emphasize that <strong>this is not a coding
+course</strong>. The primary goals of this class are to help you
+understand and select appropriate analytic methods and to accurately
+interpret and communicate results from public health research. That
+said, by working with R throughout the semester, you will also leave
+this course with practical, concrete skills that are widely used in
+public health research.</p>
 <p><br></p>
 </div>
 <div id="r-file-types" class="section level1">
@@ -508,32 +543,30 @@ reports. <br></li>
 <li>R Markdown files allow you to combine code, results, and written
 explanations in a single, dynamic document.</li>
 <li>You can generate polished reports, complete with formatted text,
-tables, and visualizations, making it ideal for sharing your work in a
-professional and reproducible way. <br></li>
+tables, and visualizations. These features make <code>.Rmd</code> files
+ideal for sharing your work in a professional and reproducible way.
+<br></li>
 </ul>
-<p>In this course, we will use R Markdown files for <strong>all
-assignments.</strong> This ensures that you not only practice coding but
-also develop skills in documenting and communicating your analyses
-clearly.</p>
+<p><strong>In this course, we will use R Markdown files for all
+assignments.</strong></p>
 <p><br></p>
 </div>
 <div id="file-management-structure" class="section level1">
 <h1>File Management Structure</h1>
 <p>If you are using your personal computer for this course, it’s best to
-set up a <strong>clean and efficient file management structure.</strong>
-File management is key to preventing R programming frustration. Here are
-some tips:</p>
+set up a clean and efficient file management structure. File management
+is key to preventing R programming frustration. Here are some tips:</p>
 <ul>
 <li>First, set up a clear and understandable hierarchical file system
 for this class. For example, create a class folder (PUBH 207B). Within
 this class folder, create the folder <em>Assignments</em> (or separate
 folders for Labs and Application Challenges, whatever will be clearest
-to you). Within the Assignments folder, create separate folders for each
-Assignment (e.g. Lab 1, Lab 2, …). I do <strong>not</strong> recommend
-working from your Desktop. Or from the Downloads folder. Or from some
-randomly named folder that you will have a hard time finding a month,
-week or day from now. You might end up having a system that looks
-something like this (on a Mac):</li>
+to you). Within the Assignments folder, you might create separate
+folders for each Assignment (e.g., Lab 1, Lab 2, etc.). I do
+<strong>not</strong> recommend working from your Desktop. Or from the
+Downloads folder. Or from some randomly named folder that you will have
+a hard time finding a month, week or day from now. You might end up
+having a system that looks something like this (on a Mac):</li>
 </ul>
 <p><br></p>
 <p><img src="about_fig3.png" width="100%" /></p>
@@ -558,7 +591,6 @@ complete assignments in this course. You will not actually need to open
 the R application at any time.</p>
 <p>When you open RStudio, you’ll see the interface is divided into four
 main windows (see image below):</p>
-<p><br></p>
 <div class="figure">
 <img src="about_fig1.png" alt="The RStudio Interface" width="100%" />
 <p class="caption">
@@ -583,7 +615,9 @@ code to the Console for execution. <br></li>
 </ol>
 <ul>
 <li>The Console is where your code gets executed. When you run commands
-from the Editor, this is where you’ll see results or errors.</li>
+from the Editor, this is where you’ll see results or errors (assuming
+you have followed the instructions for setting default options,
+discussed on the “Getting Started” page).</li>
 <li>You can write code directly into the Console. This can be useful for
 quick testing, but for more organized work, you’ll typically write code
 in the Editor. This is because any code you write directly into the
@@ -594,11 +628,17 @@ write in the Editor window. <br></li>
 <li><strong>Environment</strong> (Top-Right):</li>
 </ol>
 <ul>
-<li>This window displays any “R objects” you’ve created. R objects can
-include any datasets you’ve imported, “data frames” you’ve created
-during your analysis, or other items. For example, when you load a
-dataset into RStudio, you should see this dataset listed as an object in
-your Environment.</li>
+<li>This window displays any “R objects” you’ve created. R objects are
+the things R creates and keeps in memory while you are working. They can
+store data, results from analyses, or instructions that you want to
+reuse. The Environment window in RStudio shows the objects that exist in
+your <em>current R session</em>. For example, when you load a dataset
+into RStudio, you should see this dataset listed as an object in your
+Environment. ** If you followed the instructions for setting default
+options (again, these were discussed on the “Getting Started” page),
+then your Environment window should be empty every time you open a new R
+session. Trust me, this is a good thing for avoiding issues with
+“knitting” (discussed later).</li>
 <li>The Environment is your go-to place for checking what’s currently
 loaded and managing your working environment. <br></li>
 </ul>
@@ -607,31 +647,33 @@ loaded and managing your working environment. <br></li>
 </ol>
 <ul>
 <li>This multi-functional window displays visualizations (Plots tab) and
-gives access to your file directory, packages, and documentation.</li>
-<li>The Help tab is especially useful for looking up R functions and
+gives access to your file directory (Files tab), packages, and
+documentation.</li>
+<li>The Help tab can be useful for looking up R functions and
 understanding how they work.</li>
 </ul>
 <p><br></p>
 </div>
-<div id="a-brief-intro-to-r-markdown" class="section level1">
-<h1>A brief intro to R Markdown…</h1>
+<div id="introduction-to-r-markdown" class="section level1">
+<h1>Introduction to R Markdown</h1>
 <p>As we will be using R Markdown documents (with a <code>.Rmd</code>
 extension) for all assignments, it is important for you to have a basic
 understanding of these files before we begin working with RStudio. This
 section provides a brief introduction to R Markdown, including how to
-create and save an Rmd document within RStudio, the major components of
-an Rmd document (YAML header, R code chunks, and text), and how to
-“knit” an Rmd document (in other words, how to go from an Rmd document
-to a nicely formatted report).</p>
+create and save an R Markdown document within RStudio, the major
+components of an R Markdown document (YAML header, R code chunks, and
+text - each discussed below), and how to “knit” an R Markdown document
+(in other words, how to go from an R Markdown document to a nicely
+formatted report).</p>
 <p><br></p>
 <div id="creating-and-saving-a-new-r-markdown-document"
 class="section level2">
 <h2>Creating and saving a new R Markdown document</h2>
 <p>Once again, we will use R Markdown files for all assignments. To
-create a new <code>.Rmd</code> file in RStudio, select File -&gt; New
-File -&gt; R Markdown. A window should pop up. Type in “Lab 1” (or
-whatever assignment you are working on) next to Title and your name next
-to Author. Leave everything else alone and click OK. A new window in the
+create a new <code>.Rmd</code> file in RStudio, select File → New File →
+R Markdown. A window should pop up. Type in the name of the assignment
+you are working on (e.g., Lab 1) next to Title and your name next to
+Author. Leave everything else alone and click OK. A new window in the
 top left of your RStudio console should pop up containing your new R
 Markdown file (see example below).</p>
 <p><br></p>
@@ -649,14 +691,15 @@ will actually have a clean <code>.Rmd</code> file to work from.</p>
 <p>Using the basic organizational guidelines above, save your R Markdown
 file into an appropriate folder by clicking on File and then Save from
 the RStudio menu.</p>
-<p>To open a <code>.Rmd</code> file in RStudio, select File -&gt; Open
-File and navigate to the folder where you saved the assignment template
-and select the file. You should see the R Markdown file pop up on the
-top left portion of your RStudio interface (Editor window).</p>
+<p>To open a <code>.Rmd</code> file in RStudio, select File → Open File
+and navigate to the folder where you saved the assignment template and
+select the file. You should see the R Markdown file pop up on the top
+left portion of your RStudio interface (Editor window).</p>
 <p><br></p>
 </div>
-<div id="major-components-of-an-rmd-document" class="section level2">
-<h2>Major components of an Rmd document</h2>
+<div id="major-components-of-an-r-markdown-document"
+class="section level2">
+<h2>Major components of an R Markdown document</h2>
 <p>R Markdown documents contain 3 major components:</p>
 <ol style="list-style-type: decimal">
 <li>A <strong>YAML header</strong> surrounded by - - -</li>
@@ -687,15 +730,17 @@ output: html_document
 </div>
 <div id="r-code-chunks" class="section level3">
 <h3>R code chunks</h3>
-<p>When answering an assignment question, you’ll have the following
-sequence of components in your R Markdown document: Question, R code
-answering the question, comments describing what the code is doing, and
-your text to explain the results. For example, let’s say you have the
-following question in one of your assignments:</p>
+<p>When answering an assignment question, you’ll generally have the
+following sequence of components in your R Markdown document: question
+identifier (e.g., section name and number), R code used for answering
+the question, comments describing what the code is doing (i.e.,
+annotations), and text to explain the results (i.e., your
+interpretation). For example, let’s say you have the following question
+in one of your assignments:</p>
 <pre><code>Question 1
 1+1
 1. What is the result of the operation above?  </code></pre>
-<p>Assignments will ask you to write R code to accomplish data analysis
+<p>Assignments will ask you to write R code to accomplish analytic
 tasks. You will present and execute your R code inside R code chunks
 (yes, they are really called “chunks”). R code chunks start with
 <code>```{r}</code> and end with <code>```</code>, and you insert your R
@@ -708,21 +753,23 @@ your R Markdown document:</p>
 <p>All code inside a chunk will be executed when <em>knitting</em> the R
 Markdown file (more on knitting soon). This means that your R code must
 reside inside an R code chunk in order for it to be processed as R code.
-R will interpret anything outside of R code chunks as plain text.</p>
-<p>I will ask you to annotate your R code so that I (and you) know what
-is being done in that line of code. You designate annotations or
-comments in R code using the # symbol. In programming, comments are bits
-of text that are not interpreted as computer instructions — they aren’t
-code, they’re just notes about the code. Since computer code can be
-opaque and difficult to understand, we use comments to help write down
-the meaning and purpose of our code. While a computer is able to
-understand the code, comments are there to help people understand it.
-This is particularly important when someone else will be looking at your
-work — whether that person is a collaborator, or is simply a future
-version of you (e.g., when you need to come back and fix something and
-so need to remember what you were thinking when you first wrote the
-code).</p>
-<p>Comments should be clear, concise, and helpful—they should provide
+R will interpret anything outside of R code chunks (i.e., in the
+unshaded areas of your R Markdown document) as plain text.</p>
+<p>On Application Challenge assignments and Final Project, you are
+expected to annotate your R code so that I (as well as future you and
+your collaborators) know what is being done in that line of code. You
+designate annotations or comments in R code using the <code>#</code>
+symbol. In programming, comments are bits of text that are not
+interpreted as computer instructions — they aren’t code, they’re just
+notes about the code. Since computer code can be opaque and difficult to
+understand, comments help explain the meaning and purpose of our code.
+While a computer is able to understand the code, comments are there to
+help people understand it. This is particularly important when someone
+else will be looking at your work — whether that person is a
+collaborator, or is simply a future version of you (e.g., when you need
+to come back and fix something and so need to remember what you were
+thinking when you first wrote the code).</p>
+<p>Comments should be clear, concise, and helpful — they should provide
 information that is not otherwise present or “obvious” in the code
 itself. So, to annotate the above line of code <code>1+1</code>, you
 could add in your R code chunk:</p>
@@ -730,9 +777,10 @@ could add in your R code chunk:</p>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="at"># this adds one plus one</span></span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="at">1 + 1</span></span>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="st">```</span></span></code></pre></div>
-<p>You put your comments after the <code>#</code>. When the # symbol is
-in front of text <em>within</em> a code chunk, R knows that what follows
-is not code but rather is plain text being used to explain the code.</p>
+<p>Annotations like this should be inside each code chunk, after a
+<code>#</code>. When the # symbol is in front of text <em>within</em> a
+code chunk, R knows that what follows is not code but rather is plain
+text being used to explain the code.</p>
 <p>The first line of an R code chunk has {r}. Next to the r, we can give
 the chunk a name, such as:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="st">```</span><span class="at">{r q1chunk1}</span></span>
@@ -761,8 +809,8 @@ in your file. These non-error messages are unnecessary for the purposes
 of this class. Other chunk options can be found <a
 href="https://r4ds.had.co.nz/r-markdown.html#chunk-options">here</a>.</p>
 <p>You can also set options for individual chunks. These are local
-options - local to that chunk - and won’t be applied to other chunks in
-your file. For example, you can add the options
+options - meaning local to that chunk - and won’t be applied to other
+chunks in your file. For example, you can add the options
 <code>warning=TRUE</code> and <code>message=TRUE</code> to an individual
 R code chunk as follows if you want to show the messages for the R code
 in that particular chunk. Notice that each argument is separated by a
@@ -775,8 +823,9 @@ comma:</p>
 </div>
 <div id="text" class="section level3">
 <h3>Text</h3>
-<p>In addition to R code, assignments will ask you to write text to
-explain your results. Going back to our example question from above:</p>
+<p>In addition to writing R code to carry out analytic steps, you will
+be expected to provide an interpretation of your results. Going back to
+our example question from above:</p>
 <pre><code>Question 1
 1+1
 1. What is the result of the operation above?  </code></pre>
@@ -789,9 +838,19 @@ explain your results. Going back to our example question from above:</p>
 <span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="st">```</span></span>
 <span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a></span>
 <span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>My analysis yields the number <span class="fl">2.</span></span></code></pre></div>
-<p>The question and text explaining the result reside <em>outside</em>
-of the R code chunk. There is nothing special about the text in terms of
-its format or placement.</p>
+<p>The question identifier and your written interpretation of the
+results should be placed <em>outside of the R code chunk</em>, as
+regular text in your R Markdown file.</p>
+<p>When you knit your R Markdown file (more on knitting shortly), R runs
+all of the code inside each code chunk and then combines the code,
+output (i.e., result), and text into a single, polished report. The
+output from each code chunk will appear automatically in the knitted
+document, even if you do not see it directly below the code while you
+are working (though you should see the output in the Console when
+running each chunk). For this reason, you should write your
+interpretation directly below each code chunk in plain text. When you
+knit the document, the code output will appear first, followed by the
+output and your written interpretation in the final report.</p>
 <p><br></p>
 </div>
 </div>
@@ -888,7 +947,7 @@ types of knitted documents: html, Microsoft Word, or PDF. For all
 assignments in this course I would like you to knit to an
 <code>html</code> file because it is the easiest of the three
 options.</p>
-<p>To Knit your document click <img src="knit.png" width="10%" /> ,
+<p>To Knit your document, click <img src="knit.png" width="10%" /> ,
 which will be located at the top of the upper left R Markdown
 window.</p>
 <p><br></p>
@@ -896,10 +955,10 @@ window.</p>
 <p><br></p>
 <p>When you start knitting, you will notice that a new window on the
 bottom left will appear in place of the Console. The window will show
-the progress in your knitting. When you knit, R is going through each R
-code chunk one at a time. The percentages you will see are based on the
-proportion of your R Markdown file that R has successfully knitted. See
-Figure below.</p>
+the progress of your knitting. When you knit, R is going through each R
+code chunk one at a time, starting from the top and moving down. The
+percentages you will see are based on the proportion of your R Markdown
+file that R has successfully knitted. See Figure below.</p>
 <p><br></p>
 <p><img src="about_fig5.png" width="100%" /></p>
 <p><br></p>
@@ -913,9 +972,9 @@ error, which will contain the R code chunk name and sometimes the lines
 containing the problem in your R Markdown file. While not required, this
 is where naming your code chunks can come in handy. You can go to your
 offending chunk and see what may be the problem. For example, the figure
-below shows knitting was stopped because the object ‘xyz’ was not
-created in the R Markdown file. You can go to the chunk named q2chunk2
-to remedy the issue.</p>
+below shows knitting was stopped because the object <code>xyz</code> was
+not created in the R Markdown file. You can go to the chunk named
+“q2chunk2” to remedy the issue.</p>
 <p><br></p>
 <p><img src="about_fig6.png" width="100%" /></p>
 <p><br></p>
@@ -931,14 +990,15 @@ example, the error here is located in line 34.</p>
 <p><br></p>
 <p>If everything goes smoothly and you encounter no errors, a preview of
 your knitted document will pop up in a new window and the
-<code>.html</code> file will be saved in the folder where your R
-Markdown file resides. <strong>I recommend <em>not</em> waiting until
-the very end of an assignment to knit.</strong> When you finish one
-question, knit your document to see if everything is working properly.
-If it is working for that question, move on to the next question. You
-can knit over and over again, and each time the knitted file in your
-folder will be replaced by the newest version. So, don’t be afraid to
-knit just because you aren’t finished with an assignment yet.</p>
+<code>.html</code> file will automatically be saved in the folder where
+your R Markdown file resides.</p>
+<p><strong>I recommend <em>not</em> waiting until the very end of an
+assignment to knit.</strong> When you finish one question, knit your
+document to see if everything is working properly. If it is working for
+that question, move on to the next question. You can knit over and over
+again, and each time the knitted file in your folder will be replaced by
+the newest version. So, don’t be afraid to knit just because you aren’t
+finished with an assignment yet.</p>
 <p>There are two things you’ll have to deal with: (1) making sure the R
 code is working correctly to get the results you need in order to answer
 the question; and (2) making sure the code is working correctly to knit
@@ -947,11 +1007,85 @@ R code is producing an error, R Markdown will not knit), but sometimes
 they are not. So, check both your R code and your knitting results
 often. <strong>And absolutely do not wait until the last minute to knit.
 Knit as often as possible.</strong></p>
-<p>When you’re satisfied with the end product, submit your
-<code>.Rmd</code> document and final knitted <code>.html</code> document
-to the corresponding assignment page on Canvas.</p>
+<p>When you’re satisfied with the end product, submit your R Markdown
+document (with an <code>.Rmd</code> extension) and final knitted
+<code>.html</code> document to the corresponding assignment page on
+Canvas. Note that <em>both</em> files are required for your assignment
+to be graded.</p>
 <p><br></p>
 </div>
+</div>
+<div id="assignment-workflow" class="section level1">
+<h1>Assignment Workflow</h1>
+<p>Use the following workflow for all assignments in this course:</p>
+<p><strong>1. Review the week’s materials first.</strong><br> Make sure
+you understand the concepts before starting the assignment.
+<mark>Skipping this step is the most common reason students
+struggle.</mark> You need a solid grasp of the content to understand
+what each assignment question is asking.</p>
+<p><strong>2. Set up your assignment folder.</strong><br> Create a
+folder on your computer to store assignment files. You may use one
+folder for all assignments or separate folders for each — what matters
+is that your files are organized and easy to locate.</p>
+<p><strong>3. Create your R Markdown file.</strong><br> Create a new R
+Markdown document following the instructions provided earlier on this
+page. Save it in the appropriate assignment folder. Remove the default
+text and code chunks that appear below the {r setup} chunk.</p>
+<p><strong>4. Download and save the data.</strong><br> Download the
+required data file(s) from Canvas and save them in the same folder as
+your <code>.Rmd</code> file.</p>
+<p><strong>5. Work through the assignment questions in
+order.</strong><br> For each question, use the following structure:</p>
+<ul>
+<li>Question identifier (e.g., section name and item number)</li>
+<li>One or more R code chunks used to answer the question</li>
+<li>Written interpretation of the results (in plain text, below the code
+chunk)</li>
+</ul>
+<p>As you work:</p>
+<ul>
+<li>Use comments inside your code chunks to explain what the code is
+doing.</li>
+<li>Run your code one chunk at a time to make sure it works.</li>
+<li>There are many valid ways to write R code; grading is based on
+correctness and interpretation, not coding efficiency.</li>
+<li>Unless stated otherwise, every question requires a written
+interpretation. This is not a programming course — clear interpretation
+of results is essential.</li>
+</ul>
+<p><strong>6. Knit early and often.</strong><br> After completing the
+first question, knit your document to an .html file and confirm that it
+knits without errors. Fix any issues before moving on to the next
+question.</p>
+<p><strong>7. Repeat for all questions.</strong><br> Continue working
+through each question, knitting periodically to ensure your document
+continues to knit successfully.</p>
+<p><strong>8. Submit your files on Canvas.</strong><br> Once all
+questions are complete and the document knits successfully, submit both
+required files by the deadline.</p>
+<p>For each assignment, upload two separate files to Canvas:</p>
+<ul>
+<li>Your R Markdown file (.Rmd)</li>
+<li>The knitted HTML file (.html)</li>
+</ul>
+<p>Please do not combine these files into a zipped folder. They should
+be uploaded as two separate documents.</p>
+<p><br></p>
+</div>
+<div id="one-last-thing" class="section level1">
+<h1>One last thing…</h1>
+<p>If this page feels overwhelming right now, that’s okay. Much of this
+will make more sense once you begin working with R/RStudio, and you can
+return to this page as a reference throughout the semester. Remember
+that you are not expected to know everything at the start, and I am here
+to support you at every step. If you have questions at any time, please
+don’t hesitate to reach out.</p>
+<p><br></p>
+<hr />
+<p><strong>Jenny Wagner, PhD, MPH</strong><br />
+Assistant Professor<br> Department of Public Health<br> California State
+University, Sacramento<br> <a href="mailto:jenny.wagner@csus.edu"
+class="email">jenny.wagner@csus.edu</a></p>
 </div>
 
 

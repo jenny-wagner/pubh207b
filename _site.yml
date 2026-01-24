@@ -1,7 +1,7 @@
 name: "my-website"
 output_dir: "docs"
 navbar:
-  title: "PUBH 207B: Spring 2025"
+  title: "PUBH 207B: Spring 2026"
   left:
     - text: "Home"
       href: index.html
@@ -9,8 +9,6 @@ navbar:
       href: install.html
     - text: "Assignment Guidelines"
       href: about.html
-    - text: "Assignment Workflow"
-      href: workflow.html
 #    - text: "Course Schedule"
 #      href: course_schedule.html
     - text: "Lab Guides"

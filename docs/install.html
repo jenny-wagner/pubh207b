@@ -302,7 +302,7 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">PUBH 207B: Spring 2025</a>
+      <a class="navbar-brand" href="index.html">PUBH 207B: Spring 2026</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -314,9 +314,6 @@ div.tocify {
 </li>
 <li>
   <a href="about.html">Assignment Guidelines</a>
-</li>
-<li>
-  <a href="workflow.html">Assignment Workflow</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -350,14 +347,14 @@ div.tocify {
 </div>
 
 
-<p><br> <strong>Jenny Wagner, PhD, MPH</strong> <br> Department of
-Public Health <br> California State University, Sacramento <br> <br></p>
-<p><strong>To get started, you will need to download both R and RStudio.
-These are separate programs. Follow the instructions below to install R
-and RStudio and set a few default options.</strong></p>
 <p><br></p>
-<div id="install-r" class="section level1">
-<h1>Install R</h1>
+<p><strong>To get started, you will need to download <em>both</em> R and
+RStudio. <em>These are separate programs.</em> Follow the instructions
+below to install R and RStudio and set a few default
+options.</strong></p>
+<p><br></p>
+<div id="install-r" class="section level2">
+<h2>Install R</h2>
 <p>R can be downloaded from one of the “CRAN” (Comprehensive R Archive
 Network) sites. In the US, the main site is at <a
 href="http://cran.us.r-project.org/"
@@ -367,39 +364,40 @@ Install R” box at the top of the page. Click on the appropriate link
 <p>If you already have R on your computer, make sure you have the most
 updated version.</p>
 <p><br></p>
-<div id="mac-os-x" class="section level2">
-<h2>Mac OS X</h2>
+<div id="macos" class="section level4">
+<h4>MacOS</h4>
 <ol style="list-style-type: decimal">
-<li><p>On the “R for Mac OS X” page, there are multiple packages that
-could be downloaded. If you are running Big Sur or higher, click on the
-R-4.4.2.pkg; if you are running an earlier version of OS X, download the
-appropriate version listed under “Binary for legacy macOS/OS X
-systems.”</p></li>
+<li><p>On the “R for macOS” page, there are multiple software releases
+that could be downloaded. If you are running Big Sur or higher, click on
+the R-4.5.2-arm64.pkg to download the latest release; if you are running
+an earlier operating system, download the appropriate version listed
+under “Binary for legacy macOS/OS X systems.”</p></li>
 <li><p>After the package finishes downloading, locate the installer on
 your hard drive, double-click on the installer package, and follow the
-installation instructions. Select a destination for the installation of
-the R framework (the program) and the R.app GUI. Note that you will need
-to supply the Administrator’s password to complete the installation.
-Close the window when the installation is done. Once complete the
-installer can be moved to the trash.</p></li>
+installation instructions. If requested, select a destination for the
+installation of the R framework (the program) and the R.app GUI. Note
+that you will need to supply the Administrator’s password (i.e., your
+computer password) to complete the installation. Close the window when
+the installation is done. Once complete the installer can be moved to
+the trash.</p></li>
 <li><p>You should now see R in your list of applications.</p></li>
 <li><p>Next, navigate to the <a href="https://www.xquartz.org/">XQuartz
 download page</a>. Click on the most recent version of XQuartz to
 download the application.</p></li>
 <li><p>Run the XQuartz installer and follow the instructions to install
 the software. XQuartz is needed to create windows to display many types
-of R graphics (this used to be included in MacOS until version 10.8 but
+of R graphics (this used to be included in macOS until version 10.8 but
 now must be downloaded separately). Once complete the installer can be
 moved to the trash.</p></li>
 </ol>
 <p><br></p>
 </div>
-<div id="windows" class="section level2">
-<h2>Windows</h2>
+<div id="windows" class="section level4">
+<h4>Windows</h4>
 <ol style="list-style-type: decimal">
 <li><p>On the “R for Windows” page, click on the “base” link, which
-should take you to the “R-4.4.2 for Windows” page</p></li>
-<li><p>On this page, click “Download R 4.4.2 for Windows”, and save the
+should take you to the “R-4.5.2 for Windows” page.</p></li>
+<li><p>On this page, click “Download R 4.5.2 for Windows”, and save the
 exe file to your hard disk when prompted. Saving to the desktop is
 fine.</p></li>
 <li><p>To begin the installation, double-click on the downloaded file.
@@ -410,26 +408,26 @@ wanting access to your computer. Click on “Run”.</p></li>
 When the “Select Components” screen appears, just accept the standard
 choices</p></li>
 </ol>
-<p>Note: Depending on the age of your computer and version of Windows,
-you may be running either a “32-bit” or “64-bit” version of the Windows
-operating system. If you have the 64-bit version (most likely), R will
-install the appropriate version (R x64 3.5.2) and will also (for
-backwards compatibility) install the 32-bit version (R i386 3.5.2). You
-can run either, but you will probably just want to run the 64-bit
-version.</p>
+<p><em>Note:</em> Depending on the age of your computer and version of
+Windows, you may be running either a “32-bit” or “64-bit” version of the
+Windows operating system. If you have the 64-bit version (most likely),
+R will install the appropriate version and will also (for backwards
+compatibility) install the 32-bit version. You can run either, but you
+will probably just want to run the 64-bit version.</p>
 <p><br></p>
 </div>
 </div>
-<div id="install-rstudio" class="section level1">
-<h1>Install RStudio</h1>
+<div id="install-rstudio" class="section level2">
+<h2>Install RStudio</h2>
 <p>To download and install RStudio, follow the directions below:</p>
 <ol style="list-style-type: decimal">
 <li>Navigate to RStudio’s <a
 href="https://posit.co/download/rstudio-desktop/#download">download
 site</a>.</li>
-<li>Scroll down and click on the appropriate link based on your
-operating system (Windows, Mac, Linux and many others). Do not download
-anything from the “Zip/Tarballs” section.</li>
+<li>Scroll down (below “All Installers and Tarballs”) and click on the
+appropriate link based on your operating system (Windows, Mac, Linux and
+many others). Do not download anything from the “Zip/Tarballs”
+section.</li>
 <li>Click on the installer that you downloaded. Follow the installation
 wizard’s directions, making sure to keep all defaults intact. After
 installation, RStudio should pop up in your Applications or Programs
@@ -437,26 +435,29 @@ folder/menu.</li>
 </ol>
 <p><br></p>
 </div>
-<div id="set-default-options" class="section level1">
-<h1>Set default options</h1>
+<div id="set-default-options" class="section level2">
+<h2>Set default options</h2>
 <p>Once you have successfully installed both R and RStudio, <strong>open
 RStudio</strong> to set a couple of default options.</p>
 <p><em>Note that RStudio is the only application you will need to open
 in order to complete work for this course. It is necessary to have R
-installed; however, we will not actually ever open R itself. We will
-only open and work in the RStudio application.</em></p>
-<div id="rstudio-environment" class="section level2">
-<h2>RStudio environment</h2>
+installed to use the programming language; however, we will not actually
+ever open R itself. We will only open and work in the RStudio
+application.</em></p>
+<div id="rstudio-environment" class="section level4">
+<h4>RStudio environment</h4>
 <p>While not required, I strongly suggest that you change preferences in
-RStudio to never save the workspace so you always open with a clean
-environment. See <a
+RStudio to <em>never save the workspace</em>. This means that whenever
+you open RStudio, your will always open with a <em>clean
+environment</em> (we’ll talk more later about what that means). See <a
 href="https://r4ds.had.co.nz/workflow-projects.html#what-is-real">Ch.
-8.1 of R4DS</a> for some more background.</p>
+8.1 of R4DS</a> for some more background. Follow these instructions to
+change this default setting:</p>
 <ol style="list-style-type: decimal">
 <li>Click on the Tools menu in RStudio, then select Global Options.</li>
 <li>If not already highlighted, click on the “General” button from the
 left navigation panel (it should be at the very top).</li>
-<li>Uncheck the following Restore boxes</li>
+<li><strong>Uncheck</strong> the following boxes</li>
 </ol>
 <ul>
 <li>Restore most recently opened project at startup</li>
@@ -469,19 +470,11 @@ left navigation panel (it should be at the very top).</li>
 window. You may need to restart RStudio for the changes to take
 effect.</li>
 </ol>
-<p>The reason for making these changes is that it is preferable for
-reproducibility to start each R session with a clean environment. You
-can restore a previous environment either by rerunning code or by
-manually loading a previously saved session.</p>
-<p>The R Studio environment is modified when you execute code from files
-or from the console. If you always start fresh, you do not need to be
-concerned about things not working because of something you typed in the
-console, but did not save in a file.</p>
 <p>You only need to set these preferences once.</p>
 <p><br></p>
 </div>
-<div id="r-markdown-options" class="section level2">
-<h2>R Markdown options</h2>
+<div id="r-markdown-options" class="section level4">
+<h4>R Markdown options</h4>
 <p>Next, to avoid a crowded workspace, you will want to display the
 output of your code only in the Console and Plots windows rather than
 “inline” in the Editor window. (An explanation of these different
@@ -502,8 +495,15 @@ effect.</li>
 Assignment Guidelines page to get familiar with expectations for
 assignments in this course and learn some basics of working in RStudio.
 I encourage you to have RStudio open as you review the Assignment
-Guidelines so that you can follow along and try things out as you
-go.</em></p>
+Guidelines so that you can follow along and try things out yourself as
+you read.</em></p>
+<p>If you have any questions, please don’t hesitate to reach out to
+me.</p>
+<hr />
+<p><strong>Jenny Wagner, PhD, MPH</strong><br />
+Assistant Professor<br> Department of Public Health<br> California State
+University, Sacramento<br> <a href="mailto:jenny.wagner@csus.edu"
+class="email">jenny.wagner@csus.edu</a></p>
 </div>
 </div>
 
