@@ -6,7 +6,7 @@ output:
 ---
 
 ```{r, echo=FALSE, out.width = '100%'}
-knitr::include_graphics("website-image3.png")
+# knitr::include_graphics("website-image3.png")
 ```
 
 <br>
