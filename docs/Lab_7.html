@@ -13,7 +13,7 @@
 
 <title>Lab 7: Linear Regression</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
@@ -427,6 +427,9 @@ div.tocify {
     <li>
       <a href="Lab_1.html">Lab 1</a>
     </li>
+    <li>
+      <a href="Lab_2.html">Lab 2</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -481,7 +484,7 @@ dependent variable (outcome). It not only tells us whether a
 relationship exists but also provides a mathematical equation to
 describe the relationship and make predictions. This method fits a
 regression line to the data, represented by the equation…</p>
-<p><img src="simple-linear-reg-equation.png" width="30%" style="display: block; margin: auto;" /></p>
+<p><img src="simple-linear-reg-equation.png" alt="" width="30%" style="display: block; margin: auto;" /></p>
 <p>… where:</p>
 <ul>
 <li><em>Y</em> is the dependent variable (outcome),</li>
@@ -502,7 +505,7 @@ predictor (<em>X</em>) variable on an outcome of interest,
 incorporating two or more independent variables to explain variation in
 the dependent variable. The equation for multiple linear regression
 is…</p>
-<p><img src="multiple-linear-reg-equation.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="multiple-linear-reg-equation.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>… where each <em>X<sub>i</sub></em> represents a different predictor
 variable, and each <em>β<sub>i</sub></em> is the regression coefficient
 or slope associated with the corresponding predictor variable. In a
@@ -707,19 +710,19 @@ variable (<code>SES_Category</code>), a bar chart is most
 appropriate.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># histogram of measles incidence</span></span>
 <span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>MeaslesIncidence, <span class="at">breaks =</span> <span class="dv">10</span>)</span></code></pre></div>
-<p><img src="Lab_7_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="Lab_7_files/figure-html/unnamed-chunk-9-1.png" alt="" width="672" /></p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># histogram of vaccination rate</span></span>
 <span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>VaccinationRate, <span class="at">breaks =</span> <span class="dv">10</span>)</span></code></pre></div>
-<p><img src="Lab_7_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="Lab_7_files/figure-html/unnamed-chunk-10-1.png" alt="" width="672" /></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># histogram of healthcare access</span></span>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>HealthcareAccess, <span class="at">breaks =</span> <span class="dv">10</span>)</span></code></pre></div>
-<p><img src="Lab_7_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="Lab_7_files/figure-html/unnamed-chunk-11-1.png" alt="" width="672" /></p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># histogram of population density</span></span>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>PopulationDensity, <span class="at">breaks =</span> <span class="dv">10</span>)</span></code></pre></div>
-<p><img src="Lab_7_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="Lab_7_files/figure-html/unnamed-chunk-12-1.png" alt="" width="672" /></p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># histogram of percent children under 5</span></span>
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>PercentChildrenUnder5, <span class="at">breaks =</span> <span class="dv">10</span>)</span></code></pre></div>
-<p><img src="Lab_7_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="Lab_7_files/figure-html/unnamed-chunk-13-1.png" alt="" width="672" /></p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># generate a simple bar chart for SES</span></span>
 <span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(data<span class="sc">$</span>SES_Category), </span>
 <span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Barchart of SES Category&quot;</span>, </span>
@@ -727,7 +730,7 @@ appropriate.</p>
 <span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>, </span>
 <span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>,</span>
 <span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Low SES&quot;</span>, <span class="st">&quot;High SES&quot;</span>))</span></code></pre></div>
-<p><img src="Lab_7_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="Lab_7_files/figure-html/unnamed-chunk-14-1.png" alt="" width="672" /></p>
 <p>These plots give us a good sense of the spread of each variable.
 Although it is not required for linear regression that each individual
 variable be normally distributed, it is still helpful to check whether
@@ -748,7 +751,7 @@ can use a scatterplot, specifying the independent (vaccination rate) and
 dependent (measles incidence) variables as follows:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># scatterplot of vaccination rate and measles incidence</span></span>
 <span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="fu">plot</span>(data<span class="sc">$</span>VaccinationRate, data<span class="sc">$</span>MeaslesIncidence)</span></code></pre></div>
-<p><img src="Lab_7_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="Lab_7_files/figure-html/unnamed-chunk-15-1.png" alt="" width="672" /></p>
 <p>From the scatterplot, we see a beautiful linear relationship, where
 increasing vaccination rate corresponds to decreasing measles incidence.
 In other words, there is a negative linear relationship between
@@ -763,7 +766,7 @@ using the <code>pairs()</code> function as follows:</p>
 <span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>data <span class="sc">%&gt;%</span> </span>
 <span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(SES_Category, RegionID)) <span class="sc">%&gt;%</span> </span>
 <span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>  <span class="fu">pairs</span>()</span></code></pre></div>
-<p><img src="Lab_7_files/figure-html/unnamed-chunk-16-1.png" width="100%" /></p>
+<p><img src="Lab_7_files/figure-html/unnamed-chunk-16-1.png" alt="" width="100%" /></p>
 <p>You may need to expand the Plots window (click and drag at the
 borders) to get a good view of all the plots. As you can imagine,
 scatterplot matrices can get pretty messy if we try to use too many
@@ -784,7 +787,7 @@ this using grouped boxplots as follows:</p>
 <span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Measles Incidence&quot;</span>, </span>
 <span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, </span>
 <span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a>        <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;Low SES&quot;</span>, <span class="st">&quot;High SES&quot;</span>))</span></code></pre></div>
-<p><img src="Lab_7_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="Lab_7_files/figure-html/unnamed-chunk-17-1.png" alt="" width="672" /></p>
 <p><br></p>
 </div>
 </div>
@@ -801,11 +804,11 @@ negative correlation) to +1 (strong positive correlation), with 0
 indicating no linear relationship. For example, the following plots show
 what linear relationships might look like with different values of
 Pearson’s <em>r</em>:</p>
-<p><img src="correlation-plots.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="correlation-plots.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p><br></p>
 <p>Here’s a general breakdown of how to interpret values of Pearson’s
 <em>r</em>:</p>
-<p><img src="pearsons.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="pearsons.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p><br></p>
 <p>Once again, suppose that we are most interested in investigating the
 relationship between vaccination rate and measles incidence. The
@@ -1021,7 +1024,7 @@ create the residuals vs. fitted values plot using the
 <code>plot()</code> function as follows:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="co"># generate residuals vs. fitted values plot</span></span>
 <span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="dv">1</span>) </span></code></pre></div>
-<p><img src="Lab_7_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="Lab_7_files/figure-html/unnamed-chunk-24-1.png" alt="" width="672" /></p>
 <p><strong>Note:</strong> The ‘1’ in the code above refers to a specific
 plot to generate from the <code>plot()</code> command, in this case, the
 residuals vs. fitted values plot.</p>
@@ -1056,7 +1059,7 @@ assumption.</p>
 distribution of residuals to a theoretical normal distribution, again
 using the <code>plot()</code> function as follows:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="dv">2</span>) </span></code></pre></div>
-<p><img src="Lab_7_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p><img src="Lab_7_files/figure-html/unnamed-chunk-26-1.png" alt="" width="672" /></p>
 <p><strong>Note:</strong> The ‘2’ in the code above refers to a specific
 plot to generate from the <code>plot()</code> command, in this case the
 Q-Q plot.</p>
@@ -1142,7 +1145,7 @@ summary of our model:</p>
 <span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a>        <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a>        <span class="fu">stat_regline_equation</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="Lab_7_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="Lab_7_files/figure-html/unnamed-chunk-29-1.png" alt="" width="672" /></p>
 <p>The key finding from our simple linear regression model is the
 regression coefficient for vaccination rate (-2.3086), which quantifies
 the relationship between vaccination coverage and measles incidence.
@@ -1257,7 +1260,7 @@ confounder changes the coefficient of the predictor by more than 10%,
 the variable is likely acting as a confounder. You can calculate the
 percent change in the regression coefficient using the following
 equation:</p>
-<p><img src="confounder-calc.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="confounder-calc.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
 <p>… where:</p>
 <ul>
 <li>β<sub>1</sub> is the regression coefficient corresponding to the
@@ -1407,7 +1410,7 @@ determine whether this variable acts as a confounder of the relationship
 between vaccination rate and measles incidence, using the regression
 coefficients corresponding to vaccination rate in each model, as
 follows:</p>
-<p><img src="confounder-calc-example.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="confounder-calc-example.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
 <p>We find that the difference in the regression coefficient for
 vaccination rate in models with and without SES category is 3.24%, below
 the 10% threshold. This means SES category is likely not a confounder of
@@ -1531,11 +1534,11 @@ model, let’s quickly rerun model diagnostics to ensure our multiple
 regression model still meets assumptions.</p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a><span class="co"># generate residuals vs. fitted values plot to assess homoscedasticity assumption</span></span>
 <span id="cb49-2"><a href="#cb49-2" tabindex="-1"></a><span class="fu">plot</span>(model4, <span class="dv">1</span>) </span></code></pre></div>
-<p><img src="Lab_7_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p><img src="Lab_7_files/figure-html/unnamed-chunk-39-1.png" alt="" width="672" /></p>
 <p>Looks good!</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a><span class="co"># generate Q-Q plot to assess normality assumption</span></span>
 <span id="cb50-2"><a href="#cb50-2" tabindex="-1"></a><span class="fu">plot</span>(model4, <span class="dv">2</span>) </span></code></pre></div>
-<p><img src="Lab_7_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p><img src="Lab_7_files/figure-html/unnamed-chunk-40-1.png" alt="" width="672" /></p>
 <p>Looks fine. Hooray!</p>
 <p><br></p>
 </div>
@@ -1544,7 +1547,7 @@ regression model still meets assumptions.</p>
 <p>Our final regression model estimates the relationship between measles
 incidence, vaccination rate, and population density, given by the
 following equation:</p>
-<p><img src="reg-equation.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="reg-equation.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>We can interpret our regression coefficients as follows:</p>
 <ul>
 <li><strong>Vaccination Rate (-2.29)</strong>: For every one percentage

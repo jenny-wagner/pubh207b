@@ -13,7 +13,7 @@
 
 <title>Lab 4: Estimation</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
@@ -427,6 +427,9 @@ div.tocify {
     <li>
       <a href="Lab_1.html">Lab 1</a>
     </li>
+    <li>
+      <a href="Lab_2.html">Lab 2</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -649,7 +652,7 @@ BMI with a histogram.</p>
 ## </code></pre>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="co"># create a historgram of BMI in the sample</span></span>
 <span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>BMI, <span class="at">breaks =</span> <span class="dv">30</span>)</span></code></pre></div>
-<p><img src="Lab_4_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="Lab_4_files/figure-html/unnamed-chunk-9-1.png" alt="" width="672" /></p>
 <p>From the summary of our dataset, we can see the mean BMI in the
 sample is 25.85. This aligns with our view of the histogram for BMI,
 which shows the bulk of the distribution centered around this value.
@@ -692,13 +695,13 @@ in greater detail below).</li>
 <p>We can use the flowchart below to identify the most appropriate
 reference distribution (<em>Z</em> or <em>t</em>) when estimating a
 population mean:</p>
-<p><img src="flowchart_mean2.png" width="100%" /></p>
+<p><img src="flowchart_mean2.png" alt="" width="100%" /></p>
 <p>In most cases, if the population variance is known, we can directly
 account for variability in the population and use a “reliability
 coefficient” (Z) from the standard normal distribution, where the
 formula for the interval estimate of the population mean is as
 follows:</p>
-<p><img src="z-mean.png" width="20%" style="display: block; margin: auto;" /></p>
+<p><img src="z-mean.png" alt="" width="20%" style="display: block; margin: auto;" /></p>
 <p>In practice, however, the population variance is rarely known, so we
 will focus here on the alternative scenario. When the population
 variance is unknown, we estimate variability using the sample variance
@@ -706,7 +709,7 @@ and use the <em>t</em>-distribution (rather than the standard normal
 distribution) in determining the appropriate reliability coefficient.
 Under these conditions, the formula for the interval estimate of the
 population mean is as follows:</p>
-<p><img src="t-mean.png" width="20%" style="display: block; margin: auto;" /></p>
+<p><img src="t-mean.png" alt="" width="20%" style="display: block; margin: auto;" /></p>
 <p>The great thing about using software is that, while we need to make
 the appropriate analytic decisions and specify a desired level of
 confidence with which to estimate the population parameter, R handles
@@ -794,7 +797,7 @@ BMI by sex in our sample:</p>
 <span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a>    <span class="fu">scale_fill_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Males&#39;</span>, <span class="st">&#39;Females&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="Lab_4_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="Lab_4_files/figure-html/unnamed-chunk-14-1.png" alt="" width="672" /></p>
 <p>A quick breakdown of this code chunk, in which we are using the
 <code>ggplot2</code> package for the first time(!):</p>
 <ul>
@@ -850,7 +853,7 @@ difference in population means depends on four conditions:</p>
 <p>We can use the flowchart below to identify the most appropriate
 reference distribution (<em>Z</em>, <em>t</em>, or <em>t’</em>) when
 estimating the difference in population means:</p>
-<p><img src="flowchart_diff_means.png" width="100%" /></p>
+<p><img src="flowchart_diff_means.png" alt="" width="100%" /></p>
 <p>To estimate the difference in mean BMI between males and females in
 Framingham, let’s first make the following assumptions:</p>
 <ol style="list-style-type: decimal">
@@ -987,7 +990,7 @@ indicate the variances in BMI for males and females are
 <strong>not</strong> equal. Given this information, we will proceed with
 estimating the difference in population means using <strong>Welch’s
 t-test</strong>, which uses the following formula:</p>
-<p><img src="t-prime-diff.png" width="35%" style="display: block; margin: auto;" /></p>
+<p><img src="t-prime-diff.png" alt="" width="35%" style="display: block; margin: auto;" /></p>
 <p>To do this in R, we will carry out a two-sample <em>t-test</em> with
 unequal variances using the <code>t.test()</code> function as
 follows:</p>
@@ -1041,7 +1044,7 @@ with 95% confidence, by an amount within the interval estimate (again,
 <em>t’</em> reference distribution would be appropriate for our specific
 scenario. Just for practice, suppose we wanted to try this problem using
 the a <em>z-test</em>, which would use the following formula:</p>
-<p><img src="z-diff.png" width="35%" style="display: block; margin: auto;" /></p>
+<p><img src="z-diff.png" alt="" width="35%" style="display: block; margin: auto;" /></p>
 <p>To do this in R, we need to use the objects we created previously
 which contained BMI values for males and females separately. We would
 additionally need to create objects for the values of the sample
@@ -1110,7 +1113,7 @@ estimate obesity prevalence among the adult population of the city of
 Framingham. In other words, we want to estimate the proportion of the
 adult population who are obese (defined as BMI&gt;30). The formula to
 estimate a population proportion is as follows:</p>
-<p><img src="prop.png" width="35%" style="display: block; margin: auto;" /></p>
+<p><img src="prop.png" alt="" width="35%" style="display: block; margin: auto;" /></p>
 <p>To do this in R, we first need to know how many people in the sample
 are obese as well as the total sample size:</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="co"># generate a table to count number of obese individuals in the sample</span></span>
@@ -1186,14 +1189,14 @@ side-by-side bar chart as follows:</p>
 <span id="cb45-7"><a href="#cb45-7" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>), </span>
 <span id="cb45-8"><a href="#cb45-8" tabindex="-1"></a>        <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>), </span>
 <span id="cb45-9"><a href="#cb45-9" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Not Obese&quot;</span>, <span class="st">&quot;Obese&quot;</span>))</span></code></pre></div>
-<p><img src="Lab_4_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="Lab_4_files/figure-html/unnamed-chunk-28-1.png" alt="" width="672" /></p>
 <p>From the bar chart, it appears obesity prevalence is slightly higher
 among females than males. But is the difference statistically
 significant? In other words, based on our sample data, do we have enough
 evidence to conclude that obesity is more prevalent among females in the
 population than among males? The formula to estimate the difference in
 population proportions is as follows:</p>
-<p><img src="prop-diff.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="prop-diff.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
 <p>To do this in R, we first need to know the number of obese
 individuals by sex in the sample. We also need the total number of males
 and females in the sample. We can obtain these values using the ‘table’

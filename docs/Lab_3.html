@@ -13,7 +13,7 @@
 
 <title>Lab 3: Probability Distributions</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
@@ -427,6 +427,9 @@ div.tocify {
     <li>
       <a href="Lab_1.html">Lab 1</a>
     </li>
+    <li>
+      <a href="Lab_2.html">Lab 2</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -731,7 +734,7 @@ corresponding number of co-occurring substance addictions.</p>
 <span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Relative frequency&quot;</span>, </span>
 <span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;gray&quot;</span>,</span>
 <span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>        <span class="at">names.arg =</span> subs<span class="sc">$</span>Var1)</span></code></pre></div>
-<p><img src="Lab_3_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="Lab_3_files/figure-html/unnamed-chunk-8-1.png" alt="" width="672" /></p>
 <p>Visualizing the probability distribution in this way allows us to
 quickly see the most and least likely outcomes.</p>
 <p><br></p>
@@ -1060,7 +1063,7 @@ is 0.48) as follows:</p>
 <span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a></span>
 <span id="cb37-4"><a href="#cb37-4" tabindex="-1"></a><span class="co"># plot the Binomial distribution</span></span>
 <span id="cb37-5"><a href="#cb37-5" tabindex="-1"></a><span class="fu">plot</span>(success, <span class="fu">dbinom</span>(success, <span class="at">size=</span><span class="dv">20</span>, <span class="at">prob=</span><span class="fl">0.48</span>), <span class="at">type =</span> <span class="st">&#39;h&#39;</span>)</span></code></pre></div>
-<p><img src="Lab_3_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="Lab_3_files/figure-html/unnamed-chunk-19-1.png" alt="" width="672" /></p>
 <p>The resulting plot shows the Binomial probability distribution for
 n=20 trials and a success probability (p) of 0.48. We can interpret this
 plot as follows:</p>
@@ -1178,7 +1181,7 @@ distribution for our scenario (in which the mean number of events is 13)
 as follows:</p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a>events <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">30</span></span>
 <span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a><span class="fu">plot</span>(events, <span class="fu">dpois</span>(events, <span class="at">lambda =</span> <span class="dv">13</span>), <span class="at">type =</span> <span class="st">&#39;h&#39;</span>)</span></code></pre></div>
-<p><img src="Lab_3_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="Lab_3_files/figure-html/unnamed-chunk-24-1.png" alt="" width="672" /></p>
 <p>The resulting plot shows the Poisson probability distribution for the
 number of events (X) ranging from 0 to 30, with an average rate (λ) of
 13. Here’s how to interpret the plot:</p>
@@ -1290,7 +1293,7 @@ can help us understand the distribution of values and predict
 probabilities for ranges of interest. We can visualize the Normal
 distribution for our scenario as follows:</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="fl">30.23</span>, <span class="fl">13.84</span>), <span class="at">from=</span><span class="dv">0</span>, <span class="at">to=</span><span class="dv">60</span>)</span></code></pre></div>
-<p><img src="Lab_3_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="Lab_3_files/figure-html/unnamed-chunk-28-1.png" alt="" width="672" /></p>
 <p>The plot shows the Normal distribution with a mean (μ) of 30.23 and a
 standard deviation (σ) of 13.84. Here’s how to interpret the plot:</p>
 <ul>

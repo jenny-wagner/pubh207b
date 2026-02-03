@@ -13,7 +13,7 @@
 
 <title>Lab 5: Hypothesis Testing</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
@@ -427,6 +427,9 @@ div.tocify {
     <li>
       <a href="Lab_1.html">Lab 1</a>
     </li>
+    <li>
+      <a href="Lab_2.html">Lab 2</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -618,7 +621,7 @@ and also visualize the distribution of BMI with a histogram.</p>
 ## </code></pre>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># create a histogram of BMI in the sample</span></span>
 <span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>BMI, <span class="at">breaks =</span> <span class="dv">30</span>)</span></code></pre></div>
-<p><img src="Lab_5_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="Lab_5_files/figure-html/unnamed-chunk-9-1.png" alt="" width="672" /></p>
 <p>From the summary of our dataset, we can see the mean BMI in the
 sample is 25.85. This aligns with our view of the histogram for BMI,
 which shows the bulk of the distribution centered around this value.
@@ -681,7 +684,7 @@ depends on the following conditions:</p>
 reference distribution (<em>Z</em> or <em>t</em>) when estimating a
 population mean:</p>
 <p><br></p>
-<p><img src="flowchart_mean2.png" width="100%" /></p>
+<p><img src="flowchart_mean2.png" alt="" width="100%" /></p>
 <p><br></p>
 <p>As in Lab 4, we will assume BMI in the population is approximately
 normally distributed with an unknown variance. Following the flowchart
@@ -886,7 +889,7 @@ sample:</p>
 <span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>    <span class="fu">scale_fill_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Males&#39;</span>, <span class="st">&#39;Females&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="Lab_5_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="Lab_5_files/figure-html/unnamed-chunk-13-1.png" alt="" width="672" /></p>
 <p><em>See Lab 4 for a detailed breakdown of the code chunk used to
 generate this side-by-side histogram.</em></p>
 <p>From the histogram we can see that the distributions of BMI among
@@ -925,7 +928,7 @@ the other.</p>
 <p>As in Lab 4, we can use the flowchart below to identify the most
 appropriate reference distribution (<em>Z</em>, <em>t</em>, or
 <em>t’</em>) when estimating the difference in population means:</p>
-<p><img src="flowchart_diff_means.png" width="100%" /></p>
+<p><img src="flowchart_diff_means.png" alt="" width="100%" /></p>
 <p><br></p>
 <p>To estimate the difference in mean BMI between males and females in
 Framingham, let’s first make the following assumptions:</p>

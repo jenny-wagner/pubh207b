@@ -13,7 +13,7 @@
 
 <title>Lab 9: Analysis of Frequencies + Non-parametric Tests</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
@@ -427,6 +427,9 @@ div.tocify {
     <li>
       <a href="Lab_1.html">Lab 1</a>
     </li>
+    <li>
+      <a href="Lab_2.html">Lab 2</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -676,21 +679,21 @@ generate bar charts for each pair of variables as follows:</p>
 <span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>,</span>
 <span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Smoking Status&quot;</span>,</span>
 <span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Asthma&quot;</span>)</span></code></pre></div>
-<p><img src="Lab_9_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="Lab_9_files/figure-html/unnamed-chunk-9-1.png" alt="" width="672" /></p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># visualize the data: asthma by presence of pets</span></span>
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Pets, <span class="at">fill =</span> Asthma)) <span class="sc">+</span></span>
 <span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>,</span>
 <span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Presence of Pets&quot;</span>,</span>
 <span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Asthma&quot;</span>)</span></code></pre></div>
-<p><img src="Lab_9_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="Lab_9_files/figure-html/unnamed-chunk-10-1.png" alt="" width="672" /></p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># visualize the data: asthma by indoor air quality</span></span>
 <span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Indoor_Air_Quality, <span class="at">fill =</span> Asthma)) <span class="sc">+</span></span>
 <span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>,</span>
 <span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Indoor Air Quality&quot;</span>,</span>
 <span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Asthma&quot;</span>)</span></code></pre></div>
-<p><img src="Lab_9_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="Lab_9_files/figure-html/unnamed-chunk-11-1.png" alt="" width="672" /></p>
 <p><br></p>
 </div>
 <div id="formal-analysis-of-categorical-variables"
@@ -711,7 +714,7 @@ independent). For both tests, the null hypothesis is that there is
 <em>no association</em> between the two variables (i.e., they are
 independent of one another). The Chi-square test statistic is given by
 the following equation:</p>
-<p><img src="chi-square.png" width="25%" style="display: block; margin: auto;" /></p>
+<p><img src="chi-square.png" alt="" width="25%" style="display: block; margin: auto;" /></p>
 <p>Where:</p>
 <ul>
 <li>𝑂 = Observed frequency in each cell</li>
@@ -752,7 +755,7 @@ expected cell count is the number of observations we would
 variables were completely independent — that is, if there were no
 relationship between them. For each cell in a contingency table, the
 expected count is calculated by:</p>
-<p><img src="expected.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="expected.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
 <p>The Chi-square test uses these expected counts to compare against the
 observed counts. If the differences between observed and expected counts
 are large, the test may indicate a significant association. But for the
@@ -918,7 +921,7 @@ start is with grouped boxplots to visualize the distribution of
 cigarette reduction across program settings.</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="co"># Boxplot for reduction in cigarettes by group</span></span>
 <span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a><span class="fu">ggboxplot</span>(data1, <span class="at">x =</span> <span class="st">&quot;Group&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Reduction_in_Cigarettes&quot;</span>)</span></code></pre></div>
-<p><img src="Lab_9_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="Lab_9_files/figure-html/unnamed-chunk-21-1.png" alt="" width="672" /></p>
 <p>From the output, we can see there appears to be a difference in the
 distribution of cigarette reduction across groups, where participants in
 the workplace-based program appear to have a greater reduction in
@@ -942,7 +945,7 @@ may not be valid. This is where non-parametric tests come in.</p>
 <p>Let’s take a look at the flowchart we used several weeks back to
 identify the appropriate reference distribution when making comparisons
 across two independent groups:</p>
-<p><img src="flowchart_diff_means.png" width="100%" /></p>
+<p><img src="flowchart_diff_means.png" alt="" width="100%" /></p>
 <p>Once again, from the flowchart, we can see that the statistical tests
 we learned earlier in the course rely on the assumption that the
 populations are normally distributed — or, if the populations are not

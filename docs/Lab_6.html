@@ -13,7 +13,7 @@
 
 <title>Lab 6: Analysis of Variance (ANOVA)</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
@@ -427,6 +427,9 @@ div.tocify {
     <li>
       <a href="Lab_1.html">Lab 1</a>
     </li>
+    <li>
+      <a href="Lab_2.html">Lab 2</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -724,7 +727,7 @@ follows:</p>
 <span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;BMI&quot;</span>, </span>
 <span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;purple&quot;</span>, </span>
 <span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>        <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;0-11 years&quot;</span>, <span class="st">&quot;High School&quot;</span>, <span class="st">&quot;Some College&quot;</span>, <span class="st">&quot;College degree or more&quot;</span>))</span></code></pre></div>
-<p><img src="Lab_6_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="Lab_6_files/figure-html/unnamed-chunk-9-1.png" alt="" width="672" /></p>
 <p>For a detailed breakdown of this code chunk and its output, please
 revisit Lab 2.</p>
 <p><br></p>
@@ -887,7 +890,7 @@ education level - using <code>ggplot</code> as follows:</p>
 <span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>EDUC, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span>  <span class="co"># Create separate histograms for each education level</span></span>
 <span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribution of BMI by Education Level&quot;</span>, <span class="at">x =</span> <span class="st">&quot;BMI&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
 <span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Lab_6_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="Lab_6_files/figure-html/unnamed-chunk-13-1.png" alt="" width="672" /></p>
 <p>A breakdown of this code chunk:</p>
 <ul>
 <li><code>ggplot(data, aes(x = BMI, fill = EDUC))</code>: Initializes
@@ -957,7 +960,7 @@ assumption.</p>
 a theoretical normal distribution. Ideally, if the data were perfectly
 normal, the points would closely follow a diagonal reference line in
 each panel. For example:</p>
-<p><img src="qq-plot-interp.png" width="100%" /></p>
+<p><img src="qq-plot-interp.png" alt="" width="100%" /></p>
 <p>To generate the Q-Q plots for BMI across education level, we will
 again use <code>ggplot()</code> but specify some different options than
 those used to generate the histograms above:</p>
@@ -968,7 +971,7 @@ those used to generate the histograms above:</p>
 <span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>EDUC) <span class="sc">+</span> </span>
 <span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Q-Q Plots for BMI by Education Level&quot;</span>) <span class="sc">+</span></span>
 <span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Lab_6_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="Lab_6_files/figure-html/unnamed-chunk-15-1.png" alt="" width="672" /></p>
 <p>Let’s break down this code chunk:</p>
 <ul>
 <li><code>ggplot(data, aes(sample = BMI))</code>: Initializes the plot
@@ -1056,7 +1059,7 @@ whether the normality assumption is met with this new variable.</p>
 <span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>EDUC, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span>  <span class="co"># Create separate histograms for each education level</span></span>
 <span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribution of square root BMI by Education Level&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Square root of BMI&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
 <span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Lab_6_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="Lab_6_files/figure-html/unnamed-chunk-18-1.png" alt="" width="672" /></p>
 <p>The new histograms in the Plots window suggest that the square
 root-transformed BMI variable (called <code>BMI_sqrt</code>) values
 follow an approximately normal distribution across all education levels.
@@ -1081,7 +1084,7 @@ BMI variable, as follows:</p>
 <span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>EDUC) <span class="sc">+</span> </span>
 <span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Q-Q Plots for square root-transformed BMI by Education Level&quot;</span>) <span class="sc">+</span></span>
 <span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Lab_6_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="Lab_6_files/figure-html/unnamed-chunk-19-1.png" alt="" width="672" /></p>
 <p>As with the histograms, the Q-Q plots for square root-transformed BMI
 by education level show a general improvement in normality compared to
 the original Q-Q plots. While there are still some minor deviations from
@@ -1283,7 +1286,7 @@ follows:</p>
 <span id="cb32-6"><a href="#cb32-6" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">get_test_label</span>(welch_results, <span class="at">detailed =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb32-7"><a href="#cb32-7" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">get_pwc_label</span>(ght_results)</span>
 <span id="cb32-8"><a href="#cb32-8" tabindex="-1"></a>    )</span></code></pre></div>
-<p><img src="Lab_6_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="Lab_6_files/figure-html/unnamed-chunk-23-1.png" alt="" width="672" /></p>
 <p>This code chunk essentially recreates the boxplot figure we examined
 in our exploratory data analysis up above – but now, we’re showing the
 square root-transformed BMI variable used in our analysis, and we’ve
