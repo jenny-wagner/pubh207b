@@ -430,6 +430,9 @@ div.tocify {
     <li>
       <a href="Lab_2.html">Lab 2</a>
     </li>
+    <li>
+      <a href="Lab_3.html">Lab 3</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -453,21 +456,15 @@ div.tocify {
 
 
 <p><br></p>
-<p><strong>Jenny Wagner, PhD, MPH</strong> <br> Department of Public
-Health <br> California State University, Sacramento <br> <br></p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>Probability distributions are a fundamental concept in statistics and
-public health research. They describe how the values of a random
-variable are distributed, information which gives us a mathematical
-framework to quantify uncertainty and make predictions about data. In
-simpler terms, a probability distribution shows the likelihood of
-different outcomes for a given variable. In the real world, they are
-used to describe patterns in health-related data - for example, the
-distribution of disease incidence, patient wait times, or the
-effectiveness of interventions.</p>
-<p>There are two main types of probability distributions, discrete and
-continuous probability distributions, discussed below.</p>
+<p>Probability distributions are a fundamental concept in statistics.
+They describe how the values of a random variable are distributed, and
+this information essentially gives us a mathematical framework to
+quantify uncertainty and make predictions about data. In other words, a
+probability distribution shows the likelihood of different outcomes for
+a given variable. There are two main types of probability distributions,
+discrete and continuous probability distributions, discussed below.</p>
 <p><br></p>
 <div id="discrete-probability-distributions" class="section level2">
 <h2>Discrete Probability Distributions</h2>
@@ -480,11 +477,11 @@ reported in a week is a discrete variable, as it represents a count
 probability distributions:</p>
 <ul>
 <li><strong>Binomial Distribution:</strong> Models the probability of a
-specific number of “successes” in a fixed number of independent trials,
-where each trial has the same probability of success. For example, we
-might use the binomial distribution to estimate the probability of a
-certain number of patients recovering after a new treatment or to
-predict the proportion of smokers in a sample of adults.</li>
+specific number of “successes” in a fixed number of independent trials
+(n), where each trial has the same probability of success. For example,
+we might use the binomial distribution to estimate the probability of a
+certain number of patients in a study recovering after a new treatment
+or to predict the proportion of smokers in a sample of adults.</li>
 <li><strong>Poisson Distribution:</strong> Models the probability of a
 given number of events occurring in a fixed interval of time and space,
 assuming the events happen independently and at a constant average rate.
@@ -504,7 +501,7 @@ effectively zero (because, again, these variables can take on an
 infinite number of values). For example, body mass index (BMI) is a
 continuous variable, as it can take on any value within a realistic
 range (e.g., 18.5, 24.7). The most commonly used continuous probability
-distribution is the Normal distribution, which is widely used to model
+distribution is the Normal Distribution, which is widely used to model
 data in public health and is considered the most important probability
 distribution in statistics.</p>
 <ul>
@@ -514,8 +511,7 @@ defined by its mean, which determines the center of the distribution,
 and standard deviation, which determines its spread. The normal
 distribution is often used to analyze continuous health metrics (e.g.,
 BMI, cholesterol levels, blood pressure, etc.) and serves as the
-foundation for many statistical methods, including confidence interval
-estimation and hypothesis testing.</li>
+foundation for many statistical methods.</li>
 </ul>
 <p>A solid understanding of probability distributions will be important
 a we move toward statistical methods like estimation and hypothesis
@@ -543,7 +539,7 @@ discrete probability distributions based on <em>real data</em>, like the
 example discussed in this week’s lecture video. For Part 1 you will use
 the dataset called “substances.csv” which you can download from Canvas.
 <strong>Part 2</strong> focuses on theoretical probability distributions
-- specifically, the Binomial, Poisson, and Normal distributions. For
+— specifically, the Binomial, Poisson, and Normal distributions. For
 Part 2 you will not need any data files. Rather, we will apply R
 functions that already contain information about these theoretical
 distributions to given public health scenarios.</p>
@@ -564,7 +560,7 @@ class="section level2">
 <h2>Part 1: Discrete Probability Distributions Based on Real Data</h2>
 <p>Part 1 is based on the following scenario: Suppose patients who were
 involved in a problem gambling treatment program were surveyed about
-co-occurring drug and alcohol addictions. Let the discrete random
+co-occurring drug and alcohol dependencies. Let the discrete random
 variable ‘X’ represent the number of co-occurring addictive substances
 used by the subjects. The dataset labeled “substances.csv” contains two
 variables:</p>
@@ -591,8 +587,8 @@ using the <code>library()</code> function as follows:</p>
 </div>
 <div id="set-your-working-directory" class="section level3">
 <h3>2. Set your working directory</h3>
-<p>Set your working directory using the <code>setwd()</code> function
-(see Assignment Guidelines for detailed instructions).</p>
+<p>Set your working directory manually or using the <code>setwd()</code>
+function (see Assignment Guidelines for detailed instructions).</p>
 <pre><code>setwd(&quot;YOUR FILE PATH HERE&quot;)</code></pre>
 <p><br></p>
 </div>
@@ -604,8 +600,8 @@ working directory you specified in the above step.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># import dataset</span></span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;substances.csv&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>X)</span></code></pre></div>
 <p><em>Note:</em> Sometimes when importing a CSV file into RStudio, a
-column called ‘X’ is added to the dataset to identify the observation
-number. My personal preference is to drop this column, which is what the
+column called ‘X’ is added to the dataset to identify the row number. My
+personal preference is to drop this column, which is what the
 <code>%&gt;% select(-X)</code> part of the code above is doing. If you
 ever notice that an ‘X’ column is added to your dataset, you can use the
 same code to remove it. But again, this is a personal preference. We
@@ -613,14 +609,24 @@ could choose leave the ‘X’ column in the dataset if we wanted to; it’s
 not hurting anything.</p>
 <p>After running the above code chunk, you should see an object called
 <code>data</code> in your Environment window with 777 observations and 2
-variables (defined above).</p>
+variables (defined above). Each row in this dataset corresponds to an
+<em>individual</em> study participant. Click on the object called
+<code>data</code> from the Environment window to see what the data table
+looks like.</p>
+<p>Suppose we want to know the probability that a randomly selected
+participant will have fewer than three co-occurring substance
+dependencies, or more than five, or exactly two… To obtain these
+probabilities, we need to construct the probability distribution for
+this discrete random variable. The probability distribution will tell us
+the probability associated with each number of co-occurring substance
+dependencies.</p>
 <p><br></p>
 </div>
 <div id="construct-a-discrete-probability-distribution"
 class="section level3">
 <h3>4. Construct a discrete probability distribution</h3>
 <p>To construct a discrete probability distribution for the number of
-co-occurring substance addictions, we first need to create a table
+co-occurring substance dependencies, we first need to create a table
 showing the <em>frequency</em> and <em>relative frequency</em> for this
 discrete distribution as follows:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># construct frequency table and save it as a new dataframe</span></span>
@@ -628,13 +634,14 @@ discrete distribution as follows:</p>
 <p>A brief breakdown of this code:</p>
 <ul>
 <li><code>table(data$substances)</code>: Creates a frequency table of
-the substances variable in the data dataset. The table counts the
-occurrences of each unique value in the <code>substances</code>
-variable, producing a summary of how often each substance appears.</li>
+the <code>substances</code> variable in the data dataset. The table
+counts the occurrences of each unique value in the
+<code>substances</code> variable and produces a summary of how often
+each number of substances appears.</li>
 <li><code>as.data.frame()</code>: Stores the frequency table as an
-object in our Environment with two columns: one column for the unique
-values in substances and another column for their respective
-counts.</li>
+object (specifically, a “data frame”) in our Environment with two
+columns: one column for the unique values in substances and another
+column for their respective counts (i.e., frequencies).</li>
 <li><code>subs &lt;- ...</code>: Names the resulting object
 <code>subs</code>. The <code>subs</code> object will now contain two
 columns where:
@@ -642,7 +649,7 @@ columns where:
 <li>The first column (generically called <code>Var1</code>) holds the
 unique values of the substances variable.</li>
 <li>The second column (<code>Freq</code>) holds the corresponding
-frequencies (counts) of those values.</li>
+frequencies of those values.</li>
 </ul></li>
 </ul>
 <p>Let’s click on the <code>subs</code> object in our Environment to see
@@ -662,9 +669,9 @@ follows to show the table in the Console (bottom-left) window:</p>
 ## 9     8    2
 ## 10    9    1</code></pre>
 <p>As expected, we see two variables, <code>Var1</code> (the number of
-co-occurring substances) and <code>Freq</code> (the number of people in
-our dataset with each correponding number of co-occurring
-substances).</p>
+co-occurring substances used) and <code>Freq</code> (the number of
+people in our dataset with each corresponding number of co-occurring
+substances used).</p>
 <p>When constructing a discrete probability distribution, the goal is to
 represent the likelihood of each category or value in the dataset. To do
 this, we need to calculate <strong>relative frequencies</strong>, which
@@ -681,9 +688,6 @@ frequencies in our <code>subs</code> object as follows:</p>
 using the frequencies generated previously. A more detailed
 explanation:</p>
 <ul>
-<li><code>subs</code>: This is the data frame being modified. It
-contains a frequency table where one column (Freq) holds the counts for
-each category.</li>
 <li><code>subs %&gt;%</code>: Passes the <code>subs</code> object, which
 contains the frequency table, through the mutate function. Remember, the
 pipe operator (we’ve seen this several times now!) is like saying “and
@@ -695,17 +699,18 @@ modify existing ones in a data frame. In this case, it adds a new column
 called <code>rel_freq</code> to the <code>subs</code> data frame.</li>
 <li><code>rel_freq = Freq / (sum(Freq))</code>:
 <ul>
-<li><code>Freq</code>: Refers to the column in subs that holds the raw
-frequencies (counts) of each category.</li>
+<li><code>Freq</code>: Refers to the column in <code>subs</code> that
+holds the raw frequencies (counts) of each category.</li>
 <li><code>sum(Freq)</code>: Calculates the total frequency (i.e., the
 sum of all counts in the Freq column).</li>
 <li><code>Freq / (sum(Freq))</code>: Divides each frequency value by the
 total frequency to compute the relative frequency for each category.
-This gives the proportion of the total observations that fall into each
-category.</li>
+This gives us the proportion of the total observations that fall into
+each category.</li>
 </ul></li>
 <li><code>subs &lt;-</code>: Reassigns the modified data frame back to
-the subs object, updating it with the new rel_freq column.</li>
+the <code>subs</code> object, updating it with the new
+<code>rel_freq</code> column.</li>
 </ul>
 <p>Let’s again use the <code>print()</code> command to view the updated
 table as follows:</p>
@@ -724,13 +729,13 @@ table as follows:</p>
 ## 10    9    1 0.001287001</code></pre>
 <p>As expected, we see a new variable, <code>rel_freq</code>, which
 tells us the relative frequency (or proportion) of the sample with each
-corresponding number of co-occurring substance addictions.</p>
+corresponding number of co-occurring substance dependencies.</p>
 <p><br></p>
 <p>Next, let’s visualize this probability distribution using the
 <code>barplot</code> function:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># generate a simple bar chart for sex</span></span>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># generate bar chart of relative frequencies</span></span>
 <span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">barplot</span>(subs<span class="sc">$</span>rel_freq, </span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Number of co-occurring substance addictions&quot;</span>, </span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Number of co-occurring substance dependencies&quot;</span>, </span>
 <span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Relative frequency&quot;</span>, </span>
 <span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;gray&quot;</span>,</span>
 <span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>        <span class="at">names.arg =</span> subs<span class="sc">$</span>Var1)</span></code></pre></div>
@@ -746,15 +751,16 @@ class="section level3">
 distribution</h3>
 <p>When we created the <code>subs</code> object, the discrete random
 variable ‘X’ (currently labeled <code>Var1</code>) defaulted to a factor
-variable. In previous Labs we have converted numeric variables to
-factors. Here, however, it will be helpful to convert <code>Var1</code>
-from a factor variable to a numeric variable, since we know the values
-represent quantities - the number of co-occurring substance addictions -
-not categories. Converting <code>Var1</code> to a numeric variable will
-ensure it is treated appropriately in our analyses.</p>
+variable. In previous Labs we have learned how to convert numeric
+variables to factors, when necessary. Here, however, it will be helpful
+to convert <code>Var1</code> from a factor variable to a numeric
+variable, since we know the values represent quantities — in this case,
+the number of co-occurring substance dependencies — not categories.
+Converting <code>Var1</code> to a numeric variable will ensure it is
+treated appropriately in our subsequent analyses.</p>
 <p>We need to use a two-step process to convert a factor variable to a
 numeric variable. We first need to convert the factor variable to a
-“character” variable - basically, text - using the
+“character” variable — basically, text — using the
 <code>as.character()</code> function, then to a numeric variable using
 the <code>as.numeric()</code> function. Very strange, I know. If we do
 not first convert to a character variable, R will drop the category
@@ -765,14 +771,14 @@ happen.</p>
 <span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>subs<span class="sc">$</span>Var1 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(subs<span class="sc">$</span>Var1)</span></code></pre></div>
 <p>Now that we have formatted our variables appropriately, we can
 calculate probabilities for specified numbers of co-occurring substance
-addictions. For example, suppose we want to know the probability that an
-individual selected at random uses exactly five addictive substances.
+dependencies. For example, suppose we want to know the probability that
+an individual selected at random uses exactly five addictive substances.
 For a specific number of co-occurring substances (in this case, 5), we
 can find this answer by looking directly at our discrete probability
 distribution. When we look at the row where <code>Var1</code> is equal
 to 5, we see that <code>rel_freq</code> is equal to 0.025740026. This
 means that the probability a randomly selected person from the sample
-has 5 co-occurring substance addictions is 0.025740026, or about
+has 5 co-occurring substance dependencies is 0.025740026, or about
 2.6%.</p>
 <p>When we want to know the probability associated with one particular
 value of our discrete random variable, it is easy enough to use this
@@ -781,11 +787,11 @@ want to know the probability associate with a range of values, the most
 efficient method is to use code. Let’s walk through a few examples…</p>
 <p><br></p>
 <div
-id="a.-what-is-the-probability-that-an-individual-selected-at-random-used-fewer-than-three-addictive-substances"
+id="a.-what-is-the-probability-that-an-individual-selected-at-random-uses-fewer-than-three-addictive-substances"
 class="section level4">
 <h4>a. What is the probability that an individual selected at random
-used <em>fewer than three</em> addictive substances?</h4>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># obtain the probability of fewer than 3 co-occurring substance addictions</span></span>
+uses <em>fewer than three</em> addictive substances?</h4>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># obtain the probability of fewer than 3 co-occurring substance dependencies</span></span>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>subs <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Var1 <span class="sc">&lt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="fu">sum</span>(rel_freq))</span></code></pre></div>
 <pre><code>##   sum(rel_freq)
 ## 1     0.8082368</code></pre>
@@ -795,7 +801,7 @@ code:</p>
 <ul>
 <li><code>subs %&gt;%</code>: The pipe operator <code>%&gt;%</code>
 passes the <code>subs</code> object, which contains the probability
-distributions, to the next function in sequence.</li>
+distribution, to the next function in sequence.</li>
 <li><code>filter(Var1 &lt; 3)</code>: Filters the dataset, keeping only
 the rows where the <code>Var1</code> column has values less than 3
 (i.e., rows where <code>Var1</code> is equal to 0, 1, or 2 will be
@@ -812,10 +818,10 @@ substances is 0.8082368, or about 80.8%.</p>
 <p><br></p>
 </div>
 <div
-id="b.-what-is-the-probability-that-an-individual-selected-at-random-used-more-than-six-addictive-substances"
+id="b.-what-is-the-probability-that-an-individual-selected-at-random-uses-more-than-six-addictive-substances"
 class="section level4">
 <h4>b. What is the probability that an individual selected at random
-used <em>more than six</em> addictive substances?</h4>
+uses <em>more than six</em> addictive substances?</h4>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>subs <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Var1 <span class="sc">&gt;</span> <span class="dv">6</span>) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="fu">sum</span>(rel_freq))</span></code></pre></div>
 <pre><code>##   sum(rel_freq)
 ## 1    0.01544402</code></pre>
@@ -830,10 +836,10 @@ same.</p>
 <p><br></p>
 </div>
 <div
-id="c.-what-is-the-probability-that-an-individual-selected-at-random-used-between-2-and-5-addictive-substances"
+id="c.-what-is-the-probability-that-an-individual-selected-at-random-uses-between-2-and-5-addictive-substances"
 class="section level4">
 <h4>c. What is the probability that an individual selected at random
-used <em>between 2 and 5</em> addictive substances?</h4>
+uses <em>between 2 and 5</em> addictive substances?</h4>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>subs <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Var1 <span class="sc">&gt;=</span> <span class="dv">2</span> <span class="sc">&amp;</span> Var1 <span class="sc">&lt;=</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="fu">sum</span>(rel_freq))</span></code></pre></div>
 <pre><code>##   sum(rel_freq)
 ## 1     0.3513514</code></pre>
@@ -858,8 +864,8 @@ repeated many times. The variance measures how spread out the values are
 around the mean, which provides insight to the variability or
 uncertainty in the distribution. The standard deviation, as the square
 root of the variance, provides a more interpretable measure of spread in
-the same units as the original variable (in this case, the number of
-co-occurring substance addictions).</p>
+the <em>same units</em> as the original variable (in this case, the
+number of co-occurring substance dependencies).</p>
 <p>We can use the following to obtain the mean, variance, and standard
 deviation of this discrete probability distribution:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">rep</span>(subs<span class="sc">$</span>Var1, subs<span class="sc">$</span>Freq)) <span class="co"># mean</span></span></code></pre></div>
@@ -868,13 +874,13 @@ deviation of this discrete probability distribution:</p>
 <pre><code>## [1] 2.095543</code></pre>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">sd</span>(<span class="fu">rep</span>(subs<span class="sc">$</span>Var1, subs<span class="sc">$</span>Freq)) <span class="co"># standard deviation</span></span></code></pre></div>
 <pre><code>## [1] 1.447599</code></pre>
-<p>We find the mean number of co-occurring substance addictions is
+<p>We find the mean number of co-occurring substance dependencies is
 approximately 1.57; this represents the average number of co-occurring
-addictions we expect across the population at-hand. We find the variance
-and standard deviation are 2.095543 and 1.447599, respectively. These
-measures of spread give us a sense of how spread out the values are
-around the mean and are particularly useful when comparing the spread
-across different populations.</p>
+substance dependencies we expect across the population at-hand. We find
+the variance and standard deviation are 2.095543 and 1.447599,
+respectively. These measures of spread give us a sense of how spread out
+the values are around the mean and are particularly useful when
+<em>comparing the spread</em> across different populations.</p>
 <p><br></p>
 </div>
 </div>
@@ -891,12 +897,12 @@ used to summarize and describe patterns in data.</p>
 distributions are widely used in public health to model and predict
 outcomes in scenarios where we don’t have all the data but need to make
 informed decisions. By working with these distributions, we can
-calculate probabilities for specific events, explore relationships
-between variables, and gain deeper insight into uncertainty and
-variability in public health contexts. Let’s see how these tools allow
-us to answer practical probability questions and ultimately support
-evidence-based decision-making. We will use a different public health
-scenario for each probability distribution.</p>
+calculate probabilities for specific events and make inferences about
+population parameters (more on this in a couple of weeks). Let’s look at
+a few examples of how these tools allow us to answer practical
+probability questions. We will use a different public health scenario
+for each probability distribution, beginning first with the Binomial
+distribution.</p>
 <p><br></p>
 <div id="binomial-distribution" class="section level3">
 <h3>1. Binomial distribution</h3>
@@ -904,7 +910,7 @@ scenario for each probability distribution.</p>
 distribution is used to model the number of successes in a fixed number
 of independent trials, where each trial has the same probability of
 “success”. Remember from lecture that the terms “success” and “failure”
-are arbitrary - a “success” does not necessarily mean a positive
+are arbitrary — a “success” does not necessarily mean a positive
 outcome. For example, in public health, we are often studying disease
 outcomes, and “success” might correspond to the occurrence of disease or
 death.</p>
@@ -937,7 +943,7 @@ of successes, <code>n</code> = number of trials, and <code>p</code> =
 probability of success.</li>
 <li><code>pbinom()</code>: This function is used to find the
 <em>cumulative probability</em> up to a specific number of successes. In
-other words, <code>pbinom()</code> gives us P(X &lt;= x). The syntax is
+other words, <code>pbinom()</code> gives us P(X ≤ x). The syntax is
 <code>pbinom(x, n, p)</code> where, again, <code>x</code> = number of
 successes, <code>n</code> = number of trials, and <code>p</code> =
 probability of success.</li>
@@ -1026,11 +1032,11 @@ or about 72.9%.</p>
 <div id="e.-mean-and-variance-of-a-binomial-distribution"
 class="section level4">
 <h4>e. Mean and variance of a Binomial distribution</h4>
-<p>The mean (μ=n⋅p) of a binomial distribution represents the
+<p>The mean (μ = np) of a binomial distribution represents the
 <em>expected number of successes</em> in a given number of trials, which
 provides a sense of the central tendency of the distribution. It tells
 us what we can <em>typically</em> expect to happen if the process is
-repeated many times. The variance (σ2=n⋅p⋅(1−p)) measures the
+repeated many times. The variance (σ<sup>2</sup> = np(1−p)) measures the
 variability of the distribution, giving us a way to quantify how much
 the number of successes is likely to deviate from the mean on average.
 Together, these values help us understand both the average outcome and
@@ -1039,7 +1045,7 @@ the spread of possible outcomes.</p>
 the number of people diagnosed with hypertension in samples of size 20.
 A straightforward way to do this is to apply the mean and variance
 formulas shown above, using R as a simple calculator.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="co"># calculate the mean (n*p)  and variance is n*p*(1-p) of the binomial distribution</span></span>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="co"># calculate the mean (np)  and variance is np(1-p) of the binomial distribution</span></span>
 <span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a><span class="dv">20</span><span class="sc">*</span><span class="fl">0.48</span> <span class="co"># mean</span></span></code></pre></div>
 <pre><code>## [1] 9.6</code></pre>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="dv">20</span><span class="sc">*</span><span class="fl">0.48</span><span class="sc">*</span>(<span class="dv">1</span><span class="fl">-0.48</span>) <span class="co"># variance</span></span></code></pre></div>
@@ -1082,7 +1088,7 @@ near the expected number of successes, which we found previously was
 we see the highest probabilities (i.e., the most likely outcomes)
 correspond to values 9 and 10.</li>
 <li>Finally, the probabilities taper off as you move toward 0 or 20
-successes, where extreme outcomes are less likely.</li>
+successes, showing that extreme outcomes are less likely.</li>
 </ul>
 <p><br></p>
 </div>
@@ -1188,20 +1194,20 @@ number of events (X) ranging from 0 to 30, with an average rate (λ) of
 <ul>
 <li>The x-axis represents the possible number of events (X), ranging
 from 0 to 30. Each tick corresponds to a specific count of events (e.g.,
-0, 1, 2, …, 30). Note that 30 here is arbitrary - this number of events
+0, 1, 2, …, 30). Note that 30 here is arbitrary — this number of events
 simply allowed for the bulk of the distribution to be visible on the
 plot (since the probabilities are very tiny after about 25 events).</li>
 <li>The y-axis represents the probability of observing a specific number
 of events. Each vertical line corresponds to the probability of
 observing exactly that many events (P(X=x)). The height of the line
 shows the likelihood of that particular outcome.</li>
-<li>The plot will peak near λ=13, which is the average number of events,
-reflecting that this outcome is most likely.</li>
+<li>The plot peaks near λ=13 (the average number of events), reflecting
+that this is the most likely outcome.</li>
 <li>The probabilities taper off to the left (fewer events) and the right
 (more events) of the mean. The distribution is right-skewed, which is
 characteristic of the Poisson distribution (because, technically, there
-is some probability associated with any number of events), particularly
-when λ is not very large.</li>
+is some probability associated with <em>any</em> number of events),
+particularly when λ is not very large.</li>
 </ul>
 <p><br></p>
 </div>
@@ -1233,7 +1239,7 @@ we calculate probabilities for a range of values by finding the area
 under the standard normal curve between two points.</p>
 <p><strong>Let’s apply the Normal distribution to the following
 scenario…</strong></p>
-<p>One of the variables collected in Birth Registry data is pounds
+<p>One of the variables collected in birth registry data is pounds
 gained during pregnancy. According to data from the entire registry for
 2021, the number of pounds gained during pregnancy was approximately
 normally distributed with a mean of 30.23 pounds and a standard
@@ -1247,52 +1253,53 @@ equal to ‘x’. The syntax is <code>pnorm(x, mean, sd)</code>.</li>
 </ul>
 <p><br></p>
 <div
-id="a.-find-the-probability-that-a-randomly-selected-mother-in-2021-gained-less-than-15-pounds-during-pregnancy."
+id="a.-what-is-the-probability-that-a-randomly-selected-birthing-parent-in-2021-gained-less-than-15-pounds-during-pregnancy"
 class="section level4">
-<h4>a. Find the probability that a randomly selected mother in 2021
-gained less than 15 pounds during pregnancy.</h4>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a><span class="co"># find probability that a randomly selected mother gained less than 15 pounds</span></span>
+<h4>a. What is the probability that a randomly selected birthing parent
+in 2021 gained less than 15 pounds during pregnancy?</h4>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a><span class="co"># find probability that a randomly selected birthing parent gained less than 15 pounds</span></span>
 <span id="cb47-2"><a href="#cb47-2" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">15</span>, <span class="fl">30.23</span>, <span class="fl">13.84</span>)</span></code></pre></div>
 <pre><code>## [1] 0.1355716</code></pre>
 <p>From the output in the Console, we find the probability that a
-randomly selected mother in 2021 gained less than 15 pounds during
-pregnancy is 0.1355716, or about 13.6%.</p>
+randomly selected birthing parent in 2021 gained less than 15 pounds
+during pregnancy is 0.1355716, or about 13.6%.</p>
 <p><br></p>
 </div>
 <div
-id="b.-find-the-probability-that-a-randomly-selected-mother-in-2021-gained-more-than-40-pounds-during-pregnancy."
+id="b.-what-is-the-probability-that-a-randomly-selected-birthing-parent-in-2021-gained-more-than-40-pounds-during-pregnancy"
 class="section level4">
-<h4>b. Find the probability that a randomly selected mother in 2021
-gained more than 40 pounds during pregnancy.</h4>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a><span class="co"># find probability that a randomly selected mother gained more than 40 pounds</span></span>
+<h4>b. What is the probability that a randomly selected birthing parent
+in 2021 gained more than 40 pounds during pregnancy?</h4>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a><span class="co"># find probability that a randomly selected birthing parent gained more than 40 pounds</span></span>
 <span id="cb49-2"><a href="#cb49-2" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">40</span>, <span class="fl">30.23</span>, <span class="fl">13.84</span>)</span></code></pre></div>
 <pre><code>## [1] 0.2401174</code></pre>
-<p>We find the probability that a randomly selected mother in 2021
-gained more than 40 pounds during pregnancy is 0.2401174, or about
+<p>We find the probability that a randomly selected birthing parent in
+2021 gained more than 40 pounds during pregnancy is 0.2401174, or about
 24.0%.</p>
 <p><br></p>
 </div>
 <div
-id="c.-find-the-probability-that-a-randomly-selected-mother-in-2021-gained-between-15-and-40-pounds-during-pregnancy."
+id="c.-what-is-the-probability-that-a-randomly-selected-birthing-parent-in-2021-gained-between-15-and-40-pounds-during-pregnancy"
 class="section level4">
-<h4>c. Find the probability that a randomly selected mother in 2021
-gained between 15 and 40 pounds during pregnancy.</h4>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a><span class="co"># find probability that a randomly selected mother gained between 15 and 40 pounds</span></span>
+<h4>c. What is the probability that a randomly selected birthing parent
+in 2021 gained between 15 and 40 pounds during pregnancy?</h4>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a><span class="co"># find probability that a randomly selected birthing parent gained between 15 and 40 pounds</span></span>
 <span id="cb51-2"><a href="#cb51-2" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">40</span>, <span class="fl">30.23</span>, <span class="fl">13.84</span>) <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">15</span>, <span class="fl">30.23</span>, <span class="fl">13.84</span>)</span></code></pre></div>
 <pre><code>## [1] 0.6243109</code></pre>
-<p>We find the probability that a randomly selected mother in 2021
-gained between 15 and 40 pounds during pregnancy is 0.6243109, or about
-62.4%.</p>
+<p>We find the probability that a randomly selected birthing parent in
+2021 gained between 15 and 40 pounds during pregnancy is 0.6243109, or
+about 62.4%.</p>
 <p><br></p>
 </div>
-<div id="d.-create-a-plot-to-visualize-this-normal-distribution."
+<div id="d.-create-a-plot-to-visualize-this-normal-distribution"
 class="section level4">
-<h4>d. Create a plot to visualize this Normal distribution.</h4>
+<h4>d. Create a plot to visualize this Normal distribution</h4>
 <p>Visualizing the Normal distribution associated with a given scenario
 can help us understand the distribution of values and predict
 probabilities for ranges of interest. We can visualize the Normal
 distribution for our scenario as follows:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="fl">30.23</span>, <span class="fl">13.84</span>), <span class="at">from=</span><span class="dv">0</span>, <span class="at">to=</span><span class="dv">60</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a><span class="co"># plot the Normal distribution with a mean of 30.23 and SD of 13.84</span></span>
+<span id="cb53-2"><a href="#cb53-2" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="fl">30.23</span>, <span class="fl">13.84</span>), <span class="at">from=</span><span class="dv">0</span>, <span class="at">to=</span><span class="dv">60</span>)</span></code></pre></div>
 <p><img src="Lab_3_files/figure-html/unnamed-chunk-28-1.png" alt="" width="672" /></p>
 <p>The plot shows the Normal distribution with a mean (μ) of 30.23 and a
 standard deviation (σ) of 13.84. Here’s how to interpret the plot:</p>
@@ -1312,26 +1319,32 @@ deviations of the mean (approximately 30.23 ± 13.84). The tails taper
 off gradually, meaning that values far from the mean (e.g., below 10 or
 above 50) are less likely but still possible.</li>
 </ul>
+<p><br></p>
 </div>
 </div>
 </div>
 </div>
 <div id="summary" class="section level1">
 <h1>Summary</h1>
-<p>In Lab 3, we explored theoretical probability distributions,
-including the Binomial, Poisson, and Normal distributions. Probability
-distributions are essential in public health for modeling uncertainty,
-estimating disease risk, and predicting health outcomes in populations.
-They help us understand the likelihood of events such as the spread of
-infectious diseases, the probability of treatment success, or the
-expected number of emergency room visits. While these concepts may feel
-abstract, they provide the foundation for everything we do in
-statistical inference — like helping us estimate population parameters,
-assess variability, and determine the likelihood of different outcomes.
-While we won’t focus heavily on probability theory in this course, this
-foundational knowledge will be important as we move into statistical
-inference, including confidence interval estimation, hypothesis testing,
-and regression analysis.</p>
+<p>In Lab 3, we worked with three probability distributions: Binomial,
+Poisson, and Normal. Each one models a different type of public health
+data. The Binomial distribution models proportions; for example, the
+probability that 12 out of 20 people in a sample have hypertension. The
+Poisson distribution models counts of events; for example, the number of
+new cases of esophageal cancer in a given year. Finally, the Normal
+distribution models continuous measurements, like blood pressure, BMI,
+or cholesterol levels in a population. These distributions help us
+answer practical questions, such as:</p>
+<ul>
+<li>How much random variation should we expect in a sample?</li>
+<li>Is an observed difference likely due to chance?</li>
+<li>What range of values is plausible for a population parameter?</li>
+</ul>
+<p>We won’t spend much time on probability theory in this course, but
+these distributions provide the mathematical foundation for what comes
+next, including interval estimation, hypothesis testing, and regression
+analysis. They help us quantify uncertainty and draw sound conclusions
+about populations from sample data.</p>
 <p>When you are ready, please submit the following to the Lab 3
 assignment page on Canvas:</p>
 <ol style="list-style-type: decimal">
@@ -1341,6 +1354,12 @@ assignment page on Canvas:</p>
 <p>Please reach out to me at <a href="mailto:jenny.wagner@csus.edu"
 class="email">jenny.wagner@csus.edu</a> if you have any questions. See
 you in class!</p>
+<p><br></p>
+<hr />
+<p><strong>Jenny Wagner, PhD, MPH</strong><br />
+Assistant Professor<br> Department of Public Health<br> California State
+University, Sacramento<br> <a href="mailto:jenny.wagner@csus.edu"
+class="email">jenny.wagner@csus.edu</a></p>
 </div>
 
 
