@@ -9,26 +9,17 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <br>
 
-**Jenny Wagner, PhD, MPH**
-<br>
-Department of Public Health
-<br>
-California State University, Sacramento
-<br>
-<br>
-
-
 # Introduction
 
-Statistical inference is the process of using data from a sample to draw conclusions about a larger population. Since it’s often impractical to collect data from an entire population, statistical inference allows researchers to make informed decisions based on limited information. This is particularly important in public health, where decisions and policies need to be grounded in evidence. Robust data and careful analysis are essential for guiding interventions, allocating resources effectively, and addressing the health needs of populations.
+Statistical inference is the process of using data from a sample to draw conclusions about a larger population. Since it’s often impractical to collect data from an entire population, statistical inference allows researchers, practitioners, and policymakers to make informed decisions based on limited information. This is particularly important in public health, where every decision we make — in guiding interventions, allocating resources, or addressing the health needs of populations — should be grounded in evidence.
 
-Estimation is one of the two main types of statistical inference - the other being hypothesis testing, which we will cover in the coming weeks. Estimation focuses on determining the value of a population parameter — such as a mean or proportion — using sample data. For example, we might estimate the average cholesterol level in a population, the difference in smoking prevalence between two groups, or the prevalence of diabetes in a community. These estimates provide the evidence needed to understand population health, identify disparities, and inform public health interventions.
+Estimation is one of the two main types of statistical inference — the other being hypothesis testing, which we will cover in the coming weeks. Estimation focuses on determining the value of a population parameter — such as a mean or proportion — using sample data. For example, we might estimate the average cholesterol level in a population, the difference in smoking prevalence between two groups, or the prevalence of diabetes in a community. 
 
-Estimation involves two types of estimates - point estimates and interval estimates. A point estimate provides a single value as the best guess for a population parameter, such as the sample mean being used to estimate the population mean. While point estimates are simple and easy to calculate, they do not convey the uncertainty inherent in using sample data.
+Estimation involves two types of estimates — point estimates and interval estimates. A point estimate provides a single value as the "best guess" for a population parameter. For example, a sample mean provides a point estimate of the population mean. As we learned last week, when sampling from a population, many samples — and many values of the statistic of interest (e.g., mean, proportion) — are possible. So while point estimates are simple and easy to calculate, they do not convey the uncertainty inherent in using sample data.
 
-In contrast, an interval estimate, such as a confidence interval, provides a range of values within which the population parameter is likely to fall. Interval estimates account for variability in the data and provide a measure of uncertainty, giving us more information than a point estimate alone. For example, instead of estimating the average cholesterol level as exactly 200 mg/dL (point estimate), a confidence interval might suggest the true population mean lies between 195 and 205 mg/dL with a specified level of confidence.
+In contrast, an interval estimate — which we'll also refer to as a confidence interval — provides a range of values within which the population parameter is likely to fall. Interval estimates account for variability in the data and provide a measure of uncertainty, giving us more information than a point estimate alone. For example, instead of estimating the average cholesterol level as exactly 200 mg/dL (point estimate), a confidence interval might suggest the true population mean lies between 195 and 205 mg/dL with a specified level of confidence.
 
-In Lab 4, we will apply estimation techniques for four types of population parameters often of interest in public health: a single population mean, the difference between two population means, a single population proportion, and the difference between two population proportions. 
+In Lab 4, we will apply estimation techniques for four types of population parameters often of interest in public health: (1) a single population mean; (2) the difference between two population means; (3) a single population proportion; (4) and the difference between two population proportions. 
 
 <br>
 
@@ -38,7 +29,7 @@ After completing Lab 4, you will be able to:
 
 1. Apply statistical estimation to draw inferences about population parameters.
 2. Interpret confidence intervals and understand their role in quantifying uncertainty in public health research.
-3. Use R/RStudio to compute and interpret estimates for population means, proportions, and their differences.
+3. Use R/RStudio to compute and interpret point and interval estimates for population means, proportions, and their differences.
 
 <br>
 
@@ -49,7 +40,7 @@ In Lab 4, we will continue working with the Framingham Heart Study teaching data
 When you are ready to start Lab 4:
 
 1. First create a new R Markdown file using the instructions on the Assignment Guidelines page. Save this `.Rmd` file in a folder dedicated to Lab 4 materials. 
-2. Next, save the **modified dataset** you created in Lab 2 - called "frmgham2_p1_impute.csv" - in the same folder as your Lab 4 R Markdown file. This file will be located in the folder you used as your working directory in Lab 2.
+2. Next, save the **modified dataset** you created in Lab 2 — called "frmgham2_p1_impute.csv" — in the same folder as your Lab 4 R Markdown file. This file will be located in the folder you used as your working directory in Lab 2.
 3. Finally, proceed to read through and carry out each of the tasks detailed below. As usual, you will begin by loading R packages, setting your working directory, and importing the dataset.
 
 <br>
@@ -73,11 +64,14 @@ library(car) # only needed for Levene's test
 library(stats)
 ```
 
+
+*Note: Some students have had trouble installing/loading the "car" package in the past. If this happens to you, know that Lab 4 already contains alternative functions for certain tasks that do not require use of the "car" package. Please do let me know if you run into any issues.*
+
 <br>
 
 ## 2. Set your working directory
 
-Set your working directory using the `setwd()` function (see Assignment Guidelines for detailed instructions). 
+Set your working directory manually or using the `setwd()` function:
 
 ```
 setwd("YOUR FILE PATH HERE")
@@ -107,15 +101,10 @@ In both Labs 1 and 2, we discussed the importance of identifying and modifying v
 
 ```{r}
 # check variable types
-class(data$SEX) # sex
-class(data$AGE) # age
-class(data$BMI) # body mass index
-class(data$TOTCHOL) # total cholesterol level
-class(data$EDUC) # attained education
-class(data$OBESE) # obesity status
+sapply(data, class)
 ```
 
-Just as we did in Lab 2, we'll need to modify the variable types for sex, attained education, and obesity status. While these variables take on numerical values in our dataset, these values do not represent actual quantities - rather, they represent categories with no inherent quantity. Remember that we also need to specify whether a categorical or factor variable is ordered or unordered (i.e., ordinal or nominal). Notice in the code chunks below that, for *unordered* (i.e., nominal) categorical variables like sex and obesity status, we specify `ordered = FALSE`, whereas, for *ordered* (i.e., ordinal) categorical variables like attained education, we specify `ordered = TRUE`.
+Just as we did in Lab 2, we'll need to modify the variable types for sex assigned at birth, attained education, and obesity status. While these variables take on numerical values in our dataset, these values do not represent actual quantities — rather, they represent categories with no inherent quantity. Remember that we also need to specify whether a categorical or factor variable is ordered or unordered (i.e., ordinal or nominal). Notice in the code chunks below that, for *unordered* (i.e., nominal) categorical variables like sex assigned at birth and obesity status, we specify `ordered = FALSE`, whereas, for *ordered* (i.e., ordinal) categorical variables like attained education, we specify `ordered = TRUE`.
 
 ```{r}
 # convert sex to unordered factor variable
@@ -143,9 +132,9 @@ data$OBESE <- factor(data$OBESE,
 Now that we have prepared our dataset for analysis, suppose we want to use the Framingham Heart Study baseline sample to estimate characteristics of the adult population of the city of Framingham. In other words, we will use the baseline sample to draw inferences about our population of interest. In the following tasks, you will:
 
 * Estimate the population mean of body mass index (BMI)
-* Estimate the difference in mean BMI between males and females
+* Estimate the difference in mean BMI between male and female sex assigned at birth
 * Estimate the population proportion of obesity (i.e., obesity prevalence)
-* Estimate the difference in obesity prevalence between males and females
+* Estimate the difference in obesity prevalence between male and female sex assigned at birth
 
 <br>
 
@@ -163,19 +152,19 @@ summary(data)
 hist(data$BMI, breaks = 30)
 ```
 
-From the summary of our dataset, we can see the mean BMI in the sample is 25.85. This aligns with our view of the histogram for BMI, which shows the bulk of the distribution centered around this value. While we have this *point estimate* of the population parameter, an *interval estimate* (i.e., a confidence interval) will better capture the uncertainty in this measure.
+From the summary of our dataset, we can see the mean BMI in the sample is 25.85. This aligns with our view of the histogram for BMI, which shows the bulk of the distribution centered near this value. While we have this *point estimate* of the population parameter, an *interval estimate* (i.e., a confidence interval) will better capture the uncertainty in this measure.
 
 Recall from lecture that the method we use to generate an interval estimate of the population mean depends on three conditions: 
 
 1. Whether the population is normally distributed; 
-2. Whether the sample is small or large (>30); and 
+2. Whether the sample is small or large (≥30); and 
 3. Whether the population variance is *known* or *unknown*. 
 
 These conditions determine the appropriate *reference distribution*, which is the theoretical probability distribution used as a benchmark to calculate estimates and assess uncertainty in statistical inference. It represents how a sample statistic, such as the sample mean or sample proportion, would behave if we repeatedly sampled from the same population. In the context of estimation, the reference distribution allows us to construct confidence intervals and make inferences about population parameters. 
 
-The reference distribution is often derived from the sampling distribution of the statistic being estimated. For example, the *sampling distribution of the sample mean* is typically normal (or approximately normal, according to the Central Limit Theorem), whereas the *sampling distribution of a sample proportion* follows a binomial distribution (but can be approximated as normal under certain conditions). Ultimately the specific reference distribution depends on what is being estimated and the assumptions made:
+The reference distribution is often derived from the sampling distribution of the statistic being estimated. For example, the *sampling distribution of the sample mean* is typically normal (or approximately normal, according to the Central Limit Theorem), whereas the *sampling distribution of a sample proportion* follows a binomial distribution (but can be approximated as normal under certain conditions, which we'll discuss later in this Lab). Ultimately the specific reference distribution depends on what is being estimated and the assumptions made:
 
-* **Normal distribution (Z)** is used when the population standard deviation is known or for large samples.
+* **Normal distribution (Z)** is generally used when the population standard deviation is known *or* for large samples.
 * **t-distribution** is used when the population standard deviation is unknown, especially with small sample sizes.
 * **Binomial distribution** (or normal approximation) is used for proportions, depending on sample size and conditions (discussed in greater detail below).
 
@@ -232,10 +221,10 @@ From the output, we find that the mean BMI of the sample is approximately 25.85 
 
 ## 6. Estimate the difference between two population means
 
-Next, suppose we want to know whether mean BMI differs by sex - in other words, we want to estimate the difference in population mean BMI between males and females. First, let's visualize the distribution of BMI by sex in our sample: 
+Next, suppose we want to know whether mean BMI differs by sex assigned at birth − in other words, we want to estimate the difference in population mean BMI between males and females. First, let's visualize the distribution of BMI by sex assigned at birth in our sample: 
 
 ```{r}
-# create side-by-side histograms to show the distribution of BMI by sex
+# create side-by-side histograms to show the distribution of BMI by sex assigned at birth
 data %>%
   ggplot(aes(x = BMI, fill = SEX)) +
     geom_histogram(color="#e9ecef", alpha=0.5, position = 'identity') +
@@ -251,14 +240,14 @@ A quick breakdown of this code chunk, in which we are using the `ggplot2` packag
   * `fill = SEX`: Groups the data by the `SEX` variable, using different fill colors for each group in the histogram.
 * `geom_histogram(color = "#e9ecef", alpha = 0.5, position = 'identity')`:
   * `geom_histogram()`: Creates the histogram for the `BMI` variable.
-  * `color = "#e9ecef"`: Adds a light gray border to each bar for better visual distinction.
-  * `alpha = 0.5`: Sets the transparency level, making the bars semi-transparent so that overlapping sections can be seen.
+  * `color = "#e9ecef"`: Adds a light gray border for each bar to help differentiate them.
+  * `alpha = 0.5`: Sets the transparency level, in this case to make the bars semi-transparent so that overlapping sections can be seen.
   * `position = 'identity'`: Ensures the bars for each group are plotted on top of each other, rather than being stacked.
 * `scale_fill_discrete(labels = c('Males', 'Females'))`: Modifies the legend for the fill colors.
   * `labels = c('Males', 'Females')`: Replaces the default labels ("1" and "2") with "Males" and "Females."
-* `theme_minimal()`: Applies the `theme_minimal()` styling, which removes gridlines and clutter for a clean, modern appearance.
+* `theme_minimal()`: Applies the `theme_minimal()` styling, which removes gridlines and clutter.
 
-From the histogram we can see that the distributions of BMI among males and females overlap substantially. However, the center of the distribution appears to be slightly higher (further to the right) among males than females. Interval estimation of the difference in means will tell us whether this difference is *statistically significant*, meaning there is a real difference in the population means, unlikely to have occurred by chance. 
+From the histogram we can see that the distributions of BMI among participants with male and female sex assigned at birth overlap substantially. However, the center of the distribution appears to be slightly higher (further to the right) among males than females. Interval estimation of the difference in means will tell us whether this difference is *statistically significant*, meaning there is a real difference in the population means, unlikely to have occurred by chance. 
 
 Recall from lecture that the specific approach we use to estimate the difference in population means depends on four conditions: 
 
@@ -279,18 +268,18 @@ To estimate the difference in mean BMI between males and females in Framingham, 
 2. We have large samples.
 3. Population variances are unknown. 
 
-The fourth condition - whether the population variances are equal or not - requires further investigation. There are several approaches for determining whether the population variances are equal or not. In lecture, we discussed one practical approach, in which we can assume the two population variances are *unequal* if the ratio of the larger variance to the smaller variance exceeds two (or in other words, one variance is more than double the other). However, this approach is not often used in practice as other, more reliable approaches are available. We will focus on two types of statistical tests to determine equality of variances, the *F-test* and *Levene's test*:
+The fourth condition − whether the population variances are equal or not − requires further investigation. There are several approaches for determining whether the population variances are equal or not. In lecture, we discussed one practical approach, in which we can assume the two population variances are *unequal* if the ratio of the larger variance to the smaller variance exceeds two (or in other words, one variance is more than double the other). However, this approach is not often used in practice as other, more reliable approaches are available. We will focus on two types of statistical tests to determine equality of variances, the *F-test* and *Levene's test*. Since we have not yet discussed statistical tests in detail, these procedures will give a preview to what's coming next week...
 
 * **F-test for equality of variances**: Compares the variances of two groups by calculating the ratio of their sample variances. It assumes that the data in each group are normally distributed and tests whether the variances are significantly different. This approach is sensitive to departures from normality, which can affect the validity of the test (in other words, this test is not well suited for skewed data).
 * **Levene's test**: Compares the variances of two or more groups by assessing the absolute deviations of individual values from their group means or medians. It is less sensitive to departures from normality and is a more robust alternative to the F-test for equality of variances. It is best for most cases where the data are not perfectly normal but not heavily skewed.
 
-Based on the histograms we generated above, we can see BMI by sex is approximately normally distributed but slightly right-skewed. In the future, we will use a statistical test to determine normality, but for now, let's demonstrate both approaches (*F-test* and *Levene's test*) to determine whether the population variances are equal or not.
+Based on the histograms we generated above, we can see BMI by sex assigned at birth is approximately normally distributed but slightly right-skewed. In the future, we will use a statistical test to determine normality, but for now, let's demonstrate both approaches (*F-test* and *Levene's test*) to determine whether the population variances are equal or not.
 
 <br>
 
 #### F-test for equality of variances
 
-In order to carry out the F-test (using the `var.test()` function), we need to first save BMI values for males and females in separate vectors (basically, a list of values) as follows:
+In order to carry out the F-test (using the `var.test()` function), we need to first save BMI values for males and females in separate "vectors" (basically, a list of values) as follows:
 
 ```{r}
 # create separate objects containing BMI values for males and females
@@ -305,7 +294,7 @@ After running the above code chunk, you should see two new objects in your Envir
 var.test(bmi_male, bmi_female)
 ```
 
-When running the F-test, we really only need to pay attention to one component of the output - the p-value. When the p-value is small (let's consider "small" to be less than 0.05), we can conclude that the population variances are **not equal**, as is the case here for BMI values among males and females.
+When running the F-test, we really only need to pay attention to one component of the output − the p-value. When the p-value is small (for now, let's consider "small" to be less than 0.05), we can conclude that the population variances are **not equal**, as is the case here for BMI values among males and females.
 
 > Note: When a value is very small, R will often put the value in scientific notation. For example, we see the p-value in the above output is shown as 2.2e-16. This is scientific notation for 0.00000000000000022 (so, almost zero). R uses this notation automatically for very small numbers. Keep this in mind as your interpret p-values (which you'll be doing a lot!) moving forward.
 
@@ -322,17 +311,17 @@ leveneTest(BMI ~ SEX, data = data)
 
 A quick breakdown of the code:
 
-* `leveneTest()`: Levene’s test checks whether the variances of a continuous variable (e.g., BMI) are the same across two or more groups (e.g., SEX).
+* `leveneTest()`: Levene’s test checks whether the variances of a continuous variable (e.g., BMI) are the same across two or more groups (in this case, sex assigned at birth).
 * `BMI ~ SEX`: The formula specifies the relationship being tested.
   * `BMI` is the dependent variable whose variances are being compared.
-  * `SEX` is the grouping variable (independent variable), dividing the data into groups (e.g., males and females).
+  * `SEX` is the grouping variable (independent variable), which divides the data into groups (e.g., males and females).
 * `data = data`: Specifies the data object we are using (called `data`), which contains the variables `BMI` and `SEX`.
 
 <br>
 
 ##### Fligner-Killeen’s test (an alternative to Levene's test)
 
-If you have trouble installing the `car` package, the following test - called the Fligner-Killeen’s test - can be used as an alternative to Levene's test. This test is from the `stats` package which you should already have installed. 
+If you have trouble installing the `car` package, the following test − called the Fligner-Killeen’s test − can be used as an alternative to Levene's test. This test is from the `stats` package which you should already have installed. 
 
 ```{r}
 # Fligner-Killeen’s test
@@ -343,7 +332,7 @@ fligner.test(BMI ~ SEX, data = data)
 
 Whether you used Levene's test or Fligner-Killeen’s test, like the output from the *F-test*, we are most concerned with the p-value. A small p-value (less than 0.05), as we see in this case, indicates the difference in variances is statistically significant. 
 
-We now have two statistical tests - the *F-test* and *Levene's test* (or *Fligner-Killeen’s test*) - that indicate the variances in BMI for males and females are **not** equal. Given this information, we will proceed with estimating the difference in population means using **Welch's t-test**, which uses the following formula:
+We now have two statistical tests − the *F-test* and *Levene's test* (or *Fligner-Killeen’s test*) − that suggest the variances in BMI for males and females are **not** equal. Given this information, we will proceed with estimating the difference in population means using **Welch's t-test** (applying the *t'* reference distribution), which uses the following formula:
 
 ```{r fig.align="center", echo=FALSE, out.width = '35%'}
 knitr::include_graphics("t-prime-diff.png")
@@ -352,7 +341,7 @@ knitr::include_graphics("t-prime-diff.png")
 To do this in R, we will carry out a two-sample *t-test* with unequal variances using the `t.test()` function as follows:
 
 ```{r}
-# calculate 95% confidence interval for difference in mean BMI by sex
+# calculate 95% confidence interval for difference in mean BMI by sex assigned at birth
 t.test(BMI ~ SEX, data = data, var.equal = FALSE, conf.level = 0.95)
 ```
 
@@ -364,9 +353,9 @@ Let's break down this code:
 * `var.equal = FALSE`: Indicates that the two groups are assumed to have *unequal* variances (Welch’s t-test). Welch’s t-test is more robust than a regular t-test when the variances of the two groups are unequal. If we set `var.equal = TRUE`, the variances are assumed to be equal across groups and a *pooled variance* approach is used instead.
 * `conf.level = 0.95`: Sets the confidence level for the confidence interval to 95%.
 
-From the output, we see the mean BMI among males and females in the sample were 26.16875 and 25.59431, respectively. The 95% confidence interval for the difference in means is (0.3404038, 0.8084815). When estimating a difference in means, the first thing to look for is whether the interval estimate contains zero. If zero is within the interval (i.e., the lower bound is a negative value and the upper bound is a positive value), this means we do not have enough evidence to conclude there is a statistically significant difference in population means. For our scenario here, the output shows a confidence interval with positive lower and upper bounds, indicating the population means are different, with 95% confidence, by an amount within the interval estimate (again, 0.3404038 to 0.8084815). 
+From the output, we see the mean BMI among males and females in the sample were 26.16875 and 25.59431, respectively. The 95% confidence interval for the difference in means is (0.3404038, 0.8084815). When estimating a difference in means, the first thing to look for is whether the interval estimate contains zero. If zero is within the interval (i.e., the lower bound is a negative value and the upper bound is a positive value), this means we do *not* have enough evidence to conclude there is a statistically significant difference in population means. For our scenario here, the output shows a confidence interval with positive lower and upper bounds, indicating the population means are different, with 95% confidence, by an amount within the interval estimate (again, 0.3404038 to 0.8084815). 
 
-From the flowchart above, we can see that either the *Z* or *t'* reference distribution would be appropriate for our specific scenario. Just for practice, suppose we wanted to try this problem using the a *z-test*, which would use the following formula: 
+From the flowchart above, we can see that either the *Z* or *t'* reference distribution would be appropriate for our specific scenario. Just for practice, suppose we wanted to try this problem using a *z-test*, which would use the following formula: 
 
 ```{r fig.align="center", echo=FALSE, out.width = '35%'}
 knitr::include_graphics("z-diff.png")
@@ -384,7 +373,6 @@ Now that we have separate R objects containing the list of BMI values for males 
 
 ```{r}
 # Run z.test to obtain 95% confidence interval for difference in means
-    # Note: 'mu' is the hypothesized difference between population means
 z.test(bmi_male, bmi_female, mu = 0, sigma.x = sd_m, sigma.y = sd_f, conf.level = 0.95)
 ```
 
@@ -400,7 +388,7 @@ First a breakdown of this code:
 
 Using this procedure, we find that the mean BMI values among males and females in the sample are 26.16875 and 25.59431, respectively (expectedly, the same result as before). And we find that the 95% confidence interval for the difference in means is (0.3404678, 0.8084175). This result is almost exactly the same as our original estimate using Welch's t-test. In alignment with our previous findings, this result provides evidence that, with 95% confidence, the population means are different by an amount within the interval estimate.
 
-Again, while both the *Welch's t-test* and *z-test* procedures may have been appropriate here under the given conditions, you will most often see the t-test approach used in practice. 
+Again, while both the *Welch's t-test* and *z-test* procedures may have been appropriate here under the given conditions, you will most often see the *t*-test approach used in practice. 
 
 <br>
 
@@ -412,35 +400,36 @@ Suppose we want to use the Framingham Heart Study baseline sample to estimate ob
 knitr::include_graphics("prop.png")
 ```
 
-To do this in R, we first need to know how many people in the sample are obese as well as the total sample size:
+To do this in R, we first need to know how many people there are in the sample with obesity as well as the total sample size:
 
 ```{r}
-# generate a table to count number of obese individuals in the sample
+# generate a table to count number of individuals with obesity in the sample
 table(data$OBESE)
 ```
-From the output, we see there are 574 individuals who are obese (BMI>30) in the sample, out of a total sample of 4434.
+From the output, we see there are 574 individuals with obesity (BMI>30) in the sample, out of a total sample of 4,434.
 
 We can calculate the 95% confidence interval for the population proportion using the `binom.test()` function as follows:
 
 ```{r}
 # Calculate 95% confidence interval for proportion obese in Framingham
-binom.test(574, 4434, conf.level = 0.95)
+prop.test(574, 4434, conf.level = 0.95, correct = FALSE)
 ```
 
 A breakdown of this line of code:
 
-* `binom.test()`: This function tests hypotheses about proportions and provides an exact confidence interval for a binomial proportion.
+* `prop.test()`: This function tests hypotheses about proportions and provides a confidence interval for the population proportion.
 * `574`: The number of "successes" or events of interest (x) in the sample. In this context, it represents the number of individuals classified as obese.
 * `4434`: The total number of "trials" or observations (n) in the sample. Here, it represents the total sample size.
 * `conf.level = 0.95`: The confidence level for the confidence interval around the estimated proportion. A 95% confidence level means the true population proportion is expected to lie within the interval 95% of the time.
+* `correct = FALSE`: Disables the Yates’ continuity correction, which is often applied to adjust for small sample sizes or prevent overestimation of significance.
 
-From the output, we see a point estimate of obesity prevalence (i.e., the sample proportion) is 0.1294542 (about 12.95%), and the 95% confidence interval for obesity prevalence is (0.1197068, 0.1396925), or about 11.97% to 13.97%. This means that we are 95% confidence that the true obesity prevalence (i.e., the population proportion) falls within this interval.
+From the output, we see a point estimate of obesity prevalence (i.e., the sample proportion) is 0.1294542 (about 12.95%), and the 95% confidence interval for obesity prevalence is (0.119893, 0.139657), or about 11.99% to 13.97%. This means that we are 95% confidence that the true obesity prevalence (i.e., the population proportion) falls within this interval.
 
 <br>
 
 ## 8. Estimate the difference between two population proportions
 
-Finally, suppose we want to know whether there is a difference in obesity prevalence by sex. Recall from Lab 2 that we visualized the relative frequencies of obesity among males and females using a side-by-side bar chart as follows:
+Finally, suppose we want to know whether there is a difference in obesity prevalence by sex assigned at birth. Recall from Lab 2 that we visualized the relative frequencies of obesity among males and females in the sample using a side-by-side bar chart as follows:
 
 ```{r}
 # Create the contingency table
@@ -455,7 +444,7 @@ print(relative_frequencies)
 # Bar chart for relative frequencies
 barplot(relative_frequencies, 
         beside = TRUE, 
-        main = "Relative Frequencies of Sex by Obesity Status", 
+        main = "Obesity Prevalence by Sex Assigned at Birth", 
         xlab = "Obesity Status", 
         ylab = "Proportion", 
         col = c("lightblue", "lightgreen"), 
@@ -469,7 +458,7 @@ From the bar chart, it appears obesity prevalence is slightly higher among femal
 knitr::include_graphics("prop-diff.png")
 ```
 
-To do this in R, we first need to know the number of obese individuals by sex in the sample. We also need the total number of males and females in the sample. We can obtain these values using the 'table' command as follows:
+To do this in R, we first need to know the number of individuals in the sample with obesity, stratified by sex assigned at birth. We also need the total number of males and females in the sample. We can obtain these values using the 'table' command as follows:
 
 ```{r}
 # generate counts of obesity by sex and totals by sex
@@ -477,7 +466,7 @@ table(data$SEX, data$OBESE) # counts of obesity by sex
 table(data$SEX) # total by sex
 ```
 
-The code chunks above generate two tables in the Console window. The first provides a count of obese individuals by sex, and the second provides the totals by sex. From the first table, we see there are 232 males in the sample who are obese, and there are 342 females in the sample who are obese. From the second table, we see there are a total of 1944 males in the sample and 2490 females. Next, we will use these values to estimate the difference in population proportions using the `prop.test()` function as follows:
+The code chunks above generate two tables in the Console window. The first provides a count of individuals with obesity by sex assigned at birth, and the second provides the totals by sex. From the first table, we see there are 232 males with obesity, and there are 342 females with obesity. From the second table, we see there are a total of 1,944 males in the sample and 2,490 females. Next, we will use these values to estimate the difference in population proportions using the `prop.test()` function as follows:
 
 ```{r}
 # obtain 95% confidence interval for difference in obesity prevalence by sex
@@ -486,33 +475,33 @@ prop.test(c(232, 342), c(1944, 2490), conf.level = 0.95, correct = FALSE)
 
 First a breakdown of this line of code:
 
-* `prop.test()`: Used to compare proportions between two or more groups using large-sample approximation (Chi-square test).
-* `c(232, 342)`: A vector containing the counts of "successes" (e.g., individuals classified as obese) in each group:
-  * `232`: Number of obese males (x1).
-  * `342`: Number of obese females (x2).
+* `prop.test()`: Function used to compare proportions between two or more groups.
+* `c(232, 342)`: A vector containing the counts of "successes" (e.g., individuals with obesity) in each group:
+  * `232`: Number of males with obesity (X1).
+  * `342`: Number of females with obesity (X2).
 * `c(1944, 2490)`: A vector containing the total number of observations (sample size) in each group:
   * `1944`: Total number of males in the sample (n1).
   * `2490`: Total number of females in the sample (n2).
 * `conf.level = 0.95`: Specifies the confidence level for the confidence interval around the difference in proportions. Here, it is set to 95%.
-* `correct = FALSE`: Disables the Yates’ continuity correction for the Chi-square test, which is often applied to adjust for small sample sizes or prevent overestimation of significance. Without the correction, the test uses the standard Chi-square approximation (more on this later in the course).
+* `correct = FALSE`: Disables the Yates’ continuity correction, which is often applied to adjust for small sample sizes or prevent overestimation of significance.
 
 The output here contains several pieces of information (but, as before, we are most interested for now in the confidence interval):
 
 * **Chi-Square test statistic ("X-squared"):** A test statistic that evaluates whether the difference in proportions is statistically significant. (More on this later in the course...)
 * **Degrees of freedom (df):** The degrees of freedom for the test (usually 1 for a two-sample test).
-* **p-value:** Indicates whether the observed difference in proportions is statistically significant. A small p-value (<0.05) suggests a significant difference between the proportions.
+* **p-value:** Indicates whether the observed difference in proportions is statistically significant. A small p-value (<0.05) suggests a significant difference between the proportions. More next week...
 * **Confidence interval (95% by default):** Provides a range of values within which the true difference in population proportions is likely to fall.
 * **Sample estimates:** Displays the sample proportions for each group (e.g., the proportion of obese individuals in males and females).
 
-From the output, we are most interested (again, for now) in the confidence interval for the difference in proportions. We can use the confidence interval to determine whether there is a statistically significant difference between groups - and if so, how much that difference is estimated to be. When estimating a difference in population proportions - just as when estimating a difference in population means - the first thing to look for is whether zero (0) is contained within the interval. If zero is within the confidence interval (in other words, if the lower bound is a negative value and the upper bound is a positive value), this means we do *not* have enough evidence to conclude there is a difference between groups. 
+From the output, we are most interested (again, for now) in the confidence interval for the difference in proportions. We can use the confidence interval to determine whether there is a statistically significant difference between groups, and if so, how much that difference is estimated to be. When estimating a difference in population proportions − just as when estimating a difference in population means − the first thing to look for is whether zero (0) is contained within the interval. If zero is within the confidence interval (in other words, if the lower bound is a negative value and the upper bound is a positive value), this means we do *not* have enough evidence to conclude there is a difference between groups. 
 
-For the current scenario, we see the difference in population proportions is estimated to be (-0.037768267, 0.001752599). As zero is within this interval, we do not have enough evidence to conclude there is a difference in obesity prevalence between males and females. 
+For the current scenario, we see the difference in population proportions is estimated to be (-0.037768267, 0.001752599). As zero is within this interval, we do not have enough evidence to conclude there is a difference in obesity prevalence between males and females in Framingham. 
 
 <br>
 
 # Summary
 
-In Lab 4, we’ve taken the next step in building your statistical inference skills by focusing on estimation. You’ve learned how to calculate and interpret point estimates and confidence intervals for a population mean, the difference between two means, a population proportion, and the difference between two proportions. These estimation procedures rely on important assumptions: the “target population” (the population we want to study) and the “sampled population” (the population from which our sample is drawn) must be the same. If these populations differ in any way, this needs to be accounted for when interpreting results. Additionally, we assume that samples are drawn using probability sampling techniques, such as random sampling, to ensure that the results are representative and unbiased. With these tools and assumptions in mind, we’re ready to move forward into topics like hypothesis testing and regression analysis, where we’ll expand our ability to make evidence-based conclusions about populations and their relationships.
+In Lab 4, we’ve taken the next step in building statistical inference skills by focusing on estimation. You’ve learned how to calculate and interpret point estimates and confidence intervals for a population mean, the difference between two means, a population proportion, and the difference between two proportions. These estimation procedures rely on important assumptions: the “target population” (the population we want to study) and the “sampled population” (the population from which our sample is drawn) must be the same. If these populations differ in any way, this needs to be accounted for when interpreting results. Additionally, we assume that samples are drawn using probability sampling techniques, such as random sampling, to ensure that the results are representative and unbiased. With these tools and assumptions in mind, we’re ready to move forward into our next topics like hypothesis testing and regression analysis.
 
 When you are ready, please submit the following to the Lab 4 assignment page on Canvas:
 
@@ -520,3 +509,13 @@ When you are ready, please submit the following to the Lab 4 assignment page on 
 2. A knitted `.html` file
 
 Please reach out to me at jenny.wagner@csus.edu if you have any questions. See you in class!
+
+<br>
+
+---
+
+**Jenny Wagner, PhD, MPH**  
+Assistant Professor<br>
+Department of Public Health<br>
+California State University, Sacramento<br>
+jenny.wagner@csus.edu
