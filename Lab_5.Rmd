@@ -7,20 +7,11 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
 <br>
-**Jenny Wagner, PhD, MPH**
-<br>
-Department of Public Health
-<br>
-California State University, Sacramento
-<br>
-<br>
-
 
 # Introduction
 
-In Lab 4 last week, we explored estimation - the first major area of statistical inference - including how to calculate confidence intervals for population parameters often of interest in public health, such as the mean, difference between two means, population proportion, and difference between two proportions. Confidence intervals provide a range of plausible values for a parameter, allowing us quantify uncertainty in our estimates.
+In Lab 4 last week, we explored estimation — the first major area of statistical inference — including how to calculate confidence intervals for population parameters often of interest in public health, such as the population mean, difference between two means, population proportion, and difference between two proportions. Confidence intervals provide a range of plausible values for a parameter, which allows us quantify uncertainty in our estimates.
 
 In Lab 5, we will build upon estimation techniques for statistical inference with **hypothesis testing**, a formal method for making decisions about population parameters based on sample data. While confidence intervals allow us to estimate parameters within a margin of error, hypothesis testing helps us determine whether a population parameter differs significantly from a hypothesized value.
 
@@ -53,14 +44,14 @@ In Lab 5, we will continue working with the Framingham Heart Study teaching data
 When you are ready to start Lab 5:
 
 1. First create a new R Markdown file using the instructions on the Assignment Guidelines page. Save this `.Rmd` file in a folder dedicated to Lab 5 materials. 
-2. Next, save the **modified dataset** you created in Lab 2 - called "frmgham2_p1_impute.csv" - in the same folder as your Lab 5 R Markdown file. This is the same file we used last week in Lab 4.
+2. Next, save the **modified dataset** you created in Lab 2 — called "frmgham2_p1_impute.csv" — in the same folder as your Lab 5 R Markdown file. This is the same file we used last week in Lab 4.
 3. Finally, proceed to read through and carry out each of the tasks detailed below. As usual, you will begin by loading R packages, setting your working directory, and importing the dataset.
 
 <br>
 
 ## 1. Install and load R packages
 
-For Lab 5, you should not need to install any new packages. As usual, however, we need to start by loading packages with the `library()` function, as follows:
+For Lab 5, you should not need to install any new packages. As usual, however, we need to start by loading necessary packages with the `library()` function, as follows:
 
 ```{r, results = FALSE, message = FALSE, warning = FALSE}
 # load packages
@@ -104,15 +95,10 @@ As you know very well by now, variables that represent quantifiable characterist
 
 ```{r}
 # check variable types
-class(data$SEX) # sex
-class(data$AGE) # age
-class(data$BMI) # body mass index
-class(data$TOTCHOL) # total cholesterol level
-class(data$EDUC) # attained education
-class(data$OBESE) # obesity status
+sapply(data, class)
 ```
 
-Just as we did in Labs 2 and 4, we'll need to modify the variable types for sex, attained education, and obesity status. While these variables take on numerical values in our dataset, these values do not represent actual quantities - rather, they represent categories with no inherent quantity. Remember that we also need to specify whether a categorical or factor variable is ordered or unordered (i.e., ordinal or nominal). Notice in the code chunks below that, for *unordered* (i.e., nominal) categorical variables like sex and obesity status, we specify `ordered = FALSE`, whereas, for *ordered* (i.e., ordinal) categorical variables like attained education, we specify `ordered = TRUE`.
+Just as we did in Labs 2 and 4, we'll need to modify the variable types for sex assigned at birth, attained education, and obesity status. While these variables take on numerical values in our dataset, these values do not represent actual quantities — rather, they represent categories with no inherent quantity. Remember that we also need to specify whether a categorical or factor variable is ordered or unordered (i.e., ordinal or nominal). Notice in the code chunks below that, for *unordered* (i.e., nominal) categorical variables like sex assigned at birth and obesity status, we specify `ordered = FALSE`, whereas, for *ordered* (i.e., ordinal) categorical variables like attained education, we specify `ordered = TRUE`.
 
 ```{r}
 # convert sex to unordered factor variable
@@ -139,7 +125,7 @@ data$OBESE <- factor(data$OBESE,
 
 ## 5. Hypothesis test for a population mean
 
-As in Lab 4, suppose you are interested in studying body mass index (BMI) and want to start by estimating mean BMI of the adult population of the city of Framingham. In this case, the *population parameter* of interest is the population mean of BMI. First, let's quickly summarize our dataset using the `summary()` function and also visualize the distribution of BMI with a histogram.
+As in Lab 4, suppose you are interested in studying body mass index (BMI) and obesity and want to start by estimating mean BMI of the adult population of the city of Framingham. In this case, the *population parameter* of interest is the population mean of BMI. First, let's quickly summarize our dataset using the `summary()` function and also visualize the distribution of BMI with a histogram.
 
 ```{r}
 # summarize dataset
@@ -151,7 +137,7 @@ summary(data)
 hist(data$BMI, breaks = 30)
 ```
 
-From the summary of our dataset, we can see the mean BMI in the sample is 25.85. This aligns with our view of the histogram for BMI, which shows the bulk of the distribution centered around this value. Suppose you want to know whether the population of Framingham has an average BMI that is *different* from the national average (at the time of data collection), 25. Using our sample data, we can conduct a hypothesis test for the value of the population mean to determine - with a specified level of confidence - whether the population mean of BMI in Framingham is different from the national average. 
+From the summary of our dataset, we can see the mean BMI in the sample is 25.85. This aligns with our view of the histogram for BMI, which shows the bulk of the distribution centered around this value. Suppose you want to know whether the population of Framingham has an average BMI that is *different* from the national average (at the time of data collection), 25. Using our sample data, we can conduct a hypothesis test for the value of the population mean to determine — with a specified level of significance — whether the population mean of BMI in Framingham is different from the national average. 
 
 In statistical hypothesis testing, we start with two competing hypotheses: the **null hypothesis** (𝐻~0~) and the **alternative hypothesis** (𝐻~𝑎~). These hypotheses represent different claims about a population parameter, and our goal is to use sample data to determine which is more likely to be true. The null hypothesis is the *default assumption* that there is no effect or difference. It represents a baseline or "status quo" scenario and assumes there is no relationship, difference, or effect. The alternative hypothesis, on the other hand, is the hypothesis you're testing to see if there is evidence of an effect, relationship, or difference. It states the opposite of the null hypothesis and often reflects what you suspect or want to confirm using sample data.
 
@@ -178,10 +164,10 @@ The phrasing of our alternative hypothesis —"different from" — is key becaus
 * The population mean BMI in Framingham could be greater than 25.
 * The population mean BMI in Framingham could be less than 25.
 
-Recall from lecture that, after specifying the null and alternative hypotheses, our next step is to identify the appropriate **reference distribution** — i.e., the probability distribution that describes how our test statistic behaves under the assumption that the null hypothesis is true. When conducting a hypothesis test for the population mean, we will use either the *Z* or *t*-distribution. Just like when we constructed confidence intervals in Lab 4, the appropriate reference distribution depends on the following conditions:
+Recall from lecture that, after specifying the null and alternative hypotheses, our next step is to identify the appropriate **reference distribution** — i.e., the probability distribution that describes how our test statistic behaves *under the assumption that the null hypothesis is true.* When conducting a hypothesis test for the value of a single population mean, we will use either the *Z* or *t*-distribution. Just like when we constructed confidence intervals in Lab 4, the appropriate reference distribution depends on the following conditions:
 
 1. Whether the population is normally distributed; 
-2. Whether the sample is small or large (>30); and 
+2. Whether the sample is small or large (≥30); and 
 3. Whether the population variance is *known* or *unknown*. 
 
 We can again use the flowchart below to identify the most appropriate reference distribution (*Z* or *t*) when estimating a population mean:
@@ -198,22 +184,25 @@ As in Lab 4, we will assume BMI in the population is approximately normally dist
 
 ```{r}
 # one sample t-test for population mean
-t.test(data$BMI, mu = 25, alternative = "two.sided", conf.level = 0.95)
+t.test(data$BMI, 
+       mu = 25, 
+       alternative = "two.sided", 
+       conf.level = 0.95)
 ```
 
-First, notice that the code we are using here for this hypothesis test is very similar to the code we used in Lab 4 to generate a confidence interval for the population mean BMI. In both cases, we use the `t.test()` function and specify the variable of interest using `data$BMI`. However, we've added a couple of new arguments, as follows:
+First, notice that the code we are using here for this hypothesis test is very similar to the code we used in Lab 4 to generate a confidence interval to estimate the population mean BMI. In both cases, we use the `t.test()` function and specify the variable of interest using `data$BMI`. However, we've added a couple of new arguments, as follows:
 
-* `mu = 25`: The hypothesized population mean BMI (from the null hypothesis).
+* `mu = 25`: The hypothesized population mean BMI (based on the null hypothesis).
 * `alternative = "two.sided"`: Indicates that we are conducting a two-sided test, since the alternative hypothesis does not specify a direction.
-* `conf.level = 0.95`: Just as we did when constructing confidence intervals, we must specify a desired **confidence level** for our hypothesis test. The confidence level is important in hypothesis testing because it determines the *threshold for statistical significance* — in other words, how much uncertainty we are willing to accept when making a decision about the null hypothesis. Here, we have specified a desired confidence level of 0.95, or 95%, which means there is a 5% chance of making a Type I error. This probability is called "alpha" (α) and is referred to as the significance level of a test. In this case, since we are specifying a confidence level of 95%, this means we have a significance level, α, of 0.05.
+* `conf.level = 0.95`: Just as we did when constructing confidence intervals, we must specify a desired **confidence level** for our hypothesis test. The confidence level is important in hypothesis testing because it determines the *threshold for statistical significance* — in other words, how much uncertainty we are willing to accept when making a decision about the null hypothesis. Here, we have specified a desired confidence level of 0.95, or 95%, which means there is a 5% chance of making a Type I error. This probability is called "alpha" (α) and is referred to as the **significance level** of a test. In this case, since we are specifying a confidence level of 95%, this means we have a significance level, α, of 0.05.
 
 Let's break down the most important parts of the output from our hypothesis test:
 
 * **Alternative hypothesis**: Specifies the hypothesis being tested, in this case, that the true (population) mean is not equal to 25.
 * **Test statistic (*t*):** Tells us how many standard errors the sample mean is away from the hypothesized mean (25). A large *t*-value (in this case, 13.766) suggests that the sample mean is significantly different from 25.
-* **p-value**: The p-value represents the probability of obtaining a test statistic as extreme as (or more extreme than) the one observed, assuming that the null hypothesis (𝐻~0~) is true. In other words, the p-value tells us how likely our sample results would be if there were actually no effect or difference in the population (i.e., if 𝐻~0~ were correct). In this case, the p-value is essentially 0 (very, very small), indicating an extremely low probability that we would observe a sample mean this far from 25 if the null hypothesis were true. 
+* **p-value**: The p-value represents the probability of obtaining a test statistic as extreme as (or more extreme than) the one observed, *assuming that the null hypothesis (𝐻~0~) is true.* In other words, the p-value tells us how likely our sample results would be if there were actually no effect or difference in the population (i.e., if 𝐻~0~ were correct). In this case, the p-value is very, very small (essentially 0), indicating an extremely low probability that we would observe a sample mean this far from 25 *if the null hypothesis were true.* 
 
-We will use the p-value to make a decision about our null hypothesis. In general, when the p-value is very small, this means we have enough evidence to reject the null hypothesis in favor of the alternative hypothesis. How small is small? To make a decision about our null hypothesis (reject or fail to reject) we will compare the p-value to α, our specified level of significance. Again, this is something we, as the researcher, will choose in advance of conducting the hypothesis test. Common choices for α are:
+We will use the p-value to make a decision about our null hypothesis. In general, when the p-value is very small, this means we have enough evidence to reject the null hypothesis in favor of the alternative hypothesis. But how small is small? To make a decision about our null hypothesis (reject or fail to reject) we will compare the p-value to α, our specified level of significance. Again, this is something we, as the researcher, will choose in advance of conducting the hypothesis test. Common choices for α are:
 
 * 0.05 (5%) → Most common in public health and social sciences.
 * 0.01 (1%) → Used when stronger evidence is needed (e.g., medical studies).
@@ -254,20 +243,23 @@ Or, in words:
 
 </center>
 
-Remember, the null hypothesis (𝐻~0~) always represents the status quo or no effect. In this case, the status quo is that the mean BMI in Framingham is not greater than 25 — meaning it could be equal to or less than 25. The alternative hypothesis (𝐻~𝑎~) represents the claim we want to test. Since we are specifically interested in whether the mean BMI is greater than 25, we use a greater than (>) sign in 𝐻~𝑎~.
+Remember, the null hypothesis (𝐻~0~) always represents the status quo or no effect/difference. In this case, the status quo is that the mean BMI in Framingham is not greater than 25 — meaning it could be equal to or less than 25. The alternative hypothesis (𝐻~𝑎~) represents the claim we want to test. Since we are specifically interested in whether the mean BMI is greater than 25, we use a greater than (>) sign in 𝐻~𝑎~.
 
-The code we will use to carry out this hypothesis test is almost exactly the same as before - the only difference is that we will specify `alternative = "greater"` rather than `alternative = "two.sided"` as we did for our two-sided test above (if testing whether the mean is *less* than the hypothesized value, set `alternative = "less"`): 
+The code we will use to carry out this hypothesis test is almost exactly the same as before — the only difference is that we will specify `alternative = "greater"` rather than `alternative = "two.sided"` as we did for our two-sided test above (if testing whether the mean is *less* than the hypothesized value, set `alternative = "less"`): 
 
 ```{r}
 # one sample t-test for population mean
-t.test(data$BMI, mu = 25, alternative = "greater", conf.level = 0.95)
+t.test(data$BMI, 
+       mu = 25, 
+       alternative = "greater", 
+       conf.level = 0.95)
 ```
 
 A few things to note about our output:
 
 * We now see, expectedly, that the alternative hypothesis is that the "true mean is greater than 25."
-* Just as in our previous example, we have a test statistic (*t*) and p-value - and, from the tiny p-value, you probably suspect (correctly) that we will reject the null hypothesis.
-* Finally, we see that, where we had a two-sided confidence interval before, we now have what is sometimes referred to as a "one-sided" confidence interval, where either the lower or upper bound is set to negative infinity or positive infinity, respectively. In this case, since our alternative hypothesis is that the true mean is greater than 25, the upper bound of the one-sided confidence interval is set to positive infinity (Inf). With a lower bound of 25.74503, we can report with 95% confidence that the true mean is *at least* this value.
+* Just as in our previous example, we have a test statistic (t) and p-value — and, from the tiny p-value, you probably suspect (correctly) that we will again reject the null hypothesis.
+* Finally, we see that, where we had a two-sided confidence interval before, we now have what is sometimes referred to as a "one-sided" confidence interval, where either the lower or upper bound is set to negative infinity or positive infinity, respectively. In this case, since our alternative hypothesis is that the true mean is greater than 25, the upper bound of the one-sided confidence interval is set to positive infinity (Inf). With a lower bound of 25.74503, we can report, with 95% confidence, that the true mean is *at least* this value.
 
 For this one-sided test, we can state our conclusion as follows: 
 
@@ -277,12 +269,12 @@ For this one-sided test, we can state our conclusion as follows:
 
 ## 6. Hypothesis test for the difference between two population means
 
-Again building from Lab 4, suppose we next want to know whether mean BMI differs by sex - in other words, we want to know whether there is a statistically significant difference in population mean BMI between males and females. 
+Again building from Lab 4, suppose we next want to know whether mean BMI differs by sex assigned at birth — in other words, we want to know whether there is a statistically significant difference in population mean BMI between those assigned male and female sex at birth. 
 
 First, let's visualize the distribution of BMI by sex in our sample: 
 
 ```{r}
-# create side-by-side histograms to show the distribution of BMI by sex
+# create side-by-side histograms to show the distribution of BMI by sex at birth
 data %>%
   ggplot(aes(x = BMI, fill = SEX)) +
     geom_histogram(color="#e9ecef", alpha=0.5, position = 'identity') +
@@ -307,7 +299,7 @@ Or, in words:
 
 <center>
 
-**𝐻~0~:** There is no difference in the mean BMI between males and females.  
+**𝐻~0~:** There is no difference in mean BMI between males and females in the population.  
 **𝐻~𝑎~:** The true mean BMI differs between males and females in the population.
 
 </center>
@@ -335,7 +327,7 @@ To estimate the difference in mean BMI between males and females in Framingham, 
 2. We have large samples.
 3. Population variances are unknown. 
 
-The fourth condition - whether the population variances are equal or not - requires further investigation. In Lab 4, you learned three possible approaches: the **F-test** for equality of variances (appropriate for normally distributed or approximately normally distributed data); **Levene's test** (appropriate for slightly skewed data); or, an alternative to Levene's test, the **Fligner-Killeen’s test** (which is actually the most robust to departures from normality).
+The fourth condition — whether the population variances are equal or not — requires further investigation. In Lab 4, you learned three possible approaches: the **F-test** for equality of variances (appropriate for normally distributed or approximately normally distributed data); **Levene's test** (appropriate for slightly skewed data); or, an alternative to Levene's test, the **Fligner-Killeen’s test** (which is actually the most robust to departures from normality).
 
 Since we have already gone through the steps of determining equality of variances in Lab 4, we won't repeat those steps here. Just be sure to return to Lab 4 for guidance on this step when working on future assignments. 
 
@@ -344,8 +336,13 @@ We know from our work in Lab 4 that the variances of BMI among males and females
 We will opt to carry out a two-sample *t-test* with unequal variances (i.e., Welch's t-test) using the `t.test()` function as follows:
 
 ```{r}
-# two-sample t-test for difference in mean BMI by sex
-t.test(BMI ~ SEX, data = data, var.equal = FALSE, alternative = "two.sided", mu = 0, conf.level = 0.95)
+# two-sample t-test for difference in mean BMI by sex at birth
+t.test(BMI ~ SEX, 
+       data = data, 
+       var.equal = FALSE, 
+       alternative = "two.sided", 
+       mu = 0, 
+       conf.level = 0.95)
 ```
 
 <br>
@@ -353,7 +350,7 @@ t.test(BMI ~ SEX, data = data, var.equal = FALSE, alternative = "two.sided", mu 
 As in our previous example, the code we are using should feel familiar from Lab 4. Here, however, we have specified a couple of additional arguments: 
 
 * `alternative = "two.sided"`: Specifies a two-tailed test to check for any difference (not just greater or less).
-* `mu = 0`: Tests whether the difference in means is equal to 0 (i.e., no difference).
+* `mu = 0`: Tests whether the difference in means is equal to 0 (i.e., no difference between groups).
 * `conf.level = 0.95`: Specifies a confidence level of 0.95 or 95%, meaning 𝛼=0.05.
 
 From the output, we can see we have a p-value of 1.544e-06 (remember, this is scientific notation for a very small value, in this case, 0.000001544). Since 𝑝≤𝛼, we can reject the null hypothesis. We can state our conclusion as follows: 
@@ -386,7 +383,12 @@ From the previous example, we already know that both the *Z* and *t'* reference 
 
 ```{r}
 # two-sample t-test for difference in mean BMI by sex
-t.test(BMI ~ SEX, data = data, var.equal = FALSE, alternative = "greater", mu = 0, conf.level = 0.95)
+t.test(BMI ~ SEX, 
+       data = data, 
+       var.equal = FALSE, 
+       alternative = "greater", 
+       mu = 0, 
+       conf.level = 0.95)
 ```
 
 <br>
@@ -399,7 +401,7 @@ Once again, since the p-value (p-value = 7.72e-07) is smaller than our significa
 
 ## 7. Hypothesis test for a population proportion
 
-In Lab 4, we estimated the proportion of the adult population in Framingham who are obese (defined as BMI>30). Now, we will take this a step further by conducting a one-sample hypothesis test for a population proportion to determine whether the prevalence of obesity in Framingham differs significantly from the national obesity prevalence at the time of data collection, which was about 13% (recall that the Framingham Heart Study started in 1948 - national obesity prevalence has tripled since then). This test will allow us to assess whether the observed obesity prevalence in Framingham is statistically different from the national prevalence or if any difference could be due to random variation in our sample.
+In Lab 4, we estimated the proportion of the adult population in Framingham with obesity (defined as BMI>30). Now, we will take this a step further by conducting a one-sample hypothesis test for a population proportion to determine whether the prevalence of obesity in Framingham at baseline differs significantly from the national obesity prevalence at the time of data collection, which was about 13% (recall that the Framingham Heart Study started in 1948 − national obesity prevalence has tripled since then). This test will allow us to assess whether the observed obesity prevalence in Framingham is statistically different from the national prevalence or if any difference could be due to random variation in our sample.
 
 As usual, let's start by defining the null and alternative hypotheses for this test:
 
@@ -426,11 +428,15 @@ To carry out this hypothesis test, we will use the `prop.test()` function. The n
 table(data$OBESE)
 ```
 
-From the output, we can see there are 574 individuals classified as obese, out of a total sample of 4434. We can now enter all of the values into the `prop.test()` function to carry out this test, as follows:
+From the output, we can see there are 574 individuals classified as obese, out of a total sample of 4,434. We can now enter all of the values into the `prop.test()` function to carry out this test, as follows:
 
 ```{r}
 # one-sample proportion test
-prop.test(574, 4434, p = 0.13, alternative = "two.sided", conf.level = 0.95, correct = FALSE)
+prop.test(574, 4434, 
+          p = 0.13, 
+          alternative = "two.sided", 
+          conf.level = 0.95, 
+          correct = FALSE)
 ```
 
 From out output, we see the p-value is very large (0.9139), meaning the probability of obtaining an obesity prevalence as extreme as 12.95% (the prevalence in the sample) if the true population proportion were 13% is very high. Since 𝑝>0.05 (or any common significance level), we *fail to reject* the null hypothesis. This means we do not have enough statistical evidence to conclude that the obesity prevalence in Framingham is different from the national prevalence of 13%.
@@ -441,7 +447,7 @@ Note that the 95% confidence interval for the true population proportion ranges 
 
 ## 8. Hypothesis test for the difference between two population proportions
 
-Finally, suppose we want to test whether there is a statistically significant difference in obesity prevalence between males and females in Framingham. We can state the null and alternative hypotheses as follows:
+Finally, suppose we want to test whether there is a statistically significant difference in obesity prevalence between those assigned male and female sex at birth in Framingham. We can state the null and alternative hypotheses as follows:
 
 <center>
 
@@ -459,40 +465,43 @@ Or, in words:
 
 </center>
 
-As when we generated a confidence interval for the difference in proportions in Lab 4, we first need to know the number of obese individuals by sex in the sample. We also need the total number of males and females in the sample. We can obtain these values using the 'table' command as follows:
+As when we generated a confidence interval for the difference in proportions in Lab 4, we first need to know the number of obese individuals by sex assigned at birth in the sample. We also need the total number of males and females in the sample. We can obtain these values using the 'table' command as follows:
 
 ```{r}
-# generate counts of obesity by sex and totals by sex
-table(data$SEX, data$OBESE) # counts of obesity by sex
-table(data$SEX) # total by sex
+# generate counts of obesity and totals by sex assigned at birth
+table(data$SEX, data$OBESE) # counts of obesity by sex at birth
+table(data$SEX) # total by sex at birth
 ```
 
-The code chunks above generate two tables in the Console window. The first provides a count of obese individuals by sex, and the second provides the totals by sex. From the first table, we see there are 232 males in the sample who are obese, and there are 342 females in the sample who are obese. From the second table, we see there are a total of 1944 males in the sample and 2490 females. Next, we will use these values to test whether there is a statistically significant difference in population proportions using the `prop.test()` function as follows:
+The code chunks above generate two tables in the Console window. The first provides a count of obese individuals by sex assigned at birth, and the second provides the totals by sex. From the first table, we see there are 232 males with obesity, and there are 342 females with obesity in the sample. From the second table, we see there are a total of 1,944 males in the sample and 2,490 females. Next, we will use these values to test whether there is a statistically significant difference in population proportions using the `prop.test()` function as follows:
 
 ```{r}
-# two-sample hypothesis test for difference in obesity prevalence by sex
-prop.test(c(232, 342), c(1944, 2490), alternative = "two.sided", conf.level = 0.95, correct = FALSE)
+# two-sample hypothesis test for difference in obesity prevalence by sex assigned at birth
+prop.test(c(232, 342), c(1944, 2490), 
+          alternative = "two.sided", 
+          conf.level = 0.95, 
+          correct = FALSE)
 ```
 
-Once again, this two-sample test examines whether obesity prevalence differs between males and females in the Framingham population. As the p-value (0.07633) is greater than 0.05, we *fail to reject the null hypothesis* — meaning there is no statistically significant difference in obesity prevalence between males (11.93%) and females (13.73%).
+Once again, this two-sample test examines whether obesity prevalence differs between males and females in the Framingham population. As the p-value (0.07633) is greater than 0.05, we *fail to reject the null hypothesis* — meaning we cannot conclude there is a statistically significant difference in obesity prevalence between males (11.93%) and females (13.73%) in the population.
 
-This result aligns with our findings from Lab 4, where we constructed a confidence interval for the difference in population proportions. As we can see in the output, the 95% confidence interval (-0.0378, 0.0018) includes zero, which reinforces our conclusion that the true difference in obesity prevalence between males and females could be zero (i.e., no difference). The results of our hypothesis test confirm our previous conclusion that any observed difference is likely due to random variation (i.e., chance).
+This result aligns with our findings from Lab 4, where we constructed a confidence interval for the difference in population proportions. As we can see again in the output here, the 95% confidence interval (-0.0378, 0.0018) includes zero, which reinforces our conclusion that the true difference in obesity prevalence between males and females could be zero (i.e., no difference). The results of our hypothesis test confirm our previous conclusion that any observed difference is likely due to random variation (i.e., chance).
 
 <br>
 
 # Summary
 
-In this lab, we applied hypothesis testing to assess differences in population means and proportions using data from the Framingham Heart Study. We conducted:
+In Lab 5, we applied hypothesis testing to assess differences in population means and proportions using data from the Framingham Heart Study. We conducted:
 
 * A one-sample t-test to evaluate whether the mean BMI in Framingham differs from a national standard.
 * A two-sample t-test to compare BMI between males and females.
 * A one-sample proportion test to determine whether obesity prevalence in Framingham differs from the national prevalence.
-* A two-sample proportion test to test for differences in obesity prevalence by sex.
+* A two-sample proportion test to test for differences in obesity prevalence by sex assigned at birth in Framingham.
 
-These methods are fundamental tools in public health research, practice, and policy, as they allow us to:
+These methods are fundamental tools in public health research, as they allow us to:
 
-1. Evaluate health disparities (e.g., differences in obesity rates across populations).
-2. Assess intervention effectiveness (e.g., does a new program reduce smoking rates in a population?).
+1. Evaluate health disparities (e.g., differences in obesity burden across populations).
+2. Assess intervention effectiveness (e.g., does a new program reduce smoking prevalence in a population?).
 3. Inform public health policy (e.g., is a community’s disease or risk factor prevalence significantly higher than national benchmarks?).
 
 So far, we have focused on comparing one or two groups at a time. However, in public health research, we often need to compare multiple groups — for example, assessing differences across racial/ethnic groups or evaluating disease prevalence across different income or educational levels. Next week, we will learn about ANOVA (Analysis of Variance), which extends hypothesis testing to compare means across three or more groups. Understanding hypothesis testing principles from Lab 5 will help us interpret ANOVA results, as the underlying logic remains the same.
@@ -503,3 +512,13 @@ When you are ready, please submit the following to the Lab 5 assignment page on 
 2. A knitted `.html` file
 
 Please reach out to me at jenny.wagner@csus.edu if you have any questions. See you in class!
+
+<br>
+
+---
+
+**Jenny Wagner, PhD, MPH**  
+Assistant Professor<br>
+Department of Public Health<br>
+California State University, Sacramento<br>
+jenny.wagner@csus.edu

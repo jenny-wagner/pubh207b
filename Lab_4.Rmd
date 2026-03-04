@@ -408,7 +408,7 @@ table(data$OBESE)
 ```
 From the output, we see there are 574 individuals with obesity (BMI>30) in the sample, out of a total sample of 4,434.
 
-We can calculate the 95% confidence interval for the population proportion using the `binom.test()` function as follows:
+We can calculate the 95% confidence interval for the population proportion using the `prop.test()` function as follows:
 
 ```{r}
 # Calculate 95% confidence interval for proportion obese in Framingham

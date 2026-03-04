@@ -436,6 +436,9 @@ div.tocify {
     <li>
       <a href="Lab_4.html">Lab 4</a>
     </li>
+    <li>
+      <a href="Lab_5.html">Lab 5</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -1132,7 +1135,7 @@ the sample with obesity as well as the total sample size:</p>
 <p>From the output, we see there are 574 individuals with obesity
 (BMI&gt;30) in the sample, out of a total sample of 4,434.</p>
 <p>We can calculate the 95% confidence interval for the population
-proportion using the <code>binom.test()</code> function as follows:</p>
+proportion using the <code>prop.test()</code> function as follows:</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co"># Calculate 95% confidence interval for proportion obese in Framingham</span></span>
 <span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="dv">574</span>, <span class="dv">4434</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 

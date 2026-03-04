@@ -436,6 +436,9 @@ div.tocify {
     <li>
       <a href="Lab_4.html">Lab 4</a>
     </li>
+    <li>
+      <a href="Lab_5.html">Lab 5</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -458,17 +461,16 @@ div.tocify {
 </div>
 
 
-<p><br> <strong>Jenny Wagner, PhD, MPH</strong> <br> Department of
-Public Health <br> California State University, Sacramento <br> <br></p>
+<p><br></p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>In Lab 4 last week, we explored estimation - the first major area of
-statistical inference - including how to calculate confidence intervals
+<p>In Lab 4 last week, we explored estimation — the first major area of
+statistical inference — including how to calculate confidence intervals
 for population parameters often of interest in public health, such as
-the mean, difference between two means, population proportion, and
-difference between two proportions. Confidence intervals provide a range
-of plausible values for a parameter, allowing us quantify uncertainty in
-our estimates.</p>
+the population mean, difference between two means, population
+proportion, and difference between two proportions. Confidence intervals
+provide a range of plausible values for a parameter, which allows us
+quantify uncertainty in our estimates.</p>
 <p>In Lab 5, we will build upon estimation techniques for statistical
 inference with <strong>hypothesis testing</strong>, a formal method for
 making decisions about population parameters based on sample data. While
@@ -515,7 +517,7 @@ Framingham, MA.</p>
 Assignment Guidelines page. Save this <code>.Rmd</code> file in a folder
 dedicated to Lab 5 materials.</li>
 <li>Next, save the <strong>modified dataset</strong> you created in Lab
-2 - called “frmgham2_p1_impute.csv” - in the same folder as your Lab 5 R
+2 — called “frmgham2_p1_impute.csv” — in the same folder as your Lab 5 R
 Markdown file. This is the same file we used last week in Lab 4.</li>
 <li>Finally, proceed to read through and carry out each of the tasks
 detailed below. As usual, you will begin by loading R packages, setting
@@ -525,7 +527,7 @@ your working directory, and importing the dataset.</li>
 <div id="install-and-load-r-packages" class="section level2">
 <h2>1. Install and load R packages</h2>
 <p>For Lab 5, you should not need to install any new packages. As usual,
-however, we need to start by loading packages with the
+however, we need to start by loading necessary packages with the
 <code>library()</code> function, as follows:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># load packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -564,53 +566,45 @@ variables that represent categories should be treated as such (i.e., as
 categorical or factor variables). So, let’s start by checking variables
 types in our dataset:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># check variable types</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">class</span>(data<span class="sc">$</span>SEX) <span class="co"># sex</span></span></code></pre></div>
-<pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">class</span>(data<span class="sc">$</span>AGE) <span class="co"># age</span></span></code></pre></div>
-<pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">class</span>(data<span class="sc">$</span>BMI) <span class="co"># body mass index</span></span></code></pre></div>
-<pre><code>## [1] &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">class</span>(data<span class="sc">$</span>TOTCHOL) <span class="co"># total cholesterol level</span></span></code></pre></div>
-<pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">class</span>(data<span class="sc">$</span>EDUC) <span class="co"># attained education</span></span></code></pre></div>
-<pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">class</span>(data<span class="sc">$</span>OBESE) <span class="co"># obesity status</span></span></code></pre></div>
-<pre><code>## [1] &quot;integer&quot;</code></pre>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">sapply</span>(data, class)</span></code></pre></div>
+<pre><code>##    RANDID       SEX       AGE       BMI   TOTCHOL      EDUC     OBESE 
+## &quot;integer&quot; &quot;integer&quot; &quot;integer&quot; &quot;numeric&quot; &quot;integer&quot; &quot;integer&quot; &quot;integer&quot;</code></pre>
 <p>Just as we did in Labs 2 and 4, we’ll need to modify the variable
-types for sex, attained education, and obesity status. While these
-variables take on numerical values in our dataset, these values do not
-represent actual quantities - rather, they represent categories with no
-inherent quantity. Remember that we also need to specify whether a
-categorical or factor variable is ordered or unordered (i.e., ordinal or
-nominal). Notice in the code chunks below that, for <em>unordered</em>
-(i.e., nominal) categorical variables like sex and obesity status, we
-specify <code>ordered = FALSE</code>, whereas, for <em>ordered</em>
-(i.e., ordinal) categorical variables like attained education, we
-specify <code>ordered = TRUE</code>.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># convert sex to unordered factor variable</span></span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>data<span class="sc">$</span>SEX <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>SEX, </span>
-<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>                       <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>), </span>
-<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>                       <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># convert attained education to ordered factor variable</span></span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>data<span class="sc">$</span>EDUC <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>EDUC, </span>
-<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>                        <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;4&quot;</span>), </span>
-<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>                        <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co"># convert obesity status to unordered factor variable</span></span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>data<span class="sc">$</span>OBESE <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>OBESE, </span>
-<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>                         <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;1&quot;</span>), </span>
-<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>                         <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+types for sex assigned at birth, attained education, and obesity status.
+While these variables take on numerical values in our dataset, these
+values do not represent actual quantities — rather, they represent
+categories with no inherent quantity. Remember that we also need to
+specify whether a categorical or factor variable is ordered or unordered
+(i.e., ordinal or nominal). Notice in the code chunks below that, for
+<em>unordered</em> (i.e., nominal) categorical variables like sex
+assigned at birth and obesity status, we specify
+<code>ordered = FALSE</code>, whereas, for <em>ordered</em> (i.e.,
+ordinal) categorical variables like attained education, we specify
+<code>ordered = TRUE</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># convert sex to unordered factor variable</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>data<span class="sc">$</span>SEX <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>SEX, </span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>                       <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>), </span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>                       <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># convert attained education to ordered factor variable</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>data<span class="sc">$</span>EDUC <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>EDUC, </span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>                        <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;4&quot;</span>), </span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>                        <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># convert obesity status to unordered factor variable</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>data<span class="sc">$</span>OBESE <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>OBESE, </span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>                         <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;1&quot;</span>), </span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>                         <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <p><br></p>
 </div>
 <div id="hypothesis-test-for-a-population-mean" class="section level2">
 <h2>5. Hypothesis test for a population mean</h2>
 <p>As in Lab 4, suppose you are interested in studying body mass index
-(BMI) and want to start by estimating mean BMI of the adult population
-of the city of Framingham. In this case, the <em>population
+(BMI) and obesity and want to start by estimating mean BMI of the adult
+population of the city of Framingham. In this case, the <em>population
 parameter</em> of interest is the population mean of BMI. First, let’s
 quickly summarize our dataset using the <code>summary()</code> function
 and also visualize the distribution of BMI with a histogram.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co"># summarize dataset</span></span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">summary</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># summarize dataset</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">summary</span>(data)</span></code></pre></div>
 <pre><code>##      RANDID        SEX           AGE             BMI           TOTCHOL     
 ##  Min.   :   2448   1:1944   Min.   :32.00   Min.   :15.54   Min.   :107.0  
 ##  1st Qu.:2440336   2:2490   1st Qu.:42.00   1st Qu.:23.09   1st Qu.:206.0  
@@ -625,8 +619,8 @@ and also visualize the distribution of BMI with a histogram.</p>
 ##  4: 502           
 ##                   
 ## </code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># create a histogram of BMI in the sample</span></span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>BMI, <span class="at">breaks =</span> <span class="dv">30</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># create a histogram of BMI in the sample</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">hist</span>(data<span class="sc">$</span>BMI, <span class="at">breaks =</span> <span class="dv">30</span>)</span></code></pre></div>
 <p><img src="Lab_5_files/figure-html/unnamed-chunk-9-1.png" alt="" width="672" /></p>
 <p>From the summary of our dataset, we can see the mean BMI in the
 sample is 25.85. This aligns with our view of the histogram for BMI,
@@ -634,9 +628,9 @@ which shows the bulk of the distribution centered around this value.
 Suppose you want to know whether the population of Framingham has an
 average BMI that is <em>different</em> from the national average (at the
 time of data collection), 25. Using our sample data, we can conduct a
-hypothesis test for the value of the population mean to determine - with
-a specified level of confidence - whether the population mean of BMI in
-Framingham is different from the national average.</p>
+hypothesis test for the value of the population mean to determine — with
+a specified level of significance — whether the population mean of BMI
+in Framingham is different from the national average.</p>
 <p>In statistical hypothesis testing, we start with two competing
 hypotheses: the <strong>null hypothesis</strong> (𝐻<sub>0</sub>) and the
 <strong>alternative hypothesis</strong> (𝐻<sub>𝑎</sub>). These
@@ -674,15 +668,15 @@ because we are considering both possibilities:</p>
 <p>Recall from lecture that, after specifying the null and alternative
 hypotheses, our next step is to identify the appropriate
 <strong>reference distribution</strong> — i.e., the probability
-distribution that describes how our test statistic behaves under the
-assumption that the null hypothesis is true. When conducting a
-hypothesis test for the population mean, we will use either the
-<em>Z</em> or <em>t</em>-distribution. Just like when we constructed
-confidence intervals in Lab 4, the appropriate reference distribution
-depends on the following conditions:</p>
+distribution that describes how our test statistic behaves <em>under the
+assumption that the null hypothesis is true.</em> When conducting a
+hypothesis test for the value of a single population mean, we will use
+either the <em>Z</em> or <em>t</em>-distribution. Just like when we
+constructed confidence intervals in Lab 4, the appropriate reference
+distribution depends on the following conditions:</p>
 <ol style="list-style-type: decimal">
 <li>Whether the population is normally distributed;</li>
-<li>Whether the sample is small or large (&gt;30); and</li>
+<li>Whether the sample is small or large (≥30); and</li>
 <li>Whether the population variance is <em>known</em> or
 <em>unknown</em>.</li>
 </ol>
@@ -701,8 +695,11 @@ the <em>t</em>-distribution will be used (but the results will be very
 similar, as the <em>t</em>-distribution approximates the standard normal
 distribution with large samples). Let’s take a look at how we can carry
 out this task in R using the <code>t.test()</code> function:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="co"># one sample t-test for population mean</span></span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">t.test</span>(data<span class="sc">$</span>BMI, <span class="at">mu =</span> <span class="dv">25</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># one sample t-test for population mean</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="fu">t.test</span>(data<span class="sc">$</span>BMI, </span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>       <span class="at">mu =</span> <span class="dv">25</span>, </span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, </span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>       <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -716,13 +713,13 @@ out this task in R using the <code>t.test()</code> function:</p>
 ##  25.84616</code></pre>
 <p>First, notice that the code we are using here for this hypothesis
 test is very similar to the code we used in Lab 4 to generate a
-confidence interval for the population mean BMI. In both cases, we use
-the <code>t.test()</code> function and specify the variable of interest
-using <code>data$BMI</code>. However, we’ve added a couple of new
-arguments, as follows:</p>
+confidence interval to estimate the population mean BMI. In both cases,
+we use the <code>t.test()</code> function and specify the variable of
+interest using <code>data$BMI</code>. However, we’ve added a couple of
+new arguments, as follows:</p>
 <ul>
-<li><code>mu = 25</code>: The hypothesized population mean BMI (from the
-null hypothesis).</li>
+<li><code>mu = 25</code>: The hypothesized population mean BMI (based on
+the null hypothesis).</li>
 <li><code>alternative = "two.sided"</code>: Indicates that we are
 conducting a two-sided test, since the alternative hypothesis does not
 specify a direction.</li>
@@ -734,9 +731,10 @@ for statistical significance</em> — in other words, how much uncertainty
 we are willing to accept when making a decision about the null
 hypothesis. Here, we have specified a desired confidence level of 0.95,
 or 95%, which means there is a 5% chance of making a Type I error. This
-probability is called “alpha” (α) and is referred to as the significance
-level of a test. In this case, since we are specifying a confidence
-level of 95%, this means we have a significance level, α, of 0.05.</li>
+probability is called “alpha” (α) and is referred to as the
+<strong>significance level</strong> of a test. In this case, since we
+are specifying a confidence level of 95%, this means we have a
+significance level, α, of 0.05.</li>
 </ul>
 <p>Let’s break down the most important parts of the output from our
 hypothesis test:</p>
@@ -750,18 +748,18 @@ A large <em>t</em>-value (in this case, 13.766) suggests that the sample
 mean is significantly different from 25.</li>
 <li><strong>p-value</strong>: The p-value represents the probability of
 obtaining a test statistic as extreme as (or more extreme than) the one
-observed, assuming that the null hypothesis (𝐻<sub>0</sub>) is true. In
-other words, the p-value tells us how likely our sample results would be
-if there were actually no effect or difference in the population (i.e.,
-if 𝐻<sub>0</sub> were correct). In this case, the p-value is essentially
-0 (very, very small), indicating an extremely low probability that we
-would observe a sample mean this far from 25 if the null hypothesis were
-true.</li>
+observed, <em>assuming that the null hypothesis (𝐻<sub>0</sub>) is
+true.</em> In other words, the p-value tells us how likely our sample
+results would be if there were actually no effect or difference in the
+population (i.e., if 𝐻<sub>0</sub> were correct). In this case, the
+p-value is very, very small (essentially 0), indicating an extremely low
+probability that we would observe a sample mean this far from 25 <em>if
+the null hypothesis were true.</em></li>
 </ul>
 <p>We will use the p-value to make a decision about our null hypothesis.
 In general, when the p-value is very small, this means we have enough
 evidence to reject the null hypothesis in favor of the alternative
-hypothesis. How small is small? To make a decision about our null
+hypothesis. But how small is small? To make a decision about our null
 hypothesis (reject or fail to reject) we will compare the p-value to α,
 our specified level of significance. Again, this is something we, as the
 researcher, will choose in advance of conducting the hypothesis test.
@@ -826,20 +824,23 @@ than or equal to the national average, 25.<br />
 than the national average, 25.</p>
 </center>
 <p>Remember, the null hypothesis (𝐻<sub>0</sub>) always represents the
-status quo or no effect. In this case, the status quo is that the mean
-BMI in Framingham is not greater than 25 — meaning it could be equal to
-or less than 25. The alternative hypothesis (𝐻<sub>𝑎</sub>) represents
-the claim we want to test. Since we are specifically interested in
-whether the mean BMI is greater than 25, we use a greater than (&gt;)
-sign in 𝐻<sub>𝑎</sub>.</p>
+status quo or no effect/difference. In this case, the status quo is that
+the mean BMI in Framingham is not greater than 25 — meaning it could be
+equal to or less than 25. The alternative hypothesis (𝐻<sub>𝑎</sub>)
+represents the claim we want to test. Since we are specifically
+interested in whether the mean BMI is greater than 25, we use a greater
+than (&gt;) sign in 𝐻<sub>𝑎</sub>.</p>
 <p>The code we will use to carry out this hypothesis test is almost
-exactly the same as before - the only difference is that we will specify
+exactly the same as before — the only difference is that we will specify
 <code>alternative = "greater"</code> rather than
 <code>alternative = "two.sided"</code> as we did for our two-sided test
 above (if testing whether the mean is <em>less</em> than the
 hypothesized value, set <code>alternative = "less"</code>):</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="co"># one sample t-test for population mean</span></span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="fu">t.test</span>(data<span class="sc">$</span>BMI, <span class="at">mu =</span> <span class="dv">25</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># one sample t-test for population mean</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">t.test</span>(data<span class="sc">$</span>BMI, </span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>       <span class="at">mu =</span> <span class="dv">25</span>, </span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, </span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>       <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -855,17 +856,17 @@ hypothesized value, set <code>alternative = "less"</code>):</p>
 <ul>
 <li>We now see, expectedly, that the alternative hypothesis is that the
 “true mean is greater than 25.”</li>
-<li>Just as in our previous example, we have a test statistic
-(<em>t</em>) and p-value - and, from the tiny p-value, you probably
-suspect (correctly) that we will reject the null hypothesis.</li>
+<li>Just as in our previous example, we have a test statistic (t) and
+p-value — and, from the tiny p-value, you probably suspect (correctly)
+that we will again reject the null hypothesis.</li>
 <li>Finally, we see that, where we had a two-sided confidence interval
 before, we now have what is sometimes referred to as a “one-sided”
 confidence interval, where either the lower or upper bound is set to
 negative infinity or positive infinity, respectively. In this case,
 since our alternative hypothesis is that the true mean is greater than
 25, the upper bound of the one-sided confidence interval is set to
-positive infinity (Inf). With a lower bound of 25.74503, we can report
-with 95% confidence that the true mean is <em>at least</em> this
+positive infinity (Inf). With a lower bound of 25.74503, we can report,
+with 95% confidence, that the true mean is <em>at least</em> this
 value.</li>
 </ul>
 <p>For this one-sided test, we can state our conclusion as follows:</p>
@@ -883,17 +884,17 @@ class="section level2">
 <h2>6. Hypothesis test for the difference between two population
 means</h2>
 <p>Again building from Lab 4, suppose we next want to know whether mean
-BMI differs by sex - in other words, we want to know whether there is a
-statistically significant difference in population mean BMI between
-males and females.</p>
+BMI differs by sex assigned at birth — in other words, we want to know
+whether there is a statistically significant difference in population
+mean BMI between those assigned male and female sex at birth.</p>
 <p>First, let’s visualize the distribution of BMI by sex in our
 sample:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="co"># create side-by-side histograms to show the distribution of BMI by sex</span></span>
-<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
-<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> BMI, <span class="at">fill =</span> SEX)) <span class="sc">+</span></span>
-<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">&quot;#e9ecef&quot;</span>, <span class="at">alpha=</span><span class="fl">0.5</span>, <span class="at">position =</span> <span class="st">&#39;identity&#39;</span>) <span class="sc">+</span></span>
-<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a>    <span class="fu">scale_fill_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Males&#39;</span>, <span class="st">&#39;Females&#39;</span>)) <span class="sc">+</span></span>
-<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># create side-by-side histograms to show the distribution of BMI by sex at birth</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> BMI, <span class="at">fill =</span> SEX)) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">color=</span><span class="st">&quot;#e9ecef&quot;</span>, <span class="at">alpha=</span><span class="fl">0.5</span>, <span class="at">position =</span> <span class="st">&#39;identity&#39;</span>) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>    <span class="fu">scale_fill_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Males&#39;</span>, <span class="st">&#39;Females&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="Lab_5_files/figure-html/unnamed-chunk-13-1.png" alt="" width="672" /></p>
 <p><em>See Lab 4 for a detailed breakdown of the code chunk used to
@@ -915,8 +916,8 @@ class="math inline">\(\neq\)</span> 0</p>
 </center>
 <p>Or, in words:</p>
 <center>
-<p><strong>𝐻<sub>0</sub>:</strong> There is no difference in the mean
-BMI between males and females.<br />
+<p><strong>𝐻<sub>0</sub>:</strong> There is no difference in mean BMI
+between males and females in the population.<br />
 <strong>𝐻<sub>𝑎</sub>:</strong> The true mean BMI differs between males
 and females in the population.</p>
 </center>
@@ -943,8 +944,8 @@ Framingham, let’s first make the following assumptions:</p>
 <li>We have large samples.</li>
 <li>Population variances are unknown.</li>
 </ol>
-<p>The fourth condition - whether the population variances are equal or
-not - requires further investigation. In Lab 4, you learned three
+<p>The fourth condition — whether the population variances are equal or
+not — requires further investigation. In Lab 4, you learned three
 possible approaches: the <strong>F-test</strong> for equality of
 variances (appropriate for normally distributed or approximately
 normally distributed data); <strong>Levene’s test</strong> (appropriate
@@ -962,8 +963,13 @@ would be appropriate in this case.</p>
 <p>We will opt to carry out a two-sample <em>t-test</em> with unequal
 variances (i.e., Welch’s t-test) using the <code>t.test()</code>
 function as follows:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="co"># two-sample t-test for difference in mean BMI by sex</span></span>
-<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="fu">t.test</span>(BMI <span class="sc">~</span> SEX, <span class="at">data =</span> data, <span class="at">var.equal =</span> <span class="cn">FALSE</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co"># two-sample t-test for difference in mean BMI by sex at birth</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="fu">t.test</span>(BMI <span class="sc">~</span> SEX, </span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>       <span class="at">data =</span> data, </span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, </span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a>       <span class="at">mu =</span> <span class="dv">0</span>, </span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a>       <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -983,7 +989,7 @@ additional arguments:</p>
 <li><code>alternative = "two.sided"</code>: Specifies a two-tailed test
 to check for any difference (not just greater or less).</li>
 <li><code>mu = 0</code>: Tests whether the difference in means is equal
-to 0 (i.e., no difference).</li>
+to 0 (i.e., no difference between groups).</li>
 <li><code>conf.level = 0.95</code>: Specifies a confidence level of 0.95
 or 95%, meaning 𝛼=0.05.</li>
 </ul>
@@ -1027,8 +1033,13 @@ with unequal variances (i.e., Welch’s t-test) using the
 <code>t.test()</code> function. Note that the only change we need to
 make to our code is changing the alternative hypothesis from “two.sided”
 to “greater” as follows:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="co"># two-sample t-test for difference in mean BMI by sex</span></span>
-<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="fu">t.test</span>(BMI <span class="sc">~</span> SEX, <span class="at">data =</span> data, <span class="at">var.equal =</span> <span class="cn">FALSE</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co"># two-sample t-test for difference in mean BMI by sex</span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="fu">t.test</span>(BMI <span class="sc">~</span> SEX, </span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>       <span class="at">data =</span> data, </span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, </span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>       <span class="at">mu =</span> <span class="dv">0</span>, </span>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a>       <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -1055,12 +1066,12 @@ among females in the population.</em></p>
 class="section level2">
 <h2>7. Hypothesis test for a population proportion</h2>
 <p>In Lab 4, we estimated the proportion of the adult population in
-Framingham who are obese (defined as BMI&gt;30). Now, we will take this
-a step further by conducting a one-sample hypothesis test for a
-population proportion to determine whether the prevalence of obesity in
-Framingham differs significantly from the national obesity prevalence at
-the time of data collection, which was about 13% (recall that the
-Framingham Heart Study started in 1948 - national obesity prevalence has
+Framingham with obesity (defined as BMI&gt;30). Now, we will take this a
+step further by conducting a one-sample hypothesis test for a population
+proportion to determine whether the prevalence of obesity in Framingham
+at baseline differs significantly from the national obesity prevalence
+at the time of data collection, which was about 13% (recall that the
+Framingham Heart Study started in 1948 − national obesity prevalence has
 tripled since then). This test will allow us to assess whether the
 observed obesity prevalence in Framingham is statistically different
 from the national prevalence or if any difference could be due to random
@@ -1089,17 +1100,21 @@ previous examples, we will also need to specify an alternative
 hypothesis. Let’s first obtain the number of obese individuals
 (<code>x</code>) so that we have the information we need to carry out
 the test:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="co"># generate a table to count number of obese individuals in the sample</span></span>
-<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>OBESE)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="co"># generate a table to count number of obese individuals in the sample</span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>OBESE)</span></code></pre></div>
 <pre><code>## 
 ##    0    1 
 ## 3860  574</code></pre>
 <p>From the output, we can see there are 574 individuals classified as
-obese, out of a total sample of 4434. We can now enter all of the values
-into the <code>prop.test()</code> function to carry out this test, as
-follows:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="co"># one-sample proportion test</span></span>
-<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="dv">574</span>, <span class="dv">4434</span>, <span class="at">p =</span> <span class="fl">0.13</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+obese, out of a total sample of 4,434. We can now enter all of the
+values into the <code>prop.test()</code> function to carry out this
+test, as follows:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="co"># one-sample proportion test</span></span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="dv">574</span>, <span class="dv">4434</span>, </span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a>          <span class="at">p =</span> <span class="fl">0.13</span>, </span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a>          <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, </span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>          <span class="at">conf.level =</span> <span class="fl">0.95</span>, </span>
+<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a>          <span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  1-sample proportions test without continuity correction
 ## 
@@ -1131,9 +1146,9 @@ class="section level2">
 <h2>8. Hypothesis test for the difference between two population
 proportions</h2>
 <p>Finally, suppose we want to test whether there is a statistically
-significant difference in obesity prevalence between males and females
-in Framingham. We can state the null and alternative hypotheses as
-follows:</p>
+significant difference in obesity prevalence between those assigned male
+and female sex at birth in Framingham. We can state the null and
+alternative hypotheses as follows:</p>
 <center>
 <p><strong>𝐻<sub>0</sub>:</strong> p<sub>male</sub> = p<sub>female</sub>
 or equivalently, p<sub>male</sub> − p<sub>female</sub> = 0<br />
@@ -1151,30 +1166,33 @@ between males and females.</p>
 </center>
 <p>As when we generated a confidence interval for the difference in
 proportions in Lab 4, we first need to know the number of obese
-individuals by sex in the sample. We also need the total number of males
-and females in the sample. We can obtain these values using the ‘table’
-command as follows:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="co"># generate counts of obesity by sex and totals by sex</span></span>
-<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>SEX, data<span class="sc">$</span>OBESE) <span class="co"># counts of obesity by sex</span></span></code></pre></div>
+individuals by sex assigned at birth in the sample. We also need the
+total number of males and females in the sample. We can obtain these
+values using the ‘table’ command as follows:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="co"># generate counts of obesity and totals by sex assigned at birth</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>SEX, data<span class="sc">$</span>OBESE) <span class="co"># counts of obesity by sex at birth</span></span></code></pre></div>
 <pre><code>##    
 ##        0    1
 ##   1 1712  232
 ##   2 2148  342</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>SEX) <span class="co"># total by sex</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>SEX) <span class="co"># total by sex at birth</span></span></code></pre></div>
 <pre><code>## 
 ##    1    2 
 ## 1944 2490</code></pre>
 <p>The code chunks above generate two tables in the Console window. The
-first provides a count of obese individuals by sex, and the second
-provides the totals by sex. From the first table, we see there are 232
-males in the sample who are obese, and there are 342 females in the
-sample who are obese. From the second table, we see there are a total of
-1944 males in the sample and 2490 females. Next, we will use these
-values to test whether there is a statistically significant difference
-in population proportions using the <code>prop.test()</code> function as
+first provides a count of obese individuals by sex assigned at birth,
+and the second provides the totals by sex. From the first table, we see
+there are 232 males with obesity, and there are 342 females with obesity
+in the sample. From the second table, we see there are a total of 1,944
+males in the sample and 2,490 females. Next, we will use these values to
+test whether there is a statistically significant difference in
+population proportions using the <code>prop.test()</code> function as
 follows:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="co"># two-sample hypothesis test for difference in obesity prevalence by sex</span></span>
-<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="fu">c</span>(<span class="dv">232</span>, <span class="dv">342</span>), <span class="fu">c</span>(<span class="dv">1944</span>, <span class="dv">2490</span>), <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="co"># two-sample hypothesis test for difference in obesity prevalence by sex assigned at birth</span></span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="fu">c</span>(<span class="dv">232</span>, <span class="dv">342</span>), <span class="fu">c</span>(<span class="dv">1944</span>, <span class="dv">2490</span>), </span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>          <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, </span>
+<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a>          <span class="at">conf.level =</span> <span class="fl">0.95</span>, </span>
+<span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a>          <span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  2-sample test for equality of proportions without continuity correction
 ## 
@@ -1189,23 +1207,23 @@ follows:</p>
 <p>Once again, this two-sample test examines whether obesity prevalence
 differs between males and females in the Framingham population. As the
 p-value (0.07633) is greater than 0.05, we <em>fail to reject the null
-hypothesis</em> — meaning there is no statistically significant
-difference in obesity prevalence between males (11.93%) and females
-(13.73%).</p>
+hypothesis</em> — meaning we cannot conclude there is a statistically
+significant difference in obesity prevalence between males (11.93%) and
+females (13.73%) in the population.</p>
 <p>This result aligns with our findings from Lab 4, where we constructed
 a confidence interval for the difference in population proportions. As
-we can see in the output, the 95% confidence interval (-0.0378, 0.0018)
-includes zero, which reinforces our conclusion that the true difference
-in obesity prevalence between males and females could be zero (i.e., no
-difference). The results of our hypothesis test confirm our previous
-conclusion that any observed difference is likely due to random
-variation (i.e., chance).</p>
+we can see again in the output here, the 95% confidence interval
+(-0.0378, 0.0018) includes zero, which reinforces our conclusion that
+the true difference in obesity prevalence between males and females
+could be zero (i.e., no difference). The results of our hypothesis test
+confirm our previous conclusion that any observed difference is likely
+due to random variation (i.e., chance).</p>
 <p><br></p>
 </div>
 </div>
 <div id="summary" class="section level1">
 <h1>Summary</h1>
-<p>In this lab, we applied hypothesis testing to assess differences in
+<p>In Lab 5, we applied hypothesis testing to assess differences in
 population means and proportions using data from the Framingham Heart
 Study. We conducted:</p>
 <ul>
@@ -1215,15 +1233,15 @@ differs from a national standard.</li>
 <li>A one-sample proportion test to determine whether obesity prevalence
 in Framingham differs from the national prevalence.</li>
 <li>A two-sample proportion test to test for differences in obesity
-prevalence by sex.</li>
+prevalence by sex assigned at birth in Framingham.</li>
 </ul>
-<p>These methods are fundamental tools in public health research,
-practice, and policy, as they allow us to:</p>
+<p>These methods are fundamental tools in public health research, as
+they allow us to:</p>
 <ol style="list-style-type: decimal">
-<li>Evaluate health disparities (e.g., differences in obesity rates
+<li>Evaluate health disparities (e.g., differences in obesity burden
 across populations).</li>
 <li>Assess intervention effectiveness (e.g., does a new program reduce
-smoking rates in a population?).</li>
+smoking prevalence in a population?).</li>
 <li>Inform public health policy (e.g., is a community’s disease or risk
 factor prevalence significantly higher than national benchmarks?).</li>
 </ol>
@@ -1245,6 +1263,12 @@ assignment page on Canvas:</p>
 <p>Please reach out to me at <a href="mailto:jenny.wagner@csus.edu"
 class="email">jenny.wagner@csus.edu</a> if you have any questions. See
 you in class!</p>
+<p><br></p>
+<hr />
+<p><strong>Jenny Wagner, PhD, MPH</strong><br />
+Assistant Professor<br> Department of Public Health<br> California State
+University, Sacramento<br> <a href="mailto:jenny.wagner@csus.edu"
+class="email">jenny.wagner@csus.edu</a></p>
 </div>
 
 
