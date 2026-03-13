@@ -439,6 +439,9 @@ div.tocify {
     <li>
       <a href="Lab_5.html">Lab 5</a>
     </li>
+    <li>
+      <a href="Lab_6.html">Lab 6</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -461,21 +464,20 @@ div.tocify {
 </div>
 
 
-<p><br> <strong>Jenny Wagner, PhD, MPH</strong> <br> Department of
-Public Health <br> California State University, Sacramento <br> <br></p>
+<p><br></p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>In Lab 5 last week, we discussed hypothesis testing as a framework
 for making statistical inferences about population parameters using
-sample data. We focused on hypothesis tests for comparing two groups,
-such as the independent two-sample t-test. In Lab 6, we will extend our
-hypothesis testing approach to situations where we need to compare more
-than two groups. This is where Analysis of Variance (ANOVA) comes
-in.</p>
+sample data. For example, we discussed the use of the two-sample t-test
+for comparing means across two independent groups. In Lab 6, we will
+extend our hypothesis testing approach to situations where we need to
+compare more than two groups. This is where Analysis of Variance (ANOVA)
+comes in.</p>
 <p>ANOVA, or Analysis of Variance, is a statistical method used to
 determine whether there are statistically significant differences
 between the means of three or more independent groups. Instead of
-performing multiple t-tests (which would increase the risk of Type I
+performing multiple t-tests (which would increase the risk of type 1
 errors), ANOVA allows us to test for differences in means across several
 groups with a single hypothesis test. ANOVA essentially allows us to
 investigate whether there is a significant relationship between a
@@ -555,8 +557,8 @@ varies across levels of educational attainment.</p>
 Assignment Guidelines page. Save this <code>.Rmd</code> file in a folder
 dedicated to Lab 6 materials.</li>
 <li>Next, save the <strong>modified dataset</strong> you created in Lab
-2 - called “frmgham2_p1_impute.csv” - in the same folder as your Lab 6 R
-Markdown file. This is the same file we used Labs 4-5.</li>
+2 – called “frmgham2_p1_impute.csv” – in the same folder as your Lab 6 R
+Markdown file. This is the same file we used in Labs 4-5.</li>
 <li>Finally, proceed to read through and carry out each of the tasks
 detailed below. As usual, you will begin by loading R packages, setting
 your working directory, and importing the dataset.</li>
@@ -588,7 +590,7 @@ session:</p>
 </div>
 <div id="import-the-dataset-into-rstudio" class="section level2">
 <h2>3. Import the dataset into RStudio</h2>
-<p>Use the <code>read.csv()</code> function to bring in the modified
+<p>Use the <code>read.csv()</code> function to import the modified
 dataset you created in Lab 2. For this to work, the
 “frmgham2_p1_impute.csv” file will need to be saved in the working
 directory you specified in the above step. Again, this is the same data
@@ -600,17 +602,18 @@ file you started with in Labs 4-5.</p>
 <div id="prepare-the-dataset-for-analysis" class="section level2">
 <h2>4. Prepare the dataset for analysis</h2>
 <p>As usual, to prepare the dataset for analysis, we’ll need to modify
-the variable types for sex, attained education, and obesity status.
-While these variables take on numerical values in our dataset, these
-values do not represent actual quantities - rather, they represent
-categories with no inherent quantity. Remember that we also need to
-specify whether a categorical or factor variable is ordered or unordered
-(i.e., ordinal or nominal). Notice in the code chunks below that, for
-<em>unordered</em> (i.e., nominal) categorical variables like sex and
-obesity status, we specify <code>ordered = FALSE</code>, whereas, for
-<em>ordered</em> (i.e., ordinal) categorical variables like attained
-education, we specify <code>ordered = TRUE</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># convert sex to unordered factor variable</span></span>
+the variable types for sex assigned at birth, attained education, and
+obesity status. While these variables take on numerical values in our
+dataset, these values do not represent actual quantities – rather, they
+represent categories with no inherent quantity. Remember that we also
+need to specify whether a categorical or factor variable is ordered or
+unordered (i.e., ordinal or nominal). Notice in the code chunks below
+that, for <em>unordered</em> (i.e., nominal) categorical variables like
+sex assigned at birth and obesity status, we specify
+<code>ordered = FALSE</code>, whereas, for <em>ordered</em> (i.e.,
+ordinal) categorical variables like attained education, we specify
+<code>ordered = TRUE</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># convert sex at birth to unordered factor variable</span></span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>data<span class="sc">$</span>SEX <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>SEX, </span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>                       <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>), </span>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>                       <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code></pre></div>
@@ -657,7 +660,7 @@ performing any statistical tests.</p>
 <h3>a. Compute summary statistics</h3>
 <p>We’ve computed summary statistics in previous Labs, for example,
 using the <code>summary()</code> function. This approach was useful for
-quickly summarizing an entire dataset - but when we want to break down
+quickly summarizing an entire dataset – but when we want to break down
 summary statistics by group (in this case, by education level), we need
 to use another approach. We can compute summary statistics
 (specifically, mean and standard deviation) for BMI, stratified by
@@ -672,8 +675,6 @@ education level, using the following:</p>
 <span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>  )</span></code></pre></div>
 <p>Let’s break down this code chunk:</p>
 <ul>
-<li><code>bmi_summary &lt;-</code>: Stores the result as an object
-called <code>bmi_summary</code>.</li>
 <li><code>data %&gt;%</code>: Uses the pipe operator to pass the dataset
 <code>data</code> to the next function.</li>
 <li><code>group_by(EDUC)</code>: Groups the dataset by the categorical
@@ -694,6 +695,8 @@ much BMI values vary within each education level.</li>
 <li><code>count = n()</code>: Counts the number of observations (sample
 size) in each education level.</li>
 </ul></li>
+<li><code>bmi_summary &lt;-</code>: Stores the result of the operation
+as an object called <code>bmi_summary</code>.</li>
 </ul>
 <p>After running the above code chunk, you won’t actually see any output
 in the Console. Rather, since we stored the result in an object called
@@ -712,23 +715,25 @@ on the object or use the <code>print()</code> function as follows:</p>
 <p>Examine the output. You should see a table showing the mean
 (BMI_mean), standard deviation (BMI_sd), and sample size (count)
 stratified by education level (where each row corresponds to a different
-education level. We can see there are some modest differences across
+education level). We can see there are some modest differences across
 groups; for example, among those in education level 1 (0-11 years), mean
 BMI appears to be higher than the other groups, with larger spread
 indicated by the larger standard deviation. Conversely, education levels
 2-4 appear to have similar means for BMI. Our ultimate question in this
 Lab is whether or not the differences in means across groups are
-statistically significant.</p>
+statistically significant. In other words, we want to know whether our
+sample data provide enough evidence to conclude the population mean BMI
+differs by attained education level.</p>
 <p><br></p>
 </div>
 <div id="b.-visualize-group-differences" class="section level3">
 <h3>b. Visualize group differences</h3>
 <p>As we saw in Lab 2, it is also useful to visualize distributions and
 potential relationships using descriptive plots. Boxplots are
-particularly useful when comparing the distribution of a continuous
-random variable across levels of a categorical variable. We can
-visualize the distribution of BMI across education levels as
-follows:</p>
+particularly useful when comparing the distribution of a
+<em>continuous</em> random variable across levels of a
+<em>categorical</em> variable. We can visualize the distribution of BMI
+across education levels as follows:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># Boxplot of BMI across attained education levels</span></span>
 <span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">boxplot</span>(data<span class="sc">$</span>BMI <span class="sc">~</span> data<span class="sc">$</span>EDUC, </span>
 <span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Boxplot of BMI by Education Level&quot;</span>, </span>
@@ -746,7 +751,8 @@ revisit Lab 2.</p>
 <p>Before conducting statistical analyses, it’s important to identify
 outliers — values that are unusually high or low compared to the rest of
 the data. Outliers can impact assumptions for hypothesis testing, such
-as normality and homogeneity of variance in ANOVA.</p>
+as normality and homogeneity of variance (more on these later) in
+ANOVA.</p>
 <p>We will use the <code>identify_outliers()</code> function from the
 <code>rstatix</code> package to detect outliers in BMI across education
 levels. This function flags observations as outliers based on the
@@ -766,7 +772,9 @@ again, using the <code>identify_outliers()</code> function. Because we
 are saving the output to an object, you won’t see any immediate results
 in the Console after running the code:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># check for extreme outliers in BMI</span></span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>bmi_outliers <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(EDUC) <span class="sc">%&gt;%</span> <span class="fu">identify_outliers</span>(BMI)</span></code></pre></div>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>bmi_outliers <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>  <span class="fu">group_by</span>(EDUC) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>  <span class="fu">identify_outliers</span>(BMI)</span></code></pre></div>
 <p>To view the identified outliers, locate the <code>bmi_outliers</code>
 object in the Environment window. When you click on the object, you
 should see the dataset open in a new tab. We can also use the
@@ -815,14 +823,14 @@ to check for it using statistical tests.</p>
 <h3>b. Normality</h3>
 <p>The normality assumption in ANOVA requires that the dependent
 variable (in this case, BMI) is approximately normally distributed
-within each group (in this case, education level). While ANOVA is
-somewhat robust to violations of normality, especially when sample sizes
-are large, it is still good practice to check for normality before
+within each group (in this case, attained education level). While ANOVA
+is somewhat robust to violations of normality, especially when sample
+sizes are large, it is still good practice to check for normality before
 proceeding.</p>
 <p>There are two main approaches for assessing normality: (1)
-statistical tests such as the <strong>Shapiro-Wilk Test for
-Normality</strong>; and (2) <strong>visual methods</strong> such as
-grouped histograms or Q-Q plots (Quantile-Quantile plots).</p>
+statistical tests such as the Shapiro-Wilk Test for Normality; and (2)
+visual methods such as grouped histograms or Q-Q plots
+(Quantile-Quantile plots).</p>
 <p><br></p>
 <div id="shapiro-wilk-test-for-normality" class="section level4">
 <h4>Shapiro-Wilk Test for Normality</h4>
@@ -853,12 +861,12 @@ the <code>shapiro_test()</code> function as follows:</p>
 based on the Shapiro-Wilk Test (as the p-value for each group is very
 small).</p>
 <p>Importantly, the Shapiro-Wilk test is very sensitive to sample size,
-where, for large samples (&gt; 100 per group), the test often detects
-small, meaningless deviations from normality, even when these deviations
-are not strong enough to affect ANOVA results. Thus, for large samples
-(like ours), we often rely more on visual methods to assess normality
-rather than strictly interpreting the p-value from the Shapiro-Wilk
-test.</p>
+where, for very large samples (e.g., &gt;100 per group), the test often
+detects small, meaningless deviations from normality, even when these
+deviations are not strong enough to affect ANOVA results. Thus, for
+large samples (like ours), we often rely more on visual methods to
+assess normality rather than strictly interpreting the p-value from the
+Shapiro-Wilk test.</p>
 <p><br></p>
 </div>
 <div id="visual-methods-to-check-normality" class="section level4">
@@ -873,10 +881,10 @@ level.</p>
 <div id="histograms" class="section level5">
 <h5>Histograms</h5>
 <p>Histograms are a useful way to visually assess whether deviations
-from normality are meaningful or minor. If the histograms show severe
-skewness or extreme outliers, we may need to consider transformations or
-alternative statistical methods. When examining histograms, we’ll look
-for the following:</p>
+from normality are meaningful. If the histograms show severe skewness or
+extreme outliers, we may need to consider transformations or alternative
+statistical methods. When examining histograms, we’ll look for the
+following:</p>
 <ul>
 <li><strong>Bell-shaped distribution</strong> – A roughly symmetric,
 unimodal shape suggests that the data are approximately normally
@@ -891,12 +899,12 @@ distribution, this could indicate deviations from normality.</li>
 multiple peaks (bimodal/multimodal distributions) suggest that the data
 may not follow a normal distribution.</li>
 </ul>
-<p>We can generate a series of histograms for BMI - one for each
-education level - using <code>ggplot</code> as follows:</p>
+<p>We can generate a series of histograms for BMI – one for each
+education level – using <code>ggplot</code> as follows:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># Histogram of BMI for each education level</span></span>
 <span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> BMI, <span class="at">fill =</span> EDUC)) <span class="sc">+</span></span>
 <span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">position =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>EDUC, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span>  <span class="co"># Create separate histograms for each education level</span></span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>EDUC, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribution of BMI by Education Level&quot;</span>, <span class="at">x =</span> <span class="st">&quot;BMI&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
 <span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="Lab_6_files/figure-html/unnamed-chunk-13-1.png" alt="" width="672" /></p>
@@ -906,8 +914,8 @@ education level - using <code>ggplot</code> as follows:</p>
 the plot using <code>ggplot()</code> and specifies <code>data</code> as
 the dataset.
 <ul>
-<li><code>aes(x = BMI, fill = EDUC)</code>: Defines the aesthetic
-mappings as follows:
+<li><code>aes(x = BMI, fill = EDUC)</code>: Defines the components to be
+mapped as follows:
 <ul>
 <li><code>x = BMI</code>: BMI values are plotted on the x-axis.</li>
 <li><code>fill = EDUC</code>: Each education level is colored
@@ -951,11 +959,8 @@ improve readability.</li>
 <p>The histograms show the distribution of BMI across education levels,
 where each panel represents a different education category. Overall, the
 distributions appear approximately normal but with some right-skewness.
-Additionally, the spread of BMI is fairly consistent across groups, but
-education level 4 appears to have a slightly wider range of values,
-suggesting greater variability at higher levels of education. There are
-potential outliers on the higher end of the BMI distribution in each
-group, which may require further investigation.</p>
+There are potential outliers on the higher end of the BMI distribution
+in each group, which may require further investigation.</p>
 <p><br></p>
 </div>
 </div>
@@ -1012,10 +1017,11 @@ plot.</li>
 moderate deviations from normality, particularly at the upper ends of
 the distributions. For all education levels (1 through 4), the points
 generally follow the line in the middle range of the data but deviate at
-the tails, indicating right-skewness. This is evident from the way the
-upper quantiles curve upward away from the line, showing that there are
-more high BMI values (or more extreme high values) than would be
-expected under normality.</p>
+the tails, indicating right-skewness in alignment with the histograms we
+generated previously. This is evident from the way the upper quantiles
+curve upward away from the line, showing that there are more high BMI
+values (or more extreme high values) than would be expected under
+normality.</p>
 <p>Since ANOVA assumes normality within groups, these mild to moderate
 deviations might affect the validity of ANOVA results (particularly if
 you are working with small sample sizes). The normality assumption is
@@ -1072,18 +1078,17 @@ whether the normality assumption is met with this new variable.</p>
 <p>The new histograms in the Plots window suggest that the square
 root-transformed BMI variable (called <code>BMI_sqrt</code>) values
 follow an approximately normal distribution across all education levels.
-While some potential outliers remain, particularly in education level 4,
-they appear more symmetrically distributed around the central bulk of
-the data. Overall, the square root transformation has improved
-normality, making the new variable better suited for subsequent
-analyses.</p>
-<p>Note that our ultimate goal has not changed - we are still
+While some potential outliers remain, they appear more symmetrically
+distributed around the central bulk of the data. Overall, the square
+root transformation has improved normality, making the new variable
+better suited for subsequent analyses.</p>
+<p>Note that our ultimate goal has not changed – we are still
 investigating differences in BMI by education level. The square root
 transformation does not change the fundamental relationships between
 groups; it just makes the data more suitable for statistical analysis.
 When we interpret results, we can still describe differences in terms of
 BMI, and if needed, we can back-transform values to the original scale
-for clearer interpretation.</p>
+for ease of interpretation.</p>
 <p>Next, let’s recreate the Q-Q plots using the square root-transformed
 BMI variable, as follows:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="co"># Q-Q Plot for square root-transformed BMI by Education Level</span></span>
@@ -1100,9 +1105,9 @@ the original Q-Q plots. While there are still some minor deviations from
 the reference line in all four education levels, the points generally
 follow the diagonal reference line. This suggests that while some
 potential outliers remain, their influence has been reduced compared to
-the original (untransformed) BMI data. Given these improvements, we
-should proceed with the square root- transformed BMI variable in our
-subsequent steps.</p>
+the original (untransformed) BMI data. Given these improvements, we will
+proceed with the square root-transformed BMI variable in our subsequent
+steps.</p>
 <p><br></p>
 </div>
 </div>
@@ -1110,18 +1115,19 @@ subsequent steps.</p>
 </div>
 <div id="c.-homogeneity-of-variance" class="section level3">
 <h3>c. Homogeneity of Variance</h3>
-<p>The homogeneity of variance assumption (also called homoscedasticity)
-is important for ANOVA because it ensures that the variability of the
-dependent variable (now <code>BMI_sqrt</code>) is similar across all
-education levels. If variance differs significantly between groups, it
-can affect the accuracy of the ANOVA results, potentially leading to
-incorrect conclusions. To assess this assumption, we will use
-<strong>Levene’s test</strong>, which checks whether the variances are
-equal across groups. If the test is not significant (p&gt;0.05), we can
-assume that the variances are roughly equal and proceed with ANOVA.
-However, if the test is significant (p&lt;0.05), we may need to adjust
-our approach by using <strong>Welch’s ANOVA</strong>, which does not
-assume equal variances.</p>
+<p>The homogeneity of variance assumption (also called
+<em>homoscedasticity</em>) is important for ANOVA because it ensures
+that the variability of the dependent variable (now
+<code>BMI_sqrt</code>) is similar across all education levels. If
+variance differs significantly between groups, it can affect the
+accuracy of the ANOVA results, potentially leading to incorrect
+conclusions. To assess this assumption, we will use <strong>Levene’s
+test</strong>, which checks whether the variances are equal across
+groups. If the test is not significant (p&gt;0.05), we can assume that
+the variances are roughly equal and proceed with ANOVA. However, if the
+test is significant (p&lt;0.05), we may need to adjust our approach by
+using <strong>Welch’s ANOVA</strong>, which does not assume equal
+variances.</p>
 <p>We can carry out Levene’s Test as follows:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="co"># Levene&#39;s Test (this function is from the `rstatix` package)</span></span>
 <span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">levene_test</span>(BMI_sqrt <span class="sc">~</span> EDUC)</span></code></pre></div>
@@ -1141,8 +1147,8 @@ groups with unequal variances. Just like Welch’s t-test adjusts for
 differences in variance between two groups, Welch’s ANOVA adjusts for
 variance differences across multiple groups. By using this method, we
 can still compare mean values of square root-transformed BMI
-(<code>BMI_sqrt</code>) across education levels while ensuring that our
-results remain valid.</p>
+(<code>BMI_sqrt</code>) across education levels while ensuring the
+validity of our results.</p>
 <p><br></p>
 </div>
 </div>
@@ -1154,8 +1160,10 @@ ANOVA procedure (or in this case, Welch’s ANOVA, using the
 <code>welch_anova_test()</code> function) to test for differences in
 mean BMI across education levels, as follows:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="co"># Perform Welch&#39;s ANOVA</span></span>
-<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>welch_results <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">welch_anova_test</span>(BMI_sqrt <span class="sc">~</span> EDUC)</span>
-<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="fu">print</span>(welch_results)</span></code></pre></div>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>welch_results <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>  <span class="fu">welch_anova_test</span>(BMI_sqrt <span class="sc">~</span> EDUC)</span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a><span class="fu">print</span>(welch_results)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 7
 ##   .y.          n statistic   DFn   DFd        p method     
 ## * &lt;chr&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      
@@ -1164,7 +1172,7 @@ mean BMI across education levels, as follows:</p>
 (and Welch’s ANOVA) is that the means across groups are equal. Since the
 test produces a p-value of 8.65e-27 (i.e., very close to 0), this
 suggests <em>at least one</em> education level has a significantly
-different mean BMI - meaning education level may be associated with
+different mean BMI – meaning education level may be associated with
 differences in BMI. Because we obtained a significant result, we need to
 conduct post-hoc tests to determine which groups differ from each
 other.</p>
@@ -1186,7 +1194,7 @@ class="section level2">
 ANOVA (or Welch’s ANOVA), the choice of test depends on whether the
 assumption of equal variances is met and whether group sizes are equal
 or unequal. Each test is designed to compare pairwise differences
-between group means while controlling for the increased risk of Type I
+between group means while controlling for the increased risk of type 1
 error that otherwise comes with multiple comparisons. Our options are as
 follows:</p>
 <ul>
@@ -1194,11 +1202,11 @@ follows:</p>
 test</strong> is the most commonly used post-hoc test when the
 assumption of equal variances holds and group sizes are roughly equal.
 It systematically compares all possible pairs of group means and adjusts
-for multiple comparisons to ensure that the overall Type I error rate is
+for multiple comparisons to ensure that the overall type 1 error rate is
 controlled. If Levene’s test confirms equal variances, Tukey HSD is a
 valid choice. However, it is not appropriate when variance differs
 significantly across groups, as this can inflate error rates. Since our
-scenario here violates assumption of equal variances, and we have
+scenario here violates the assumption of equal variances, and we have
 different sample sizes across education levels, Tukey’s HSD test is not
 appropriate. However, if you do need to use it at any point, the syntax
 is as follows:</li>
@@ -1211,12 +1219,13 @@ test</strong>, is used when variances are equal, but group sizes are
 unequal. While the standard Tukey’s HSD test assumes that sample sizes
 are similar, the Tukey-Kramer adjustment corrects for differences in
 sample sizes, making it a better alternative when group sizes vary. Like
-Tukey’s HSD, it assumes homogeneity of variance, so it should only be
-used when Levene’s test indicates that variances are approximately equal
-across groups. To run the Tukey-Kramer test in R, we would actually use
-the exact same code as shown above for Tukey’s HSD test. R will detect
-that the sample sizes are different and automatically adapt by using the
-Tukey-Kramer correction for unequal sample sizes. Neat!</p></li>
+Tukey’s HSD test, it assumes homogeneity of variance, so it should only
+be used when Levene’s test indicates that variances are approximately
+equal across groups. To run the Tukey-Kramer test in R, we would
+actually use the exact same code as shown above for Tukey’s HSD test. R
+will detect that the sample sizes are different and automatically adapt
+by using the Tukey-Kramer correction for unequal sample sizes.
+Neat!</p></li>
 <li><p>Finally, when variances are unequal, as indicated by a
 significant result from Levene’s test, the <strong>Games-Howell
 test</strong> is the preferred approach. Unlike Tukey’s HSD,
@@ -1256,7 +1265,8 @@ confidence interval for the difference in means.</li>
 significance, where p&lt;0.05 indicates a significant difference between
 the two groups.</li>
 <li><strong>p.adj.signif</strong> – An indicator of whether the test
-returned a significant result, where “ns” means “not significant.”</li>
+returned a significant result, where asterisks indicate statistical
+significance, and “ns” means “not significant.”</li>
 </ol>
 <p><br></p>
 <div id="interpretation-2" class="section level6">
@@ -1298,26 +1308,26 @@ follows:</p>
 <p><img src="Lab_6_files/figure-html/unnamed-chunk-23-1.png" alt="" width="672" /></p>
 <p>This code chunk essentially recreates the boxplot figure we examined
 in our exploratory data analysis up above – but now, we’re showing the
-square root-transformed BMI variable used in our analysis, and we’ve
-added indicators – based on the results of the Games-Howell test – of
+square root-transformed BMI variable used in our analysis, and – based
+on the results of the Games-Howell test – we’ve added indicators of
 which pairwise comparisons were statistically significant.</p>
 <p><br></p>
 </div>
 </div>
 <div id="summary" class="section level1">
 <h1>Summary</h1>
-<p>In Lab 6, we have learned essential steps for carrying out the
-Analysis of Variance (ANOVA) procedure to investigate differences in
-means across more than two groups. Any analysis such as this should
-follow this general process:</p>
+<p>In Lab 6, we have learned key steps for carrying out the Analysis of
+Variance (ANOVA) procedure to investigate differences in means across
+more than two groups. Any analysis such as this should follow this
+general process:</p>
 <ol style="list-style-type: decimal">
 <li>Begin with exploratory data analysis, including calculation of
 summary statistics and visualization with descriptive plots, to
 understand distributions and explore potential relationships between
 variables of interest.</li>
 <li>Check ANOVA assumptions, including normality and homogeneity of
-variance (or homoscedasticity) using statistical tests and visual
-approaches.</li>
+variance (or homoscedasticity) using statistical tests or visual
+approaches, as appropriate.</li>
 <li>If appropriate, perform the ANOVA procedure (or Welch’s ANOVA, in
 the case of unequal variances).</li>
 <li>If the ANOVA or Welch’s ANOVA test results in a significant result,
@@ -1327,8 +1337,9 @@ carry out the appropriate post-hoc test for pairwise comparisons.</li>
 <p>This ANOVA procedure allows us to understand the relationship between
 a categorical independent variable and continuous dependent variable.
 Next week, we will extend this idea by introducing simple linear
-regression, which typically examines the relationship between a
-continuous independent variable and a continuous dependent variable.</p>
+regression, which allows us to investigate relationships between
+continuous and/or categorical independent variables and a continuous
+dependent variable.</p>
 <p>When you are ready, please submit the following to the Lab 6
 assignment page on Canvas:</p>
 <ol style="list-style-type: decimal">
@@ -1338,6 +1349,12 @@ assignment page on Canvas:</p>
 <p>Please reach out to me at <a href="mailto:jenny.wagner@csus.edu"
 class="email">jenny.wagner@csus.edu</a> if you have any questions. See
 you in class!</p>
+<p><br></p>
+<hr />
+<p><strong>Jenny Wagner, PhD, MPH</strong><br />
+Assistant Professor<br> Department of Public Health<br> California State
+University, Sacramento<br> <a href="mailto:jenny.wagner@csus.edu"
+class="email">jenny.wagner@csus.edu</a></p>
 </div>
 
 
