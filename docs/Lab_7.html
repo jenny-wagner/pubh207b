@@ -442,6 +442,9 @@ div.tocify {
     <li>
       <a href="Lab_6.html">Lab 6</a>
     </li>
+    <li>
+      <a href="Lab_7.html">Lab 7</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -464,35 +467,36 @@ div.tocify {
 </div>
 
 
-<p><br> <strong>Jenny Wagner, PhD, MPH</strong> <br> Department of
-Public Health <br> California State University, Sacramento <br> <br></p>
+<p><br></p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>As we have discussed in class, public health researchers often seek
-to understand relationships between variables. Correlation and simple
-linear regression are two fundamental statistical techniques used to
-explore and quantify these relationships. Correlation measures the
-strength and direction of the linear association between two continuous
-variables, while simple linear regression goes a step further by
-modeling how one variable (the dependent variable, or “outcome” of
-interest) changes in response to another (the independent variable, or
-“exposure” of interest). These methods are widely applied in public
-health sciences, for example, to identify risk factors for disease, to
-identify populations at increased risk, and ultimately to inform
-decision-making.</p>
+to understand relationships between variables — for example, to identify
+risk factors for disease and populations at increased risk. In Lab 6, we
+used Analysis of Variance (ANOVA) to test for differences in the mean of
+a continuous variable across three or more groups, or equivalently, to
+examine the relationship between a categorical independent variable
+(with 3+ levels) and a continuous dependent variable. In Lab 7, we shift
+our focus to relationships between two continuous variables. Correlation
+and simple linear regression are two techniques used to explore and
+quantify these relationships. Correlation measures the strength and
+direction of a linear association, while simple linear regression goes a
+step further by modeling how a dependent variable (outcome) changes in
+response to an independent variable (exposure).</p>
 <p><strong>Correlation</strong> is used when the goal is to determine
 whether two continuous variables are linearly related and to quantify
 the strength and direction of that relationship. There are various
 methods for calculating what is called a <em>correlation
 coefficient</em>. We will use the most common method, Pearson’s
 correlation coefficient (denoted by <em>r</em>). This coefficient ranges
-from -1 to 1, where values close to -1 or 1 indicate a strong
-relationship and values near 0 suggest little or no linear association.
-Remember, of course, that correlation does not imply causation — it only
-describes an association between variables.</p>
+from -1 to 1, where values close to -1 or 1 indicate a strong linear
+relationship (either negative or positive) and values near 0 suggest
+little or no linear association. Remember, of course, that correlation
+does not imply causation — it only describes an association between
+variables.</p>
 <p><strong>Simple linear regression</strong>, on the other hand, models
-the relationship between an independent variable (predictor) and a
-dependent variable (outcome). It not only tells us whether a
+the relationship between an independent variable (predictor or exposure)
+and a dependent variable (outcome). It not only tells us whether a
 relationship exists but also provides a mathematical equation to
 describe the relationship and make predictions. This method fits a
 regression line to the data, represented by the equation…</p>
@@ -509,8 +513,8 @@ changes for each one-unit increase in <em>X</em>), and</li>
 </ul>
 <p>This model can help answer questions like: What is the association
 between air pollution levels and hospital admission rates for
-respiratory diseases? or How does physical activity level influence
-blood pressure?</p>
+respiratory diseases? or What is the association between physical
+activity level and blood pressure?</p>
 <p>While simple linear regression examines the effect of a single
 predictor (<em>X</em>) variable on an outcome of interest,
 <strong>multiple linear regression</strong> extends this concept by
@@ -533,12 +537,12 @@ multiple regression model could incorporate additional variables like
 diet, age, and smoking status to better explain variations in blood
 pressure.</p>
 <p>As we saw in our exploration of Analysis of Variance (ANOVA) last
-week, linear regression too has several assumptions which must be met in
-order for any conclusions we draw from a linear model to be valid.
-Briefly, these assumptions are as follows:</p>
+week, linear regression too has several assumptions which must be
+<em>reasonably</em> met in order for any conclusions we draw from a
+linear model to be valid. Briefly, these assumptions are as follows:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Linearity</strong> – The relationship between the
-independent and dependent variable should be linear.</li>
+independent and dependent variables should be linear.</li>
 <li><strong>Independence</strong> – Residuals (errors) should be
 independent, meaning observations should not be influenced by one
 another.</li>
@@ -650,9 +654,9 @@ step.</p>
 <div id="identify-and-modify-variable-types" class="section level2">
 <h2>4. Identify and modify variable types</h2>
 <p>In previous Labs, we have used the <code>class()</code> function to
-check variable types one at a time. As a quicker alternative, we can use
-the <code>str()</code> command to check the structure of our dataset,
-including variable types, as follows:</p>
+check variable types. We can also use the <code>str()</code> command to
+check the structure of our dataset, including variable types, as
+follows:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># identify variable type for all variables in the dataset</span></span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">str</span>(data)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    100 obs. of  7 variables:
@@ -673,19 +677,29 @@ categories (0=Low SES, 1=High SES), not quantities. We can modify this
 variable as follows:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># convert SES category to unordered factor variable</span></span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>data<span class="sc">$</span>SES_Category <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>SES_Category, </span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>                         <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;1&quot;</span>), </span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>                         <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>                         <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;1&quot;</span>),</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>                         <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;Low SES&quot;</span>, <span class="st">&quot;High SES&quot;</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>                         <span class="at">ordered=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<p>Though the code above should look very familiar from previous Labs,
+notice that we’re using a new option here called “labels” – as you might
+suspect, this option allows us to specify labels corresponding to each
+level of our categorical variable. Here, we are telling R that the level
+“0” should be labeled with “Low SES”, and the level “1” should be
+labeled with “High SES”. These labels can be very helpful when creating
+plots or carrying out future analyses, particularly when working with
+multiple categorical variables with the same levels (as we have seen in
+the past!).</p>
 <p><br></p>
 </div>
 <div id="exploratory-data-analysis" class="section level2">
 <h2>5. Exploratory data analysis</h2>
 <p>Since we are working with a new dataset in this Lab, we need to start
 by doing some exploratory data analysis before jumping into more
-in-depth analyses. We should have a good understanding of the
+in-depth analyses. We should first have a good understanding of the
 distribution of each variable we plan to use. For this, we may want to
 generate both numerical summaries and descriptive plots. We can also
-begin to explore possible relationships between variables - for example,
-using scatterplots - in order to inform future analyses.</p>
+begin to explore possible relationships between variables – for example,
+using scatterplots – in order to inform future analyses.</p>
 <p><br></p>
 <div id="a.-numerical-summaries" class="section level3">
 <h3>a. Numerical summaries</h3>
@@ -701,12 +715,12 @@ variable in our dataset, as follows:</p>
 ##  Mean   :81.75   Mean   :81.75    Mean   :575.5     Mean   :5.955        
 ##  3rd Qu.:88.26   3rd Qu.:88.31    3rd Qu.:798.6     3rd Qu.:8.043        
 ##  Max.   :94.67   Max.   :96.24    Max.   :991.0     Max.   :9.924        
-##  MeaslesIncidence    RegionID      SES_Category
-##  Min.   :10.69    Min.   :  1.00   0:45        
-##  1st Qu.:39.85    1st Qu.: 25.75   1:55        
-##  Median :50.67    Median : 50.50               
-##  Mean   :52.40    Mean   : 50.50               
-##  3rd Qu.:66.96    3rd Qu.: 75.25               
+##  MeaslesIncidence    RegionID        SES_Category
+##  Min.   :10.69    Min.   :  1.00   Low SES :45   
+##  1st Qu.:39.85    1st Qu.: 25.75   High SES:55   
+##  Median :50.67    Median : 50.50                 
+##  Mean   :52.40    Mean   : 50.50                 
+##  3rd Qu.:66.96    3rd Qu.: 75.25                 
 ##  Max.   :93.98    Max.   :100.00</code></pre>
 <p><br></p>
 </div>
@@ -782,9 +796,9 @@ using the <code>pairs()</code> function as follows:</p>
 <p>You may need to expand the Plots window (click and drag at the
 borders) to get a good view of all the plots. As you can imagine,
 scatterplot matrices can get pretty messy if we try to use too many
-variables at one time - but for a handful of variables like we have
+variables at one time – but for a handful of variables like we have
 here, they can provide an efficient way to view relationships between
-each pair of variables in our dataset.</p>
+each pair of numerical variables in our dataset.</p>
 <p>Here, we’ve generated a scatterplot matrix using the
 <code>pairs()</code> function, <em>excluding</em>
 <code>SES_Category</code> and <code>RegionID</code>, since it doesn’t
@@ -866,10 +880,10 @@ Let’s generate a correlation matrix for all variables in our dataset
 <li><code>data %&gt;%</code>: Passes the <code>data</code> object to the
 next function.</li>
 <li><code>select(-c(SES_Category, RegionID))</code>: Retains all
-variables except <code>SES_Category</code> and <code>RegionID</code> for
-use in the subsequent function (since we only want to generate
-correlation coefficients for each pair of <em>continuous</em>
-variables).</li>
+variables <em>except</em> <code>SES_Category</code> and
+<code>RegionID</code> for use in the subsequent function (since we only
+want to generate correlation coefficients for each pair of
+<em>continuous</em> variables).</li>
 <li><code>cor(use = "complete.obs", method = "pearson")</code>:
 <ul>
 <li>The <code>cor()</code> function computes the correlation
@@ -922,7 +936,7 @@ interest).</p>
 <div id="a.-build-the-simple-linear-model" class="section level3">
 <h3>a. Build the simple linear model</h3>
 <p>From our exploratory analysis above, we have already checked the
-first assumption - linearity. The scatterplot of vaccination rate and
+first assumption – linearity. The scatterplot of vaccination rate and
 measles incidence shows a strong negative linear relationship, supported
 by the Pearson’s correlation coefficient (-0.91). We will need to check
 the other assumptions as well, but we first need to build the linear
@@ -953,11 +967,15 @@ results as follows:</p>
 ## Multiple R-squared:  0.8339, Adjusted R-squared:  0.8322 
 ## F-statistic: 492.1 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>We’re not going to get too excited about our model results at this
-stage - we still need to check the rest of the assumptions (i.e., model
+stage – we still need to check the rest of the assumptions (i.e., model
 diagnostics) to ensure our results are valid. For now, let’s just get
 familiar with the most important components of the regression
 output:</p>
 <ul>
+<li><strong>Residuals</strong>: Provides a quick summary of our model
+residuals. Residuals are the differences between the observed values of
+the outcome and the values predicted by the regression model for each
+observation.</li>
 <li><strong>Coefficients</strong>: The coefficients table provides
 estimates for the intercept (β<sub>0</sub>) and slope (β<sub>1</sub>) of
 the simple linear regression equation, and it also indicates whether an
@@ -965,9 +983,12 @@ independent variable (in this case we only have one, vaccination rate)
 is a statistically significant predictor of the dependent variable.
 Specifically, we have found:
 <ul>
-<li><strong>β<sub>0</sub></strong> (y-intercept): The value 241.1388
-means that when the vaccination rate is 0%, the predicted measles
-incidence is approximately 241 cases per 100,000 population.</li>
+<li><strong>β<sub>0</sub></strong> (y-intercept): Technically speaking,
+the value 241.1388 means that when the vaccination rate is 0%, the
+predicted measles incidence is approximately 241 cases per 100,000
+population. However, because a 0% vaccination rate falls outside the
+range of the observed data (the lowest vaccination rate is about 70%),
+this interpretation is primarily theoretical here.</li>
 <li><strong>β<sub>1</sub></strong> (regression coefficient for
 vaccination rate): The value -2.3086 means that for every one percentage
 point increase in vaccination rate, the model predicts a decrease of
@@ -995,14 +1016,14 @@ confirms that the model as a whole is statistically significant.</li>
 <div id="b.-model-diagnostics" class="section level3">
 <h3>b. Model diagnostics</h3>
 <p>Before relying on our regression results, we need to ensure that the
-model meets the assumptions required for valid statistical inference.
-Violations of these assumptions can lead to biased or misleading
-results. In this next section, we will assess model diagnostics (i.e.,
-check assumptions) by examining model <strong>residuals</strong>, which
-we can use to check for homoscedasticity, normality, and potential
-outliers. These checks will help confirm whether our model is
-appropriate or if adjustments are needed before drawing final
-conclusions.</p>
+model reasonably meets the assumptions required for valid statistical
+inference. Violations of these assumptions can lead to biased or
+misleading results. In this next section, we will assess model
+diagnostics (i.e., check assumptions) by examining model
+<strong>residuals</strong>, which we can use to check for
+homoscedasticity, normality, and potential outliers. These checks will
+help confirm whether our model is appropriate or if adjustments are
+needed before drawing final conclusions.</p>
 <p>Before we move on, recall that residuals represent the difference
 between the <em>observed values</em> and the <em>predicted values</em>
 from the regression model — they show how much the model’s predictions
@@ -1039,7 +1060,8 @@ create the residuals vs. fitted values plot using the
 <p><img src="Lab_7_files/figure-html/unnamed-chunk-24-1.png" alt="" width="672" /></p>
 <p><strong>Note:</strong> The ‘1’ in the code above refers to a specific
 plot to generate from the <code>plot()</code> command, in this case, the
-residuals vs. fitted values plot.</p>
+residuals vs. fitted values plot. Other values (e.g., 2, 3) generate
+different diagnostic plots. We’ll look at some others later.</p>
 <p>The residuals vs. fitted values plot looks pretty good here. The
 reference line (in red) is generally straight (this is what we want to
 see), and the spread of points appears generally constant as we look
@@ -1096,6 +1118,10 @@ assumption.</p>
 ## W = 0.98316, p-value = 0.2323</code></pre>
 <p>In this case, our p-value is larger than 0.05, so we can assume
 normality of the residuals.</p>
+<p>Just remember, the Shapiro-Wilk test is highly sensitive with large
+samples, meaning even small (potentially meaningless) deviations from
+normality may be detected. As such, when n&gt;100, we will generally
+rely on visual methods to assess the normality assumption.</p>
 <p><br></p>
 </div>
 <div id="other-assumptions" class="section level4">
@@ -1125,10 +1151,10 @@ multiple linear regression.</p>
 class="section level3">
 <h3>c. Interpret and present regression results</h3>
 <p>Now that we have checked the assumptions of linear regression — and
-found that our model indeed meets all assumptions — we can interpret and
-use the regression equation to understand the relationship between
-vaccination rate and measles incidence. Let’s quickly revisit the
-summary of our model:</p>
+found that our model indeed reasonably meets all assumptions — we can
+interpret and use the regression equation to understand the relationship
+between vaccination rate and measles incidence. Let’s quickly revisit
+the summary of our model:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="co"># generate a summary of the regression model</span></span>
 <span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
@@ -1162,8 +1188,7 @@ summary of our model:</p>
 regression coefficient for vaccination rate (-2.3086), which quantifies
 the relationship between vaccination coverage and measles incidence.
 This coefficient tells us how much measles incidence is expected to
-change for each one-unit increase in vaccination rate, which provides a
-clear, numerical estimate of the protective effect of vaccination.</p>
+change for each one-unit increase in vaccination rate.</p>
 <p>In practice, findings such as these can be used to inform public
 health policies by demonstrating the impact of increasing vaccination
 coverage. For example, our model shows that higher vaccination rates
@@ -1226,8 +1251,7 @@ significantly improves the model.</li>
 balancing predictive accuracy and simplicity. Again, we want to reduce
 the risk of overfitting the model while ensuring that key predictors are
 included. In practice, researchers may also use <strong>stepwise
-regression</strong>, which combines elements of both approaches for a
-more flexible variable selection process.</p>
+regression</strong>, which combines elements of both approaches.</p>
 <p><br></p>
 </div>
 <div id="b.-consider-possible-confounders" class="section level4">
@@ -1236,9 +1260,9 @@ more flexible variable selection process.</p>
 common issue in observational research that can lead to misleading
 conclusions if not properly accounted for. In public health, we often
 want to understand the relationship between an exposure and an outcome,
-but relationships are rarely this simple in real life. Other variables,
-called confounders, can distort relationships, for example, by making
-them appear stronger, weaker, or even reversing the direction.</p>
+but relationships are rarely this simple in real life. Other variables
+may distort relationships, for example, by making them appear stronger,
+weaker, or even reversing the direction.</p>
 <p>A confounder is a third variable that:</p>
 <ol style="list-style-type: decimal">
 <li>Is associated with the predictor of interest.</li>
@@ -1345,7 +1369,7 @@ containing all predictors of interest, as follows:</p>
 ## HealthcareAccess       -0.58111    0.27666  -2.100   0.0384 *  
 ## PopulationDensity_z     5.96733    0.49504  12.054  &lt; 2e-16 ***
 ## PercentChildrenUnder5  -0.05402    0.20706  -0.261   0.7947    
-## SES_Category1          -1.06899    1.22785  -0.871   0.3862    
+## SES_CategoryHigh SES   -1.06899    1.22785  -0.871   0.3862    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -1374,12 +1398,12 @@ p-value, we will remove it from the next iteration of the model…</p>
 ## -10.3670  -3.3579  -0.3112   2.7703  15.3943 
 ## 
 ## Coefficients:
-##                     Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)         238.0694     6.3613  37.425  &lt; 2e-16 ***
-## VaccinationRate      -1.6722     0.2775  -6.027 3.17e-08 ***
-## HealthcareAccess     -0.5914     0.2725  -2.171   0.0324 *  
-## PopulationDensity_z   5.9762     0.4914  12.161  &lt; 2e-16 ***
-## SES_Category1        -1.0942     1.2180  -0.898   0.3713    
+##                      Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)          238.0694     6.3613  37.425  &lt; 2e-16 ***
+## VaccinationRate       -1.6722     0.2775  -6.027 3.17e-08 ***
+## HealthcareAccess      -0.5914     0.2725  -2.171   0.0324 *  
+## PopulationDensity_z    5.9762     0.4914  12.161  &lt; 2e-16 ***
+## SES_CategoryHigh SES  -1.0942     1.2180  -0.898   0.3713    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -1462,7 +1486,7 @@ predictor should likely be removed or adjusted.</li>
 <p>Let’s compute VIF scores for each variable in our model to identify
 any potential multicollinearity issues. We can do this using the
 <code>check_collinearity()</code> function from the
-<code>performance</code> pacakage:</p>
+<code>performance</code> package:</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="co"># generate Variance Inflation Factors for Model 2</span></span>
 <span id="cb43-2"><a href="#cb43-2" tabindex="-1"></a><span class="fu">check_collinearity</span>(model3)</span></code></pre></div>
 <pre><code>## # Check for Multicollinearity
@@ -1484,9 +1508,12 @@ these two variables are highly correlated. Since high VIF values suggest
 redundant information between predictors, our model may struggle to
 distinguish their individual effects — in other words, the regression
 coefficients associated with these predictors may be unreliable. We have
-a couple of options — (1) we can remove one of the highly correlated
+a couple of options: (1) we can remove one of the highly correlated
 predictors, or (2) we can combine the variables into an index (i.e., a
-composite measure).</p>
+composite measure) — but we’d only want to do that if it made sense
+theoretically, for example, if we thought these two variables were
+representing aspects of the same latent construct (something we want to
+measure but that isn’t directly observable).</p>
 <p>For now, let’s opt for the simpler of the two approaches — to remove
 one of the highly correlated predictors. The decision for which
 predictor to remove should not be made arbitrarily but rather should be
@@ -1572,7 +1599,7 @@ is expected to increase by 5.89 cases per 100,000 population,
 <em>holding vaccination rate constant</em>.</li>
 </ul>
 <p>Our results indicate that both predictors (vaccination rate and
-population density) have very small p-values (&lt; 2e-16), meaning they
+population density) have very small p-values (&lt;2e-16), meaning they
 are highly significant contributors to the model.</p>
 <p>Finally, the adjusted R-squared value of 0.9306 indicates that the
 model explains about 93% of the variability in measles incidence, an
@@ -1584,18 +1611,18 @@ excellent fit.</p>
 <p>So far in this Lab, we have assumed that each predictor variable in
 our model has an independent effect on the outcome. However, in many
 situations, the effect of one variable may depend on the level of
-another variable — this is known as an interaction effect. We might be
-interested in investigating interactions when we suspect (based on
-theory or prior research) that the relationship between an independent
-variable and the outcome of interest differs across levels of another
-variable. For example, we found earlier in this Lab that socioeconomic
-status does not act as a confounder of the relationship between
-vaccination rate and measles incidence. But suppose we suspect that the
-effect of vaccination rate on measles incidence <em>depends</em> on
-socioeconomic status. Suppose we think that, in lower SES areas,
-vaccination rates may need to be higher in order to achieve the same
-reduction in measles cases (perhaps do to overcrowding, more limited
-healthcare access, or other factors).</p>
+another variable — this is known as an interaction effect (or effect
+modification). We might be interested in investigating interactions when
+we suspect (based on theory or prior research) that the relationship
+between an independent variable and the outcome of interest differs
+across levels of another variable. For example, we found earlier in this
+Lab that socioeconomic status does not act as a confounder of the
+relationship between vaccination rate and measles incidence. But suppose
+we suspect that the effect of vaccination rate on measles incidence
+<em>depends</em> on socioeconomic status. Suppose we think that, in
+lower SES areas, vaccination rates may need to be higher in order to
+achieve the same reduction in measles cases (perhaps due to
+overcrowding, more limited healthcare access, or other factors).</p>
 <p>Building from Model 4, we can include an interaction term between
 vaccination rate and SES category by putting an asterisk (*) between
 these two variables, as follows:</p>
@@ -1612,12 +1639,12 @@ these two variables, as follows:</p>
 ## -10.9512  -3.5466  -0.5655   3.0757  15.3764 
 ## 
 ## Coefficients:
-##                               Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)                   243.4081    10.5488  23.074   &lt;2e-16 ***
-## VaccinationRate                -2.3351     0.1369 -17.063   &lt;2e-16 ***
-## SES_Category1                 -12.1237    13.9298  -0.870    0.386    
-## PopulationDensity_z             5.9120     0.5011  11.798   &lt;2e-16 ***
-## VaccinationRate:SES_Category1   0.1393     0.1730   0.805    0.423    
+##                                      Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                          243.4081    10.5488  23.074   &lt;2e-16 ***
+## VaccinationRate                       -2.3351     0.1369 -17.063   &lt;2e-16 ***
+## SES_CategoryHigh SES                 -12.1237    13.9298  -0.870    0.386    
+## PopulationDensity_z                    5.9120     0.5011  11.798   &lt;2e-16 ***
+## VaccinationRate:SES_CategoryHigh SES   0.1393     0.1730   0.805    0.423    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -1626,17 +1653,18 @@ these two variables, as follows:</p>
 ## F-statistic: 330.3 on 4 and 95 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Note that when we include an interaction term, the <em>main
 effects</em> of each variable and <em>interaction effect</em> are all
-reported in the output. Based on the p-values, however, we see that the
-main effect of SES category and interaction between vaccination rate and
-SES category are insignificant. Womp womp. Had the interaction term been
-significant, recall from lecture that:</p>
+reported in the output. The interaction effect is shown with the two
+variables separated by a colon (:). Based on the p-values, however, we
+see that the main effect of SES category and interaction between
+vaccination rate and SES category are insignificant. Womp womp. Had the
+interaction term been significant, recall from lecture that:</p>
 <ul>
 <li>A positive (and significant) interaction coefficient suggests the
 effect of one predictor variable on the outcome is increased by the
 presence of the other variable.</li>
 <li>A negative (and significant) interaction coefficient suggests the
-effect the effect of one predictor variable on the outcome is reduced by
-the presence of the other variable.</li>
+effect of one predictor variable on the outcome is reduced by the
+presence of the other variable.</li>
 </ul>
 <p>Since the interaction term was insignificant and did not improve the
 explanatory power of the model (based on the adjusted R<sup>2</sup>
@@ -1658,11 +1686,10 @@ diagnostics. This is a necessary step to ensure that the results we
 obtain from our linear model are valid.</p>
 <p>In the next section of our course, we will discuss logistic
 regression, a modeling approach used when the outcome variable is
-categorical rather than continuous. This builds upon what we have
+dichotomous rather than continuous. This builds upon what we have
 learned in linear regression but is particularly useful in public health
 settings where outcomes are often binary — such as predicting whether a
-disease occurs (yes/no), whether a patient is at high risk (high/low),
-or whether a policy intervention succeeds or fails.</p>
+disease occurs (0 vs. 1, or no vs. yes).</p>
 <p>When you are ready, please submit the following to the Lab 7
 assignment page on Canvas:</p>
 <ol style="list-style-type: decimal">
@@ -1672,6 +1699,12 @@ assignment page on Canvas:</p>
 <p>Please reach out to me at <a href="mailto:jenny.wagner@csus.edu"
 class="email">jenny.wagner@csus.edu</a> if you have any questions. See
 you in class!</p>
+<p><br></p>
+<hr />
+<p><strong>Jenny Wagner, PhD, MPH</strong><br />
+Assistant Professor<br> Department of Public Health<br> California State
+University, Sacramento<br> <a href="mailto:jenny.wagner@csus.edu"
+class="email">jenny.wagner@csus.edu</a></p>
 </div>
 
 

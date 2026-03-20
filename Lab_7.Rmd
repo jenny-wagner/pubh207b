@@ -7,23 +7,15 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
-<br>
-**Jenny Wagner, PhD, MPH**
-<br>
-Department of Public Health
-<br>
-California State University, Sacramento
-<br>
 <br>
 
 # Introduction
 
-As we have discussed in class, public health researchers often seek to understand relationships between variables. Correlation and simple linear regression are two fundamental statistical techniques used to explore and quantify these relationships. Correlation measures the strength and direction of the linear association between two continuous variables, while simple linear regression goes a step further by modeling how one variable (the dependent variable, or "outcome" of interest) changes in response to another (the independent variable, or "exposure" of interest). These methods are widely applied in public health sciences, for example, to identify risk factors for disease, to identify populations at increased risk, and ultimately to inform decision-making.
+As we have discussed in class, public health researchers often seek to understand relationships between variables — for example, to identify risk factors for disease and populations at increased risk. In Lab 6, we used Analysis of Variance (ANOVA) to test for differences in the mean of a continuous variable across three or more groups, or equivalently, to examine the relationship between a categorical independent variable (with 3+ levels) and a continuous dependent variable. In Lab 7, we shift our focus to relationships between two continuous variables. Correlation and simple linear regression are two techniques used to explore and quantify these relationships. Correlation measures the strength and direction of a linear association, while simple linear regression goes a step further by modeling how a dependent variable (outcome) changes in response to an independent variable (exposure).
 
-**Correlation** is used when the goal is to determine whether two continuous variables are linearly related and to quantify the strength and direction of that relationship. There are various methods for calculating what is called a *correlation coefficient*. We will use the most common method, Pearson’s correlation coefficient (denoted by *r*). This coefficient ranges from -1 to 1, where values close to -1 or 1 indicate a strong relationship and values near 0 suggest little or no linear association. Remember, of course, that correlation does not imply causation — it only describes an association between variables.
+**Correlation** is used when the goal is to determine whether two continuous variables are linearly related and to quantify the strength and direction of that relationship. There are various methods for calculating what is called a *correlation coefficient*. We will use the most common method, Pearson’s correlation coefficient (denoted by *r*). This coefficient ranges from -1 to 1, where values close to -1 or 1 indicate a strong linear relationship (either negative or positive) and values near 0 suggest little or no linear association. Remember, of course, that correlation does not imply causation — it only describes an association between variables.
 
-**Simple linear regression**, on the other hand, models the relationship between an independent variable (predictor) and a dependent variable (outcome). It not only tells us whether a relationship exists but also provides a mathematical equation to describe the relationship and make predictions. This method fits a regression line to the data, represented by the equation...
+**Simple linear regression**, on the other hand, models the relationship between an independent variable (predictor or exposure) and a dependent variable (outcome). It not only tells us whether a relationship exists but also provides a mathematical equation to describe the relationship and make predictions. This method fits a regression line to the data, represented by the equation...
 
 ```{r fig.align="center", echo=FALSE, out.width = '30%'}
 knitr::include_graphics("simple-linear-reg-equation.png")
@@ -37,7 +29,7 @@ knitr::include_graphics("simple-linear-reg-equation.png")
 * *β~1~* is the slope (indicating how much *Y* changes for each one-unit increase in *X*), and
 * *ε* represents the error term (unexplained variation).
 
-This model can help answer questions like: What is the association between air pollution levels and hospital admission rates for respiratory diseases? or How does physical activity level influence blood pressure?
+This model can help answer questions like: What is the association between air pollution levels and hospital admission rates for respiratory diseases? or What is the association between physical activity level and blood pressure?
 
 While simple linear regression examines the effect of a single predictor (*X*) variable on an outcome of interest, **multiple linear regression** extends this concept by incorporating two or more independent variables to explain variation in the dependent variable. The equation for multiple linear regression is...
 
@@ -49,9 +41,9 @@ knitr::include_graphics("multiple-linear-reg-equation.png")
 
 Multiple linear regression is particularly useful in public health research when outcomes are influenced by multiple factors. For example, instead of studying how exercise alone affects blood pressure, a multiple regression model could incorporate additional variables like diet, age, and smoking status to better explain variations in blood pressure.
 
-As we saw in our exploration of Analysis of Variance (ANOVA) last week, linear regression too has several assumptions which must be met in order for any conclusions we draw from a linear model to be valid. Briefly, these assumptions are as follows:
+As we saw in our exploration of Analysis of Variance (ANOVA) last week, linear regression too has several assumptions which must be *reasonably* met in order for any conclusions we draw from a linear model to be valid. Briefly, these assumptions are as follows:
 
-1. **Linearity** – The relationship between the independent and dependent variable should be linear.
+1. **Linearity** – The relationship between the independent and dependent variables should be linear.
 2. **Independence** – Residuals (errors) should be independent, meaning observations should not be influenced by one another.
 3. **Homoscedasticity** – The variability of residuals should be constant across all levels of the independent variable.
 4. **Normality** – The residuals should follow a normal distribution.
@@ -145,7 +137,7 @@ data <- read.csv("measles_vaccination_data.csv")
 
 ## 4. Identify and modify variable types
 
-In previous Labs, we have used the `class()` function to check variable types one at a time. As a quicker alternative, we can use the `str()` command to check the structure of our dataset, including variable types, as follows: 
+In previous Labs, we have used the `class()` function to check variable types. We can also use the `str()` command to check the structure of our dataset, including variable types, as follows: 
 
 ```{r}
 # identify variable type for all variables in the dataset
@@ -157,15 +149,18 @@ Our output contains a list of the variables in our dataset, followed by the vari
 ```{r}
 # convert SES category to unordered factor variable
 data$SES_Category <- factor(data$SES_Category, 
-                         levels=c("0", "1"), 
+                         levels=c("0", "1"),
+                         labels=c("Low SES", "High SES"),
                          ordered=FALSE)
 ```
+
+Though the code above should look very familiar from previous Labs, notice that we're using a new option here called "labels" – as you might suspect, this option allows us to specify labels corresponding to each level of our categorical variable. Here, we are telling R that the level "0" should be labeled with "Low SES", and the level "1" should be labeled with "High SES". These labels can be very helpful when creating plots or carrying out future analyses, particularly when working with multiple categorical variables with the same levels (as we have seen in the past!). 
 
 <br>
 
 ## 5. Exploratory data analysis
 
-Since we are working with a new dataset in this Lab, we need to start by doing some exploratory data analysis before jumping into more in-depth analyses. We should have a good understanding of the distribution of each variable we plan to use. For this, we may want to generate both numerical summaries and descriptive plots. We can also begin to explore possible relationships between variables - for example, using scatterplots - in order to inform future analyses. 
+Since we are working with a new dataset in this Lab, we need to start by doing some exploratory data analysis before jumping into more in-depth analyses. We should first have a good understanding of the distribution of each variable we plan to use. For this, we may want to generate both numerical summaries and descriptive plots. We can also begin to explore possible relationships between variables – for example, using scatterplots – in order to inform future analyses. 
 
 <br>
 
@@ -245,7 +240,7 @@ data %>%
   pairs()
 ```
 
-You may need to expand the Plots window (click and drag at the borders) to get a good view of all the plots. As you can imagine, scatterplot matrices can get pretty messy if we try to use too many variables at one time - but for a handful of variables like we have here, they can provide an efficient way to view relationships between each pair of variables in our dataset. 
+You may need to expand the Plots window (click and drag at the borders) to get a good view of all the plots. As you can imagine, scatterplot matrices can get pretty messy if we try to use too many variables at one time – but for a handful of variables like we have here, they can provide an efficient way to view relationships between each pair of numerical variables in our dataset. 
 
 Here, we've generated a scatterplot matrix using the `pairs()` function, *excluding* `SES_Category` and `RegionID`, since it doesn't make sense to visualize these particular variables with this type of plot. We may be interested, however, in viewing the distribution of our outcome of interest, measles incidence, across levels of SES. We can do this using grouped boxplots as follows:
 
@@ -301,7 +296,7 @@ round(cor_matrix, 2)
 First, a brief explanation of this code chunk:
 
 * `data %>%`: Passes the `data` object to the next function.
-* `select(-c(SES_Category, RegionID))`: Retains all variables except `SES_Category` and `RegionID` for use in the subsequent function (since we only want to generate correlation coefficients for each pair of *continuous* variables).
+* `select(-c(SES_Category, RegionID))`: Retains all variables *except* `SES_Category` and `RegionID` for use in the subsequent function (since we only want to generate correlation coefficients for each pair of *continuous* variables).
 * `cor(use = "complete.obs", method = "pearson")`:
     * The `cor()` function computes the correlation matrix.
     * The argument `use = "complete.obs"` ensures that only rows with complete (non-missing) data are used in the calculation. This prevents missing values (NA) from affecting the results.
@@ -323,7 +318,7 @@ Now that we have explored the relationships between variables using a scatterplo
 
 ### a. Build the simple linear model
 
-From our exploratory analysis above, we have already checked the first assumption - linearity. The scatterplot of vaccination rate and measles incidence shows a strong negative linear relationship, supported by the Pearson's correlation coefficient (-0.91). We will need to check the other assumptions as well, but we first need to build the linear model in order to do this. We can build the simple linear model using the `lm()` function as follows:
+From our exploratory analysis above, we have already checked the first assumption – linearity. The scatterplot of vaccination rate and measles incidence shows a strong negative linear relationship, supported by the Pearson's correlation coefficient (-0.91). We will need to check the other assumptions as well, but we first need to build the linear model in order to do this. We can build the simple linear model using the `lm()` function as follows:
 
 ```{r}
 # build simple linear model and save it as an object to our Environment
@@ -337,10 +332,11 @@ We can use the `summary()` function to view the model results as follows:
 summary(model)
 ```
 
-We're not going to get too excited about our model results at this stage - we still need to check the rest of the assumptions (i.e., model diagnostics) to ensure our results are valid. For now, let's just get familiar with the most important components of the regression output:
+We're not going to get too excited about our model results at this stage – we still need to check the rest of the assumptions (i.e., model diagnostics) to ensure our results are valid. For now, let's just get familiar with the most important components of the regression output:
 
+* **Residuals**: Provides a quick summary of our model residuals. Residuals are the differences between the observed values of the outcome and the values predicted by the regression model for each observation.
 * **Coefficients**: The coefficients table provides estimates for the intercept (β~0~) and slope (β~1~) of the simple linear regression equation, and it also indicates whether an independent variable (in this case we only have one, vaccination rate) is a statistically significant predictor of the dependent variable. Specifically, we have found:
-  * **β~0~** (y-intercept): The value 241.1388 means that when the vaccination rate is 0%, the predicted measles incidence is approximately 241 cases per 100,000 population.
+  * **β~0~** (y-intercept): Technically speaking, the value 241.1388 means that when the vaccination rate is 0%, the predicted measles incidence is approximately 241 cases per 100,000 population. However, because a 0% vaccination rate falls outside the range of the observed data (the lowest vaccination rate is about 70%), this interpretation is primarily theoretical here.
   * **β~1~** (regression coefficient for vaccination rate): The value -2.3086 means that for every one percentage point increase in vaccination rate, the model predicts a decrease of about 2.3 measles cases per 100,000 population. The small p-value associated with vaccination rate confirms that this variable is a statistically significant predictor of measles incidence.
 * **Adjusted R-squared**: The R-squared (R^2^) value represents the proportion of variance in the dependent variable that is explained by the independent variable(s). The "adjusted" R-squared value accounts for the number of predictors in the model and is more reliable when comparing models with different numbers of predictors. 
   * In our case here, the adjusted R-squared value of 0.8322 means that vaccination rate explains about 83% of the variance in measles incidence, suggesting a strong model fit. 
@@ -350,7 +346,7 @@ We're not going to get too excited about our model results at this stage - we st
 
 ### b. Model diagnostics
 
-Before relying on our regression results, we need to ensure that the model meets the assumptions required for valid statistical inference. Violations of these assumptions can lead to biased or misleading results. In this next section, we will assess model diagnostics (i.e., check assumptions) by examining model **residuals**, which we can use to check for homoscedasticity, normality, and potential outliers. These checks will help confirm whether our model is appropriate or if adjustments are needed before drawing final conclusions.
+Before relying on our regression results, we need to ensure that the model reasonably meets the assumptions required for valid statistical inference. Violations of these assumptions can lead to biased or misleading results. In this next section, we will assess model diagnostics (i.e., check assumptions) by examining model **residuals**, which we can use to check for homoscedasticity, normality, and potential outliers. These checks will help confirm whether our model is appropriate or if adjustments are needed before drawing final conclusions.
 
 Before we move on, recall that residuals represent the difference between the *observed values* and the *predicted values* from the regression model — they show how much the model’s predictions deviate from the actual data points. With this in mind, let's check each assumption of linear regression...
 
@@ -373,7 +369,7 @@ First, we will create a **residuals vs. fitted values plot**, where residuals sh
 plot(model, 1) 
 ```
 
-**Note:** The '1' in the code above refers to a specific plot to generate from the `plot()` command, in this case, the residuals vs. fitted values plot.
+**Note:** The '1' in the code above refers to a specific plot to generate from the `plot()` command, in this case, the residuals vs. fitted values plot. Other values (e.g., 2, 3) generate different diagnostic plots. We'll look at some others later.
 
 The residuals vs. fitted values plot looks pretty good here. The reference line (in red) is generally straight (this is what we want to see), and the spread of points appears generally constant as we look from left to right. 
 
@@ -411,6 +407,8 @@ shapiro.test(residuals(model))
 
 In this case, our p-value is larger than 0.05, so we can assume normality of the residuals.
 
+Just remember, the Shapiro-Wilk test is highly sensitive with large samples, meaning even small (potentially meaningless) deviations from normality may be detected. As such, when n>100, we will generally rely on visual methods to assess the normality assumption. 
+
 <br>
 
 #### Other assumptions
@@ -423,7 +421,7 @@ Additionally, since we are currently using only one predictor, we do not need to
 
 ### c. Interpret and present regression results
 
-Now that we have checked the assumptions of linear regression — and found that our model indeed meets all assumptions — we can interpret and use the regression equation to understand the relationship between vaccination rate and measles incidence. Let's quickly revisit the summary of our model:
+Now that we have checked the assumptions of linear regression — and found that our model indeed reasonably meets all assumptions — we can interpret and use the regression equation to understand the relationship between vaccination rate and measles incidence. Let's quickly revisit the summary of our model:
 
 ```{r}
 # generate a summary of the regression model
@@ -440,7 +438,7 @@ ggplot(data=data, aes(x = VaccinationRate, y = MeaslesIncidence)) +
         stat_regline_equation()
 ```
 
-The key finding from our simple linear regression model is the regression coefficient for vaccination rate (-2.3086), which quantifies the relationship between vaccination coverage and measles incidence. This coefficient tells us how much measles incidence is expected to change for each one-unit increase in vaccination rate, which provides a clear, numerical estimate of the protective effect of vaccination.
+The key finding from our simple linear regression model is the regression coefficient for vaccination rate (-2.3086), which quantifies the relationship between vaccination coverage and measles incidence. This coefficient tells us how much measles incidence is expected to change for each one-unit increase in vaccination rate.
 
 In practice, findings such as these can be used to inform public health policies by demonstrating the impact of increasing vaccination coverage. For example, our model shows that higher vaccination rates significantly reduce measles incidence. Policymakers may be able to use this evidence to advocate for expanded immunization programs, targeted outreach in low-coverage areas, or resource allocation for vaccine accessibility. Additionally, these results can support public health messaging by helping communicate the importance of vaccination to communities in an evidence-based way.
 
@@ -461,13 +459,13 @@ Two common variable selection approaches are **backward elimination** and **forw
 * If using backward elimination, we start with *all candidate predictor variables* in the model. Then, we iteratively remove the least significant predictor (based on p-values, typically using a threshold like 0.05), one at a time, until only statistically (and theoretically) meaningful variables remain. Under this modeling approach, we essentially start with a comprehensive model and remove unnecessary predictors in order to reduce complexity while maintaining explanatory power.
 * In contrast, with forward selection, we start with *no predictors* and gradually add variables one by one. Then, we retain only the predictors with the strongest statistical significance at each step. This process continues until adding more variables no longer significantly improves the model. 
 
-Both methods of variable selection help refine regression models by balancing predictive accuracy and simplicity. Again, we want to reduce the risk of overfitting the model while ensuring that key predictors are included. In practice, researchers may also use **stepwise regression**, which combines elements of both approaches for a more flexible variable selection process.
+Both methods of variable selection help refine regression models by balancing predictive accuracy and simplicity. Again, we want to reduce the risk of overfitting the model while ensuring that key predictors are included. In practice, researchers may also use **stepwise regression**, which combines elements of both approaches.
 
 <br>
 
 #### b. Consider possible confounders
 
-Last semester, you were introduced to the concept of confounding — a common issue in observational research that can lead to misleading conclusions if not properly accounted for. In public health, we often want to understand the relationship between an exposure and an outcome, but relationships are rarely this simple in real life. Other variables, called confounders, can distort relationships, for example, by making them appear stronger, weaker, or even reversing the direction.
+Last semester, you were introduced to the concept of confounding — a common issue in observational research that can lead to misleading conclusions if not properly accounted for. In public health, we often want to understand the relationship between an exposure and an outcome, but relationships are rarely this simple in real life. Other variables may distort relationships, for example, by making them appear stronger, weaker, or even reversing the direction.
 
 A confounder is a third variable that:
 
@@ -562,14 +560,14 @@ When predictors are strongly related, it becomes difficult to determine their in
 * **VIF > 5**: Considerable multicollinearity, may need further investigation.
 * **VIF > 10**: Severe multicollinearity, the predictor should likely be removed or adjusted.
 
-Let's compute VIF scores for each variable in our model to identify any potential multicollinearity issues. We can do this using the `check_collinearity()` function from the `performance` pacakage:
+Let's compute VIF scores for each variable in our model to identify any potential multicollinearity issues. We can do this using the `check_collinearity()` function from the `performance` package:
 
 ```{r}
 # generate Variance Inflation Factors for Model 2
 check_collinearity(model3)
 ```
 
-From our output (specifically, the two leftmost columns), we can see vaccination rate and healthcare access are listed under "High Correlation" as they have extremely high VIF values (~16.9), meaning these two variables are highly correlated. Since high VIF values suggest redundant information between predictors, our model may struggle to distinguish their individual effects — in other words, the regression coefficients associated with these predictors may be unreliable. We have a couple of options — (1) we can remove one of the highly correlated predictors, or (2) we can combine the variables into an index (i.e., a composite measure). 
+From our output (specifically, the two leftmost columns), we can see vaccination rate and healthcare access are listed under "High Correlation" as they have extremely high VIF values (~16.9), meaning these two variables are highly correlated. Since high VIF values suggest redundant information between predictors, our model may struggle to distinguish their individual effects — in other words, the regression coefficients associated with these predictors may be unreliable. We have a couple of options: (1) we can remove one of the highly correlated predictors, or (2) we can combine the variables into an index (i.e., a composite measure) — but we'd only want to do that if it made sense theoretically, for example, if we thought these two variables were representing aspects of the same latent construct (something we want to measure but that isn't directly observable). 
 
 For now, let's opt for the simpler of the two approaches — to remove one of the highly correlated predictors. The decision for which predictor to remove should not be made arbitrarily but rather should be based on our theoretical understanding of the issue at-hand. In this case, since vaccination is the *direct* intervention against measles, and healthcare access is more indirect in that it may influence vaccination rates, retaining vaccination rate in the model makes more sense conceptually. So, let's generate a new model excluding healthcare access, as follows:
 
@@ -625,7 +623,7 @@ We can interpret our regression coefficients as follows:
 * **Vaccination Rate (-2.29)**: For every one percentage point increase in vaccination coverage, measles incidence is expected to decrease by 2.29 cases per 100,000 population, *holding population density constant*.
 * **Population Density (standardized) (5.89)**: For every one-standard deviation increase in population density, measles incidence is expected to increase by 5.89 cases per 100,000 population, *holding vaccination rate constant*.
 
-Our results indicate that both predictors (vaccination rate and population density) have very small p-values (< 2e-16), meaning they are highly significant contributors to the model.
+Our results indicate that both predictors (vaccination rate and population density) have very small p-values (<2e-16), meaning they are highly significant contributors to the model.
 
 Finally, the adjusted R-squared value of 0.9306 indicates that the model explains about 93% of the variability in measles incidence, an excellent fit.
 
@@ -633,7 +631,7 @@ Finally, the adjusted R-squared value of 0.9306 indicates that the model explain
 
 #### h. Investigate interactions
 
-So far in this Lab, we have assumed that each predictor variable in our model has an independent effect on the outcome. However, in many situations, the effect of one variable may depend on the level of another variable — this is known as an interaction effect. We might be interested in investigating interactions when we suspect (based on theory or prior research) that the relationship between an independent variable and the outcome of interest differs across levels of another variable. For example, we found earlier in this Lab that socioeconomic status does not act as a confounder of the relationship between vaccination rate and measles incidence. But suppose we suspect that the effect of vaccination rate on measles incidence *depends* on socioeconomic status. Suppose we think that, in lower SES areas, vaccination rates may need to be higher in order to achieve the same reduction in measles cases (perhaps do to overcrowding, more limited healthcare access, or other factors).
+So far in this Lab, we have assumed that each predictor variable in our model has an independent effect on the outcome. However, in many situations, the effect of one variable may depend on the level of another variable — this is known as an interaction effect (or effect modification). We might be interested in investigating interactions when we suspect (based on theory or prior research) that the relationship between an independent variable and the outcome of interest differs across levels of another variable. For example, we found earlier in this Lab that socioeconomic status does not act as a confounder of the relationship between vaccination rate and measles incidence. But suppose we suspect that the effect of vaccination rate on measles incidence *depends* on socioeconomic status. Suppose we think that, in lower SES areas, vaccination rates may need to be higher in order to achieve the same reduction in measles cases (perhaps due to overcrowding, more limited healthcare access, or other factors).
 
 Building from Model 4, we can include an interaction term between vaccination rate and SES category by putting an asterisk (*) between these two variables, as follows:
 
@@ -643,10 +641,10 @@ model5 <- lm(MeaslesIncidence ~ VaccinationRate*SES_Category + PopulationDensity
 summary(model5)
 ```
 
-Note that when we include an interaction term, the *main effects* of each variable and *interaction effect* are all reported in the output. Based on the p-values, however, we see that the main effect of SES category and interaction between vaccination rate and SES category are insignificant. Womp womp. Had the interaction term been significant, recall from lecture that:
+Note that when we include an interaction term, the *main effects* of each variable and *interaction effect* are all reported in the output. The interaction effect is shown with the two variables separated by a colon (:). Based on the p-values, however, we see that the main effect of SES category and interaction between vaccination rate and SES category are insignificant. Womp womp. Had the interaction term been significant, recall from lecture that:
 
 * A positive (and significant) interaction coefficient suggests the effect of one predictor variable on the outcome is increased by the presence of the other variable.
-* A negative (and significant) interaction coefficient suggests the effect the effect of one predictor variable on the outcome is reduced by the presence of the other variable.
+* A negative (and significant) interaction coefficient suggests the effect of one predictor variable on the outcome is reduced by the presence of the other variable.
 
 Since the interaction term was insignificant and did not improve the explanatory power of the model (based on the adjusted R^2^ value), best to continue with Model 4 as our final model.
 
@@ -656,7 +654,7 @@ Since the interaction term was insignificant and did not improve the explanatory
 
 In Lab 7, we have explored the use of correlation and linear regression to analyze the relationship between vaccination rates, population density, and measles incidence. These statistical methods are appropriate for analyzing linear relationships when the outcome of interest is a continuous random variable. From this Lab, we can see that much of the work that goes into applying linear regression techniques is in checking assumptions, or in other words, performing model diagnostics. This is a necessary step to ensure that the results we obtain from our linear model are valid. 
 
-In the next section of our course, we will discuss logistic regression, a modeling approach used when the outcome variable is categorical rather than continuous. This builds upon what we have learned in linear regression but is particularly useful in public health settings where outcomes are often binary — such as predicting whether a disease occurs (yes/no), whether a patient is at high risk (high/low), or whether a policy intervention succeeds or fails. 
+In the next section of our course, we will discuss logistic regression, a modeling approach used when the outcome variable is dichotomous rather than continuous. This builds upon what we have learned in linear regression but is particularly useful in public health settings where outcomes are often binary — such as predicting whether a disease occurs (0 vs. 1, or no vs. yes). 
 
 When you are ready, please submit the following to the Lab 7 assignment page on Canvas:
 
@@ -664,3 +662,13 @@ When you are ready, please submit the following to the Lab 7 assignment page on 
 2. A knitted `.html` file
 
 Please reach out to me at jenny.wagner@csus.edu if you have any questions. See you in class!
+
+<br>
+
+---
+
+**Jenny Wagner, PhD, MPH**  
+Assistant Professor<br>
+Department of Public Health<br>
+California State University, Sacramento<br>
+jenny.wagner@csus.edu
