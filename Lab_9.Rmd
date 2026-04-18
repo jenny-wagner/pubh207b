@@ -9,19 +9,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <br>
 
-**Jenny Wagner, PhD, MPH**
-<br>
-Department of Public Health
-<br>
-California State University, Sacramento
-<br>
-<br>
-
 # Introduction
 
 In Lab 9, you will learn how to apply statistical tests that are useful when common assumptions of parametric tests (such as normally distributed data or large sample sizes) do not hold. The Lab is divided into two parts, each using a different dataset to highlight distinct types of analyses.
 
-Part 1 of this Lab focuses on methods for analyzing relationships between categorical variables. Specifically, you’ll use the **Chi-square test of independence** and **Fisher’s exact test** to determine whether there is a significant association between two categorical variables in a contingency table. These tests are commonly used in public health and epidemiology to assess relationships such as exposure and disease status, stratified by demographic or behavioral characteristics. While the Chi-square test is appropriate for larger sample sizes and expected cell counts, Fisher’s exact test is better suited for smaller samples.
+Part 1 of this Lab focuses on methods for analyzing relationships between categorical variables. Specifically, you’ll use the **Chi-square test of independence** and **Fisher’s exact test** to determine whether there is a statistically significant association between two categorical variables in a contingency table. These tests are commonly used in public health and epidemiology to assess relationships such as exposure and disease status. While the Chi-square test is appropriate for larger sample sizes and expected cell counts, Fisher’s exact test is better suited for smaller samples.
 
 Part 2 of this Lab introduces non-parametric methods for comparing groups when your data do not meet the assumptions of normality or homogeneity of variance. You’ll apply the **Mann-Whitney U test** (also known as the Wilcoxon rank-sum test) to compare two independent groups, and the **Kruskal-Wallis test** to compare more than two groups. When the Kruskal-Wallis test indicates a statistically significant difference, you’ll follow up with **Dunn’s test** for post-hoc pairwise comparisons. These methods rely on ranked data rather than raw values, which makes them useful for ordinal data or skewed continuous variables.
 
@@ -39,7 +31,7 @@ After completing Lab 9, you will be able to:
 
 # Tasks
 
-Lab 9 is divided into two distinct parts. You will use a different dataset for each part. For Part 1, you will use the file called "asthma_risk_factors.csv" and for Part 2, you will use "smoking_cessation.csv" - these are simulated datasets created for teaching purposes. The specific variables contained within each dataset will be detailed below.
+Lab 9 is divided into two distinct parts. You will use a different dataset for each part. For Part 1, you will use the file called "asthma_risk_factors.csv" and for Part 2, you will use "smoking_cessation.csv" — these are simulated datasets created for teaching purposes. The specific variables contained within each dataset will be detailed below.
 
 When you are ready to start Lab 9:
 
@@ -74,7 +66,7 @@ setwd("YOUR FILE PATH HERE")
 
 ```{r, echo=FALSE}
 # set working directory
-setwd("~/Google Drive/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Website/PUBH-207B-S25")
+setwd("~/Library/CloudStorage/GoogleDrive-jennywagner.csus@gmail.com/My Drive/1_CSUS/2024-2025/Spring 2025/PUBH 207B/Website/PUBH-207B-S25")
 ```
 
 <br>
@@ -137,7 +129,7 @@ We can generate contingency tables using the `table()` function. When you use th
 * The first variable you list will appear as the rows (along the left side).
 * The second variable you list will appear as the columns (across the top).
 
-This can get especially confusing when both variables have the same category labels — like "Yes" and "No" — because it's not immediately obvious which variable those labels belong to. To avoid misinterpreting the table, always double-check the order in which you supplied the variables.
+This can get especially confusing when both variables have the same category labels — like "Yes" and "No" — because it's not immediately obvious which variable those labels belong to. To avoid misinterpreting the table, always double-check the order in which you supplied the variables. You can also specify new labels when converting variables to factors in the above step.
 
 ```{r}
 # generate contingency table for smoking behavior and asthma
@@ -160,7 +152,7 @@ table(data$Indoor_Air_Quality, data$Asthma)
 
 For those reporting excellent, good, or moderate indoor air quality, asthma is relatively uncommon. For those reporting poor air quality, asthma is almost as common as not having asthma (19 with asthma vs. 20 without). This suggests a potential stronger association between poor indoor air quality and asthma.
 
-As part of our exploratory analysis, we may also want to generate descriptive plots to visualize potential associations in the data. This can sometimes make it easier to quickly ascertain potential associations between variables. As we have seen in prior Labs, bar charts are most appropriate for visualizing one or more categorical variables. We can generate bar charts for each pair of variables as follows:
+As part of our exploratory analysis, we may also want to generate descriptive plots to visualize relationships between variables. As we have seen in prior Labs, bar charts are most appropriate for visualizing one or more categorical variables. We can generate simple bar charts for each pair of variables as follows:
 
 ```{r}
 # visualize the data: asthma by smoking status
@@ -193,9 +185,9 @@ data %>% ggplot(aes(x = Indoor_Air_Quality, fill = Asthma)) +
 
 ## Formal analysis of categorical variables
 
-Now that we've explored potential relationships in our dataset using contingency tables and bar charts, we can move on to formal statistical tests to assess whether the associations we observed are statistically significant - or if they are likely due to chance.
+Now that we've explored potential relationships in our dataset using contingency tables and bar charts, we can move on to formal statistical tests to assess whether the associations we observed are statistically significant — or if they are likely due to chance.
 
-Two commonly used tests for this purpose are the **Chi-square test of independence** and **Fisher’s exact test**. Both tests evaluate whether there is a statistically significant association between two categorical variables by comparing *observed frequencies* in each cell of a contingency table to the *expected frequencies* — the counts we would expect to see if the two variables were not associated with one another (i.e., if they were independent). For both tests, the null hypothesis is that there is *no association* between the two variables (i.e., they are independent of one another). The Chi-square test statistic is given by the following equation:
+Two commonly used tests for this purpose are the **Chi-square test of independence** and **Fisher’s exact test**. Both tests evaluate whether there is a statistically significant association between two categorical variables by comparing *observed frequencies* in each cell of a contingency table to the *expected frequencies* — the counts we would *expect* to see if the two variables were not associated with one another (i.e., if they were independent). For both tests, the null hypothesis is that there is *no association* between the two variables (i.e., they are independent of one another). The Chi-square test statistic is given by the following equation:
 
 ```{r fig.align="center", echo=FALSE, out.width = '25%'}
 knitr::include_graphics("chi-square.png")
@@ -207,7 +199,7 @@ Where:
 * 𝐸 = Expected frequency in each cell
 * The sum is taken over all cells in the contingency table
 
-A larger Chi-square test statistic (and therefore, a smaller p-value) suggests a bigger difference between observed and expected counts, which provides more evidence against the assumption of independence. As with other hypothesis tests we have used in this course, we can draw a conclusion about the test based on the p-value, where a p-value less than 0.05 is considered statistically significant.
+A larger Chi-square test statistic (and therefore, a smaller p-value) suggests a bigger difference between observed and expected counts, which provides more evidence against the null hypothesis of independence. As with other hypothesis tests we have used in this course, we can draw a conclusion about the test based on the p-value, where a p-value less than 0.05 is considered statistically significant.
 
 In short, the Chi-square test and Fisher's exact test tell us whether the differences we see in the contingency table are likely due to chance or reflect a real association in the population. When to use each test depends on the sample size and expected cell counts:
 
@@ -254,7 +246,7 @@ We can run the Chi-square test of independence for smoking behavior and asthma u
 chisq.test(data$Smoking_Behavior, data$Asthma)
 ```
 
-From the output, we can see the Chi-square test statistic is 13.801, and the p-value is 0.0002, which is well below 0.05. This means there is strong evidence of a statistically significant association between smoking behavior and asthma. In other words, the observed differences in asthma rates between smokers and non-smokers are unlikely to be due to chance. This supports what we saw in the contingency table - that asthma was more common among smokers than non-smokers.
+From the output, we can see the Chi-square test statistic is 13.801, and the p-value is 0.0002, which is well below 0.05. This means there is strong evidence of a statistically significant association between smoking behavior and asthma. In other words, the observed differences in asthma rates between smokers and non-smokers are unlikely to be due to chance. This supports what we saw in the contingency table — that asthma was more common among smokers than non-smokers.
 
 Next, we'll again use the `chisq.test()` function to test the association between presence of pets and asthma, as follows:
 
@@ -263,7 +255,7 @@ Next, we'll again use the `chisq.test()` function to test the association betwee
 chisq.test(data$Pets, data$Asthma)
 ```
 
-Our output here suggests that there is no statistically significant association between pet ownership and asthma status in this sample, as the p-value is greater than 0.05. In other words, based on this data, there is not enough evidence to conclude that the presence of pets is related to whether or not someone has asthma.
+Our output here suggests that there is no statistically significant association between pet ownership and asthma status, as the p-value is greater than 0.05. In other words, based on these data, there is not enough evidence to conclude that the presence of pets is related to whether or not someone has asthma.
 
 <br>
 
@@ -357,12 +349,12 @@ Non-parametric tests:
 
 * Don’t assume normality.
 * Can be used with ordinal or non-normally distributed continuous data.
-* Compare ranks rather than raw values, which makes them more flexible alternatives to parametric tests.
+* Compare *ranks* rather than raw values, which makes them more flexible alternatives to parametric tests.
 
 In Part 2 of this Lab, we’ll use:
 
 * The Mann-Whitney U test (also called the Wilcoxon rank-sum test) as a non-parametric alternative to the two-sample t-test. 
-* The Kruskal-Wallis test as a non-parametric alternative to one-way ANOVA (and the Dunn test as a non-parametric post-hoc test for pairwise comparisons). 
+* The Kruskal-Wallis test as a non-parametric alternative to one-way ANOVA (and we'll subsequently use the Dunn test as a non-parametric post-hoc test for pairwise comparisons). 
 
 These tests help us assess whether there are statistically significant differences in outcomes between two or more groups, even when our data don’t meet parametric assumptions. As these tests are based on ranks rather than raw values, the results suggest a difference in medians or overall distribution rather than a difference in means.
 
@@ -376,8 +368,6 @@ The **Mann-Whitney U test** (also called the Wilcoxon rank-sum test) is a non-pa
 * You have small sample sizes,
 * Or you just want a more robust test that doesn’t rely on strong assumptions.
 
-In short: Use the Mann-Whitney U test when comparing two groups and you’re not confident your data are normally distributed.
-
 In our current scenario, we have three total groups (program settings) — community center, high school, and workplace. For example purposes, let's select just two of these groups to compare using the Mann-Whitney U test. To do this, we'll start by filtering the dataset so that it contains only two groups — say, the high school and workplace settings:
 
 ```{r}
@@ -385,7 +375,7 @@ In our current scenario, we have three total groups (program settings) — commu
 data1_sub <- data1 %>% filter(!Group == "Community Center")
 ```
 
-We've used the `filter()` command several times in prior Labs. Here we're seeing it used in a slightly different way, where placing an exclaimation point (`!`) in front of `Group` tells R to keep all observations *except* when the group is "Community Center." This is just a more efficient way to filter a dataset when we want to exclude a single group.
+We've used the `filter()` command several times in prior Labs. Here we're seeing it used in a slightly different way, where placing an exclamation point (`!`) in front of `Group` tells R to keep all observations *except* when the group is "Community Center." This is just a more efficient way to filter a dataset when we want to exclude a single group.
 
 Now that we have filtered the dataset to retain only the high school and workplace settings, let's use the Mann-Whitney U test to compare reduction in cigarette use across these two groups. We can do this using the `wilcox.test()` function as follows:
 
@@ -408,8 +398,6 @@ It’s especially useful when:
 * Your sample sizes are unequal or small,
 * Or you're not confident your data meet the assumptions of ANOVA.
 
-In short: Use the Kruskal-Wallis test when comparing three or more groups and your data are not normally distributed or violate other ANOVA assumptions.
-
 So, suppose we now want to compare reduction in cigarette use across all three program settings (since, again, we eliminated the Community Center group just for example purposes in the previous section). We can do this using the `kruskal.test()` function as follows:
 
 ```{r}
@@ -423,14 +411,14 @@ From the output, we can see the p-value is less than 0.05, indicating a statisti
 
 #### Dunn test for pairwise comparisons
 
-When the Kruskal-Wallis test indicates a statistically significant difference across three or more groups, it tells us that at least one group differs — but not which groups are different from each other. To explore these differences further, we'll use a post-hoc test. The Dunn test is a non-parametric method that allows us to make pairwise comparisons between groups, similar to how you might use a Tukey test after ANOVA.
+When the Kruskal-Wallis test indicates a statistically significant difference across three or more groups, it tells us that at least one group differs — but not which groups are different from each other. To explore these differences further, we'll use a post-hoc test. The Dunn test is a non-parametric method that allows us to make pairwise comparisons between groups, similar to how you might use Tukey's HSD test after ANOVA.
 
 Since multiple comparisons increase the risk of false positives (Type I error), the Dunn test is typically used with a p-value adjustment method (like Bonferroni or Holm) to control for this. The Holm method is generally more preferred in practice, so we'll use this method in our next example. 
 
 We can perform the Dunn test using the `dunn_test()` function as follows:
 
 ```{r}
-# Dunn test
+# Dunn test for pairwise comparisons
 dunn_test(data1, Reduction_in_Cigarettes ~ Group, p.adjust.method = "holm", detailed = FALSE)
 ```
 
@@ -440,18 +428,18 @@ From the output, we can see there is only one significant p-value, indicating a 
 
 # Summary
 
-In this Lab, we explored how to formally assess differences between groups using statistical tests that are appropriate for categorical data and for non-normally distributed continuous or ordinal data. This Lab was divided into two parts:
+In Lab 9, we explored how to formally assess differences between groups using statistical tests that are appropriate for categorical data and for non-normally distributed continuous or ordinal data. This Lab was divided into two parts:
 
 * In Part 1, we used the Chi-square test of independence and Fisher’s exact test to examine associations between categorical variables — such as asthma status and smoking behavior, pet ownership, or indoor air quality.
   * The Chi-square test is appropriate when all expected cell counts are 5 or greater.
   * Fisher’s exact test is a better choice when sample sizes are small or expected cell counts are low (below 5).
-  * These tests help us determine whether observed associations in the data are statistically significant, building on our earlier use of frequency tables and bar charts for exploratory analysis.
+  * These tests help us determine whether observed associations in the data are statistically significant, directly building on our earlier use of frequency tables and bar charts for exploratory analysis (see Lab 2).
 * In Part 2, we turned to non-parametric hypothesis tests to compare smoking reduction across groups in a public health program evaluation scenario.
   * The Mann-Whitney U test (or Wilcoxon rank-sum test) was used to compare two groups when the outcome variable was not normally distributed (and sample sizes were too small to apply Central Limit Theorem).
-  * The Kruskal-Wallis test extended this to comparisons across three or more groups — serving as a non-parametric alternative to one-way ANOVA.
+  * The Kruskal-Wallis test extended this to comparisons across three or more groups, serving as a non-parametric alternative to one-way ANOVA.
   * When the Kruskal-Wallis test showed a significant difference, we used Dunn’s test for pairwise comparisons.
   
-These methods complement the t-tests and ANOVA we learned earlier in the course. While t-tests and ANOVA assume normality and equal variances, the methods in this Lab are useful when those assumptions don’t hold — or when working with categorical or ordinal data.
+These methods complement the hypothesis tests we learned earlier in the course. While t-tests and ANOVA assume normality and equal variances, the methods in this Lab are useful when those assumptions don’t hold — or when working with categorical or ordinal data.
 
 When you are ready, please submit the following to the Lab 9 assignment page on Canvas:
 
@@ -459,3 +447,13 @@ When you are ready, please submit the following to the Lab 9 assignment page on 
 2. A knitted `.html` file
 
 Please reach out to me at jenny.wagner@csus.edu if you have any questions. See you in class!
+
+<br>
+
+---
+
+**Jenny Wagner, PhD, MPH**  
+Assistant Professor<br>
+Department of Public Health<br>
+California State University, Sacramento<br>
+jenny.wagner@csus.edu
